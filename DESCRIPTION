@@ -1,0 +1,20 @@
+Package: riskmetric
+Type: Package
+Title: Risk Metrics to Evaluatin R Packages
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: 
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Depends:
+    dplyr,
+    purrr,
+    covr,
+    tools
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
