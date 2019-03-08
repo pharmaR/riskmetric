@@ -2,16 +2,22 @@
 #'
 #' Temporary Function, under development
 get_riskmetric <- function(){
-  cran_db    <- tools::CRAN_package_db()
-  cran_db1    <- cran_db[, c("Package", "Version", "License", "Copyright", "Author", "BugReports",
-                             "Maintainer", "Published", "Title", "URL")]
+  cran_db <- tools::CRAN_package_db()
+  cran_db1 <- cran_db[, c("Package", "Version", "License", "Copyright",
+    "Author", "BugReports", "Maintainer", "Published", "Title", "URL")]
+
+  bioc_db <- BiocPkgTools::biocPkgList()
+  bioc_db1 <- bioc_db[, c("Package", "Version", "License", # Copyright not available
+    "Author", "BugReports", "Maintainer", "Date/Publication", "Title", "URL")]
+  bioc_db1$Author <- sapply(bioc_db1$Author, paste, collapse = ", ")
+  bioc_db1$Maintainer <- sapply(bioc_db1$Maintainer, paste, collapse = ", ")
 
   riskmetric <- tibble(Package = c("dplyr", "emmeans", "haven", "gsDesign","limma"),
                        Source  = c(rep("CRAN",4), "Bioconductor"),
                        # It will be Y for base and recommended R package in R-FDA.pdf
                        `21CFR` = rep("N", 5),
                        # Code coverage. This is an estimation for proof of concept only.
-                       Codecov = c(83, NA,  88, 25, NA),
+                       Codecov = c(83, 8,  88, 25, NA),
                        # Wheather the R pacakge had at least one Vignettes
                        Vignettes = rep("Y", 5),
                        # Wheather the R package had News to track changes of version
@@ -30,10 +36,9 @@ get_riskmetric <- function(){
   depends <- tools::package_dependencies(riskmetric$Package,recursive = TRUE)
 
   riskmetric <- riskmetric %>%
-    merge(cran_db1, all.x = TRUE) %>%
+    left_join(bind_rows(cran_db1, bioc_db1), by = "Package") %>%
     mutate(dependency = depends)
 
   saveRDS(riskmetric, "data/riskmetric.Rd")
+  invisible(riskmetric)
 }
-
-
