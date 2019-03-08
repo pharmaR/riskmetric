@@ -1,6 +1,11 @@
 #' Get Risk Metric
 #'
 #' Temporary Function, under development
+#'
+#' @import dplyr
+#' @importFrom tools CRAN_package_db package_dependencies
+#' @importFrom BiocPkgTools biocPkgList
+#'
 get_riskmetric <- function(){
   cran_db <- tools::CRAN_package_db()
   cran_db1 <- cran_db[, c("Package", "Version", "License", "Copyright",
