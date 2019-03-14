@@ -47,7 +47,13 @@ get_riskmetric <- function(){
 
   riskmetric <- riskmetric %>%
     left_join(bind_rows(cran_db1, bioc_db1), by = "Package") %>%
-    mutate(dependency = depends)
+    mutate(dependency = depends) %>%
+    mutate(Author = lapply(
+      # split on any commas not between square brackets
+      strsplit(Author, "(,)(?![^[]*\\])", perl = TRUE),
+      # trim surrounding whitespace and replace enclosed newlines with spaces
+      . %>% trimws %>% gsub(pattern = "\n", replacement = " ")
+    ))
 
   saveRDS(riskmetric, "data/riskmetric.Rd")
   invisible(riskmetric)
