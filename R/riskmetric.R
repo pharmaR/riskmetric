@@ -5,6 +5,7 @@
 #' @import dplyr
 #' @importFrom tools CRAN_package_db package_dependencies
 #' @importFrom BiocPkgTools biocPkgList
+#' @importFrom BiocManager repositories
 #'
 get_riskmetric <- function(){
   cran_db <- tools::CRAN_package_db()
@@ -38,7 +39,10 @@ get_riskmetric <- function(){
                        # Wheather the R pacakge require other language, e.g. Java, C++, Fortune
                        External_language = NA)
 
-  depends <- tools::package_dependencies(riskmetric$Package,recursive = TRUE)
+  depends <- tools::package_dependencies(
+    riskmetric$Package,
+    recursive = TRUE,
+    db = utils::available.packages(repos = BiocManager::repositories()))
 
   riskmetric <- riskmetric %>%
     left_join(bind_rows(cran_db1, bioc_db1), by = "Package") %>%
