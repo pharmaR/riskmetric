@@ -17,6 +17,7 @@ get_riskmetric <- function(){
     "Author", "BugReports", "Maintainer", "Date/Publication", "Title", "URL")]
   bioc_db1$Author <- sapply(bioc_db1$Author, paste, collapse = ", ")
   bioc_db1$Maintainer <- sapply(bioc_db1$Maintainer, paste, collapse = ", ")
+  bioc_db1 <- bioc_db1 %>% rename(Published = `Date/Publication`)
 
   riskmetric <- tibble(Package = c("dplyr", "emmeans", "haven", "gsDesign","limma"),
                        Source  = c(rep("CRAN",4), "Bioconductor"),
