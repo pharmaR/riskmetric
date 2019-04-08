@@ -1,3 +1,6 @@
+^_pkgdown\.yml$
+^docs$
+^LICENSE\.md$
 ^codecov\.yml$
 ^appveyor\.yml$
 ^\.travis\.yml$
