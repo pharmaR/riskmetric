@@ -1,23 +1,27 @@
 Package: riskmetric
 Type: Package
 Title: Risk Metrics to Evaluatin R Packages
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: 
-License: What license is it under?
+Version: 0.1.0.9000
+Authors@R: c(
+        person("joe", "doe", role = c("cre", "aut"), email = "joedoe@blame.him"),
+        person("jane", "dane", role = c("aut"), email = "janedane@nowhere.tobefound"),
+        person("Kevin", "Kunzmann", role = c("aut"), email = "kevin.kunzmann@mrc-bsu.cam.ac.uk")
+    )
+Description: A collection of functions to compile package meta information into
+    metrics suitable for package risk assessment. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-biocViews:
 Depends:
-    dplyr,
-    purrr,
-    covr,
-    tools,
 Imports: 
-    BiocPkgTools
+    tools,
+    memoise,
+    dplyr,
+    janitor
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat,
+    pkgdown
 VignetteBuilder: knitr
