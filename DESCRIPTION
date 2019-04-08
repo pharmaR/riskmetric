@@ -1,23 +1,22 @@
 Package: riskmetric
 Type: Package
 Title: Risk Metrics to Evaluatin R Packages
-Version: 0.1.0
+Description: todo
+Version: 0.1.0.9000
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: 
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-biocViews:
-Depends:
+Imports:
     dplyr,
-    purrr,
-    covr,
-    tools,
-Imports: 
-    BiocPkgTools
+    memoise,
+    janitor,
+    tools
 RoxygenNote: 6.1.1
-Suggests: 
+Suggests:
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
