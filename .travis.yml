@@ -4,6 +4,12 @@ language: R
 sudo: false
 cache: packages
 
+r_packages:
+  - covr
+  
+after_success:
+  - Rscript -e 'library(covr); covr::codecov()'
+
 before_deploy: Rscript -e 'remotes::install_cran("pkgdown")'
 deploy:
   provider: script
