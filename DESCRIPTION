@@ -5,7 +5,6 @@ Description: todo
 Version: 0.1.0.9000
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
