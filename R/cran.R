@@ -1,16 +1,13 @@
 #' Get current CRAN version
 #'
-#' @param pkgname character, package name
+#' @param pkgname a character vector of names of packages
+#' @return a character vector of version numbers of respective packages
 #'
 #' @usage
-#' get_cran_version("dplyr")
+#' get_cran_version(c("dplyr", "tidyverse"))
 #'
 #' @export
+#'
 get_cran_version <- function(pkgname) {
-
-  package <- NULL # avoid CRAN check note on NSE
-  memoise_cran_db() %>%
-    filter(package == pkgname) %>%
-    pull(version)
-
+  with(memoise_cran_db(), version[match(pkgname, package)])
 }
