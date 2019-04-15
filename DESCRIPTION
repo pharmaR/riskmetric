@@ -1,7 +1,8 @@
 Package: riskmetric
 Type: Package
 Title: Risk Metrics to Evaluatin R Packages
-Description: todo
+Description: A package to facilitate the assessment of risk associated with 
+    R package use within a pharmaceutical regulatory context.
 Version: 0.1.0.9000
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>

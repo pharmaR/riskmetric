@@ -3,7 +3,7 @@
 #' @param pkgname a character vector of names of packages
 #' @return a character vector of version numbers of respective packages
 #'
-#' @usage
+#' @examples
 #' get_cran_version(c("dplyr", "tidyverse"))
 #'
 #' @export

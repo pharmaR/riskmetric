@@ -7,8 +7,15 @@
 get_cran_version(pkgname)
 }
 \arguments{
-\item{pkgname}{character, package name}
+\item{pkgname}{a character vector of names of packages}
+}
+\value{
+a character vector of version numbers of respective packages
 }
 \description{
 Get current CRAN version
+}
+\examples{
+get_cran_version(c("dplyr", "tidyverse"))
+
 }
