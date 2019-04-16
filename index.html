@@ -65,7 +65,61 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#riskmetric" class="anchor"></a>riskmetric</h1></div>
 
-<p>Metrics to evaluating the risk of R packages</p>
+<p><code>riskmetric</code> is a collection of risk metrics to evaluate the quality of R packages.</p>
+<p>This page represents our current thinking. The R package are currently being reviewed and under development.</p>
+<div id="background" class="section level2">
+<h2 class="hasAnchor">
+<a href="#background" class="anchor"></a>Background</h2>
+<p>The value of R lies not within the official distribution but within the many R packages that support it. R packages provide the means to extend the language, implementing new statistical methods, graphics and code structures. However, this is also where the majority of risk lies for an organisation.</p>
+<p>R packages can be written by anyone. The author/maintainer could be an organisation but they are perhaps more likely to be an individual and no qualification is required in order to develop an R package and submit it to CRAN (or any other package repository). Unlike the base distribution, R packages may or may not follow any software development best practices.</p>
+<p>Packages on CRAN must pass a series of technical checks, including an “R CMD check”. These checks are designed to ensure that examples run successfully, tests pass and that packages on CRAN are compatible with each other. However, there is no requirement for package authors to write tests or implement a formal unit-testing framework. In fact, less than 26% of the &gt;13,500 packages on CRAN are known to implement a formal test framework. In addition, there is no obligation to maintain bug reports and unless a bug in a package affects another package on CRAN, the bugs may never be identified nor fixed. Unlike the base distribution, the amount of user testing can also vary widely. Popular packages such as dplyr may have been downloaded and used by tens of thousands of individuals, whilst others might never have been used by anyone except the package author.</p>
+<p>In order to apportion an appropriate level of validation effort across different R packages, it is important to establish a risk assessment framework that can be applied to any R package in order to determine a base level of risk.</p>
+</div>
+<div id="risk-assessment" class="section level2">
+<h2 class="hasAnchor">
+<a href="#risk-assessment" class="anchor"></a>Risk Assessment</h2>
+<p>The following tables highlight metrics that could be used in order to assess the risk of an R package. The risk assessment has been grouped into two areas:</p>
+<ol>
+<li>Unit testing metrics</li>
+<li>Documentation metrics</li>
+<li>Community engagement metrics</li>
+<li>Maintainability and reuse metrics</li>
+</ol>
+<div id="unit-testing-metrics" class="section level3">
+<h3 class="hasAnchor">
+<a href="#unit-testing-metrics" class="anchor"></a>Unit Testing Metrics</h3>
+<ul>
+<li>Code Coverage: a percentage range between 0-100 to measure the degree to which the source code of an R package is executed when unit test runs.<br>
+</li>
+<li>Code Coverage of all dependent packages (%) a continvalue range between 0-100 to measure the degree to which the source code of an R package and all its dependencies are executed when unit test runs.</li>
+</ul>
+</div>
+<div id="documentation-metrics" class="section level3">
+<h3 class="hasAnchor">
+<a href="#documentation-metrics" class="anchor"></a>Documentation Metrics</h3>
+<ul>
+<li>Vignette</li>
+<li>Website</li>
+<li>Source control</li>
+<li>Formal bug tracking</li>
+<li>News</li>
+<li>Release rate</li>
+<li>Size of codebase</li>
+<li>License</li>
+</ul>
+</div>
+<div id="community-engagement-metrics" class="section level3">
+<h3 class="hasAnchor">
+<a href="#community-engagement-metrics" class="anchor"></a>Community Engagement Metrics</h3>
+<ul>
+<li>Author reputation</li>
+<li>Package maturity</li>
+<li>Average number of downloads per month over past 6 monthes</li>
+<li>Number of active contributors</li>
+<li>Number of authors / maintainers</li>
+</ul>
+</div>
+</div>
 </div>
   </div>
 
