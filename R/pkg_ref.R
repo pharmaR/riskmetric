@@ -2,6 +2,7 @@
 #'
 #' @param x character value representing a package name, path to a package
 #'   source directory or a git remote url or a package object
+#' @param ... additional arguments passed to class-specific handlers
 #'
 #' @return a package object
 #'
@@ -29,10 +30,11 @@ as.pkg_ref.pkg_ref <- function(x, ...) {
 
 
 
+#' @importFrom utils installed.packages available.packages
 #' @export
 as.pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
-  ip <- installed.packages()
-  ap <- available.packages(repos = repos)
+  ip <- utils::installed.packages()
+  ap <- utils::available.packages(repos = repos)
 
   # case when only a package name is provided
   #   e.g. 'dplyr'

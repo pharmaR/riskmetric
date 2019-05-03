@@ -9,6 +9,8 @@ as.pkg_ref(x, ...)
 \arguments{
 \item{x}{character value representing a package name, path to a package
 source directory or a git remote url or a package object}
+
+\item{...}{additional arguments passed to class-specific handlers}
 }
 \value{
 a package object
