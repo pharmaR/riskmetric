@@ -81,10 +81,10 @@ pkg_ref <- function(name, source, ...) {
     c("pkg_remote", "pkg_install", "pkg_source", "pkg_missing"),
     several.ok = FALSE)
 
-  pkg_data <- append(list(
+  pkg_data <- as.environment(append(list(
     name = name,
     source = source
-  ), dots)
+  ), dots))
 
-  structure(pkg_data, class = c(source, "pkg_ref"))
+  structure(pkg_data, class = c(source, "pkg_ref", "environment"))
 }
