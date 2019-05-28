@@ -7,24 +7,24 @@
 #' @return a package object
 #'
 #' @export
-as.pkg_ref <- function(x, ...) {
+pkg_reference <- function(x, ...) {
   # called this class "package_meta" as to not conflict with devtools "package"
-  UseMethod("as.pkg_ref")
+  UseMethod("pkg_ref")
 }
 
 
 
 #' @export
-as.pkg_ref.default <- function(x, ...) {
+pkg_reference.default <- function(x, ...) {
   stop(sprintf(
-    "Don't know how to convert object class '%s' to class 'pkg_ref'",
+    "Don't know how to convert object class '%s' to class 'pkg_reference'",
     paste(class(x), collapse = ", ")))
 }
 
 
 
 #' @export
-as.pkg_ref.pkg_ref <- function(x, ...) {
+pkg_reference.pkg_ref <- function(x, ...) {
   x
 }
 
@@ -32,7 +32,7 @@ as.pkg_ref.pkg_ref <- function(x, ...) {
 
 #' @importFrom utils installed.packages available.packages
 #' @export
-as.pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
+pkg_reference.character <- function(x, repos = getOption("repos"), ...) {
   ip <- utils::installed.packages()
   ap <- utils::available.packages(repos = repos)
 
@@ -86,5 +86,5 @@ pkg_ref <- function(name, source, ...) {
     source = source
   ), dots))
 
-  structure(pkg_data, class = c(source, "pkg_ref", "environment"))
+  structure(pkg_data, class = c(source, "pkg_reference", "environment"))
 }
