@@ -81,7 +81,6 @@ pkg_ref <- function(name, source, ...) {
   structure(pkg_data, class = c(source, "pkg_ref", "environment"))
 }
 
-pairlist(a = , b = )
 
 
 #' List of variables with which to prepopulate a pkg_ref environment
