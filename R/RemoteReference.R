@@ -1,3 +1,10 @@
+#' Remote reference to package sources
+#'
+#' @param x package/repo name
+#' @param type "cran" or "github"
+#' @param version version tag to use for CRAN e.g. 0.7.1, release tag for github
+#' @param repos list with single CRAN-like repository to query sources from
+#'
 #' @import remotes
 #' @export
 RemoteReference <- function(x, type, version = "latest",
@@ -20,6 +27,12 @@ RemoteReference <- function(x, type, version = "latest",
 
 }
 
+#' Download source code from RemoteReference
+#'
+#' @param remote_ref remote reference
+#' @param dest desitnation path for downloaded sources
+#' @param ... further parameters passed to methods
+#'
 #' @export
 download_pkg_sources <- function(remote_ref, dest, ...)
   UseMethod("download_pkg_sources")
@@ -27,7 +40,6 @@ download_pkg_sources <- function(remote_ref, dest, ...)
 
 #' @import remotes rvest magrittr
 #' @importFrom xml2 read_html
-#' @export
 download_pkg_sources.cran_remote <- function(remote_ref, dest, unpack = FALSE,
                                              method = "auto", ...) {
 
@@ -65,7 +77,6 @@ download_pkg_sources.cran_remote <- function(remote_ref, dest, unpack = FALSE,
 
 #' @import stringr
 #' @importFrom httr GET content
-#' @export
 download_pkg_sources.github_remote <- function(remote_ref, dest, unpack = FALSE,
                                                method = "auto", ...) {
 
@@ -83,6 +94,7 @@ download_pkg_sources.github_remote <- function(remote_ref, dest, unpack = FALSE,
                             type = "application/json")
 
   url_pkg_sources <- response$tarball_url
+
   dir.create(dest, recursive = TRUE, showWarnings = FALSE)
   version_tag <- basename(url_pkg_sources)
   outfile     <- sprintf("%s/%s_%s.tar.gz", normalizePath(dest), remote_ref$repo,

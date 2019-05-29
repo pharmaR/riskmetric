@@ -1,10 +1,17 @@
+#' Compute test coverage using covr for a RemoteReference
+#'
+#' @param pkg_ref remote package reference to work with - must have been
+#' downloaded already
+#' @param ... further arguments passed to methods
+#'
 #' @importFrom covr package_coverage
 #' @export
 coverage <- function(pkg_ref, ...) {
   UseMethod("coverage")
 }
 
-#' @export
+
+
 coverage.RemoteReference <- function(pkg_ref, ...) {
 
   if (!exists("tmplib", envir = pkg_ref))
