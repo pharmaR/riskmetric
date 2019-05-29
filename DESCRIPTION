@@ -12,6 +12,7 @@ LazyData: true
 Imports:
     rvest,
     httr,
+    xml2,
     covr,
     remotes,
     stringr,

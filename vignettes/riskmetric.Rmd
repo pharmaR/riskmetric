@@ -22,7 +22,3 @@ knitr::opts_chunk$set(
 ```{r}
 library(riskmetric)
 ```
-
-```{r}
-get_cran_version("dplyr")
-```

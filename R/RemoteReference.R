@@ -3,17 +3,13 @@
 RemoteReference <- function(x, type, version = "latest",
                             repos = list(CRAN = "https://cloud.r-project.org")) {
 
-  type <- match.arg(
-    type,
-    c("cran", "github"),
-    several.ok = FALSE
-  )
+  type <- match.arg(type, c("cran", "github"), several.ok = FALSE)
 
   if (type == "cran")
     ref <- remotes:::cran_remote(x, repos = repos, type = "source")
 
   if (type == "github")
-    ref <- remotes:::github_remote(x, type = "source")
+    ref <- remotes:::github_remote(x)
 
   ref$version <- version
   ref_class   <- c("RemoteReference", class(ref), "environment")
@@ -30,6 +26,7 @@ download_pkg_sources <- function(remote_ref, dest, ...)
 
 
 #' @import remotes rvest magrittr
+#' @importFrom xml2 read_html
 #' @export
 download_pkg_sources.cran_remote <- function(remote_ref, dest, unpack = FALSE,
                                              method = "auto", ...) {
@@ -55,11 +52,11 @@ download_pkg_sources.cran_remote <- function(remote_ref, dest, unpack = FALSE,
                      stringr::str_extract(url_pkg_sources,
                                           sprintf("(?<=/)%s_.+\\.tar\\.gz",
                                                   remote_ref$name)))
-  download.file(url_pkg_sources, outfile, method = method, ...)
+  utils::download.file(url_pkg_sources, outfile, method = method, ...)
   remote_ref$local_sources <- outfile
   remote_ref$tmplib        <- dirname(outfile)
   if (unpack) {
-    untar(outfile, files = remote_ref$name, exdir = dirname(outfile))
+    utils::untar(outfile, files = remote_ref$name, exdir = dirname(outfile))
   }
 
 }
@@ -90,15 +87,15 @@ download_pkg_sources.github_remote <- function(remote_ref, dest, unpack = FALSE,
   version_tag <- basename(url_pkg_sources)
   outfile     <- sprintf("%s/%s_%s.tar.gz", normalizePath(dest), remote_ref$repo,
                          version_tag)
-  download.file(url_pkg_sources, outfile, method = method, ...)
+  utils::download.file(url_pkg_sources, outfile, method = method, ...)
   # need to get rid of intermedate dir in GH return .tar.gz
-  ext_name    <- untar(outfile, exdir = dirname(outfile), list = TRUE)[1]
+  ext_name    <- utils::untar(outfile, exdir = dirname(outfile), list = TRUE)[1]
   pkg_dirname <- stringr::str_extract(outfile, sprintf(".+/%s", remote_ref$repo))
-  untar(outfile, exdir = dirname(outfile))
+  utils::untar(outfile, exdir = dirname(outfile))
   file.rename(sprintf("%s/%s", dirname(outfile), ext_name), pkg_dirname)
   unlink(outfile)
   oldwd <- setwd(pkg_dirname)
-  tar(tarfile = outfile, files = list.files(), tar = "tar")
+  utils::tar(tarfile = outfile, files = list.files(), tar = "tar")
   setwd(oldwd)
   remote_ref$local_sources <- outfile
   remote_ref$tmplib        <- dirname(outfile)
