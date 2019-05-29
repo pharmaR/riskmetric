@@ -15,14 +15,9 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
-)
+  comment = "#>")
 ```
 
 ```{r}
 library(riskmetric)
-```
-
-```{r}
-get_cran_version("dplyr")
 ```
