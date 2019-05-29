@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • riskmetric</title>
+<title>Remote reference to package sources — RemoteReference • riskmetric</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Remote reference to package sources — RemoteReference" />
+
+<meta property="og:description" content="Remote reference to package sources" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -47,7 +50,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -92,72 +95,51 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Remote reference to package sources</h1>
+    
+    <div class="hidden name"><code>RemoteReference.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Remote reference to package sources</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="RemoteReference.html">RemoteReference()</a></code> </p>
-        </td>
-        <td><p>Remote reference to package sources</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as.pkg_ref.html">as.pkg_ref()</a></code> </p>
-        </td>
-        <td><p>Convert into a package object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="coverage.html">coverage()</a></code> </p>
-        </td>
-        <td><p>Compute test coverage using covr for a RemoteReference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="download_pkg_sources.html">download_pkg_sources()</a></code> </p>
-        </td>
-        <td><p>Download source code from RemoteReference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_cran_version.html">get_cran_version()</a></code> </p>
-        </td>
-        <td><p>Get current CRAN version</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="riskmetric.html">riskmetric</a></code> </p>
-        </td>
-        <td><p>riskmetric package documentation</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>RemoteReference</span>(<span class='no'>x</span>, <span class='no'>type</span>, <span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"latest"</span>, <span class='kw'>repos</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>CRAN</span> <span class='kw'>=</span>
+  <span class='st'>"https://cloud.r-project.org"</span>))</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>package/repo name</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>"cran" or "github"</p></td>
+    </tr>
+    <tr>
+      <th>version</th>
+      <td><p>version tag to use for CRAN e.g. 0.7.1, release tag for github</p></td>
+    </tr>
+    <tr>
+      <th>repos</th>
+      <td><p>list with single CRAN-like repository to query sources from</p></td>
+    </tr>
     </table>
-  </div>
+    
 
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+                </ul>
+
   </div>
 </div>
 
