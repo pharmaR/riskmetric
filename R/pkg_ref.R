@@ -81,6 +81,7 @@ pkg_ref <- function(name, source, ...) {
   structure(pkg_data, class = c(source, "pkg_ref", "environment"))
 }
 
+pairlist(a = , b = )
 
 
 #' List of variables with which to prepopulate a pkg_ref environment
@@ -89,12 +90,11 @@ pkg_ref <- function(name, source, ...) {
 #' \code{$get} and \code{$set} functions. If new fields are required, please add
 #' them here so that they can be controlled in a single place.
 #'
-pkg_env_fields <- function() {
-  list(
-    name = NULL,
-    source = NULL,
-    path = NULL)
-}
+pkg_env_fields <- function() { list(
+  name = NULL,
+  source = NULL,
+  path = NULL
+) }
 
 
 
@@ -107,10 +107,19 @@ pkg_env_fields <- function() {
 new_pkg_env <- function(...) {
   pkg_env <- as.environment(pkg_env_fields())
 
+  # namespace-validated shorthand for checking if variable is not NULL
+  pkg_env$has <- function(var) {
+    if (!exists(var, envir = pkg_env))
+      stop(sprintf('"%s" is not a valid package environment variable'))
+    !is.null(pkg_env[[var]])
+  }
+
   # build package getter function, validating against variable names
-  pkg_env$get <- function(var) {
-    if (exists(var, envir = pkg_env)) return(pkg_env[[var]])
-    else stop(sprintf('"%s" is not a valid package environment variable', var))
+  pkg_env$get <- function(var, default) {
+    if (!exists(var, envir = pkg_env))
+      stop(sprintf('"%s" is not declared in this package environemnt', var))
+    else if (missing(default)) return(pkg_env[[var]])
+    else return(default)
   }
 
   # build package setter function, restricting variable names
