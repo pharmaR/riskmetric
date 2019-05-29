@@ -1,6 +1,7 @@
 #' @import remotes
 #' @export
-RemoteReference <- function(x, type, version = "latest") {
+RemoteReference <- function(x, type, version = "latest",
+                            repos = list(CRAN = "https://cloud.r-project.org")) {
 
   type <- match.arg(
     type,
@@ -9,10 +10,10 @@ RemoteReference <- function(x, type, version = "latest") {
   )
 
   if (type == "cran")
-    ref <- remotes:::cran_remote(x, getOption("repos"), type = "source")
+    ref <- remotes:::cran_remote(x, repos = repos, type = "source")
 
   if (type == "github")
-    ref <- remotes:::github_remote(x, getOption("repos"), type = "source")
+    ref <- remotes:::github_remote(x, type = "source")
 
   ref$version <- version
   ref_class   <- c("RemoteReference", class(ref), "environment")
@@ -33,7 +34,7 @@ download_pkg_sources <- function(remote_ref, dest, ...)
 download_pkg_sources.cran_remote <- function(remote_ref, dest, unpack = FALSE,
                                              method = "auto", ...) {
 
-  url_suffix_newest <- xml2::read_html(sprintf("%s/src/contrib/", remote_ref$repos)) %>%
+  url_suffix_newest <- xml2::read_html(sprintf("%s/src/contrib/", remote_ref$repos[[1]])) %>%
     rvest::html_nodes("a") %>%
     rvest::html_attr("href") %>%
     grep(sprintf("^%s_.+.tar.gz$", remote_ref$name), ., value = TRUE)
@@ -58,7 +59,7 @@ download_pkg_sources.cran_remote <- function(remote_ref, dest, unpack = FALSE,
   remote_ref$local_sources <- outfile
   remote_ref$tmplib        <- dirname(outfile)
   if (unpack) {
-    untar(outfile, exdir = dirname(outfile))
+    untar(outfile, files = remote_ref$name, exdir = dirname(outfile))
   }
 
 }
@@ -101,6 +102,7 @@ download_pkg_sources.github_remote <- function(remote_ref, dest, unpack = FALSE,
   setwd(oldwd)
   remote_ref$local_sources <- outfile
   remote_ref$tmplib        <- dirname(outfile)
+  remote_ref$name          <- remote_ref$repo
   if (!unpack) {
     unlink(pkg_dirname, recursive = TRUE)
   }
