@@ -77,8 +77,7 @@ pkg_ref <- function(name, source, ...) {
     c("pkg_remote", "pkg_install", "pkg_source", "pkg_missing"),
     several.ok = FALSE)
 
-  pkg_data <- new_pkg_env()
-  pkg_data$set(name = name, source = source, ...)
+  pkg_data <- new_pkg_env(name = name, source = source, ...)
   structure(pkg_data, class = c(source, "pkg_ref", "environment"))
 }
 
@@ -105,7 +104,7 @@ pkg_env_fields <- function() {
 #'   \code{pkg_env_fields}, including a \code{$get} and \code{$set} method for
 #'   retrieving values and modifying values
 #'
-new_pkg_env <- function() {
+new_pkg_env <- function(...) {
   pkg_env <- as.environment(pkg_env_fields())
 
   # build package getter function, validating against variable names
@@ -137,5 +136,6 @@ new_pkg_env <- function() {
   }
 
   lockEnvironment(pkg_env)
+  pkg_env$set(...)
   pkg_env
 }
