@@ -72,19 +72,70 @@ as.pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
 
 
 pkg_ref <- function(name, source, ...) {
-  dots <- list(...)
-  if (length(dots) && is.null(names(dots)) || any(names(dots) == ""))
-    stop("pkg_ref ellipses arguments must be named")
-
   source <- match.arg(
     source,
     c("pkg_remote", "pkg_install", "pkg_source", "pkg_missing"),
     several.ok = FALSE)
 
-  pkg_data <- as.environment(append(list(
-    name = name,
-    source = source
-  ), dots))
-
+  pkg_data <- new_pkg_env()
+  pkg_data$set(name = name, source = source, ...)
   structure(pkg_data, class = c(source, "pkg_ref", "environment"))
+}
+
+
+
+#' List of variables with which to prepopulate a pkg_ref environment
+#'
+#' This list of variables is used for validation when using the \code{pkg_ref}
+#' \code{$get} and \code{$set} functions. If new fields are required, please add
+#' them here so that they can be controlled in a single place.
+#'
+pkg_env_fields <- function() {
+  list(
+    name = NULL,
+    source = NULL,
+    path = NULL)
+}
+
+
+
+#' Instantiate a package environment with guardrails for valid variable names
+#'
+#' @return a package environment with namespace prepopulated with
+#'   \code{pkg_env_fields}, including a \code{$get} and \code{$set} method for
+#'   retrieving values and modifying values
+#'
+new_pkg_env <- function() {
+  pkg_env <- as.environment(pkg_env_fields())
+
+  # build package getter function, validating against variable names
+  pkg_env$get <- function(var) {
+    if (exists(var, envir = pkg_env)) return(pkg_env[[var]])
+    else stop(sprintf('"%s" is not a valid package environment variable', var))
+  }
+
+  # build package setter function, restricting variable names
+  pkg_env$set <- function(..., .dots = list()) {
+    dots <- c(list(...), .dots)
+
+    # handle passing of variables as ellipses `x$set(a = 1, b = 2)`
+    if (is.null(names(dots)) || any(names(dots) == ""))
+      stop('all arguments passed to $set must be named.')
+
+    # iterate through dot args and try to assign them in package namespace
+    for (i in seq_along(dots)) {
+      var <- names(dots)[[i]]
+      val <- dots[[i]]
+      if (exists(var, envir = pkg_env)) {
+        unlockBinding(var, env = pkg_env)
+        assign(var, val, envir = pkg_env)
+        lockBinding(var, env = pkg_env)
+      } else {
+        stop(sprintf('"%s" is not a valid package environment variable', var))
+      }
+    }
+  }
+
+  lockEnvironment(pkg_env)
+  pkg_env
 }
