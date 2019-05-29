@@ -5,7 +5,7 @@ context("Test coverage computation")
 test_that("CRAN version can be downloaded", {
 
   # TODO: we should have a dedicated test package were we now the coverage exactly x)
-  remote_ref <- RemoteReference("dplyr", "cran", "latest")
+  remote_ref <- RemoteReference("lubridate", "cran", "latest")
   dest       <- tempfile()
   dir.create(dest); on.exit(unlink(dest, recursive = TRUE, force = TRUE))
 
