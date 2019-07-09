@@ -10,6 +10,13 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
+    rvest,
+    httr,
+    xml2,
+    covr,
+    remotes,
+    stringr,
+    magrittr,
     dplyr,
     memoise,
     janitor,
