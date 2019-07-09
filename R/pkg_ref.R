@@ -31,6 +31,7 @@ as.pkg_ref.pkg_ref <- function(x, ...) {
 
 
 #' @importFrom utils installed.packages available.packages
+#' @importFrom xml2 read_html
 #' @export
 as.pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
   ip <- utils::installed.packages()
@@ -43,18 +44,31 @@ as.pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
 
     # if locally installed
     if (x %in% ip[,"Package"]) {
-      return(pkg_ref(x, path = find.package(x), "pkg_install"))
+      return(pkg_ref(x,
+        path = find.package(x),
+        "pkg_install"))
 
     # if available at a provided repo
     } else if (x %in% ap[,"Package"]) {
-      info <- ap[ap[,"Package"] == x,]
+      info <- ap[ap[,"Package"] == x,,drop = FALSE]
       repo <- info[,"Repository"]
-      url <- sprintf("%s/%s_%s.tar.gz", repo, x, info[,"Version"])
-      return(pkg_ref(x, url = url, repo = repo, "pkg_remote"))
+
+      repo_base_url <- gsub("(^https?://[^/]+)/.*", "\\1", repo)
+      tarball_url <- sprintf("%s/%s_%s.tar.gz", repo, x, info[,"Version"])
+      web_url <- sprintf("%s/web/packages/%s", repo_base_url, x)
+      web_html <- xml2::read_html(web_url)
+
+      return(pkg_ref(x,
+        web_url = web_url,
+        web_html = web_html,
+        tarball_url = tarball_url,
+        repo = repo,
+        "pkg_remote"))
 
     # otherwise, it's valid but unidentified
     } else {
-      return(pkg_ref(x, "pkg_missing"))
+      return(pkg_ref(x,
+        "pkg_missing"))
     }
 
   # case when a directory path to source code is provided
