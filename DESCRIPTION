@@ -20,7 +20,8 @@ Imports:
     dplyr,
     memoise,
     janitor,
-    tools
+    tools,
+    xml2
 RoxygenNote: 6.1.1
 Suggests:
     knitr,
