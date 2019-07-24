@@ -41,7 +41,7 @@ download_pkg_sources <- function(remote_ref, dest, ...)
 #' @import remotes rvest magrittr
 #' @importFrom xml2 read_html
 download_pkg_sources.cran_remote <- function(remote_ref, dest, unpack = FALSE,
-                                             method = "auto", ...) {
+    method = "auto", ...) {
 
   url_suffix_newest <- xml2::read_html(sprintf("%s/src/contrib/", remote_ref$repos[[1]])) %>%
     rvest::html_nodes("a") %>%
@@ -78,7 +78,7 @@ download_pkg_sources.cran_remote <- function(remote_ref, dest, unpack = FALSE,
 #' @import stringr
 #' @importFrom httr GET content
 download_pkg_sources.github_remote <- function(remote_ref, dest, unpack = FALSE,
-                                               method = "auto", ...) {
+    method = "auto", ...) {
 
   # resolve version: release (TODO: support tags)
   if (remote_ref$version == "latest") {
