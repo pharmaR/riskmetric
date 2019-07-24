@@ -60,8 +60,8 @@ as.pkg_ref.pkg_ref <- function(x, ...) {
 #' @importFrom xml2 read_html
 #' @export
 as.pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
-  ip <<- utils::installed.packages()
-  ap <<- utils::available.packages(repos = repos)
+  ip <- utils::installed.packages()
+  ap <- utils::available.packages(repos = repos)
   cran_mirrors <- memoise_cran_mirros()
   bioc_mirrors <- memoise_bioc_mirrors()
 
