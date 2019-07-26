@@ -1,0 +1,249 @@
+---
+title: "Extending riskmetric"
+author: "R Validation Hub"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Extending riskmetric}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+library(riskmetric)
+library(dplyr)
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+options(repos = "https://cran.rstudio.com")
+
+print_riskmetric_function <- function(names) {
+  for (name in names) {
+    fprint <- capture.output(getNamespace("riskmetric")[[name]])
+    fprint <- fprint[!startsWith(fprint, "<")]
+    cat(name, ' <- ', sep = '')
+    cat(paste(fprint, collapse = '\n'), '\n\n')
+  }
+}
+```
+
+`riskmetric` is designed to be readily extensible. This is done through use of
+the S3 method dispatch system and a consciou acknowledgement of the varying
+needs that someone may have when assessing package risk. With this in mind,
+every user facing function is designed first and foremost to be flexible.
+
+Here we'll walk through a trivial example where we'll extend `riskmetric` to add
+a new assessment, scoring and risk summary function to determine the risk
+associated with a package given its name starts with the letter "r".
+
+# Adding an Assessment
+
+Assessments are the atomic unit of the `riskmetric` package, and are used to
+kick off an individual metric evaluation. Each assessment is a generic function
+starting with an `assess_` prefix, which can dispatch based on the subclass of
+the `pkg_ref` object.
+
+## Assessment Example
+
+As an example, take a look at how `assess_has_news` has been implemented. We'll
+focus on just the generic and the `pkg_install` functions:
+
+```{r, echo = FALSE}
+print_riskmetric_function(c("assess_has_news", "assess_has_news.pkg_install"))
+```
+
+There are a couple things to note. First, the S3 system is used to dispatch
+functionality for the appropriate package reference class. Since the way we'd
+assess the inclusion of a NEWS file might be different for an installed package
+or remotely sourced metadata, we may have distinct functions to process these
+datatypes in distinct ways.
+
+Second, a cosmetic `"column_name"` attribute is used, which replaces the
+function name as the name of the new column after using the `assess()` verb.
+
+Finally, a `pkg_metric` object is returned, which stores arbitrary data
+pertaining to the metric and importantly adopts a unique subclass for the
+assessment function.
+
+## Writing a New Assessment
+
+Now we'll write our assessment. Eventually we want to consider a package high
+risk if the name does not start with "r". We'll need to make a `pkg_metric`
+object containing the first letter of the name.
+
+```{r, results = 'hide'}
+assess_name_first_letter <- function(x, ...) {
+  UseMethod("assess_name_first_letter")
+}
+attr(assess_name_first_letter, "column_name") <- "name_first_letter"
+
+assess_name_first_letter.pkg_ref <- function(x, ...) {
+  new_pkg_metric(substr(x$name, 0, 1), class = "pkg_metric_name_first_letter")
+} 
+```
+
+# Adding `pkg_ref` Metadata
+
+Perhaps we want to reuse metadata used when assessing the first letter so that
+it can be reused by other assessments. For particularly taxing metadata, such as
+metadat that requires a query against a public API, scraping a web page or a
+large data download, it's important to store it for other assessment functions
+to reuse.
+
+To handle this, we define a function for `pkg_ref_cache` to dispatch to.
+
+## Example Metadata Caching
+
+This is how the `riskmetric` package handles parsing the DESCRIPTION file so
+that it can feed into all downstream assessments without having to re-parse the
+file each time or copy the code to do so.
+
+```{r, echo = FALSE}
+print_riskmetric_function(c("pkg_ref_cache.DESCRIPTION", "pkg_ref_cache.DESCRIPTION.pkg_install"))
+```
+
+Once these are defined, they'll be automatically called when the field is first
+accessed by the `pkg_ref` object, and then stored for any downstream uses.
+
+```{r, eval = FALSE}
+library(riskmetric)
+package <- pkg_ref("riskmetric")
+```
+
+```{r, echo = FALSE}
+package_real <- pkg_ref("riskmetric")
+```
+
+```{r, echo = FALSE}
+rver <- gsub("\\.\\d+$", "", paste0(R.version$major, ".", R.version$minor))
+package <- pkg_ref("riskmetric")
+
+# hack in order to mutate package environment directly so nobody accidentally
+# publishes any personal info in their library path
+invisible(riskmetric:::bare_env(package, {
+  package$path <- sprintf("/home/user/username/R/%s/Resources/library/riskmetric", rver)
+}))
+
+package
+```
+
+Notice that upon initialization, the `DESCRIPTION` field indicates that it
+hasn't yet been evaluated
+
+```{r, eval = FALSE}
+str(package$DESCRIPTION)
+```
+
+```{r, echo = FALSE}
+str(package_real$DESCRIPTION)
+```
+
+Now, when we look at the contents of our `pkg_ref` object, we see that the
+`DESCRIPTION` field is completed.
+
+```{r, eval = FALSE}
+package
+```
+
+```{r, echo = FALSE}
+package_real
+```
+
+Because the `pkg_ref` object stores an environment, caching this values once
+makes them available for any future attempts to access the field. This is
+helpful because we, as developers of the package, don't need to think critically
+about the order that assessments are performed, and allows users to redefine the
+order of assessments without worry about how metadata is acquired.
+
+## Writing a Metadata Cache
+
+Now, for our new metric, we want to cache the package name's first letter. We
+need to add a new `pkg_ref_cache` function for our field. Thankfully, any
+subclass of `pkg_ref` can access the first letter the same way, so we just need
+the one function.
+
+```{r}
+pkg_ref_cache.name_first_letter <- function(x, name, ...) {
+  x$name_first_letter <- substr(x$name, 0, 1)
+}
+```
+
+After adding this caching function, we need to make a small modification to
+`assess_name_first_letter.pkg_ref` in order use our newly cached value.
+
+```{r}
+assess_name_first_letter.pkg_ref <- function(x, ...) {
+  new_pkg_metric(x$name_first_letter, class = "pkg_metric_name_first_letter")
+} 
+```
+
+Let's try it out!
+
+```{r}
+package$name
+package$name_first_letter
+```
+
+# Defining an Assessment Scoring Function
+
+Next, we need a function for scoring our assessment output. In this case, our
+output is a `pkg_metric` object whose data is the first letter of the package
+name.
+
+We'll add a dispatched function for the `score` function. As a convention, these
+functions return a numeric value representing how well the package conforms to
+best practices with values between 0 (poor practice) and 1 (best practice).
+
+```{r}
+score.pkg_metric_name_first_letter <- function(x, ...) {
+  as.numeric(x == "r")
+}
+```
+
+# Adding our Assessment to the `assess()` Verb
+
+The `assess` function accepts a list of functions to apply. `riskmetric`
+provides a shorthande, `all_assessments()` to collect all the included
+assessment functions, and you're free to add to that list to customize your own
+assessment toolkit.
+
+```{r}
+library(dplyr)
+pkg_ref(c("riskmetric", "utils", "survival")) %>%
+  as_tibble() %>%
+  assess(c(all_assessments(), assess_name_first_letter))
+```
+
+Our scoring function will automatically get picked up and used by the score
+method.
+
+```{r}
+pkg_ref(c("riskmetric", "utils", "survival")) %>%
+  as_tibble() %>%
+  assess(c(all_assessments(), assess_name_first_letter)) %>%
+  score()
+```
+
+and we can define our own summarizing function to aggregate our scores into a
+single numeric risk.
+
+```{r}
+pkg_ref(c("riskmetric", "utils", "survival")) %>%
+  as_tibble() %>%
+  assess(c(all_assessments(), assess_name_first_letter)) %>%
+  score() %>%
+  mutate(risk = (has_news + name_first_letter) / 2)
+```
+
+# How you can help...
+
+The `riskmetric` package was designed to be easily extensible. You can develop
+dispatched functions in your development environment, hone them into well formed
+assessments and contribute them back to the core `riskmetrics` package once
+you're done.
+
+If you'd like feedback before embarking on developing a new metric, please feel
+free to [file an issue on the riskmetric GitHub](https://github.com/pharmaR/riskmetric/issues/new?labels=Metric%20Proposal). 

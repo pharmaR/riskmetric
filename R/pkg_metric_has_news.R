@@ -10,24 +10,17 @@ assess_has_news <- function(x, ...) {
   UseMethod("assess_has_news")
 }
 
+#' assign a friendly name for assess column
+attributes(assess_has_news)$column_name <- "has_news"
+
 
 
 #' @rdname assess_has_news
 #' @export
 #' @importFrom xml2 xml_find_all xml_attrs
 assess_has_news.pkg_cran_remote <- function(x, ...) {
-  # scrape CRAN html for NEWS links
-  NEWS_links <- xml2::xml_find_all(x$web_html, xpath = '//a[.="NEWS"]')
-
-  # add NEWS link url metadata to package environment
-  x$NEWS_urls <- sprintf("%s/%s",
-    x$web_url,
-    vapply(xml2::xml_attrs(NEWS_links), "[", character(1L), "href"))
-
   news_result <- rep(list(content = NULL, valid = TRUE), length(x$NEWS_urls))
-  structure(
-    news_result,
-    class = c("pkg_metric_has_news", "pkg_metric", class(news_result)))
+  new_pkg_metric(news_result, class = "pkg_metric_has_news")
 }
 
 
@@ -36,20 +29,8 @@ assess_has_news.pkg_cran_remote <- function(x, ...) {
 #' @export
 #' @importFrom xml2 xml_find_all xml_attrs
 assess_has_news.pkg_bioc_remote <- function(x, ...) {
-  # scrape Bioconductor package webpage for NEWS links
-  relative_path <- sprintf("../news/%s/NEWS", x$name)
-  news_link_xpath <- sprintf('//a[@href="%s"]', relative_path)
-  NEWS_links <- xml2::xml_find_all(x$web_html, xpath = news_link_xpath)
-
-  # add NEWS link url metadata to package environment
-  x$NEWS_urls <- xml2::url_absolute(
-    vapply(xml2::xml_attrs(NEWS_links), "[", character(1L), "href"),
-    x$web_url)
-
   news_result <- rep(list(content = NULL, valid = TRUE), length(x$NEWS_urls))
-  structure(
-    news_result,
-    class = c("pkg_metric_has_news", "pkg_metric", class(news_result)))
+  new_pkg_metric(news_result, class = "pkg_metric_has_news")
 }
 
 
@@ -68,9 +49,7 @@ assess_has_news.pkg_remote <- function(x, ...) {
 #' @export
 assess_has_news.pkg_install <- function(x, ...) {
   news_result <- assess_news_in_dir(system.file(package = x$name), ...)
-  structure(
-    news_result,
-    class = c("pkg_metric_has_news", "pkg_metric", class(news_result)))
+  new_pkg_metric(news_result, class = "pkg_metric_has_news")
 }
 
 
@@ -79,9 +58,7 @@ assess_has_news.pkg_install <- function(x, ...) {
 #' @export
 assess_has_news.pkg_source <- function(x, ...) {
   news_result <- assess_news_in_dir(x$path, ...)
-  structure(
-    news_result,
-    class = c("pkg_metric_has_news", "pkg_metric", class(news_result)))
+  new_pkg_metric(news_result, class = "pkg_metric_has_news")
 }
 
 

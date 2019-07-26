@@ -10,17 +10,19 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
-    rvest,
-    httr,
-    covr,
-    remotes,
-    stringr,
-    magrittr,
-    dplyr,
-    memoise,
-    janitor,
     tools,
-    xml2
+    xml2,
+    httr,
+    remotes,
+    magrittr,
+    stringr,
+    dplyr,
+    vctrs,
+    pillar,
+    covr,
+    rvest,
+    memoise,
+    janitor
 RoxygenNote: 6.1.1
 Suggests:
     knitr,

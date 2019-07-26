@@ -29,3 +29,11 @@ memoise_cran_mirros <- memoise::memoise({
 memoise_bioc_mirrors <- memoise::memoise({
   function() read.csv("https://bioconductor.org/BioC_mirrors.csv")
 })
+
+memoise_installed_packages <- memoise::memoise({
+  function(...) utils::installed.packages(...)
+})
+
+memoise_available_packages <- memoise::memoise({
+  function(...) utils::available.packages(...)
+})
