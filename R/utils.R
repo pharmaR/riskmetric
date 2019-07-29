@@ -8,6 +8,13 @@
 
 
 
+#' check if a url originates from a list of repo urls
+is_url_subpath_of <- function(url, urls) {
+  grepl(paste0("(", paste0(gsub("/$", "", urls), collapse = "|"), ")"), url)
+}
+
+
+
 #' Return a vector of random uninstalled packages
 #'
 #' @inheritParams sample

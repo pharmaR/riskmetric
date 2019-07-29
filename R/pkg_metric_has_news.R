@@ -10,24 +10,37 @@ assess_has_news <- function(x, ...) {
   UseMethod("assess_has_news")
 }
 
+#' assign a friendly name for assess column
+attributes(assess_has_news)$column_name <- "has_news"
+
 
 
 #' @rdname assess_has_news
 #' @export
 #' @importFrom xml2 xml_find_all xml_attrs
+assess_has_news.pkg_cran_remote <- function(x, ...) {
+  news_result <- rep(list(content = NULL, valid = TRUE), length(x$NEWS_urls))
+  new_pkg_metric(news_result, class = "pkg_metric_has_news")
+}
+
+
+
+#' @rdname assess_has_news
+#' @export
+#' @importFrom xml2 xml_find_all xml_attrs
+assess_has_news.pkg_bioc_remote <- function(x, ...) {
+  news_result <- rep(list(content = NULL, valid = TRUE), length(x$NEWS_urls))
+  new_pkg_metric(news_result, class = "pkg_metric_has_news")
+}
+
+
+
+#' @rdname assess_has_news
+#' @export
 assess_has_news.pkg_remote <- function(x, ...) {
-  # scrape CRAN html for NEWS links
-  NEWS_links <- xml2::xml_find_all(x$web_html, xpath = '//a[.="NEWS"]')
-
-  # add NEWS link url metadata to package environment
-  x$materials_urls <- sprintf("%s/%s",
-    x$web_url,
-    vapply(xml2::xml_attrs(NEWS_links), "[", character(1L), "href"))
-
-  news_result <- rep(list(content = NULL, valid = TRUE), length(x$materials_urls))
-  structure(
-    news_result,
-    class = c("pkg_metric_has_news", "pkg_metric", class(news_result)))
+  stop(
+    "don't know how to scrape for NEWS files for an unknown remote repo. \n",
+    "repo: '", x$repo, "'")
 }
 
 
@@ -36,9 +49,7 @@ assess_has_news.pkg_remote <- function(x, ...) {
 #' @export
 assess_has_news.pkg_install <- function(x, ...) {
   news_result <- assess_news_in_dir(system.file(package = x$name), ...)
-  structure(
-    news_result,
-    class = c("pkg_metric_has_news", "pkg_metric", class(news_result)))
+  new_pkg_metric(news_result, class = "pkg_metric_has_news")
 }
 
 
@@ -47,9 +58,7 @@ assess_has_news.pkg_install <- function(x, ...) {
 #' @export
 assess_has_news.pkg_source <- function(x, ...) {
   news_result <- assess_news_in_dir(x$path, ...)
-  structure(
-    news_result,
-    class = c("pkg_metric_has_news", "pkg_metric", class(news_result)))
+  new_pkg_metric(news_result, class = "pkg_metric_has_news")
 }
 
 

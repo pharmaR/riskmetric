@@ -1,5 +1,7 @@
+#' Score a package assement, collapsing results into a single numeric
+#'
 #' @export
-score <- function(x, ...) {
+score <- function(x, ..., envir = parent.frame()) {
   UseMethod("score")
 }
 
@@ -7,7 +9,7 @@ score <- function(x, ...) {
 
 #' @rdname score
 #' @export
-score.default <- function(x, ...) {
+score.default <- function(x, ..., envir = parent.frame()) {
   if (!inherits(x, "pkg_metric")) {
     warning(sprintf(paste0(
         "Don't know how to score object of class %s. score is only intended ",
@@ -22,4 +24,18 @@ score.default <- function(x, ...) {
   }
 
   0
+}
+
+
+
+#' @rdname score
+#' @export
+score.tbl_df <- function(x, ..., envir = parent.frame()) {
+  assessment_columns <- get_assessment_columns(x)
+
+  for (coln in which(assessment_columns)) {
+    x[[coln]] <- vapply(x[[coln]], score, numeric(1L))
+    class(x[[coln]]) <- c("pkg_score", class(x[[coln]]))
+  }
+  x
 }

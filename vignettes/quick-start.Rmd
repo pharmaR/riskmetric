@@ -1,0 +1,161 @@
+---
+title: "Quick Start"
+author: "R Validation Hub"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quick Start}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+library(riskmetric)
+library(dplyr)
+library(tibble)
+
+options(repos = "https://cran.rstudio.com")
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+
+`riskmetric` provides a workflow to evaluate the quality of a set of R packages
+that involves four major steps. The workflow can help users to choose high
+quality R packages, improve package reliability and prove the validity of R
+packages in a regulated industry. The four steps include:
+
+1. **Find a suitable reference for the package**  
+   this can be any source of package metadata, such as a
+    * package repository webportal from which we can scrape metadata
+    * built and installed package in a local library
+    * directory containing package source code 
+1. **Assess package under validation criteria**  
+   collect a set of metadata for scoring risk, this might include
+    * a profile of the number of active users over the last month
+    * the availability of documentation for package functions
+    * the use of a unit testing framework
+    * the test coverage
+1. **Score all of the assessed criteria**  
+1. **Summarize scores into an aggregate risk metric**  
+
+
+
+# Package Reference Objects
+
+Before we get started assessing packages, we need a place to aggregate all of
+our package metadata. To handle this, we use the `pkg_ref` class. This class is
+an environment to allow for by-reference mutability so that metadata necessary
+to derive one metric can be reused by another without going out and fetching
+data all over again.
+
+```{r, eval = FALSE}
+library(riskmetric)
+pkg_ref("riskmetric")
+```
+
+```{r, echo = FALSE}
+rver <- gsub("\\.\\d+$", "", paste0(R.version$major, ".", R.version$minor))
+package <- pkg_ref("riskmetric")
+
+# hack in order to mutate package environment directly so nobody accidentally
+# publishes any personal info in their library path
+invisible(riskmetric:::bare_env(package, {
+  package$path <- sprintf("/home/user/username/R/%s/Resources/library/riskmetric", rver)
+}))
+
+package
+```
+
+Likewise, `pkg_ref` objects can be coerced to a `tibble` for easier,
+parallel assessment of packages.
+
+```{r, eval = FALSE}
+library(dplyr)
+package_tbl <- pkg_ref(c("riskmetric", "utils", "survival")) %>%
+  as_tibble()
+```
+
+```{r, echo = FALSE}
+package_tbl <- pkg_ref(c("riskmetric", "utils", "survival")) %>%
+  as_tibble() %>%
+  tibble:::print.tbl()
+```
+
+
+
+# Core Verbs
+
+In `riskmetric`, the core operations of package validation are handled in a
+series of verbs to allow easy chaining of operations. These verbs, as well as
+many of the features of package assessment, are designed to be highly extensible
+to make it easier for package validation to be a community effort.
+
+> See the `extending-riskmetric` vignette for more details
+
+We'll use the `tibble` from above as our example
+
+```{r}
+package_tbl <- pkg_ref(c("riskmetric", "utils", "survival")) %>%
+  as_tibble()
+```
+
+## `assess`
+
+The first component of the validation process is an assessment. This is used for
+grabbing metadata relevant to an individual metric which may inform the
+reliability of a package.
+
+> An assessment acquires the necessary metadata pertaining to a given metric
+
+The `assess` function iterates over assessment functions, adding a column per
+assessment. By default, it will use all the available assessment functions in
+the `riskmetric` package. Once applied, an assessment produces a `pkg_metric`
+object.
+
+```{r}
+package_tbl %>%
+  assess()
+```
+
+## `score`
+
+After gathering the available metric metadata, every metric object is scored.
+Scoring a metric translates a piece of package metadata into a numeric score.
+
+```{r}
+package_tbl %>%
+  assess() %>%
+  score()
+```
+
+## `summarize_risk`
+
+What we ultimately want is a single numeric value which indicates the "risk"
+involved with using a given package. For the `dplyr`-savvy, this will look quite
+familiar. We've defined a default summarizing function `summarize_risk`. It
+accepts the full data.frame and performs a default risk assessment assuming all
+the available `riskmetric` assessments have been performed.
+
+```{r}
+package_tbl %>%
+  assess() %>%
+  score() %>%
+  mutate(risk = summarize_risk(.))
+```
+
+# How you can help...
+
+As you can see, the package is currently quite bare-bones and nobody would
+reasonably choose packages based solely on the existence of a NEWS file. 
+
+Our priority so far has been to set up an extensible framework as the foundation
+for a community effort, and that's where you come in! There are a few things you
+can do to get started.
+
+1. Check out the `extending-riskmetric` vignette to see how to extend the functionality with your own metrics
+1. [File an issue on the riskmetric GitHub](https://github.com/pharmaR/riskmetric/issues/new?labels=Metric%20Proposal) where we can further discuss new metric proposals

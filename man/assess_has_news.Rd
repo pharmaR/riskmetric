@@ -2,12 +2,18 @@
 % Please edit documentation in R/pkg_metric_has_news.R
 \name{assess_has_news}
 \alias{assess_has_news}
+\alias{assess_has_news.pkg_cran_remote}
+\alias{assess_has_news.pkg_bioc_remote}
 \alias{assess_has_news.pkg_remote}
 \alias{assess_has_news.pkg_install}
 \alias{assess_has_news.pkg_source}
 \title{Assess a package for the presence of a NEWS file}
 \usage{
 assess_has_news(x, ...)
+
+\method{assess_has_news}{pkg_cran_remote}(x, ...)
+
+\method{assess_has_news}{pkg_bioc_remote}(x, ...)
 
 \method{assess_has_news}{pkg_remote}(x, ...)
 
