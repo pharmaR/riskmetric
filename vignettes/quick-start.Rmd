@@ -24,10 +24,10 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-Whether we're looking for a robust choice among a set of similar packages,
-require strong development and maintainence practices for package reliability,
-or need to prove the validity of packages in a regulated industry, we will
-follow the same sequence of steps.
+`riskmetric` provides a workflow to evaluate the quality of a set of R packages
+that involves four major steps. The workflow can help users to choose high
+quality R packages, improve package reliability and prove the validity of R
+packages in a regulated industry. The four steps include:
 
 1. **Find a suitable reference for the package**  
    this can be any source of package metadata, such as a
