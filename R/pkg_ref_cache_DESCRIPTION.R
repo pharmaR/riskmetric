@@ -1,11 +1,11 @@
-pkg_ref_cache.DESCRIPTION <- function(x, name, ...) {
-  UseMethod("pkg_ref_cache.DESCRIPTION")
+pkg_ref_cache.description <- function(x, name, ...) {
+  UseMethod("pkg_ref_cache.description")
 }
 
-pkg_ref_cache.DESCRIPTION.pkg_install <- function(x, name, ...) {
-  x$DESCRIPTION <- read.dcf(file.path(x$path, "DESCRIPTION"))
+pkg_ref_cache.description.pkg_install <- function(x, name, ...) {
+  x$description <- read.dcf(file.path(x$path, "description"))
 }
 
-pkg_ref_cache.DESCRIPTION.pkg_source <- function(x, name, ...) {
-  x$DESCRIPTION <- read.dcf(file.path(x$path, "DESCRIPTION"))
+pkg_ref_cache.description.pkg_source <- function(x, name, ...) {
+  x$description <- read.dcf(file.path(x$path, "description"))
 }

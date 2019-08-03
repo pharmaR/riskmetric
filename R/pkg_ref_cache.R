@@ -1,4 +1,3 @@
-#' @export
 available_pkg_ref_fields <- function(x) {
   fs <- names(getNamespace(packageName()))
   f_re <- paste0("^pkg_ref_cache\\.([^.]+)\\.(", paste0(class(x), collapse = "|"), ")")
