@@ -4,12 +4,8 @@
 \alias{assessment_error_throw}
 \title{Error handler for assessments to throw error immediately}
 \usage{
-assessment_error_throw(e)
-
-assessment_error_throw(e)
+assessment_error_throw(e, name, assessment)
 }
 \description{
 Error handler for assessments to throw error immediately
-
-Error handler for assessments to deescalate to warning
 }

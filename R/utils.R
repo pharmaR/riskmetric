@@ -47,3 +47,19 @@ installed_packages <- function(...) {
   installeddb <- utils::installed.packages()
   unname(installeddb[,"Package"])
 }
+
+
+
+#' Evaluate an expression after first removing a range of S3 classes
+with_unclassed_to <- function(x, .class = 1:length(class(x)), expr,
+    envir = parent.frame()) {
+
+  x_expr <- substitute(x)
+  orig_class <- class(x)
+  if (is.character(.class)) .class = 1:which(class(x) == .class)
+
+  eval(bquote(class(.(x_expr)) <- class(.(x_expr))[-.(.class)]), envir = envir)
+  out <- eval(expr, envir = envir)
+  eval(bquote(class(.(x_expr)) <- .(orig_class)), envir = envir)
+  out
+}

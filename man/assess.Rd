@@ -5,7 +5,7 @@
 \title{Function for applying assess_* family of functions to packages}
 \usage{
 assess(x, assessments = all_assessments(), ...,
-  error = assessment_error_empty)
+  error = assessment_error_as_warning)
 }
 \description{
 Function for applying assess_* family of functions to packages

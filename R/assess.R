@@ -32,7 +32,7 @@ use_assessments_column_names <- function(x) {
 #' @export
 #'
 assess <- function(x, assessments = all_assessments(), ...,
-    error = assessment_error_empty) {
+    error = assessment_error_as_warning) {
 
   assessments <- use_assessments_column_names(assessments)
   for (i in seq_along(assessments)) {
@@ -40,12 +40,16 @@ assess <- function(x, assessments = all_assessments(), ...,
     assessment_name <- names(assessments)[[i]]
 
     x[[assessment_name]] <- lapply(x$pkg_ref, function(pkg_ref) {
-      tryCatch(assessment_f(pkg_ref), error = error)
+      tryCatch(assessment_f(pkg_ref), error = function(e) {
+        error(e, pkg_ref$name, assessment_name)
+      })
     })
 
     x[[assessment_name]] <- vctrs::new_list_of(x[[assessment_name]],
       structure(logical(), class = "pkg_metric"),
       class = "list_of_pkg_metric")
+
+    attributes(x[[assessment_name]])$label <- attributes(assessment_f)$label
   }
 
   x
