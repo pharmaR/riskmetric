@@ -7,9 +7,12 @@
 #'
 #' @return a \code{pkg_metric} object
 #'
+#' @export
+#'
 pkg_metric <- function(x, ..., class = c()) {
   structure(x, ..., class = c(class, "pkg_metric", class(x)))
 }
+
 
 
 

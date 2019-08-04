@@ -114,7 +114,7 @@ package <- pkg_ref("riskmetric")
 ```
 
 ```{r, echo = FALSE}
-package_real <- pkg_ref("../../riskmetric")
+package_real <- pkg_ref("riskmetric")
 ```
 
 ```{r, echo = FALSE}
@@ -131,25 +131,12 @@ package
 ```
 
 Notice that upon initialization, the `description` field indicates that it
-hasn't yet been evaluated with a trailing `...` in the name.
+hasn't yet been evaluated with a trailing `...` in the name. When accessed, the
+object will call a caching function to go out and grab the package metadata and
+return the newly derived value.
 
 ```{r, eval = FALSE}
-str(package$description)
-```
-
-```{r, echo = FALSE}
-str(package_real$description)
-```
-
-Now, when we look at the contents of our `pkg_ref` object, we see that the
-`DESCRIPTION` field is completed.
-
-```{r, eval = FALSE}
-package
-```
-
-```{r, echo = FALSE}
-package_real
+package$description
 ```
 
 Because the `pkg_ref` object stores an environment, caching this values once
@@ -176,7 +163,7 @@ After adding this caching function, we need to make a small modification to
 
 ```{r}
 assess_name_first_letter.pkg_ref <- function(x, ...) {
-  new_pkg_metric(x$name_first_letter, class = "pkg_metric_name_first_letter")
+  pkg_metric(x$name_first_letter, class = "pkg_metric_name_first_letter")
 } 
 ```
 
