@@ -1,5 +1,6 @@
 #' Cache a list of available help files as LaTeX objects
 #'
+#' @inheritParams pkg_ref_cache
 #' @family package reference cache
 #'
 pkg_ref_cache.help <- function(x, name, ...) {

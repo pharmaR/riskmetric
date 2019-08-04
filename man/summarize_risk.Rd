@@ -21,3 +21,20 @@ This function serves as an example for how a risk score might be derived.
 Assuming all assessments provided by \code{riskmetric} are available in a
 dataset, this function can be used to calculate a vector of risks.
 }
+\examples{
+\dontrun{
+library(dplyr)
+summarize_risk(score(assess(as_tibble(pkg_ref("riskmetric")))))
+}
+
+# or, using the cleaner dplyr syntax
+\dontrun{
+library(dplyr)
+pkg_ref("riskmetric") \%>\%
+  as_tibble() \%>\%
+  assess() \%>\%
+  score() \%>\%
+  mutate(risk = summarize_risk(.))
+}
+
+}

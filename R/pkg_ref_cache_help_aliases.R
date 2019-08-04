@@ -1,5 +1,6 @@
 #' Cache a character vector mapping exported values to documentation filenames
 #'
+#' @inheritParams pkg_ref_cache
 #' @family package reference cache
 #'
 pkg_ref_cache.help_aliases <- function(x, name, ...) {

@@ -7,6 +7,17 @@ object, used to sidestep pkg_ref assignment guardrails}
 \usage{
 bare_env(x, expr, envir = parent.frame())
 }
+\arguments{
+\item{x}{a \code{pkg_ref} object}
+
+\item{expr}{an expression to evaluate, avoiding \code{pkg_ref} extraction
+handlers}
+
+\item{envir}{an environment in which the expression is to be evaluated}
+}
+\value{
+the result of \code{expr}
+}
 \description{
 evaluate an expression with a  pkg_ref object reclassed as a bare environment
 object, used to sidestep pkg_ref assignment guardrails

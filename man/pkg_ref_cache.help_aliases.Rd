@@ -6,6 +6,13 @@
 \usage{
 pkg_ref_cache.help_aliases(x, name, ...)
 }
+\arguments{
+\item{x}{a package reference object}
+
+\item{name}{the name of the field that needs to be cached}
+
+\item{...}{additional arguments used for computing cached values}
+}
 \description{
 Cache a character vector mapping exported values to documentation filenames
 }

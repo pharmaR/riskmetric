@@ -6,6 +6,16 @@
 \usage{
 assess_family_roxygen(name, return_type = "an atomic assessment result")
 }
+\arguments{
+\item{name}{the name of the assessment, assuming naming conventions are
+followed}
+
+\item{return_type}{an optional added commentary about the return type of the
+assessment function}
+}
+\value{
+roxygen section template for assess family functions
+}
 \description{
 Helper for creating a roxygen header from template for assess_* functions
 }

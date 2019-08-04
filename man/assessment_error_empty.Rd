@@ -8,6 +8,8 @@ assessment_error_empty(e, ...)
 }
 \arguments{
 \item{e}{an error raised during a package reference assessment}
+
+\item{...}{additional arguments unused}
 }
 \value{
 a pkg_metric object of pkg_metric_error subclass

@@ -1,5 +1,6 @@
 #' Cache a list of NEWS files from a package reference
 #'
+#' @inheritParams pkg_ref_cache
 #' @family package reference cache
 #'
 pkg_ref_cache.news <- function(x, name, ...) {
@@ -27,6 +28,11 @@ pkg_ref_cache.news.pkg_source <- function(x, name, ...) {
 
 
 #' Build a list of NEWS files discovered within a given directory
+#'
+#' @param path a package directory path expected to contain NEWS files
+#'
+#' @return a list of parsed NEWS files
+#'
 news_from_dir <- function(path) {
   # accommodate news.Rd, news.md, etc
   files <- list.files(path, pattern = "^NEWS\\.", full.names = TRUE)

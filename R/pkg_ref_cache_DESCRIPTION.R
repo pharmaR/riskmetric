@@ -1,5 +1,6 @@
 #' Cache the DESCRIPTION file contents for a package reference
 #'
+#' @inheritParams pkg_ref_cache
 #' @family package reference cache
 #'
 pkg_ref_cache.description <- function(x, name, ...) {

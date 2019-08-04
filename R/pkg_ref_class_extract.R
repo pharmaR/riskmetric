@@ -49,6 +49,14 @@
 
 #' evaluate an expression with a  pkg_ref object reclassed as a bare environment
 #' object, used to sidestep pkg_ref assignment guardrails
+#'
+#' @param x a \code{pkg_ref} object
+#' @param expr an expression to evaluate, avoiding \code{pkg_ref} extraction
+#'   handlers
+#' @param envir an environment in which the expression is to be evaluated
+#'
+#' @return the result of \code{expr}
+#'
 bare_env <- function(x, expr, envir = parent.frame()) {
   old_class <- class(x)
   class(x) <- "environment"
@@ -60,6 +68,11 @@ bare_env <- function(x, expr, envir = parent.frame()) {
 
 #' pretty printing for a pkg_ref mutability error caused by trying to do
 #' assignment within the pkg_ref without permission
+#'
+#' @param name name of field for which mutation was attempted
+#' @return a \code{simplError} with subclasses \code{pkg_ref_mutability_error},
+#'   \code{pkg_ref_error}
+#'
 pkg_ref_mutability_error <- function(name) {
   message <- list(paste0(
     "Assignment to a pkg_ref environment can only be done in a ",
@@ -78,6 +91,13 @@ pkg_ref_mutability_error <- function(name) {
 
 #' a wrapper to assert that a pkg_ref has been permitted to do an additional
 #' mutation, used to handle recursive initialization of cached fields
+#'
+#' @param x a \code{pkg_ref} object
+#' @param expr an expression to evaluate, and possible do a mutation within
+#' @param envir an environment in which the expression is to be evaluated
+#'
+#' @return the result of \code{expr}
+#'
 allow_mutation <- function(x, expr, envir = parent.frame()) {
   expr <- substitute(expr)
 

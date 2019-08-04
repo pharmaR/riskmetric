@@ -5,7 +5,17 @@
 \title{A helper for structuring assessment return objects for dispatch with the
 score function}
 \usage{
-pkg_metric(x, ..., label = NULL, class = c())
+pkg_metric(x, ..., class = c())
+}
+\arguments{
+\item{x}{data to store as a \code{pkg_metric}}
+
+\item{...}{additional attributes to bind to the \code{pkg_metric} object}
+
+\item{class}{a subclass to differentiate the \code{pkg_metric} object}
+}
+\value{
+a \code{pkg_metric} object
 }
 \description{
 A helper for structuring assessment return objects for dispatch with the

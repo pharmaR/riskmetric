@@ -1,6 +1,8 @@
 #' Error handler for assessments with safe fallback
 #'
 #' @inheritParams format_assessment_message
+#' @param ... additional arguments unused
+#'
 #' @return a pkg_metric object of pkg_metric_error subclass
 #'
 #' @family assessment error handlers
@@ -29,7 +31,7 @@ assessment_error_throw <- function(e, name, assessment) {
 #' Error handler for assessments to deescalate errors to warnings
 #'
 #' @inheritParams format_assessment_message
-#' @inherit assessment_error_emtpy return
+#' @inherit assessment_error_empty return
 #'
 #' @family assessment error handlers
 #'

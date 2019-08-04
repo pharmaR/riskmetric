@@ -12,6 +12,11 @@ all_assessments <- function() {
 
 
 #' Helper for retrieving a list of columns which contain pkg_metric objects
+#'
+#' @param tbl a \code{\link[tibble]{tibble}} to select columns among
+#'
+#' @return a logical vector of \code{pkg_metric} column indices
+#'
 get_assessment_columns <- function(tbl) {
   vapply(tbl, inherits, logical(1L), "list_of_pkg_metric")
 }
@@ -19,6 +24,12 @@ get_assessment_columns <- function(tbl) {
 
 
 #' reassign assignment list names with column_name attribute if available
+#'
+#' @param x list of columns for which to consider friendly column name
+#'   attributes
+#'
+#' @return a vector of friendly column names if available
+#'
 use_assessments_column_names <- function(x) {
   column_names <- lapply(x, attr, "column_name")
   names(x)[!sapply(column_names, is.null)] <- column_names
@@ -34,6 +45,7 @@ use_assessments_column_names <- function(x) {
 #' @param assessments A list of assessment functions to apply to each package
 #'   reference. By default, a list of all exported assess_* functions from the
 #'   riskmetric package.
+#' @param ... additional arguments unused
 #' @param error A function, which accepts a single parameter expecting the
 #'   raised error, which will be called if any errors occur when attempting to
 #'   apply an assessment function.
@@ -77,6 +89,13 @@ assess <- function(x, assessments = all_assessments(), ...,
 
 
 #' Helper for creating a roxygen header from template for assess_* functions
+#'
+#' @param name the name of the assessment, assuming naming conventions are
+#'   followed
+#' @param return_type an optional added commentary about the return type of the
+#'   assessment function
+#'
+#' @return roxygen section template for assess family functions
 #'
 #' @examples
 #' \dontrun{

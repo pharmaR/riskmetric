@@ -1,5 +1,6 @@
 #' Cache package's remote web URL
 #'
+#' @inheritParams pkg_ref_cache
 #' @family package reference cache
 #'
 pkg_ref_cache.web_url <- function(x, name, ...) {

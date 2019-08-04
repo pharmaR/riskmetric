@@ -6,6 +6,12 @@
 \usage{
 news_from_dir(path)
 }
+\arguments{
+\item{path}{a package directory path expected to contain NEWS files}
+}
+\value{
+a list of parsed NEWS files
+}
 \description{
 Build a list of NEWS files discovered within a given directory
 }

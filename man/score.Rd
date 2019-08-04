@@ -20,14 +20,19 @@ a numeric value if a single \code{pkg_metric} is provided, or a
   returned as numeric values when a \code{\link[tibble]{tibble}} is provided.
 }
 \description{
-Score a package assement, collapsing results into a single numeric
+Scores reflect the adherence to best practices. Scores always range from 0
+(worst-) to 1 (best- practice), and can then be used to consistently evaluate
+the risk involved with using a package.
 }
 \examples{
 # scoring a single assessment
 score(assess_has_news(pkg_ref("riskmetric")))
 
 # scoring many assessments as a tibble
+\dontrun{
+library(dplyr)
 score(assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
+}
 
 }
 \seealso{

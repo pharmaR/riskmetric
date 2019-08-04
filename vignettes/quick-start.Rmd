@@ -76,12 +76,12 @@ parallel assessment of packages.
 
 ```{r, eval = FALSE}
 library(dplyr)
-package_tbl <- pkg_ref(c("riskmetric", "utils", "survival")) %>%
+package_tbl <- pkg_ref(c("riskmetric", "utils", "graphics", "stats")) %>%
   as_tibble()
 ```
 
 ```{r, echo = FALSE}
-package_tbl <- pkg_ref(c("riskmetric", "utils", "survival")) %>%
+package_tbl <- pkg_ref(c("riskmetric", "utils", "graphics", "stats")) %>%
   as_tibble() %>%
   tibble:::print.tbl()
 ```
@@ -100,7 +100,7 @@ to make it easier for package validation to be a community effort.
 We'll use the `tibble` from above as our example
 
 ```{r}
-package_tbl <- pkg_ref(c("riskmetric", "utils", "survival")) %>%
+package_tbl <- pkg_ref(c("riskmetric", "utils", "graphics", "stats")) %>%
   as_tibble()
 ```
 

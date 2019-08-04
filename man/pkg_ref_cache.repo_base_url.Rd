@@ -6,6 +6,13 @@
 \usage{
 pkg_ref_cache.repo_base_url(x, name, ...)
 }
+\arguments{
+\item{x}{a package reference object}
+
+\item{name}{the name of the field that needs to be cached}
+
+\item{...}{additional arguments used for computing cached values}
+}
 \description{
 Cache value of a package's source repo's URL
 }

@@ -15,7 +15,7 @@ attributes(assess_export_help)$label <- "exported objects have documentation"
 
 
 #' @export
-assess_export_help.pkg_install <- function(x) {
+assess_export_help.pkg_install <- function(x, ...) {
   # ignore S3-dispatched methods
   exports <- getNamespaceExports(x$name)
   out <- exports %in% names(x$help_aliases)
@@ -33,6 +33,6 @@ assess_export_help.pkg_install <- function(x) {
 #' @return \code{1} if any NEWS files are found, otherwise \code{0}
 #'
 #' @export
-score.pkg_metric_export_help <- function(x) {
+score.pkg_metric_export_help <- function(x, ...) {
   sum(x, na.rm = TRUE) / length(x)
 }

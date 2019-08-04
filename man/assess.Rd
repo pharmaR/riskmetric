@@ -15,6 +15,8 @@ package references to assess}
 reference. By default, a list of all exported assess_* functions from the
 riskmetric package.}
 
+\item{...}{additional arguments unused}
+
 \item{error}{A function, which accepts a single parameter expecting the
 raised error, which will be called if any errors occur when attempting to
 apply an assessment function.}

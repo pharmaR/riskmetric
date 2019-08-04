@@ -1,5 +1,6 @@
 #' Cache package's remote display page HTML
 #'
+#' @inheritParams pkg_ref_cache
 #' @family package reference cache
 #'
 pkg_ref_cache.web_html <- function(x, name, ...) {

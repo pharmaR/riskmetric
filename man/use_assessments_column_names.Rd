@@ -6,6 +6,13 @@
 \usage{
 use_assessments_column_names(x)
 }
+\arguments{
+\item{x}{list of columns for which to consider friendly column name
+attributes}
+}
+\value{
+a vector of friendly column names if available
+}
 \description{
 reassign assignment list names with column_name attribute if available
 }

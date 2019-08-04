@@ -14,6 +14,9 @@ the error}
 
 \item{assessment}{the name of the assessment function which raised the error}
 }
+\value{
+a pkg_metric object of pkg_metric_error subclass
+}
 \description{
 Error handler for assessments to deescalate errors to warnings
 }

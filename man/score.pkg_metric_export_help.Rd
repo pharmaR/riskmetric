@@ -4,7 +4,7 @@
 \alias{score.pkg_metric_export_help}
 \title{Score a package for availability of documentation for exported values}
 \usage{
-\method{score}{pkg_metric_export_help}(x)
+\method{score}{pkg_metric_export_help}(x, ...)
 }
 \arguments{
 \item{x}{a \code{pkg_metric_export_help} packge metric object}

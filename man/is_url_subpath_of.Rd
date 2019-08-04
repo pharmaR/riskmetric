@@ -6,6 +6,15 @@
 \usage{
 is_url_subpath_of(url, urls)
 }
+\arguments{
+\item{url}{a url which may stem from one of the provided base urls}
+
+\item{urls}{vector of base urls}
+}
+\value{
+logical vector indicating which base urls have a sub url of
+  \code{url}
+}
 \description{
 check if a url originates from a list of repo urls
 }

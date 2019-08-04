@@ -7,6 +7,18 @@
 with_unclassed_to(x, .class = 1:length(class(x)), expr,
   envir = parent.frame())
 }
+\arguments{
+\item{x}{a structured S3-classed object}
+
+\item{.class}{the class to unclass the object to}
+
+\item{expr}{an expression to evaluate, avoiding parent classs dispatch}
+
+\item{envir}{an environment in which the expression is to be evaluated}
+}
+\value{
+the result of \code{expr}
+}
 \description{
 Evaluate an expression after first removing a range of S3 classes
 }

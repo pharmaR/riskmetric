@@ -6,6 +6,13 @@
 \usage{
 pkg_ref_cache.help(x, name, ...)
 }
+\arguments{
+\item{x}{a package reference object}
+
+\item{name}{the name of the field that needs to be cached}
+
+\item{...}{additional arguments used for computing cached values}
+}
 \description{
 Cache a list of available help files as LaTeX objects
 }

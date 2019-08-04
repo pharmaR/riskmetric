@@ -1,5 +1,6 @@
 #' Cache appropriate urls for NEWS files
 #'
+#' @inheritParams pkg_ref_cache
 #' @family package reference cache
 #'
 pkg_ref_cache.news_urls <- function(x, name, ...) {

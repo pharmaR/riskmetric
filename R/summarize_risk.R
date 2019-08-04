@@ -11,11 +11,15 @@
 #'
 #' @return a numeric vector of risk scores
 #'
-#' @example
+#' @examples
+#' \dontrun{
+#' library(dplyr)
 #' summarize_risk(score(assess(as_tibble(pkg_ref("riskmetric")))))
+#' }
 #'
 #' # or, using the cleaner dplyr syntax
 #' \dontrun{
+#' library(dplyr)
 #' pkg_ref("riskmetric") %>%
 #'   as_tibble() %>%
 #'   assess() %>%

@@ -19,7 +19,10 @@
 #' score(assess_has_news(pkg_ref("riskmetric")))
 #'
 #' # scoring many assessments as a tibble
+#' \dontrun{
+#' library(dplyr)
 #' score(assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
+#' }
 #'
 #' @family \code{score.*} functions
 #'
@@ -64,6 +67,11 @@ score.tbl_df <- function(x, ...) {
 
 
 #' Helper for creating a roxygen header from template for score.* functions
+#'
+#' @param name the name of the scoring function, assuming naming conventions are
+#'   followed
+#'
+#' @return roxygen section template for score family functions
 #'
 #' @examples
 #' \dontrun{

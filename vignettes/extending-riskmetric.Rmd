@@ -102,7 +102,7 @@ that it can feed into all downstream assessments without having to re-parse the
 file each time or copy the code to do so.
 
 ```{r, echo = FALSE}
-print_riskmetric_function(c("pkg_ref_cache.DESCRIPTION", "pkg_ref_cache.DESCRIPTION.pkg_install"))
+print_riskmetric_function(c("pkg_ref_cache.description", "pkg_ref_cache.description.pkg_install"))
 ```
 
 Once these are defined, they'll be automatically called when the field is first
@@ -130,15 +130,15 @@ invisible(riskmetric:::bare_env(package, {
 package
 ```
 
-Notice that upon initialization, the `DESCRIPTION` field indicates that it
+Notice that upon initialization, the `description` field indicates that it
 hasn't yet been evaluated
 
 ```{r, eval = FALSE}
-str(package$DESCRIPTION)
+str(package$description)
 ```
 
 ```{r, echo = FALSE}
-str(package_real$DESCRIPTION)
+str(package_real$description)
 ```
 
 Now, when we look at the contents of our `pkg_ref` object, we see that the
@@ -167,7 +167,7 @@ the one function.
 
 ```{r}
 pkg_ref_cache.name_first_letter <- function(x, name, ...) {
-  x$name_first_letter <- substr(x$name, 0, 1)
+  substr(x$name, 0, 1)
 }
 ```
 
@@ -212,7 +212,7 @@ assessment toolkit.
 
 ```{r}
 library(dplyr)
-pkg_ref(c("riskmetric", "utils", "survival")) %>%
+pkg_ref(c("riskmetric", "utils", "graphics", "stats")) %>%
   as_tibble() %>%
   assess(c(all_assessments(), assess_name_first_letter))
 ```
@@ -221,7 +221,7 @@ Our scoring function will automatically get picked up and used by the score
 method.
 
 ```{r}
-pkg_ref(c("riskmetric", "utils", "survival")) %>%
+pkg_ref(c("riskmetric", "utils", "graphics", "stats")) %>%
   as_tibble() %>%
   assess(c(all_assessments(), assess_name_first_letter)) %>%
   score()
@@ -231,7 +231,7 @@ and we can define our own summarizing function to aggregate our scores into a
 single numeric risk.
 
 ```{r}
-pkg_ref(c("riskmetric", "utils", "survival")) %>%
+pkg_ref(c("riskmetric", "utils", "graphics", "stats")) %>%
   as_tibble() %>%
   assess(c(all_assessments(), assess_name_first_letter)) %>%
   score() %>%

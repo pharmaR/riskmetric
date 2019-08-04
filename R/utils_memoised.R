@@ -43,5 +43,11 @@ memoise_installed_packages <- memoise::memoise({
 
 
 memoise_available_packages <- memoise::memoise({
-  function(...) utils::available.packages(...)
+  function(..., repos = getOption("repos")) {
+    if (is.null(repos)) return(utils::available.packages(NULL))
+    else if ("@CRAN@" %in% repos) {
+      repos[repos == "@CRAN@"] <- "https://cran.rstudio.com/"
+      utils::available.packages(repos = repos, ...)
+    }
+  }
 })

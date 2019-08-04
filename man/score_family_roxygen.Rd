@@ -6,6 +6,13 @@
 \usage{
 score_family_roxygen(name)
 }
+\arguments{
+\item{name}{the name of the scoring function, assuming naming conventions are
+followed}
+}
+\value{
+roxygen section template for score family functions
+}
 \description{
 Helper for creating a roxygen header from template for score.* functions
 }

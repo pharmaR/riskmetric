@@ -1,5 +1,6 @@
 #' Cache value of a package's source tarball URL
 #'
+#' @inheritParams pkg_ref_cache
 #' @family package reference cache
 #'
 pkg_ref_cache.tarball_url <- function(x, name, ...) {

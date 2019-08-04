@@ -7,6 +7,13 @@ assignment within the pkg_ref without permission}
 \usage{
 pkg_ref_mutability_error(name)
 }
+\arguments{
+\item{name}{name of field for which mutation was attempted}
+}
+\value{
+a \code{simplError} with subclasses \code{pkg_ref_mutability_error},
+  \code{pkg_ref_error}
+}
 \description{
 pretty printing for a pkg_ref mutability error caused by trying to do
 assignment within the pkg_ref without permission

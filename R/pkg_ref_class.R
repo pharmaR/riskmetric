@@ -75,6 +75,7 @@ as_pkg_ref.pkg_ref <- function(x, ...) {
 #' @importFrom xml2 read_html
 #' @export
 as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
+
   ip <- memoise_installed_packages()
   ap <- memoise_available_packages(repos = repos)
   cran_mirrors <- memoise_cran_mirros()

@@ -1,7 +1,14 @@
 #' A helper for structuring assessment return objects for dispatch with the
 #' score function
-pkg_metric <- function(x, ..., label = NULL, class = c()) {
-  structure(x, ..., label = label, class = c(class, "pkg_metric", class(x)))
+#'
+#' @param x data to store as a \code{pkg_metric}
+#' @param ... additional attributes to bind to the \code{pkg_metric} object
+#' @param class a subclass to differentiate the \code{pkg_metric} object
+#'
+#' @return a \code{pkg_metric} object
+#'
+pkg_metric <- function(x, ..., class = c()) {
+  structure(x, ..., class = c(class, "pkg_metric", class(x)))
 }
 
 
