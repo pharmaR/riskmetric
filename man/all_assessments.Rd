@@ -6,6 +6,9 @@
 \usage{
 all_assessments()
 }
+\value{
+a list of assess_* functions exported from riskmetric
+}
 \description{
 A default list of assessments to perform for each package
 }

@@ -36,6 +36,8 @@ print.pkg_ref <- function(x, ...) {
 
 
 
+#' @importFrom vctrs vec_ptype_abbr
+#' @method vec_ptype_abbr pkg_ref
 #' @export
 vec_ptype_abbr.pkg_ref <- function(x, ...) {
   "pkg_ref"
@@ -43,6 +45,8 @@ vec_ptype_abbr.pkg_ref <- function(x, ...) {
 
 
 
+#' @importFrom vctrs vec_cast.character
+#' @method vec_cast.character list_of_pkg_ref
 #' @export
 vec_cast.character.list_of_pkg_ref <- function(x, to) {
   vapply(x, "[[", character(1L), "name")

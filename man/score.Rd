@@ -2,16 +2,37 @@
 % Please edit documentation in R/score.R
 \name{score}
 \alias{score}
-\alias{score.default}
-\alias{score.tbl_df}
 \title{Score a package assement, collapsing results into a single numeric}
 \usage{
-score(x, ..., envir = parent.frame())
+score(x, ...)
+}
+\arguments{
+\item{x}{a \code{pkg_metric} object, whose subclass is used to choose the
+appropriate scoring method for the atomic metric metadata. Optionally, a
+\code{\link[tibble]{tibble}} can be provided, in which cases all
+\code{pkg_metric} values will be scored.}
 
-\method{score}{default}(x, ..., envir = parent.frame())
-
-\method{score}{tbl_df}(x, ..., envir = parent.frame())
+\item{...}{additional arguments unused}
+}
+\value{
+a numeric value if a single \code{pkg_metric} is provided, or a
+  \code{\link[tibble]{tibble}} with \code{pkg_metric} objects scored and
+  returned as numeric values when a \code{\link[tibble]{tibble}} is provided.
 }
 \description{
 Score a package assement, collapsing results into a single numeric
 }
+\examples{
+# scoring a single assessment
+score(assess_has_news(pkg_ref("riskmetric")))
+
+# scoring many assessments as a tibble
+score(assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
+
+}
+\seealso{
+Other \code{score.*} functions: \code{\link{score.pkg_metric_export_help}},
+  \code{\link{score.pkg_metric_has_news}},
+  \code{\link{score.pkg_metric_news_current}}
+}
+\concept{\code{score.*} functions}

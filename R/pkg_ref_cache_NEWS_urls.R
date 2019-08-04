@@ -1,6 +1,12 @@
+#' Cache appropriate urls for NEWS files
+#'
+#' @family package reference cache
+#'
 pkg_ref_cache.news_urls <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.news_urls")
 }
+
+
 
 #' @importFrom xml2 xml_attrs
 pkg_ref_cache.news_urls.pkg_cran_remote <- function(x, name, ...) {
@@ -8,10 +14,12 @@ pkg_ref_cache.news_urls.pkg_cran_remote <- function(x, name, ...) {
   news_links <- xml2::xml_find_all(x$web_html, xpath = '//a[.="NEWS"]')
 
   # add NEWS link url metadata to package environment
-  x$news_urls <- sprintf("%s/%s",
+  sprintf("%s/%s",
     x$web_url,
     vapply(xml2::xml_attrs(news_links), "[", character(1L), "href"))
 }
+
+
 
 #' @importFrom xml2 xml_attrs
 pkg_ref_cache.news_urls.pkg_bioc_remote <- function(x, name, ...) {
@@ -21,7 +29,7 @@ pkg_ref_cache.news_urls.pkg_bioc_remote <- function(x, name, ...) {
   news_links <- xml2::xml_find_all(x$web_html, xpath = news_link_xpath)
 
   # add NEWS link url metadata to package environment
-  x$news_urls <- xml2::url_absolute(
+  xml2::url_absolute(
     vapply(xml2::xml_attrs(news_links), "[", character(1L), "href"),
     x$web_url)
 }

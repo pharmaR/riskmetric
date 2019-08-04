@@ -7,13 +7,23 @@
 assess_news_current(x, ...)
 }
 \arguments{
-\item{x}{a packge reference object}
+\item{x}{a \code{pkg_ref} package reference object}
 
-\item{...}{additional arguments unused}
+\item{...}{additional arguments passed on to S3 methods, rarely used}
 }
 \value{
-a \code{pkg_metric} object
+a \code{pkg_metric} containing a logical vector indicating whether each discovered NEWS file is up-to-date
 }
 \description{
 Assess a package for an up-to-date NEWS file
 }
+\examples{
+assess_news_current(pkg_ref("riskmetric"))
+}
+\seealso{
+\code{\link{score.pkg_metric_news_current}}
+
+Other \code{assess_*} functions: \code{\link{assess_export_help}},
+  \code{\link{assess_has_news}}
+}
+\concept{\code{assess_*} functions}

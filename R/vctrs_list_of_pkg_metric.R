@@ -1,3 +1,5 @@
+#' @importFrom pillar pillar_shaft
+#' @method pillar_shaft list_of_pkg_metric
 #' @export
 pillar_shaft.list_of_pkg_metric <- function(x, ...) {
   ucx <- lapply(x, unclass)
@@ -18,6 +20,8 @@ pillar_shaft.list_of_pkg_metric <- function(x, ...) {
 
 
 
+#' @importFrom vctrs vec_cast.double
+#' @method vec_cast.double list_of_pkg_metric
 #' @export
 vec_cast.double.list_of_pkg_metric <- function(x, to) {
   out <- vector("numeric", length(x))

@@ -1,3 +1,7 @@
+#' Cache a list of NEWS files from a package reference
+#'
+#' @family package reference cache
+#'
 pkg_ref_cache.news <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.news")
 }
@@ -5,23 +9,24 @@ pkg_ref_cache.news <- function(x, name, ...) {
 
 
 pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
-  x$news <- lapply(x$news_urls, xml2::read_html)
+  lapply(x$news_urls, xml2::read_html)
 }
 
 
 
 pkg_ref_cache.news.pkg_install <- function(x, name, ...) {
-  x$news <- news_from_dir(system.file(package = x$name))
+  news_from_dir(system.file(package = x$name))
 }
 
 
 
 pkg_ref_cache.news.pkg_source <- function(x, name, ...) {
-  x$news <- news_from_dir(x$path)
+  news_from_dir(x$path)
 }
 
 
 
+#' Build a list of NEWS files discovered within a given directory
 news_from_dir <- function(path) {
   # accommodate news.Rd, news.md, etc
   files <- list.files(path, pattern = "^NEWS\\.", full.names = TRUE)

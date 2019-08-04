@@ -7,6 +7,27 @@
 assess(x, assessments = all_assessments(), ...,
   error = assessment_error_as_warning)
 }
+\arguments{
+\item{x}{A single package reference object or \code{\link[tibble]{tibble}} of
+package references to assess}
+
+\item{assessments}{A list of assessment functions to apply to each package
+reference. By default, a list of all exported assess_* functions from the
+riskmetric package.}
+
+\item{error}{A function, which accepts a single parameter expecting the
+raised error, which will be called if any errors occur when attempting to
+apply an assessment function.}
+}
+\value{
+A \code{\link[tibble]{tibble}} with one row per package reference and
+  a new column per assessment function, with cells of that column as package
+  metric objects returned when the assessment was called with the associated
+  pacakge reference.
+}
 \description{
 Function for applying assess_* family of functions to packages
+}
+\seealso{
+as_tibble.pkg_ref
 }

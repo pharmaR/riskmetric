@@ -21,18 +21,26 @@ memoise_cran_db <- memoise::memoise({
   }}
 )
 
+
+
 memoise_cran_mirros <- memoise::memoise({
   function(all = TRUE, ...) utils::getCRANmirrors(all = all, ...)
 })
+
+
 
 # taken from utils::chooseBioCmirror
 memoise_bioc_mirrors <- memoise::memoise({
   function() read.csv("https://bioconductor.org/BioC_mirrors.csv")
 })
 
+
+
 memoise_installed_packages <- memoise::memoise({
   function(...) utils::installed.packages(...)
 })
+
+
 
 memoise_available_packages <- memoise::memoise({
   function(...) utils::available.packages(...)

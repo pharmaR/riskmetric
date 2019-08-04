@@ -1,3 +1,7 @@
+#' Create a package reference
+#'
+#' @inherit as_pkg_ref params return
+#'
 #' @export
 pkg_ref <- function(x, ...) {
   if (missing(x)) return(structure(logical(0L), class = "pkg_ref"))
@@ -38,6 +42,7 @@ new_pkg_ref <- function(name, version = NA_character_, source, ...) {
 #'
 #' @return a package object
 #'
+#' @importFrom vctrs new_list_of
 #' @export
 as_pkg_ref <- function(x, ...) {
   if ((is.list(x) || is.atomic(x)) && length(x) > 1) {
@@ -114,6 +119,7 @@ as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
   # case when a directory path to source code is provided
   #   e.g. '../dplyr'
   } else if (dir.exists(x) & file.exists(file.path(x, "DESCRIPTION"))) {
+    desc <- read.dcf(file.path(x, "DESCRIPTION"))
     name <- unname(desc[,"Package"])
 
     return(new_pkg_ref(name,

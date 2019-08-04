@@ -1,3 +1,5 @@
+#' @importFrom tibble as_tibble
+#' @method as_tibble pkg_ref
 #' @export
 as_tibble.pkg_ref <- function(x, ...) {
   as_tibble(vctrs::new_list_of(list(x),
@@ -7,6 +9,8 @@ as_tibble.pkg_ref <- function(x, ...) {
 
 
 
+#' @importFrom tibble as_tibble
+#' @method as_tibble list_of_pkg_ref
 #' @export
 as_tibble.list_of_pkg_ref <- function(x, ...) {
   package_names <- vapply(x, "[[", character(1L), "name")

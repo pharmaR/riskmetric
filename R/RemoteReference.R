@@ -1,3 +1,6 @@
+# Removing these as exports while aiming for initial release - can revisit
+# once a solid foundation is built.
+
 #' Remote reference to package sources
 #'
 #' @param x package/repo name
@@ -6,7 +9,6 @@
 #' @param repos list with single CRAN-like repository to query sources from
 #'
 #' @import remotes
-#' @export
 RemoteReference <- function(x, type, version = "latest",
                             repos = list(CRAN = "https://cloud.r-project.org")) {
 
@@ -33,7 +35,6 @@ RemoteReference <- function(x, type, version = "latest",
 #' @param dest desitnation path for downloaded sources
 #' @param ... further parameters passed to methods
 #'
-#' @export
 download_pkg_sources <- function(remote_ref, dest, ...)
   UseMethod("download_pkg_sources")
 

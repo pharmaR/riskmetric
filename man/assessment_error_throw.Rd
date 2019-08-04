@@ -6,6 +6,22 @@
 \usage{
 assessment_error_throw(e, name, assessment)
 }
+\arguments{
+\item{e}{an error raised during a package reference assessment}
+
+\item{name}{the name of the package whose package reference assessment raised
+the error}
+
+\item{assessment}{the name of the assessment function which raised the error}
+}
+\value{
+the error encountered during assessment
+}
 \description{
 Error handler for assessments to throw error immediately
 }
+\seealso{
+Other assessment error handlers: \code{\link{assessment_error_as_warning}},
+  \code{\link{assessment_error_empty}}
+}
+\concept{assessment error handlers}

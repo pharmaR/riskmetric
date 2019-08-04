@@ -1,10 +1,13 @@
-#' @export
+#' A helper for structuring assessment return objects for dispatch with the
+#' score function
 pkg_metric <- function(x, ..., label = NULL, class = c()) {
   structure(x, ..., label = label, class = c(class, "pkg_metric", class(x)))
 }
 
 
 
+#' @importFrom vctrs vec_ptype_abbr
+#' @method vec_ptype_abbr pkg_metric
 #' @export
 vec_ptype_abbr.pkg_metric <- function(x, ...) {
   "pkg_metric"

@@ -22,7 +22,6 @@ is_url_subpath_of <- function(url, urls) {
 #'
 #' @importFrom tools CRAN_package_db
 #' @importFrom utils installed.packages
-#'
 not_installed_packages <- function() {
   installeddb <- utils::installed.packages()
   crandb <- memoise_cran_db()
@@ -42,7 +41,6 @@ not_installed_packages <- function() {
 #'
 #' @importFrom tools CRAN_package_db
 #' @importFrom utils installed.packages
-#'
 installed_packages <- function(...) {
   installeddb <- utils::installed.packages()
   unname(installeddb[,"Package"])

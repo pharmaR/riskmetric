@@ -1,11 +1,10 @@
 #' Assess a package for an up-to-date NEWS file
 #'
-#' @param x a packge reference object
-#' @param ... additional arguments unused
+#' @eval assess_family_roxygen(
+#'   "news_current",
+#'   "a logical vector indicating whether each discovered NEWS file is up-to-date")
 #'
-#' @return a \code{pkg_metric} object
 #' @export
-#'
 assess_news_current <- function(x, ...) {
   UseMethod("assess_news_current")
 }
@@ -41,7 +40,14 @@ search_version_string <- function(ver) {
 
 
 
+#' Score a package for NEWS files updated to current version
+#'
+#' Coerce a logical vector of discovered up-to-date NEWS to a metric score
+#'
+#' @eval score_family_roxygen("news_current")
+#' @return \code{1} if any NEWS files are up-to-date, otherwise \code{0}
+#'
 #' @export
 score.pkg_metric_news_current <- function(x, ...) {
-  length(x) && all(x)
+  as.numeric(length(x) && all(x))
 }
