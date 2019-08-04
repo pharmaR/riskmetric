@@ -134,11 +134,12 @@ Notice that upon initialization, the `description` field indicates that it
 hasn't yet been evaluated
 
 ```{r, eval = FALSE}
-str(package$description)
+# show the first 3 fields from the DESCRIPTION file
+package$description[,1:3]
 ```
 
 ```{r, echo = FALSE}
-str(package_real$description)
+package_real$description[,1:3]
 ```
 
 Now, when we look at the contents of our `pkg_ref` object, we see that the
