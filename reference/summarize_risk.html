@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>riskmetric package documentation — riskmetric • riskmetric</title>
+<title>Summarize a default set of assessments into a single risk score — summarize_risk • riskmetric</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="riskmetric package documentation — riskmetric" />
+<meta property="og:title" content="Summarize a default set of assessments into a single risk score — summarize_risk" />
 
-<meta property="og:description" content="riskmetric package documentation" />
+<meta property="og:description" content="This function serves as an example for how a risk score might be derived.
+Assuming all assessments provided by riskmetric are available in a
+dataset, this function can be used to calculate a vector of risks." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,24 +114,66 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>riskmetric package documentation</h1>
+    <h1>Summarize a default set of assessments into a single risk score</h1>
     
-    <div class="hidden name"><code>riskmetric.Rd</code></div>
+    <div class="hidden name"><code>summarize_risk.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>riskmetric package documentation</p>
+    <p>This function serves as an example for how a risk score might be derived.
+Assuming all assessments provided by <code>riskmetric</code> are available in a
+dataset, this function can be used to calculate a vector of risks.</p>
     
     </div>
 
-        
+    <pre class="usage"><span class='fu'>summarize_risk</span>(<span class='no'>data</span>, <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> of scored assessments whose column
+names match those provided by riskmetric's <code><a href='assess.html'>assess</a></code> function.</p></td>
+    </tr>
+    <tr>
+      <th>weights</th>
+      <td><p>a set of numeric weights to give to each score column when
+calculating risk</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>a numeric vector of risk scores</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='fu'>summarize_risk</span>(<span class='fu'><a href='score.html'>score</a></span>(<span class='fu'><a href='assess.html'>assess</a></span>(<span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>as_tibble</a></span>(<span class='fu'><a href='pkg_ref.html'>pkg_ref</a></span>(<span class='st'>"riskmetric"</span>)))))
+<span class='co'># }</span><div class='input'>
+# or, using the cleaner dplyr syntax
+</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='fu'><a href='pkg_ref.html'>pkg_ref</a></span>(<span class='st'>"riskmetric"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>as_tibble</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='assess.html'>assess</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='score.html'>score</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>risk</span> <span class='kw'>=</span> <span class='fu'>summarize_risk</span>(<span class='no'>.</span>))
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

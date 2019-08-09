@@ -78,6 +78,21 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/extending-riskmetric.html">Extending riskmetric</a>
+    </li>
+    <li>
+      <a href="../articles/quick-start.html">Quick Start</a>
+    </li>
+  </ul>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -115,15 +130,84 @@
       <tr>
         
         <td>
-          <p><code><a href="RemoteReference.html">RemoteReference()</a></code> </p>
+          <p><code><a href="all_assessments.html">all_assessments()</a></code> </p>
         </td>
-        <td><p>Remote reference to package sources</p></td>
+        <td><p>A default list of assessments to perform for each package</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="as.pkg_ref.html">as.pkg_ref()</a></code> </p>
+          <p><code><a href="allow_mutation.html">allow_mutation()</a></code> </p>
+        </td>
+        <td><p>a wrapper to assert that a pkg_ref has been permitted to do an additional
+mutation, used to handle recursive initialization of cached fields</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_pkg_ref.html">as_pkg_ref()</a></code> </p>
         </td>
         <td><p>Convert into a package object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess.html">assess()</a></code> </p>
+        </td>
+        <td><p>Function for applying assess_* family of functions to packages</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess_export_help.html">assess_export_help()</a></code> </p>
+        </td>
+        <td><p>Assess a package for availability of documentation for exported values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess_family_roxygen.html">assess_family_roxygen()</a></code> </p>
+        </td>
+        <td><p>Helper for creating a roxygen header from template for assess_* functions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess_has_news.html">assess_has_news()</a></code> </p>
+        </td>
+        <td><p>Assess a package for the presence of a NEWS file</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess_news_current.html">assess_news_current()</a></code> </p>
+        </td>
+        <td><p>Assess a package for an up-to-date NEWS file</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assessment_error_as_warning.html">assessment_error_as_warning()</a></code> </p>
+        </td>
+        <td><p>Error handler for assessments to deescalate errors to warnings</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assessment_error_empty.html">assessment_error_empty()</a></code> </p>
+        </td>
+        <td><p>Error handler for assessments with safe fallback</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assessment_error_throw.html">assessment_error_throw()</a></code> </p>
+        </td>
+        <td><p>Error handler for assessments to throw error immediately</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="available_pkg_ref_fields.html">available_pkg_ref_fields()</a></code> </p>
+        </td>
+        <td><p>A helper function for retrieving a list of available fields, identified based
+on implementation of a pkg_ref_cache method for a given class.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="bare_env.html">bare_env()</a></code> </p>
+        </td>
+        <td><p>evaluate an expression with a  pkg_ref object reclassed as a bare environment
+object, used to sidestep pkg_ref assignment guardrails</p></td>
       </tr><tr>
         
         <td>
@@ -133,9 +217,21 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="download_pkg_sources.html">download_pkg_sources()</a></code> </p>
+          <p><code><a href="dot-tools.html">.tools()</a></code> </p>
         </td>
-        <td><p>Download source code from RemoteReference</p></td>
+        <td><p>Accessor for tools namespace</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="format_assessment_message.html">format_assessment_message()</a></code> </p>
+        </td>
+        <td><p>Assessment console printing formatter</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_assessment_columns.html">get_assessment_columns()</a></code> </p>
+        </td>
+        <td><p>Helper for retrieving a list of columns which contain pkg_metric objects</p></td>
       </tr><tr>
         
         <td>
@@ -145,9 +241,161 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="installed_packages.html">installed_packages()</a></code> </p>
+        </td>
+        <td><p>Return a vector of random installed packages</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_url_subpath_of.html">is_url_subpath_of()</a></code> </p>
+        </td>
+        <td><p>check if a url originates from a list of repo urls</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="news_from_dir.html">news_from_dir()</a></code> </p>
+        </td>
+        <td><p>Build a list of NEWS files discovered within a given directory</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="not_installed_packages.html">not_installed_packages()</a></code> </p>
+        </td>
+        <td><p>Return a vector of random uninstalled packages</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_metric.html">pkg_metric()</a></code> </p>
+        </td>
+        <td><p>A helper for structuring assessment return objects for dispatch with the
+score function</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref.html">pkg_ref()</a></code> </p>
+        </td>
+        <td><p>Create a package reference</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.html">pkg_ref_cache()</a></code> </p>
+        </td>
+        <td><p>S3 function to extend a package reference with new fields</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.description.html">pkg_ref_cache.description()</a></code> </p>
+        </td>
+        <td><p>Cache the DESCRIPTION file contents for a package reference</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.help.html">pkg_ref_cache.help()</a></code> </p>
+        </td>
+        <td><p>Cache a list of available help files as LaTeX objects</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.help_aliases.html">pkg_ref_cache.help_aliases()</a></code> </p>
+        </td>
+        <td><p>Cache a character vector mapping exported values to documentation filenames</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.news.html">pkg_ref_cache.news()</a></code> </p>
+        </td>
+        <td><p>Cache a list of NEWS files from a package reference</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.news_urls.html">pkg_ref_cache.news_urls()</a></code> </p>
+        </td>
+        <td><p>Cache appropriate urls for NEWS files</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.repo_base_url.html">pkg_ref_cache.repo_base_url()</a></code> </p>
+        </td>
+        <td><p>Cache value of a package's source repo's URL</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.tarball_url.html">pkg_ref_cache.tarball_url()</a></code> </p>
+        </td>
+        <td><p>Cache value of a package's source tarball URL</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.web_html.html">pkg_ref_cache.web_html()</a></code> </p>
+        </td>
+        <td><p>Cache package's remote display page HTML</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.web_url.html">pkg_ref_cache.web_url()</a></code> </p>
+        </td>
+        <td><p>Cache package's remote web URL</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_mutability_error.html">pkg_ref_mutability_error()</a></code> </p>
+        </td>
+        <td><p>pretty printing for a pkg_ref mutability error caused by trying to do
+assignment within the pkg_ref without permission</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="riskmetric.html">riskmetric</a></code> </p>
         </td>
         <td><p>riskmetric package documentation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="score.html">score()</a></code> </p>
+        </td>
+        <td><p>Score a package assement, collapsing results into a single numeric</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="score.pkg_metric_export_help.html">score(<i>&lt;pkg_metric_export_help&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for availability of documentation for exported values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="score.pkg_metric_has_news.html">score(<i>&lt;pkg_metric_has_news&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for the presence of a NEWS file</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="score.pkg_metric_news_current.html">score(<i>&lt;pkg_metric_news_current&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for NEWS files updated to current version</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="score_family_roxygen.html">score_family_roxygen()</a></code> </p>
+        </td>
+        <td><p>Helper for creating a roxygen header from template for score.* functions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="summarize_risk.html">summarize_risk()</a></code> </p>
+        </td>
+        <td><p>Summarize a default set of assessments into a single risk score</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="use_assessments_column_names.html">use_assessments_column_names()</a></code> </p>
+        </td>
+        <td><p>reassign assignment list names with column_name attribute if available</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="with_unclassed_to.html">with_unclassed_to()</a></code> </p>
+        </td>
+        <td><p>Evaluate an expression after first removing a range of S3 classes</p></td>
       </tr>
     </tbody>
     </table>

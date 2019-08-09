@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>riskmetric package documentation — riskmetric • riskmetric</title>
+<title>Score a package assement, collapsing results into a single numeric — score • riskmetric</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="riskmetric package documentation — riskmetric" />
+<meta property="og:title" content="Score a package assement, collapsing results into a single numeric — score" />
 
-<meta property="og:description" content="riskmetric package documentation" />
+<meta property="og:description" content="Scores reflect the adherence to best practices. Scores always range from 0
+(worst-) to 1 (best- practice), and can then be used to consistently evaluate
+the risk involved with using a package." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,24 +114,71 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>riskmetric package documentation</h1>
+    <h1>Score a package assement, collapsing results into a single numeric</h1>
     
-    <div class="hidden name"><code>riskmetric.Rd</code></div>
+    <div class="hidden name"><code>score.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>riskmetric package documentation</p>
+    <p>Scores reflect the adherence to best practices. Scores always range from 0
+(worst-) to 1 (best- practice), and can then be used to consistently evaluate
+the risk involved with using a package.</p>
     
     </div>
 
-        
+    <pre class="usage"><span class='fu'>score</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>a <code>pkg_metric</code> object, whose subclass is used to choose the
+appropriate scoring method for the atomic metric metadata. Optionally, a
+<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> can be provided, in which cases all
+<code>pkg_metric</code> values will be scored.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments unused</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>a numeric value if a single <code>pkg_metric</code> is provided, or a
+  <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> with <code>pkg_metric</code> objects scored and
+  returned as numeric values when a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> is provided.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other <code>score.*</code> functions: <code><a href='score.pkg_metric_export_help.html'>score.pkg_metric_export_help</a></code>,
+  <code><a href='score.pkg_metric_has_news.html'>score.pkg_metric_has_news</a></code>,
+  <code><a href='score.pkg_metric_news_current.html'>score.pkg_metric_news_current</a></code></p></div>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># scoring a single assessment</span>
+<span class='fu'>score</span>(<span class='fu'><a href='assess_has_news.html'>assess_has_news</a></span>(<span class='fu'><a href='pkg_ref.html'>pkg_ref</a></span>(<span class='st'>"riskmetric"</span>)))</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
+# scoring many assessments as a tibble
+</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='fu'>score</span>(<span class='fu'><a href='assess.html'>assess</a></span>(<span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>as_tibble</a></span>(<span class='fu'><a href='pkg_ref.html'>pkg_ref</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"riskmetric"</span>, <span class='st'>"riskmetric"</span>)))))
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
