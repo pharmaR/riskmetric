@@ -4,8 +4,21 @@
 \alias{assessment_error_empty}
 \title{Error handler for assessments with safe fallback}
 \usage{
-assessment_error_empty(e)
+assessment_error_empty(e, ...)
+}
+\arguments{
+\item{e}{an error raised during a package reference assessment}
+
+\item{...}{additional arguments unused}
+}
+\value{
+a pkg_metric object of pkg_metric_error subclass
 }
 \description{
 Error handler for assessments with safe fallback
 }
+\seealso{
+Other assessment error handlers: \code{\link{assessment_error_as_warning}},
+  \code{\link{assessment_error_throw}}
+}
+\concept{assessment error handlers}

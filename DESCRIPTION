@@ -17,6 +17,7 @@ Imports:
     magrittr,
     stringr,
     dplyr,
+    tibble,
     vctrs,
     pillar,
     covr,

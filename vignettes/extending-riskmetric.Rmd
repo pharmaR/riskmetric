@@ -102,7 +102,7 @@ that it can feed into all downstream assessments without having to re-parse the
 file each time or copy the code to do so.
 
 ```{r, echo = FALSE}
-print_riskmetric_function(c("pkg_ref_cache.DESCRIPTION", "pkg_ref_cache.DESCRIPTION.pkg_install"))
+print_riskmetric_function(c("pkg_ref_cache.description", "pkg_ref_cache.description.pkg_install"))
 ```
 
 Once these are defined, they'll be automatically called when the field is first
@@ -130,26 +130,13 @@ invisible(riskmetric:::bare_env(package, {
 package
 ```
 
-Notice that upon initialization, the `DESCRIPTION` field indicates that it
-hasn't yet been evaluated
+Notice that upon initialization, the `description` field indicates that it
+hasn't yet been evaluated with a trailing `...` in the name. When accessed, the
+object will call a caching function to go out and grab the package metadata and
+return the newly derived value.
 
 ```{r, eval = FALSE}
-str(package$DESCRIPTION)
-```
-
-```{r, echo = FALSE}
-str(package_real$DESCRIPTION)
-```
-
-Now, when we look at the contents of our `pkg_ref` object, we see that the
-`DESCRIPTION` field is completed.
-
-```{r, eval = FALSE}
-package
-```
-
-```{r, echo = FALSE}
-package_real
+package$description
 ```
 
 Because the `pkg_ref` object stores an environment, caching this values once
@@ -167,7 +154,7 @@ the one function.
 
 ```{r}
 pkg_ref_cache.name_first_letter <- function(x, name, ...) {
-  x$name_first_letter <- substr(x$name, 0, 1)
+  substr(x$name, 0, 1)
 }
 ```
 
@@ -176,7 +163,7 @@ After adding this caching function, we need to make a small modification to
 
 ```{r}
 assess_name_first_letter.pkg_ref <- function(x, ...) {
-  new_pkg_metric(x$name_first_letter, class = "pkg_metric_name_first_letter")
+  pkg_metric(x$name_first_letter, class = "pkg_metric_name_first_letter")
 } 
 ```
 
@@ -212,7 +199,7 @@ assessment toolkit.
 
 ```{r}
 library(dplyr)
-pkg_ref(c("riskmetric", "utils", "survival")) %>%
+pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble() %>%
   assess(c(all_assessments(), assess_name_first_letter))
 ```
@@ -221,7 +208,7 @@ Our scoring function will automatically get picked up and used by the score
 method.
 
 ```{r}
-pkg_ref(c("riskmetric", "utils", "survival")) %>%
+pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble() %>%
   assess(c(all_assessments(), assess_name_first_letter)) %>%
   score()
@@ -231,7 +218,7 @@ and we can define our own summarizing function to aggregate our scores into a
 single numeric risk.
 
 ```{r}
-pkg_ref(c("riskmetric", "utils", "survival")) %>%
+pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble() %>%
   assess(c(all_assessments(), assess_name_first_letter)) %>%
   score() %>%

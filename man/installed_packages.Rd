@@ -6,6 +6,9 @@
 \usage{
 installed_packages(...)
 }
+\arguments{
+\item{...}{additional arguments unused}
+}
 \value{
 a character vector of random package names
 }

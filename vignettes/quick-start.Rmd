@@ -2,7 +2,9 @@
 title: "Quick Start"
 author: "R Validation Hub"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Quick Start}
   %\VignetteEngine{knitr::rmarkdown}
@@ -29,19 +31,19 @@ that involves four major steps. The workflow can help users to choose high
 quality R packages, improve package reliability and prove the validity of R
 packages in a regulated industry. The four steps include:
 
-1. **Find a suitable reference for the package**  
+1. **Finding a suitable reference for the package** `pkg_ref()`  
    this can be any source of package metadata, such as a
     * package repository webportal from which we can scrape metadata
     * built and installed package in a local library
     * directory containing package source code 
-1. **Assess package under validation criteria**  
+1. **Assessing the package under validation criteria** `assess()`  
    collect a set of metadata for scoring risk, this might include
     * a profile of the number of active users over the last month
     * the availability of documentation for package functions
     * the use of a unit testing framework
     * the test coverage
-1. **Score all of the assessed criteria**  
-1. **Summarize scores into an aggregate risk metric**  
+1. **Scoring assessment criteria**  `score()`
+1. **Summarize scores into an aggregate risk metric** `summarize_risk()`
 
 
 
@@ -71,17 +73,24 @@ invisible(riskmetric:::bare_env(package, {
 package
 ```
 
-Likewise, `pkg_ref` objects can be coerced to a `tibble` for easier,
+A package reference can encapsulate one of many different ways of gathering
+information about a package and its development practices. The targets of this
+reference could be a source code directory, installation in a package library,
+or simply a url in a web-hosted repository from which metadata can be scraped.
+Each piece of metadata is captured through a callback function, which can be
+uniquely handled for each source of package information.
+
+Furthermore, `pkg_ref` objects can be coerced to a `tibble` for easier,
 parallel assessment of packages.
 
 ```{r, eval = FALSE}
 library(dplyr)
-package_tbl <- pkg_ref(c("riskmetric", "utils", "survival")) %>%
+package_tbl <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble()
 ```
 
 ```{r, echo = FALSE}
-package_tbl <- pkg_ref(c("riskmetric", "utils", "survival")) %>%
+package_tbl <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble() %>%
   tibble:::print.tbl()
 ```
@@ -91,47 +100,65 @@ package_tbl <- pkg_ref(c("riskmetric", "utils", "survival")) %>%
 # Core Verbs
 
 In `riskmetric`, the core operations of package validation are handled in a
-series of verbs to allow easy chaining of operations. These verbs, as well as
+series of verbs. Once package reference objects have been defined, they can be
+processed by chaining these foundational operations. These verbs, as well as
 many of the features of package assessment, are designed to be highly extensible
 to make it easier for package validation to be a community effort.
 
 > See the `extending-riskmetric` vignette for more details
 
+## Creating a Package Reference 
+
 We'll use the `tibble` from above as our example
 
 ```{r}
-package_tbl <- pkg_ref(c("riskmetric", "utils", "survival")) %>%
+package_tbl <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble()
 ```
 
 ## `assess`
 
 The first component of the validation process is an assessment. This is used for
-grabbing metadata relevant to an individual metric which may inform the
-reliability of a package.
+iterating over assessment functions which serve to fetch any necessary package
+metadata and produce an atomic value reflective of each assessment. For example,
+when assessing whether a package's NEWS files are up-to-date, it may return a
+logical vector indicating which NEWS files have entries for the current package
+version.
 
-> An assessment acquires the necessary metadata pertaining to a given metric
-
-The `assess` function iterates over assessment functions, adding a column per
-assessment. By default, it will use all the available assessment functions in
-the `riskmetric` package. Once applied, an assessment produces a `pkg_metric`
-object.
+The `assess` function iterates over a list of assessment functions, adding a
+column per assessment. By default, it will use all the available assessment
+functions (all functions in the `riskmetric` exports beginning with `assess_*`).
+Once applied, an assessment produces a `pkg_metric` object.
 
 ```{r}
 package_tbl %>%
   assess()
 ```
 
+`assess` will use all available `riskmetric` assessment functions by default. A
+subset of functions, or additional user-defined functions, can be used by
+passing a list of functions to the `assessments` argument.
+
+
+
 ## `score`
 
 After gathering the available metric metadata, every metric object is scored.
-Scoring a metric translates a piece of package metadata into a numeric score.
+Scoring a metric translates the assessment atomic values into a single numeric
+score. For example, we might score the number of available NEWS files by giving
+a package a perfect score (`1.0`) only when all NEWS files have been updated for
+the latest version, or alternatively we might score it as the fraction of NEWS
+files that are up-to-date.
 
 ```{r}
 package_tbl %>%
   assess() %>%
   score()
 ```
+
+Keeping the scoring separated from the assessment allows us to easily iterate on
+how scores are defined and allows for the scoring function to be easily
+overwritten.
 
 ## `summarize_risk`
 
@@ -157,5 +184,10 @@ Our priority so far has been to set up an extensible framework as the foundation
 for a community effort, and that's where you come in! There are a few things you
 can do to get started.
 
-1. Check out the `extending-riskmetric` vignette to see how to extend the functionality with your own metrics
-1. [File an issue on the riskmetric GitHub](https://github.com/pharmaR/riskmetric/issues/new?labels=Metric%20Proposal) where we can further discuss new metric proposals
+1. Check out the `extending-riskmetric` vignette to see how to extend the
+functionality with your own metrics
+1. [Take part in the discussion](https://github.com/pharmaR/riskmetric/issues?q=is%3Aopen+is%3Aissue+label%3A%22Metric+Proposal%22)
+about which metrics are captured and how they are measured
+1. [Propose a new metric on the `riskmetric` GitHub](https://github.com/pharmaR/riskmetric/issues/new?labels=Metric%20Proposal)
+where we can further discuss new metric proposals
+1. Help us to develop new metrics and package functionality

@@ -6,6 +6,12 @@
 \usage{
 get_assessment_columns(tbl)
 }
+\arguments{
+\item{tbl}{a \code{\link[tibble]{tibble}} to select columns among}
+}
+\value{
+a logical vector of \code{pkg_metric} column indices
+}
 \description{
 Helper for retrieving a list of columns which contain pkg_metric objects
 }
