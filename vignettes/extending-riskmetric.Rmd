@@ -31,7 +31,7 @@ print_riskmetric_function <- function(names) {
 ```
 
 `riskmetric` is designed to be readily extensible. This is done through use of
-the S3 method dispatch system and a consciou acknowledgement of the varying
+the S3 method dispatch system and a conscious acknowledgement of the varying
 needs that someone may have when assessing package risk. With this in mind,
 every user facing function is designed first and foremost to be flexible.
 
