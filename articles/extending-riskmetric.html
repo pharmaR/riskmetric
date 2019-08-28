@@ -58,9 +58,6 @@
 <li>
       <a href="../articles/extending-riskmetric.html">Extending riskmetric</a>
     </li>
-    <li>
-      <a href="../articles/quick-start.html">Quick Start</a>
-    </li>
   </ul>
 </li>
       </ul>
@@ -79,7 +76,7 @@
       <h1>Extending riskmetric</h1>
                         <h4 class="author">R Validation Hub</h4>
             
-            <h4 class="date">2019-08-09</h4>
+            <h4 class="date">2019-08-28</h4>
       
       
       <div class="hidden name"><code>extending-riskmetric.Rmd</code></div>
@@ -88,7 +85,7 @@
 
     
     
-<p><code>riskmetric</code> is designed to be readily extensible. This is done through use of the S3 method dispatch system and a consciou acknowledgement of the varying needs that someone may have when assessing package risk. With this in mind, every user facing function is designed first and foremost to be flexible.</p>
+<p><code>riskmetric</code> is designed to be readily extensible. This is done through use of the S3 method dispatch system and a conscious acknowledgement of the varying needs that someone may have when assessing package risk. With this in mind, every user facing function is designed first and foremost to be flexible.</p>
 <p>Here we’ll walk through a trivial example where we’ll extend <code>riskmetric</code> to add a new assessment, scoring and risk summary function to determine the risk associated with a package given its name starts with the letter “r”.</p>
 <div id="adding-an-assessment" class="section level1">
 <h1 class="hasAnchor">
