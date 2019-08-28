@@ -13,6 +13,7 @@ Imports:
     tools,
     xml2,
     httr,
+    curl,
     remotes,
     magrittr,
     stringr,

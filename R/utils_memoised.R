@@ -23,6 +23,12 @@ memoise_cran_db <- memoise::memoise({
 
 
 
+#' Fetch CRAN Mirrors Info
+#'
+#' @param all default \code{TRUE}, passed to \code{\link{utils}[getCRANmirrors]}
+#' @param host_exists whether cran can be contacted
+#' @param ... additional arguments passed to \code{\link{utils}[getCRANmirrors]}
+#'
 #' @importFrom curl nslookup
 memoise_cran_mirros <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
@@ -44,6 +50,8 @@ memoise_cran_mirros <- memoise::memoise({
 #' Fetch BioC Mirrors Info
 #'
 #' taken from utils::chooseBioCmirror
+#'
+#' @param host_exists whether bioconductor can be contacted
 #'
 #' @importFrom curl nslookup
 #'

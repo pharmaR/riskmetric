@@ -46,9 +46,9 @@ use_assessments_column_names <- function(x) {
 #'   reference. By default, a list of all exported assess_* functions from the
 #'   riskmetric package.
 #' @param ... additional arguments unused
-#' @param error A function, which accepts a single parameter expecting the
-#'   raised error, which will be called if any errors occur when attempting to
-#'   apply an assessment function.
+#' @param error_handler A function, which accepts a single parameter expecting
+#'   the raised error, which will be called if any errors occur when attempting
+#'   to apply an assessment function.
 #'
 #' @return A \code{\link[tibble]{tibble}} with one row per package reference and
 #'   a new column per assessment function, with cells of that column as package

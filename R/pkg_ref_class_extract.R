@@ -18,6 +18,10 @@
 #' the value is attempted to be accessed. These then propegate through
 #' assessment and scoring functions to affect any downstream metrics.
 #'
+#' @param x pkg_ref object to extract metadata from
+#' @param name name of metadata field to extract
+#' @param ... additional arguments used to extract from internal environment
+#'
 #' @export
 `[[.pkg_ref` <- function(x, name, ...) {
   if (!name %in% names(x)) {
@@ -124,6 +128,9 @@ allow_mutation <- function(x, expr, envir = parent.frame()) {
 
 
 #' increment the number of allowed mutations
+#'
+#' @param x pkg_ref object to increment mutation counter for
+#'
 inc_mutations_count <- function(x) {
   if (is.null(attr(x, "allowed_mutations"))) attr(x, "allowed_mutations") <- 0
   attr(x, "allowed_mutations") <- attr(x, "allowed_mutations") + 1
@@ -132,6 +139,9 @@ inc_mutations_count <- function(x) {
 
 
 #' decrement the number of allowed mutations
+#'
+#' @param x pkg_ref object to decrement mutation counter for
+#'
 dec_mutations_count <- function(x) {
   attr(x, "allowed_mutations") <- attr(x, "allowed_mutations") - 1
   if (attr(x, "allowed_mutations") <= 0) attr(x, "allowed_mutations") <- NULL

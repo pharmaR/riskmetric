@@ -17,9 +17,9 @@ riskmetric package.}
 
 \item{...}{additional arguments unused}
 
-\item{error}{A function, which accepts a single parameter expecting the
-raised error, which will be called if any errors occur when attempting to
-apply an assessment function.}
+\item{error_handler}{A function, which accepts a single parameter expecting
+the raised error, which will be called if any errors occur when attempting
+to apply an assessment function.}
 }
 \value{
 A \code{\link[tibble]{tibble}} with one row per package reference and

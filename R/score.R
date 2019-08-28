@@ -65,18 +65,30 @@ score.pkg_metric_error <- function(x, ..., error_handler = score.default) {
 
 
 
+#' Default score error handling, emitting a warning and returning 0
+#'
+#' @inheritParams score
+#'
 #' @export
 #' @family \code{score_error_*} functions
 score_error_default <- score.default
 
 
 
+#' Score error handler to silently return 0
+#'
+#' @inheritParams score
+#'
 #' @export
 #' @family \code{score_error_*} functions
 score_error_zero <- function(...) 0
 
 
 
+#' Score error handler to silently return NA
+#'
+#' @inheritParams score
+#'
 #' @export
 #' @family \code{score_error_*} functions
 score_error_NA <- function(...) NA_real_
