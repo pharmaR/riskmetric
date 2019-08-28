@@ -23,15 +23,41 @@ memoise_cran_db <- memoise::memoise({
 
 
 
+#' @importFrom curl nslookup
 memoise_cran_mirros <- memoise::memoise({
-  function(all = TRUE, ...) utils::getCRANmirrors(all = all, ...)
+  # add parameter such that memoised results rerun if internet availability changes
+  # NOTE: might need to implement actual caching to avoid inconsistent behavior
+  # when run with spotty internet
+  function(all = TRUE, ...,
+    host_exists = !is.null(curl::nslookup("cran.r-project.org", error = FALSE))) {
+
+    tryCatch({
+      utils::getCRANmirrors(all = all, ...)
+    }, error = function(e) {
+      NULL
+    })
+  }
 })
 
 
 
-# taken from utils::chooseBioCmirror
+#' Fetch BioC Mirrors Info
+#'
+#' taken from utils::chooseBioCmirror
+#'
+#' @importFrom curl nslookup
+#'
 memoise_bioc_mirrors <- memoise::memoise({
-  function() read.csv("https://bioconductor.org/BioC_mirrors.csv")
+  # add parameter such that memoised results rerun if internet availability changes
+  # NOTE: might need to implement actual caching to avoid inconsistent behavior
+  # when run with spotty internet
+  function(host_exists = !is.null(curl::nslookup("bioconductor.org", error = FALSE))) {
+    tryCatch({
+      read.csv("https://bioconductor.org/BioC_mirrors.csv")
+    }, error = function(e) {
+      NULL
+    })
+  }
 })
 
 

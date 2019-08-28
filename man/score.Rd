@@ -4,7 +4,7 @@
 \alias{score}
 \title{Score a package assement, collapsing results into a single numeric}
 \usage{
-score(x, ...)
+score(x, ..., error_handler = score_error_default)
 }
 \arguments{
 \item{x}{a \code{pkg_metric} object, whose subclass is used to choose the
@@ -13,6 +13,11 @@ appropriate scoring method for the atomic metric metadata. Optionally, a
 \code{pkg_metric} values will be scored.}
 
 \item{...}{additional arguments unused}
+
+\item{error_handler}{specify a function to be called if the class can't be
+identified. Most commonly this occurs for \code{pkg_metric} objects of
+subclass \code{pkg_metric_error}, which is produced when an error is
+encountered when calculating an associated assessment.}
 }
 \value{
 a numeric value if a single \code{pkg_metric} is provided, or a
@@ -36,6 +41,8 @@ score(assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
 
 }
 \seealso{
+score_error_default score_error_zero score_error_NA
+
 Other \code{score.*} functions: \code{\link{score.pkg_metric_export_help}},
   \code{\link{score.pkg_metric_has_news}},
   \code{\link{score.pkg_metric_news_current}}

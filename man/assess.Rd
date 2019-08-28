@@ -5,7 +5,7 @@
 \title{Function for applying assess_* family of functions to packages}
 \usage{
 assess(x, assessments = all_assessments(), ...,
-  error = assessment_error_as_warning)
+  error_handler = assessment_error_empty)
 }
 \arguments{
 \item{x}{A single package reference object or \code{\link[tibble]{tibble}} of

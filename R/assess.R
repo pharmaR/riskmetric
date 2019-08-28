@@ -61,7 +61,7 @@ use_assessments_column_names <- function(x) {
 #' @importFrom vctrs new_list_of
 #' @export
 assess <- function(x, assessments = all_assessments(), ...,
-    error = assessment_error_as_warning) {
+    error_handler = assessment_error_empty) {
 
   x <- tibble::as_tibble(x)
   assessments <- use_assessments_column_names(assessments)
@@ -71,8 +71,10 @@ assess <- function(x, assessments = all_assessments(), ...,
     assessment_name <- names(assessments)[[i]]
 
     x[[assessment_name]] <- lapply(x$pkg_ref, function(pkg_ref) {
-      tryCatch(assessment_f(pkg_ref), error = function(e) {
-        error(e, pkg_ref$name, assessment_name)
+      tryCatch({
+        assessment_f(pkg_ref)
+      }, error = function(e) {
+        error_handler(e, pkg_ref$name, assessment_name)
       })
     })
 

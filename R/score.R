@@ -9,6 +9,10 @@
 #'   \code{\link[tibble]{tibble}} can be provided, in which cases all
 #'   \code{pkg_metric} values will be scored.
 #' @param ... additional arguments unused
+#' @param error_handler specify a function to be called if the class can't be
+#'   identified. Most commonly this occurs for \code{pkg_metric} objects of
+#'   subclass \code{pkg_metric_error}, which is produced when an error is
+#'   encountered when calculating an associated assessment.
 #'
 #' @return a numeric value if a single \code{pkg_metric} is provided, or a
 #'   \code{\link[tibble]{tibble}} with \code{pkg_metric} objects scored and
@@ -25,9 +29,10 @@
 #' }
 #'
 #' @family \code{score.*} functions
+#' @seealso score_error_default score_error_zero score_error_NA
 #'
 #' @export
-score <- function(x, ...) {
+score <- function(x, ..., error_handler = score_error_default) {
   UseMethod("score")
 }
 
@@ -54,11 +59,35 @@ score.default <- function(x, ...) {
 
 
 #' @export
-score.tbl_df <- function(x, ...) {
-  assessment_columns <- get_assessment_columns(x)
+score.pkg_metric_error <- function(x, ..., error_handler = score.default) {
+  error_handler(x, ...)
+}
 
+
+
+#' @export
+#' @family \code{score_error_*} functions
+score_error_default <- score.default
+
+
+
+#' @export
+#' @family \code{score_error_*} functions
+score_error_zero <- function(...) 0
+
+
+
+#' @export
+#' @family \code{score_error_*} functions
+score_error_NA <- function(...) NA_real_
+
+
+
+#' @export
+score.tbl_df <- function(x, ..., error_handler = score.default) {
+  assessment_columns <- get_assessment_columns(x)
   for (coln in which(assessment_columns)) {
-    x[[coln]] <- vapply(x[[coln]], score, numeric(1L))
+    x[[coln]] <- vapply(x[[coln]], score, numeric(1L), error_handler = error_handler)
     class(x[[coln]]) <- c("pkg_score", class(x[[coln]]))
   }
   x

@@ -12,12 +12,28 @@
 
 
 
+#' Lazily instantiated, immutable metadata access
+#'
+#' If errors are thrown upon instantiation, they are saved and rethrown any time
+#' the value is attempted to be accessed. These then propegate through
+#' assessment and scoring functions to affect any downstream metrics.
+#'
 #' @export
 `[[.pkg_ref` <- function(x, name, ...) {
-  if (!name %in% names(x))
-    allow_mutation(x, x[[name]] <- pkg_ref_cache(x, name))
-  else
-    bare_env(x, x[[name, ...]])
+  if (!name %in% names(x)) {
+    allow_mutation(x, {
+      ret <- tryCatch(pkg_ref_cache(x, name), error = function(e) e)
+      x[[name]] <- ret
+      if (inherits(ret, "error")) stop(ret)
+      ret
+    })
+  } else {
+    bare_env(x, {
+      ret <- x[[name, ...]]
+      if (inherits(ret, "error")) stop(ret)
+      ret
+    })
+  }
 }
 
 
@@ -99,15 +115,24 @@ pkg_ref_mutability_error <- function(name) {
 #' @return the result of \code{expr}
 #'
 allow_mutation <- function(x, expr, envir = parent.frame()) {
+  inc_mutations_count(x)
+  on.exit(dec_mutations_count(x))
   expr <- substitute(expr)
+  eval(expr, envir = envir)
+}
 
+
+
+#' increment the number of allowed mutations
+inc_mutations_count <- function(x) {
   if (is.null(attr(x, "allowed_mutations"))) attr(x, "allowed_mutations") <- 0
   attr(x, "allowed_mutations") <- attr(x, "allowed_mutations") + 1
+}
 
-  on.exit({
-    attr(x, "allowed_mutations") <- attr(x, "allowed_mutations") - 1
-    if (attr(x, "allowed_mutations") <= 0) attr(x, "allowed_mutations") <- NULL
-  })
 
-  eval(expr, envir = envir)
+
+#' decrement the number of allowed mutations
+dec_mutations_count <- function(x) {
+  attr(x, "allowed_mutations") <- attr(x, "allowed_mutations") - 1
+  if (attr(x, "allowed_mutations") <= 0) attr(x, "allowed_mutations") <- NULL
 }

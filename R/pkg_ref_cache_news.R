@@ -15,6 +15,8 @@ pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
 
 
 
+
+
 pkg_ref_cache.news.pkg_install <- function(x, name, ...) {
   news_from_dir(system.file(package = x$name))
 }
