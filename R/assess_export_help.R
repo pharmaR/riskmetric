@@ -40,7 +40,7 @@ score.pkg_metric_export_help <- function(x, ...) {
 
 
 #' Provide development hints for improving exported value documentation
-#' @export
+#' @inheritParams dev_tips
 dev_tips.pkg_metric_export_help <- function(x, ...) {
   x_sorted <- x[order(names(x))]
   x_sorted <- sort(x_sorted, decreasing = TRUE)

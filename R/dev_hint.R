@@ -27,16 +27,17 @@ dev_hint_crayon_failure <- crayon::make_style(rgb(0.8, 0.2, 0.2))
 
 
 
+#' @importFrom utils modifyList
 #' @export
 print.dev_hint <- function(x, ...) {
-  dots <- modifyList(x$format_args, list(...))
+  dots <- utils::modifyList(x$format_args, list(...))
   cat(do.call(format, c(list(x), dots)))
 }
 
 
 
 #' @export
-format.dev_hint <- function(x, use_crayon = TRUE, wrap = FALSE) {
+format.dev_hint <- function(x, use_crayon = TRUE, wrap = FALSE, ...) {
   text_refs <- lapply(x$text, strip_dev_hint_section_links)
   text <- lapply(text_refs, "[[", "text")
   refs <- unlist(lapply(text_refs, "[[", "refs"))

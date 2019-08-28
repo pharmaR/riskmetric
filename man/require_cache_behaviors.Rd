@@ -7,7 +7,9 @@
 require_cache_behaviors(behaviors)
 }
 \arguments{
-\item{per_package_request}{declared when caching a value requires a web request for each package individually, which can be time intensive and an irresponsible use of generously hosted public R package repositories. It is recommended that this behavior is disabled for metric assessments of large numbers of packages or assessments triggered via automated scripts. Automatically disabled by default for non-interactive use.}
+\item{behaviors}{a character vector of behavior flags to assert as
+requirements for metadata caching. values must have an entry found in
+riskmetric:::cache_behaviors list}
 }
 \description{
 Stop if a function requires disabled behaviors

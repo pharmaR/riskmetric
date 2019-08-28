@@ -14,8 +14,14 @@ cache_behaviors <- list(
 
 
 
-#' Helper for documenting both declare_cache_behavior parameters and options
-#' list
+#' Document both declare_cache_behavior parameters and options list
+#'
+#' @param fmt format of cache behavior entries
+#' @param name_fmt special formating for name (first) component
+#' @param annotation_fmt special formating for annotation (second) component
+#' @param wrap_fmt a wrapper for the entirety of the roxygen entries
+#' @param collapse passed to paste
+#'
 roxygen_cache_behaviors <- function(fmt = "%s: %s", name_fmt = "%s",
     annotation_fmt = "%s", wrap_fmt = "%s", collapse = "\n") {
 
@@ -32,9 +38,9 @@ roxygen_cache_behaviors <- function(fmt = "%s: %s", name_fmt = "%s",
 
 #' Stop if a function requires disabled behaviors
 #'
-#' @eval roxygen_cache_behaviors(
-#'   fmt = "@param %s %s",
-#'   annotation_fmt = "declared when caching a value %s")
+#' @param behaviors a character vector of behavior flags to assert as
+#'   requirements for metadata caching. values must have an entry found in
+#'   riskmetric:::cache_behaviors list
 #'
 require_cache_behaviors <- function(behaviors) {
   stopifnot(all(behaviors %in% names(cache_behaviors)))

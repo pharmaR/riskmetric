@@ -20,6 +20,8 @@ Imports:
     tibble,
     vctrs,
     pillar,
+    crayon,
+    fansi,
     covr,
     rvest,
     memoise,
