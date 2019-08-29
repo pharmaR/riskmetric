@@ -3,56 +3,59 @@
 [![Travis build status](https://travis-ci.org/pharmaR/riskmetric.svg?branch=master)](https://travis-ci.org/pharmaR/riskmetric)
 [![Coverage status](https://codecov.io/gh/pharmaR/riskmetric/branch/master/graph/badge.svg)](https://codecov.io/github/pharmaR/riskmetric?branch=master)
  
-`riskmetric` is a collection of risk metrics to evaluate the quality of R packages.  
+`riskmetric` is a collection of risk metrics to evaluate the quality of R
+packages.
 
-This page represents our current thinking. The R package are currently being reviewed and under development.
+_This package is in experimentation. Final considerations about design are being
+considered, but core concepts are considered final._
 
 ## Background
 
-The value of R lies not within the official distribution but within the many R packages that support it. R packages provide the means to extend the language, implementing new statistical methods, graphics and code structures. However, this is also where the majority of risk lies for an organisation.
+The risk of using an R package is evaluated based on a number of metrics meant
+to evaluate development best practices, code documentation, community engagement
+and development sustainability. We hope to provide a framework to quantify risk
+by assessing these metrics. This package serves as a starting point for
+exploring the heterogeneity of code quality, and begin a broader conversation
+about the validation of R packages. Primarily, this effort aims to provide some
+context for validation within regulated industries.
 
-R packages can be written by anyone. The author/maintainer could be an organisation but they are perhaps more likely to be an individual and no qualification is required in order to develop an R package and submit it to CRAN (or any other package repository). Unlike the base distribution, R packages may or may not follow any software development best practices.
+## Quick Start
 
-Packages on CRAN must pass a series of technical checks, including an “R CMD check”. These checks are designed to ensure that examples run successfully, tests pass and that packages on CRAN are compatible with each other. However, there is no requirement for package authors to write tests or implement a formal unit-testing framework. In fact, less than 26% of the >13,500 packages on CRAN are known to implement a formal test framework. In addition, there is no obligation to maintain bug reports and unless a bug in a package affects another package on CRAN, the bugs may never be identified nor fixed. Unlike the base distribution, the amount of user testing can also vary widely. Popular packages such as dplyr may have been downloaded and used by tens of thousands of individuals, whilst others might never have been used by anyone except the package author.
+### Installation
 
-In order to apportion an appropriate level of validation effort across different R packages, it is important to establish a risk assessment framework that can be applied to any R package in order to determine a base level of risk.
+`riskmetric` is not yet on CRAN. Until it is, install using `devtools`.
 
-## Risk Assessment
+```r
+devtools::install_github("pharmaR/riskmetric")
+```
 
-The following tables highlight metrics that could be used in order to assess the risk of an R package. The risk assessment has been grouped into two areas:
+### Example
 
-1. Unit testing metrics
-2. Documentation metrics
-3. Community engagement metrics
-4. Maintainability and reuse metrics
+Scrape metadata locally or remotely, then assess that metadata and score it to
+estimate risk. For each package, derive a composite measure of risk, or a
+collection of individual scores which can be easily used to generate validation
+reports.
 
-### Unit Testing Metrics
+```r
+library(dplyr)
+library(riskmetric)
 
-* Code Coverage: a percentage range between 0-100 to measure the degree to which the source code of an R package is executed when unit test runs.  
-* Code Coverage of all dependent packages (%) a continvalue range between 0-100 to measure the degree to which the source code of an R package and all its dependencies are executed when unit test runs.  
+pkg_ref(c("riskmetric", "utils", "tools")) %>%
+  as_tibble() %>%
+  assess() %>%
+  score() %>%
+  mutate(risk = summarize_risk(.))
+```
 
-### Documentation Metrics
+## Get Involved
 
-* Vignette
-* Website
-* Source control 
-* Formal bug tracking
-* News
-* Release rate
-* Size of codebase 
-* License
+`riskmetric` is centrally a community project. Comfort with a quantification of
+risk comes via consensus, and for that this project is dependent on close
+community engagement. There are plenty of ways to help:
 
-### Community Engagement Metrics
-
-* Author reputation
-* Package maturity
-* Average number of downloads per month over past 6 monthes 
-* Number of active contributors
-* Number of authors / maintainers
-
-
-
-
-
-
-
+- Share the package
+- File [issues](https://github.com/pharmaR/riskmetric/issues) when you encounter bugs
+- Weigh in on proposed metrics, or [suggest a new one](https://github.com/pharmaR/riskmetric/issues/new?labels=Metric%20Proposal)
+- Help us devise the best way to summarize risk into a single score
+- Help us keep documentation up to date
+- Contribute code to tackle the metric backlog
