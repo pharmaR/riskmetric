@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Risk Metrics to Evaluatin R Packages • riskmetric</title>
+<title>Risk Metrics to Evaluating R Packages • riskmetric</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Risk Metrics to Evaluatin R Packages">
-<meta property="og:description" content="A package to facilitate the assessment of risk associated with 
-    R package use within a pharmaceutical regulatory context.">
+<script src="pkgdown.js"></script><meta property="og:title" content="Risk Metrics to Evaluating R Packages">
+<meta property="og:description" content="Facilites for assessing R packages against a number of metrics to 
+    help quantify their robustness.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -62,7 +62,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/pharmaR/riskmetric">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -78,65 +85,63 @@
 <a href="#riskmetric" class="anchor"></a>riskmetric</h1></div>
 
 <p><code>riskmetric</code> is a collection of risk metrics to evaluate the quality of R packages.</p>
-<p>This page represents our current thinking. The R package are currently being reviewed and under development.</p>
+<p><em>This package is in experimentation. Final considerations about design are being considered, but core concepts are considered final.</em></p>
 <div id="background" class="section level2">
 <h2 class="hasAnchor">
 <a href="#background" class="anchor"></a>Background</h2>
-<p>The value of R lies not within the official distribution but within the many R packages that support it. R packages provide the means to extend the language, implementing new statistical methods, graphics and code structures. However, this is also where the majority of risk lies for an organisation.</p>
-<p>R packages can be written by anyone. The author/maintainer could be an organisation but they are perhaps more likely to be an individual and no qualification is required in order to develop an R package and submit it to CRAN (or any other package repository). Unlike the base distribution, R packages may or may not follow any software development best practices.</p>
-<p>Packages on CRAN must pass a series of technical checks, including an “R CMD check”. These checks are designed to ensure that examples run successfully, tests pass and that packages on CRAN are compatible with each other. However, there is no requirement for package authors to write tests or implement a formal unit-testing framework. In fact, less than 26% of the &gt;13,500 packages on CRAN are known to implement a formal test framework. In addition, there is no obligation to maintain bug reports and unless a bug in a package affects another package on CRAN, the bugs may never be identified nor fixed. Unlike the base distribution, the amount of user testing can also vary widely. Popular packages such as dplyr may have been downloaded and used by tens of thousands of individuals, whilst others might never have been used by anyone except the package author.</p>
-<p>In order to apportion an appropriate level of validation effort across different R packages, it is important to establish a risk assessment framework that can be applied to any R package in order to determine a base level of risk.</p>
+<p>The risk of using an R package is evaluated based on a number of metrics meant to evaluate development best practices, code documentation, community engagement and development sustainability. We hope to provide a framework to quantify risk by assessing these metrics. This package serves as a starting point for exploring the heterogeneity of code quality, and begin a broader conversation about the validation of R packages. Primarily, this effort aims to provide some context for validation within regulated industries.</p>
 </div>
-<div id="risk-assessment" class="section level2">
+<div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
-<a href="#risk-assessment" class="anchor"></a>Risk Assessment</h2>
-<p>The following tables highlight metrics that could be used in order to assess the risk of an R package. The risk assessment has been grouped into two areas:</p>
-<ol>
-<li>Unit testing metrics</li>
-<li>Documentation metrics</li>
-<li>Community engagement metrics</li>
-<li>Maintainability and reuse metrics</li>
-</ol>
-<div id="unit-testing-metrics" class="section level3">
+<a href="#quick-start" class="anchor"></a>Quick Start</h2>
+<div id="installation" class="section level3">
 <h3 class="hasAnchor">
-<a href="#unit-testing-metrics" class="anchor"></a>Unit Testing Metrics</h3>
+<a href="#installation" class="anchor"></a>Installation</h3>
+<p><code>riskmetric</code> is not yet on CRAN. Until it is, install using <code>devtools</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"pharmaR/riskmetric"</span>)</a></code></pre></div>
+</div>
+<div id="example" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example" class="anchor"></a>Example</h3>
+<p>Scrape metadata locally or remotely, then assess that metadata and score it to estimate risk. For each package, derive a composite measure of risk, or a collection of individual scores which can be easily used to generate validation reports.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(riskmetric)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="reference/assess.html">assess</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="reference/score.html">score</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">risk =</span> <span class="kw"><a href="reference/summarize_risk.html">summarize_risk</a></span>(.))</a></code></pre></div>
+</div>
+</div>
+<div id="get-involved" class="section level2">
+<h2 class="hasAnchor">
+<a href="#get-involved" class="anchor"></a>Get Involved</h2>
+<p><code>riskmetric</code> is centrally a community project. Comfort with a quantification of risk comes via consensus, and for that this project is dependent on close community engagement. There are plenty of ways to help:</p>
 <ul>
-<li>Code Coverage: a percentage range between 0-100 to measure the degree to which the source code of an R package is executed when unit test runs.<br>
+<li>Share the package</li>
+<li>File <a href="https://github.com/pharmaR/riskmetric/issues">issues</a> when you encounter bugs</li>
+<li>Weigh in on proposed metrics, or <a href="https://github.com/pharmaR/riskmetric/issues/new?labels=Metric%20Proposal">suggest a new one</a>
 </li>
-<li>Code Coverage of all dependent packages (%) a continvalue range between 0-100 to measure the degree to which the source code of an R package and all its dependencies are executed when unit test runs.</li>
+<li>Help us devise the best way to summarize risk into a single score</li>
+<li>Help us keep documentation up to date</li>
+<li>Contribute code to tackle the metric backlog</li>
 </ul>
-</div>
-<div id="documentation-metrics" class="section level3">
-<h3 class="hasAnchor">
-<a href="#documentation-metrics" class="anchor"></a>Documentation Metrics</h3>
-<ul>
-<li>Vignette</li>
-<li>Website</li>
-<li>Source control</li>
-<li>Formal bug tracking</li>
-<li>News</li>
-<li>Release rate</li>
-<li>Size of codebase</li>
-<li>License</li>
-</ul>
-</div>
-<div id="community-engagement-metrics" class="section level3">
-<h3 class="hasAnchor">
-<a href="#community-engagement-metrics" class="anchor"></a>Community Engagement Metrics</h3>
-<ul>
-<li>Author reputation</li>
-<li>Package maturity</li>
-<li>Average number of downloads per month over past 6 monthes</li>
-<li>Number of active contributors</li>
-<li>Number of authors / maintainers</li>
-</ul>
-</div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div class="license">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/pharmaR/riskmetric">https://​github.com/​pharmaR/​riskmetric</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/pharmaR/riskmetric/issues">https://​github.com/​pharmaR/​riskmetric/​issues</a>
+</li>
+</ul>
+</div>
+<div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
@@ -146,7 +151,11 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>The package maintainer <br><small class="roles"> Maintainer </small>  </li>
+<li>R Validation Hub <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Doug Kelkhoff <br><small class="roles"> Author </small>  </li>
+<li>Yilong Zhang <br><small class="roles"> Author </small>  </li>
+<li>Kevin K <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
@@ -161,7 +170,7 @@
 </div>
 
       <footer><div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by R Validation Hub, Doug Kelkhoff, Yilong Zhang, Kevin K.</p>
 </div>
 
 <div class="pkgdown">
