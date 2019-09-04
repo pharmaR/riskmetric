@@ -1,11 +1,17 @@
 Package: riskmetric
 Type: Package
-Title: Risk Metrics to Evaluatin R Packages
-Description: A package to facilitate the assessment of risk associated with 
-    R package use within a pharmaceutical regulatory context.
+Title: Risk Metrics to Evaluating R Packages
+Description: Facilites for assessing R packages against a number of metrics to 
+    help quantify their robustness.
 Version: 0.1.0.9000
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Authors@R: c(
+    person("PSI special interest group Application and Implementation of Methodologies in Statistics", role = c("cph")),
+    person("R Validation Hub", role = c("aut", "cre"), email = "psi.aims.r.validation@gmail.com"),
+    person("Doug", "Kelkhoff", role = c("aut")),
+    person("Yilong", "Zhang", role = c("aut")),
+    person("Kevin", "K", role = c("aut")))
+URL: https://pharmar.github.io/riskmetric/, https://github.com/pharmaR/riskmetric
+BugReports: https://github.com/pharmaR/riskmetric/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -13,6 +19,7 @@ Imports:
     tools,
     xml2,
     httr,
+    curl,
     remotes,
     magrittr,
     stringr,
