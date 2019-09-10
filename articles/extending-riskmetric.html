@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Extending riskmetric • riskmetric</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Extending riskmetric">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -64,7 +65,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/pharmaR/riskmetric">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -77,13 +78,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Extending riskmetric</h1>
                         <h4 class="author">R Validation Hub</h4>
             
-            <h4 class="date">2019-08-29</h4>
+            <h4 class="date">2019-09-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaR/riskmetric/blob/master/vignettes/extending-riskmetric.Rmd"><code>vignettes/extending-riskmetric.Rmd</code></a></small>
       <div class="hidden name"><code>extending-riskmetric.Rmd</code></div>
@@ -121,12 +123,12 @@
 <a href="#writing-a-new-assessment" class="anchor"></a>Writing a New Assessment</h2>
 <p>Now we’ll write our assessment. Eventually we want to consider a package high risk if the name does not start with “r”. We’ll need to make a <code>pkg_metric</code> object containing the first letter of the name.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">assess_name_first_letter &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/UseMethod">UseMethod</a></span>(<span class="st">"assess_name_first_letter"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/r/base/UseMethod.html">UseMethod</a></span>(<span class="st">"assess_name_first_letter"</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/attr">attr</a></span>(assess_name_first_letter, <span class="st">"column_name"</span>) &lt;-<span class="st"> "name_first_letter"</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(assess_name_first_letter, <span class="st">"column_name"</span>) &lt;-<span class="st"> "name_first_letter"</span></a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6">assess_name_first_letter.pkg_ref &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">  <span class="kw">new_pkg_metric</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substr">substr</a></span>(x<span class="op">$</span>name, <span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">class =</span> <span class="st">"pkg_metric_name_first_letter"</span>)</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">  <span class="kw">new_pkg_metric</span>(<span class="kw"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(x<span class="op">$</span>name, <span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">class =</span> <span class="st">"pkg_metric_name_first_letter"</span>)</a>
 <a class="sourceLine" id="cb2-8" data-line-number="8">} </a></code></pre></div>
 </div>
 </div>
@@ -149,7 +151,7 @@
 #&gt;     read.dcf(file.path(x$path, "description"))
 #&gt; }</code></pre>
 <p>Once these are defined, they’ll be automatically called when the field is first accessed by the <code>pkg_ref</code> object, and then stored for any downstream uses.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(riskmetric)</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(riskmetric)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">package &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="st">"riskmetric"</span>)</a></code></pre></div>
 <pre><code>#&gt; &lt;pkg_install, pkg_ref&gt; riskmetric v0.1.0.9000
 #&gt; $path
@@ -173,7 +175,7 @@
 <a href="#writing-a-metadata-cache" class="anchor"></a>Writing a Metadata Cache</h2>
 <p>Now, for our new metric, we want to cache the package name’s first letter. We need to add a new <code>pkg_ref_cache</code> function for our field. Thankfully, any subclass of <code>pkg_ref</code> can access the first letter the same way, so we just need the one function.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">pkg_ref_cache.name_first_letter &lt;-<span class="st"> </span><span class="cf">function</span>(x, name, ...) {</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substr">substr</a></span>(x<span class="op">$</span>name, <span class="dv">0</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(x<span class="op">$</span>name, <span class="dv">0</span>, <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">}</a></code></pre></div>
 <p>After adding this caching function, we need to make a small modification to <code>assess_name_first_letter.pkg_ref</code> in order use our newly cached value.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">assess_name_first_letter.pkg_ref &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</a>
@@ -192,28 +194,28 @@
 <p>Next, we need a function for scoring our assessment output. In this case, our output is a <code>pkg_metric</code> object whose data is the first letter of the package name.</p>
 <p>We’ll add a dispatched function for the <code>score</code> function. As a convention, these functions return a numeric value representing how well the package conforms to best practices with values between 0 (poor practice) and 1 (best practice).</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">score.pkg_metric_name_first_letter &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">as.numeric</a></span>(x <span class="op">==</span><span class="st"> "r"</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(x <span class="op">==</span><span class="st"> "r"</span>)</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">}</a></code></pre></div>
 </div>
 <div id="adding-our-assessment-to-the-assess-verb" class="section level1">
 <h1 class="hasAnchor">
-<a href="#adding-our-assessment-to-the-assess-verb" class="anchor"></a>Adding our Assessment to the <code><a href="../reference/assess.html">assess()</a></code> Verb</h1>
+<a href="#adding-our-assessment-to-the-assess-verb" class="anchor"></a>Adding our Assessment to the <code>assess()</code> Verb</h1>
 <p>The <code>assess</code> function accepts a list of functions to apply. <code>riskmetric</code> provides a shorthande, <code><a href="../reference/all_assessments.html">all_assessments()</a></code> to collect all the included assessment functions, and you’re free to add to that list to customize your own assessment toolkit.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/assess.html">assess</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="../reference/all_assessments.html">all_assessments</a></span>(), assess_name_first_letter))</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/assess.html">assess</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="../reference/all_assessments.html">all_assessments</a></span>(), assess_name_first_letter))</a>
 <a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; # A tibble: 3 x 7</span></a>
 <a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt;   package version pkg_ref             has_news export_help news_current</span></a>
 <a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;     &lt;list&lt;p&gt; &lt;list&lt;pkg_&gt; &lt;list&lt;pkg_m&gt;</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt; 0        &lt;lgl [15]&gt;  &lt;lgl [0]&gt;   </span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt; 0        &lt;lgl [19]&gt;  &lt;lgl [0]&gt;   </span></a>
 <a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; 2 utils   3.6.1   utils&lt;install&gt;      0        &lt;lgl [219]&gt; &lt;lgl [0]&gt;   </span></a>
 <a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; 3 tools   3.6.1   tools&lt;install&gt;      0        &lt;lgl [119]&gt; &lt;lgl [0]&gt;   </span></a>
 <a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">#&gt; # … with 1 more variable: name_first_letter &lt;list&lt;pkg_metric&gt;&gt;</span></a></code></pre></div>
 <p>Our scoring function will automatically get picked up and used by the score method.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/assess.html">assess</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="../reference/all_assessments.html">all_assessments</a></span>(), assess_name_first_letter)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/assess.html">assess</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="../reference/all_assessments.html">all_assessments</a></span>(), assess_name_first_letter)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/score.html">score</a></span>()</a>
 <a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; # A tibble: 3 x 7</span></a>
 <a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt;   package version pkg_ref             has_news export_help news_current</span></a>
@@ -223,9 +225,9 @@
 <a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt; 3 tools   3.6.1   tools&lt;install&gt;             0       1                0</span></a>
 <a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt; # … with 1 more variable: name_first_letter &lt;dbl&gt;</span></a></code></pre></div>
 <p>and we can define our own summarizing function to aggregate our scores into a single numeric risk.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/assess.html">assess</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="../reference/all_assessments.html">all_assessments</a></span>(), assess_name_first_letter)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/assess.html">assess</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="../reference/all_assessments.html">all_assessments</a></span>(), assess_name_first_letter)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/score.html">score</a></span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb13-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">risk =</span> (has_news <span class="op">+</span><span class="st"> </span>name_first_letter) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; # A tibble: 3 x 8</span></a>
@@ -263,7 +265,7 @@
       </ul>
 </li>
       <li><a href="#defining-an-assessment-scoring-function">Defining an Assessment Scoring Function</a></li>
-      <li><a href="#adding-our-assessment-to-the-assess-verb">Adding our Assessment to the <code><a href="--/reference/assess-html">assess()</a></code> Verb</a></li>
+      <li><a href="#adding-our-assessment-to-the-assess-verb">Adding our Assessment to the <code>assess()</code> Verb</a></li>
       <li><a href="#how-you-can-help">How you can help…</a></li>
       </ul>
 </div>
@@ -272,17 +274,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by R Validation Hub, Doug Kelkhoff, Yilong Zhang, Kevin K.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

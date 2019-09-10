@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Get Started • riskmetric</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Get Started">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -64,7 +65,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/pharmaR/riskmetric">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -77,13 +78,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Get Started</h1>
                         <h4 class="author">R Validation Hub</h4>
             
-            <h4 class="date">2019-08-29</h4>
+            <h4 class="date">2019-09-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaR/riskmetric/blob/master/vignettes/riskmetric.Rmd"><code>vignettes/riskmetric.Rmd</code></a></small>
       <div class="hidden name"><code>riskmetric.Rmd</code></div>
@@ -128,7 +130,7 @@ collect a set of metadata for scoring risk, this might include
 <h1 class="hasAnchor">
 <a href="#package-reference-objects" class="anchor"></a>Package Reference Objects</h1>
 <p>Before we get started assessing packages, we need a place to aggregate all of our package metadata. To handle this, we use the <code>pkg_ref</code> class. As package metadata is requested, it will be housed within this object for reuse, avoiding repeatedly having to scrape, download, parse or derive the same metadata multiple times.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(riskmetric)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(riskmetric)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="st">"riskmetric"</span>)</a></code></pre></div>
 <pre><code>#&gt; &lt;pkg_install, pkg_ref&gt; riskmetric v0.1.0.9000
 #&gt; $path
@@ -145,8 +147,8 @@ collect a set of metadata for scoring risk, this might include
 #&gt; $news...</code></pre>
 <p>A package reference defines one of many different ways of gathering information about a package and its development practices. The targets of this reference could be a source code directory, installation in a package library, or simply a url in a web-hosted repository from which metadata can be scraped. Each piece of metadata is captured through a callback function, which can be uniquely handled for each source of package information.</p>
 <p>Furthermore, <code>pkg_ref</code> objects can be coerced to a <code>tibble</code> for easier, parallel assessment of packages.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">package_tbl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">package_tbl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>()</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 3 x 3
 #&gt;   package    version    pkg_ref            
@@ -166,7 +168,7 @@ collect a set of metadata for scoring risk, this might include
 <h2 class="hasAnchor">
 <a href="#creating-a-package-reference" class="anchor"></a>Creating a Package Reference</h2>
 <p>We’ll use the <code>tibble</code> from above as our example</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">package_tbl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">package_tbl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>()</a></code></pre></div>
 </div>
 <div id="assess" class="section level2">
@@ -179,7 +181,7 @@ collect a set of metadata for scoring risk, this might include
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; # A tibble: 3 x 6</span></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;   package  version  pkg_ref             has_news   export_help news_current</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;    &lt;list&lt;pkg_ref&gt;&gt;     &lt;list&lt;pkg&gt; &lt;list&lt;pkg_&gt; &lt;list&lt;pkg_m&gt;</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; 1 riskmet… 0.1.0.9… riskmetric&lt;install&gt; 0          &lt;lgl [15]&gt;  &lt;lgl [0]&gt;   </span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; 1 riskmet… 0.1.0.9… riskmetric&lt;install&gt; 0          &lt;lgl [19]&gt;  &lt;lgl [0]&gt;   </span></a>
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; 2 utils    3.6.1    utils&lt;install&gt;      0          &lt;lgl [219]&gt; &lt;lgl [0]&gt;   </span></a>
 <a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 3 tools    3.6.1    tools&lt;install&gt;      0          &lt;lgl [119]&gt; &lt;lgl [0]&gt;</span></a></code></pre></div>
 <p><code>assess</code> will use all available <code>riskmetric</code> assessment functions by default. A subset of functions, or additional user-defined functions, can be used by passing a list of functions to the <code>assessments</code> argument.</p>
@@ -256,17 +258,20 @@ collect a set of metadata for scoring risk, this might include
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by R Validation Hub, Doug Kelkhoff, Yilong Zhang, Kevin K.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
