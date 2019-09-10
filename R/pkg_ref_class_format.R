@@ -12,6 +12,9 @@ print.pkg_ref <- function(x, ...) {
     truncated <- FALSE
     if (length(xi) > 5) truncated <- TRUE
 
+    if (inherits(xi, "riskmetric_disabled_behavior_error"))
+      return(paste0(strrep(" ", indent), "<", xi$message, ">"))
+
     x_str <- utils::capture.output(head(xi))
     x_str <- gsub("\\s+$", "", x_str)
     x_str <- gsub(sprintf("(.{%0.f})", width - indent), "\\1\n", x_str)

@@ -72,7 +72,6 @@ as_pkg_ref.pkg_ref <- function(x, ...) {
 
 
 #' @importFrom utils installed.packages available.packages packageVersion
-#' @importFrom xml2 read_html
 #' @export
 as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
 
@@ -105,10 +104,12 @@ as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
         repo = info[,"Repository"],
         source = "pkg_remote")
 
-      if (is_url_subpath_of(p$repo_base_url, c(cran_mirrors$URL, "https://cran.rstudio.com/"))) {
+      if (!is.null(cran_mirrors) &&
+          is_url_subpath_of(p$repo_base_url, c(cran_mirrors$URL, "https://cran.rstudio.com/"))) {
         class(p) <- c("pkg_cran_remote", class(p))
         return(p)
-      } else if (is_url_subpath_of(p$repo_base_url, bioc_mirrors$URL)) {
+      } else if (!is.null(bioc_mirrors) &&
+          is_url_subpath_of(p$repo_base_url, bioc_mirrors$URL)) {
         class(p) <- c("pkg_bioc_remote", class(p))
         return(p)
       }
