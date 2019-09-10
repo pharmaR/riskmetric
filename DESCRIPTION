@@ -28,6 +28,7 @@ Imports:
     vctrs,
     pillar,
     crayon,
+    fansi,
     covr,
     rvest,
     memoise,
