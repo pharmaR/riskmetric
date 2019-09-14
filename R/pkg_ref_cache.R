@@ -4,8 +4,9 @@
 #' @param x a package reference object
 #' @return a list of available fields implemented with a pkg_ref_cache method
 #'
+#' @importFrom utils .S3methods
 available_pkg_ref_fields <- function(x) {
-  fs <- names(getNamespace(packageName()))
+  fs <- c(names(getNamespace(packageName())), utils::.S3methods("pkg_ref_cache"))
   f_re <- paste0("^pkg_ref_cache\\.([^.]+)\\.(", paste0(class(x), collapse = "|"), ")")
   fs <- grep(f_re, fs, value = TRUE)
   names(fs) <- fs

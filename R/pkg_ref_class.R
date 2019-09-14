@@ -77,7 +77,7 @@ as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
 
   ip <- memoise_installed_packages()
   ap <- memoise_available_packages(repos = repos)
-  cran_mirrors <- memoise_cran_mirros()
+  cran_mirrors <- memoise_cran_mirrors()
   bioc_mirrors <- memoise_bioc_mirrors()
 
   # case when only a package name is provided
