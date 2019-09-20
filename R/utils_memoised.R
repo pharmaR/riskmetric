@@ -30,7 +30,7 @@ memoise_cran_db <- memoise::memoise({
 #' @param ... additional arguments passed to \code{\link{utils}[getCRANmirrors]}
 #'
 #' @importFrom curl nslookup
-memoise_cran_mirros <- memoise::memoise({
+memoise_cran_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
   # NOTE: might need to implement actual caching to avoid inconsistent behavior
   # when run with spotty internet

@@ -32,7 +32,9 @@ get_assessment_columns <- function(tbl) {
 #'
 use_assessments_column_names <- function(x) {
   column_names <- lapply(x, attr, "column_name")
-  names(x)[!sapply(column_names, is.null)] <- column_names
+  colname_null <- vapply(column_names, is.null, logical(1L))
+  names(x)[!colname_null] <- column_names[!colname_null]
+  names(x)[!nchar(names(x))] <- paste0("unnamed", seq_along(x[!nchar(names(x))]))
   x
 }
 

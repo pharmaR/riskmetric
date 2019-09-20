@@ -4,7 +4,7 @@
 \alias{summarize_risk}
 \title{Summarize a default set of assessments into a single risk score}
 \usage{
-summarize_risk(data, weights = NULL)
+summarize_risk(data, weights = .risk_weights)
 }
 \arguments{
 \item{data}{a \code{\link[tibble]{tibble}} of scored assessments whose column

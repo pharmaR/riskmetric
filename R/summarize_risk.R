@@ -28,14 +28,7 @@
 #' }
 #'
 #' @export
-summarize_risk <- function(data, weights = NULL) {
-  # allow overwriting with custom weights if desired
-  if (is.null(weights))
-    weights <- c(
-      has_news = 0.4,
-      export_help = 0.4,
-      news_current = 0.2)
-
+summarize_risk <- function(data, weights = .risk_weights) {
   # ensure we're
   weights <- weights[which(names(weights) %in% names(data))]
   weights <- weights / sum(weights, na.rm = TRUE)
@@ -43,3 +36,13 @@ summarize_risk <- function(data, weights = NULL) {
   # calculate risks
   1 - rowSums(as.matrix(data[names(weights)]) %*% weights, na.rm = TRUE)
 }
+
+
+
+#' Default weights to use for summarizing risk
+#'
+#' @export
+.risk_weights <- c(
+  has_news = 0.4,
+  export_help = 0.4,
+  news_current = 0.2)
