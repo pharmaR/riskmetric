@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lazily instantiated, immutable metadata access — [[.pkg_ref • riskmetric</title>
+<title>Fetch CRAN Mirrors Info — memoise_cran_mirrors • riskmetric</title>
 
 
 <!-- jquery -->
@@ -35,10 +35,8 @@
 
 
 
-<meta property="og:title" content="Lazily instantiated, immutable metadata access — [[.pkg_ref" />
-<meta property="og:description" content="If errors are thrown upon instantiation, they are saved and rethrown any time
-the value is attempted to be accessed. These then propegate through
-assessment and scoring functions to affect any downstream metrics." />
+<meta property="og:title" content="Fetch CRAN Mirrors Info — memoise_cran_mirrors" />
+<meta property="og:description" content="Fetch CRAN Mirrors Info" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,34 +120,33 @@ assessment and scoring functions to affect any downstream metrics." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Lazily instantiated, immutable metadata access</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_ref_class_extract.R'><code>R/pkg_ref_class_extract.R</code></a></small>
-    <div class="hidden name"><code>sub-sub-.pkg_ref.Rd</code></div>
+    <h1>Fetch CRAN Mirrors Info</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/utils_memoised.R'><code>R/utils_memoised.R</code></a></small>
+    <div class="hidden name"><code>memoise_cran_mirrors.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>If errors are thrown upon instantiation, they are saved and rethrown any time
-the value is attempted to be accessed. These then propegate through
-assessment and scoring functions to affect any downstream metrics.</p>
+    <p>Fetch CRAN Mirrors Info</p>
     </div>
 
-    <pre class="usage"># S3 method for pkg_ref
-[[(x, name, ...)</pre>
+    <pre class="usage"><span class='fu'>memoise_cran_mirrors</span>(<span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>,
+  <span class='kw'>host_exists</span> <span class='kw'>=</span> !<span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='kw pkg'>curl</span><span class='kw ns'>::</span><span class='fu'><a href='https://jeroen.cran.dev/curl/reference/nslookup.html'>nslookup</a></span>(<span class='st'>"cran.r-project.org"</span>, <span class='kw'>error</span> <span class='kw'>=</span>
+  <span class='fl'>FALSE</span>)))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>pkg_ref object to extract metadata from</p></td>
-    </tr>
-    <tr>
-      <th>name</th>
-      <td><p>name of metadata field to extract</p></td>
+      <th>all</th>
+      <td><p>default <code>TRUE</code>, passed to <code><a href='https://rdrr.io/r/utils/utils-package.html'>utils</a>[getCRANmirrors]</code></p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional arguments used to extract from internal environment</p></td>
+      <td><p>additional arguments passed to <code><a href='https://rdrr.io/r/utils/utils-package.html'>utils</a>[getCRANmirrors]</code></p></td>
+    </tr>
+    <tr>
+      <th>host_exists</th>
+      <td><p>whether cran can be contacted</p></td>
     </tr>
     </table>
 
