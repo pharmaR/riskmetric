@@ -14,10 +14,14 @@ assess_downloads_1yr <- function(x, ...){
 attr(assess_downloads_1yr,"column_name") <- "downloads_1yr"
 attr(assess_downloads_1yr,"label") <- "number of downloads in the past year"
 
+pkg_ref_cache.downloads_1yr <- function(x, name, ...) {
+  cran_downloads(x$name, from=Sys.Date()-365, to=Sys.Date()) %>% group_by(package) %>% summarize(downloads_1yr = sum(count))
+}
+
 #' @import cranlogs
 #' @export
 assess_downloads_1yr.pkg_ref <- function(x, ...) {
-  pkg_metric(cran_downloads(x[["package"]], from=Sys.Date()-365, to=Sys.Date()) %>% group_by(package) %>% summarize(downloads_1yr = sum(count)), class = "pkg_metric_downloads_1yr")
+  pkg_metric(x$downloads_1yr, class = "pkg_metric_downloads_1yr")
 }
 
 # Defining an Assessment Scoring Function
