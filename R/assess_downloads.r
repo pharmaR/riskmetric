@@ -14,8 +14,8 @@ assess_downloads_1yr <- function(x, ...){
 attr(assess_downloads_1yr,"column_name") <- "downloads_1yr"
 attr(assess_downloads_1yr,"label") <- "number of downloads in the past year"
 
-pkg_ref_cache.downloads_1yr <- function(x, name, ...) {
-  cran_downloads(x$name, from=Sys.Date()-365, to=Sys.Date()) %>% group_by(package) %>% summarize(downloads_1yr = sum(count))
+pkg_ref_cache.downloads <- function(x, ...) {
+  cran_downloads(x$name, from=Sys.Date()-365, to=Sys.Date()) 
 }
 
 #' @import cranlogs
