@@ -17,7 +17,10 @@ pkg_ref_cache.help_aliases(x, name, ...)
 Cache a character vector mapping exported values to documentation filenames
 }
 \seealso{
-Other package reference cache: \code{\link{pkg_ref_cache.description}},
+Other package reference cache: \code{\link{pkg_ref_cache.bug_reports_host}},
+  \code{\link{pkg_ref_cache.bug_reports_url}},
+  \code{\link{pkg_ref_cache.bug_reports}},
+  \code{\link{pkg_ref_cache.description}},
   \code{\link{pkg_ref_cache.help}},
   \code{\link{pkg_ref_cache.news_urls}},
   \code{\link{pkg_ref_cache.news}},

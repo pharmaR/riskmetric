@@ -10,6 +10,6 @@ pkg_ref_cache.web_html <- function(x, name, ...) {
 
 
 #' @importFrom xml2 read_html
-pkg_ref_cache.web_html.pkg_cran_remote <- function(x, name, ...) {
+pkg_ref_cache.web_html.pkg_remote <- function(x, name, ...) {
   xml2::read_html(x$web_url)
 }

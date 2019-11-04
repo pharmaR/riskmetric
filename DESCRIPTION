@@ -16,11 +16,15 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
+    BiocManager,
     tools,
     xml2,
     httr,
     curl,
+    jsonlite,
     remotes,
+    gh,
+    urltools,
     magrittr,
     stringr,
     dplyr,
