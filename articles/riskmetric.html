@@ -85,7 +85,7 @@
       <h1>Get Started</h1>
                         <h4 class="author">R Validation Hub</h4>
             
-            <h4 class="date">2019-11-08</h4>
+            <h4 class="date">2019-11-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaR/riskmetric/blob/master/vignettes/riskmetric.Rmd"><code>vignettes/riskmetric.Rmd</code></a></small>
       <div class="hidden name"><code>riskmetric.Rmd</code></div>
@@ -179,11 +179,11 @@ collect a set of metadata for scoring risk, this might include
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">package_tbl <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/assess.html">assess</a></span>()</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; # A tibble: 3 x 6</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;   package  version  pkg_ref             has_news   export_help news_current</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;    &lt;list&lt;pkg_ref&gt;&gt;     &lt;list&lt;pkg&gt; &lt;list&lt;pkg_&gt; &lt;list&lt;pkg_m&gt;</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; 1 riskmet… 0.1.0.9… riskmetric&lt;install&gt; 0          &lt;lgl [20]&gt;  &lt;lgl [0]&gt;   </span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; 2 utils    3.6.1    utils&lt;install&gt;      0          &lt;lgl [219]&gt; &lt;lgl [0]&gt;   </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 3 tools    3.6.1    tools&lt;install&gt;      0          &lt;lgl [119]&gt; &lt;lgl [0]&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;   package  version  pkg_ref             has_news     export_help   news_current </span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;    &lt;list&lt;pkg_ref&gt;&gt;     &lt;list&lt;pkg_m&gt; &lt;list&lt;pkg_me&gt; &lt;list&lt;pkg_me&gt;</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; 1 riskmet… 0.1.0.9… riskmetric&lt;install&gt; 0            &lt;lgl [20]&gt;    &lt;lgl [0]&gt;    </span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; 2 utils    3.6.1    utils&lt;install&gt;      0            &lt;lgl [219]&gt;   &lt;lgl [0]&gt;    </span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 3 tools    3.6.1    tools&lt;install&gt;      0            &lt;lgl [119]&gt;   &lt;lgl [0]&gt;</span></a></code></pre></div>
 <p><code>assess</code> will use all available <code>riskmetric</code> assessment functions by default. A subset of functions, or additional user-defined functions, can be used by passing a list of functions to the <code>assessments</code> argument.</p>
 </div>
 <div id="score" class="section level2">
@@ -194,11 +194,11 @@ collect a set of metadata for scoring risk, this might include
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/assess.html">assess</a></span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/score.html">score</a></span>()</a>
 <a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; # A tibble: 3 x 6</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;   package   version   pkg_ref             has_news export_help news_current</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;list&lt;pkg_ref&gt;&gt;        &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt; 1 riskmetr… 0.1.0.90… riskmetric&lt;install&gt;        0       1                0</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt; 2 utils     3.6.1     utils&lt;install&gt;             0       0.995            0</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt; 3 tools     3.6.1     tools&lt;install&gt;             0       1                0</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;   package    version    pkg_ref             has_news export_help news_current</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;      &lt;list&lt;pkg_ref&gt;&gt;        &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt; 1 riskmetric 0.1.0.9000 riskmetric&lt;install&gt;        0       1                0</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt; 2 utils      3.6.1      utils&lt;install&gt;             0       0.995            0</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt; 3 tools      3.6.1      tools&lt;install&gt;             0       1                0</span></a></code></pre></div>
 <p>Keeping the scoring separated from the assessment allows us to easily iterate on how scores are defined and allows for the scoring function to be easily overwritten.</p>
 </div>
 <div id="summarizing-package-risk" class="section level2">
@@ -210,12 +210,11 @@ collect a set of metadata for scoring risk, this might include
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/score.html">score</a></span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">risk =</span> <span class="kw"><a href="../reference/summarize_risk.html">summarize_risk</a></span>(.))</a>
 <a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt; # A tibble: 3 x 7</span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt;   package version pkg_ref             has_news export_help news_current</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;        &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;        0       1                0</span></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; 2 utils   3.6.1   utils&lt;install&gt;             0       0.995            0</span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt; 3 tools   3.6.1   tools&lt;install&gt;             0       1                0</span></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt; # … with 1 more variable: risk &lt;dbl&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt;   package   version  pkg_ref             has_news export_help news_current  risk</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;    &lt;list&lt;pkg_ref&gt;&gt;        &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt; 1 riskmetr… 0.1.0.9… riskmetric&lt;install&gt;        0       1                0 0.6  </span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; 2 utils     3.6.1    utils&lt;install&gt;             0       0.995            0 0.602</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt; 3 tools     3.6.1    tools&lt;install&gt;             0       1                0 0.6</span></a></code></pre></div>
 </div>
 </div>
 <div id="how-you-can-help" class="section level1">
