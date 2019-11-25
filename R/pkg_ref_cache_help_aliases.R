@@ -22,8 +22,9 @@ pkg_ref_cache.help_aliases.pkg_source <- function (x, name, ...) {
                                                 rd [grep("^\\\\alias", rd)]))
                       man_name <- strsplit (strsplit (i, "\\/man\\/") [[1]] [2],
                                             "\\.Rd") [[1]]
-                      names (a) <- rep (man_name, length (a))
-                      return (a)    })
+                      man_name <- rep (man_name, length (a))
+                      names (man_name) <- a
+                      return (man_name)    })
   # !duplicated because unique removes names
   unlist(aliases)[!duplicated(unlist(aliases))]
 }
