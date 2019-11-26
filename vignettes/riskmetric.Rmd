@@ -105,7 +105,9 @@ processed by chaining these foundational operations. These verbs, as well as
 many of the features of package assessment, are designed to be highly extensible
 to make it easier for package validation to be a community effort.
 
-> See the `extending-riskmetric` vignette for more details
+See the
+[`extending-riskmetric`](https://pharmar.github.io/riskmetric/articles/extending-riskmetric.html)
+vignette for more details
 
 ## Creating a Package Reference 
 

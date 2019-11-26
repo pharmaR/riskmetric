@@ -81,7 +81,7 @@ assess_name_first_letter <- function(x, ...) {
 attr(assess_name_first_letter, "column_name") <- "name_first_letter"
 
 assess_name_first_letter.pkg_ref <- function(x, ...) {
-  new_pkg_metric(substr(x$name, 0, 1), class = "pkg_metric_name_first_letter")
+  pkg_metric(substr(x$name, 0, 1), class = "pkg_metric_name_first_letter")
 } 
 ```
 
