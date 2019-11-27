@@ -38,12 +38,15 @@ scrape_bug_reports.default <- function(x, ...) {
 
 
 
-#' @importFrom gh gh
+#' @importFrom curl curl
+#' @importFrom jsonlite parse_json
 scrape_bug_reports.github <- function(x, ...) {
   owner_repo_issues <- gsub(".*github[^/]*/(.*)", "\\1", x$bug_reports_url)
-  out <- unclass(gh(
-    paste0('/repos/', owner_repo_issues, '?state=all'),
-    .limit = 30))
+  out <- parse_json(curl(sprintf(
+    "%s/repos/%s?state=all&per_page=%s",
+    getOption("riskmetric.github_api_host"),
+    owner_repo_issues,
+    30)))
   bug_report_metadata(out, x)
 }
 
@@ -56,7 +59,9 @@ scrape_bug_reports.gitlab <- function(x, ...) {
   owner_repo_issues <- gsub(".*gitlab[^/]*/(.*)", "\\1", x$bug_reports_url)
   owner_repo <- gsub("(.*)/issues", "\\1", owner_repo_issues)
   out <- parse_json(curl(sprintf(
-    "https://gitlab.com/api/v4/projects/%s/issues",
-    url_encode(owner_repo))))
+    "%s/projects/%s/issues?per_page=%s",
+    getOption("riskmetric.gitlab_api_host"),
+    url_encode(owner_repo),
+    30)))
   bug_report_metadata(out, x)
 }

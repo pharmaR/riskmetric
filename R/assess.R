@@ -114,8 +114,17 @@ assess_family_roxygen <- function(name,
   assess_func <- sprintf("assess_%s", name)
   score_func <- sprintf("score.pkg_metric_%s", name)
 
-  stopifnot(assess_func %in% getNamespaceExports(utils::packageName()))
-  stopifnot(score_func %in% getNamespaceExports(utils::packageName()))
+  if (!assess_func %in% getNamespaceExports(utils::packageName()))
+    warning(sprintf(paste0("Error when generating documentation for %s. ",
+      "Associated assessment function `%s` was not found in the `riskmetric` ",
+      "package. Please provide one to complete documentation."),
+      name, assess_func))
+
+  if (!score_func %in% getNamespaceExports(utils::packageName()))
+    warning(sprintf(paste0("Error when generating documentation for %s. ",
+      "Associated scoring function `%s` was not found in the `riskmetric` ",
+      "package. Please provide one to complete documentation."),
+      name, score_func))
 
   c("@param x a \\code{pkg_ref} package reference object",
     "@param ... additional arguments passed on to S3 methods, rarely used",

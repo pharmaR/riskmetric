@@ -24,6 +24,7 @@ assess_has_news(pkg_ref("riskmetric"))
 \code{\link{score.pkg_metric_has_news}}
 
 Other \code{assess_*} functions: \code{\link{assess_export_help}},
+  \code{\link{assess_last_30_bugs_status}},
   \code{\link{assess_news_current}}
 }
 \concept{\code{assess_*} functions}

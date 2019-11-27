@@ -1,7 +1,7 @@
 #' Assess how many recent BugReports have been closed
 #'
 #' @eval assess_family_roxygen(
-#'   "bug_reports_closed",
+#'   "last_30_bugs_status",
 #'   "a logical vector indicating whether a recent BugReport was closed")
 #'
 #' @export
@@ -9,8 +9,8 @@ assess_last_30_bugs_status <- function(x, ...) {
   bug_reports_status(x)
 }
 
-attributes(assess_news_current)$column_name <- "bugs_status"
-attributes(assess_news_current)$label <- "vector indicating whether BugReports status is closed"
+attributes(assess_last_30_bugs_status)$column_name <- "bugs_status"
+attributes(assess_last_30_bugs_status)$label <- "vector indicating whether BugReports status is closed"
 
 
 
