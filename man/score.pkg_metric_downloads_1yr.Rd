@@ -16,7 +16,14 @@ numeric value between \code{0} (low) and \code{1} (high download volume) convert
 }
 \description{
 Convert the number of downloads \code{x} in the past year into a validation score [0,1] 
-\deqn{ 1 - \frac{150,000}{X + 150,000} }
+\deqn{ 1 - 150,000 / (x + 150,000) }
+}
+\details{
+The scoring function is a simplification of the classic logistic curve
+\deqn{ 1 / (1 + exp(-k(x-x[0])) }
+with a log scale for the number of downloads \eqn{x = log(x)}, 
+sigmoid midpoint is 1000 downloads, ie. \eqn{x[0] = log(1,000)}, 
+and logistic growth rate of \eqn{k = 0.5}.
 }
 \examples{
 score(assess_downloads_1yr(pkg_ref("riskmetric")))
