@@ -1,6 +1,6 @@
 #' Assess a package for an up-to-date NEWS file
 #'
-#' @eval assess_family_roxygen(
+#' @eval roxygen_assess_family(
 #'   "news_current",
 #'   "a logical vector indicating whether each discovered NEWS file is up-to-date")
 #'

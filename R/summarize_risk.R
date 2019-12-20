@@ -29,12 +29,18 @@
 #'
 #' @export
 summarize_risk <- function(data, weights = .risk_weights) {
-  # ensure we're
+  # re-weight for fields that are in the dataset
   weights <- weights[which(names(weights) %in% names(data))]
   weights <- weights / sum(weights, na.rm = TRUE)
 
   # calculate risks
-  1 - rowSums(as.matrix(data[names(weights)]) %*% weights, na.rm = TRUE)
+  risk <- 1 - rowSums(as.matrix(data[names(weights)]) %*% weights, na.rm = TRUE)
+
+  # name if possible
+  if ("package" %in% names(data))
+    names(risk) <- data[["package"]]
+
+  risk
 }
 
 

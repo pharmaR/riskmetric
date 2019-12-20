@@ -4,8 +4,13 @@
 \alias{roxygen_cache_behaviors}
 \title{Document both declare_cache_behavior parameters and options list}
 \usage{
-roxygen_cache_behaviors(fmt = "\%s: \%s", name_fmt = "\%s",
-  annotation_fmt = "\%s", wrap_fmt = "\%s", collapse = "\\n")
+roxygen_cache_behaviors(
+  fmt = "\%s: \%s",
+  name_fmt = "\%s",
+  annotation_fmt = "\%s",
+  wrap_fmt = "\%s",
+  collapse = "\\n"
+)
 }
 \arguments{
 \item{fmt}{format of cache behavior entries}

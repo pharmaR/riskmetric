@@ -1,3 +1,71 @@
+#' Helper for creating a roxygen header from template for assess_* functions
+#'
+#' @param name the name of the assessment, assuming naming conventions are
+#'   followed
+#' @param return_type an optional added commentary about the return type of the
+#'   assessment function
+#'
+#' @return roxygen section template for assess family functions
+#'
+#' @examples
+#' \dontrun{
+#'   #' @eval roxygen_assess_family(
+#'       "has_news",
+#'       "an integer value indicating the number of discovered NEWS files")
+#' }
+#'
+roxygen_assess_family <- function(name,
+    return_type = "an atomic assessment result") {
+
+  assess_func <- sprintf("assess_%s", name)
+  score_func <- sprintf("score.pkg_metric_%s", name)
+
+  if (!assess_func %in% getNamespaceExports(utils::packageName()) ||
+      !score_func %in% getNamespaceExports(utils::packageName())) {
+    stop(sprintf(paste0(
+      "All assess_* functions must have a corresponding score.* method ",
+      "implemented.\n\n",
+      "To remove build errors, ensure that the following functions are ",
+      "implemented:\n\n",
+      "  %s()\n",
+      "  %s()\n")),
+      assess_func,
+      score_func)
+  }
+
+  c("@param x a \\code{pkg_ref} package reference object",
+    "@param ... additional arguments passed on to S3 methods, rarely used",
+    sprintf("@return a \\code{pkg_metric} containing %s", return_type),
+    "@family \\code{assess_*} functions",
+    sprintf("@seealso \\code{\\link{%s}}", score_func),
+    sprintf("@examples assess_%s(pkg_ref(\"%s\"))", name, packageName()))
+}
+
+
+
+#' Helper for creating a roxygen itemized list for assess_* functions
+#'
+#' @return roxygen section template for assess family function catalog
+#'
+#' @examples
+#' \dontrun{
+#'   #' @eval assess_family_catalog_roxygen()
+#' }
+#'
+roxygen_assess_family_catalog <- function() {
+  assessments <- all_assessments()
+  info <- lapply(assessments, attr, "label")
+  missing_label <- vapply(info, is.null, logical(1L))
+  info[missing_label] <- names(info)[missing_label]
+
+  c("@section Assessment function catalog:",
+    "\\describe{",
+    sprintf('\\item{\\code{\\link{%s}}}{%s}', names(info), info),
+    "}")
+}
+
+
+
 #' A default list of assessments to perform for each package
 #'
 #' @return a list of assess_* functions exported from riskmetric
@@ -5,7 +73,9 @@
 #' @importFrom utils packageName
 #' @export
 all_assessments <- function() {
-  fs <- grep("^assess_", getNamespaceExports(utils::packageName()), value = TRUE)
+  fs <- grep("^assess_[^.]*$",
+    getNamespaceExports(utils::packageName()),
+    value = TRUE)
   Map(getExportedValue, fs, ns = list(utils::packageName()))
 }
 
@@ -40,10 +110,14 @@ use_assessments_column_names <- function(x) {
 
 
 
-#' Function for applying assess_* family of functions to packages
+#' Apply assess_* family of functions to a package reference
 #'
-#' @param x A single package reference object or \code{\link[tibble]{tibble}} of
-#'   package references to assess
+#' By default, use all \code{assess_*} funtions in the \code{riskmetric}
+#' namespace and produce a \code{\link[tibble]{tibble}} with one column per
+#' assessment applied.
+#'
+#' @param x A single \code{\link{pkg_ref}} object or
+#'   \code{\link[tibble]{tibble}} of package references to assess
 #' @param assessments A list of assessment functions to apply to each package
 #'   reference. By default, a list of all exported assess_* functions from the
 #'   riskmetric package.
@@ -57,7 +131,9 @@ use_assessments_column_names <- function(x) {
 #'   metric objects returned when the assessment was called with the associated
 #'   pacakge reference.
 #'
-#' @seealso as_tibble.pkg_ref
+#' @eval roxygen_assess_family_catalog()
+#'
+#' @family \code{assess_*} functions
 #'
 #' @importFrom tibble as_tibble
 #' @importFrom vctrs new_list_of
@@ -88,39 +164,4 @@ assess <- function(x, assessments = all_assessments(), ...,
   }
 
   x
-}
-
-
-
-#' Helper for creating a roxygen header from template for assess_* functions
-#'
-#' @param name the name of the assessment, assuming naming conventions are
-#'   followed
-#' @param return_type an optional added commentary about the return type of the
-#'   assessment function
-#'
-#' @return roxygen section template for assess family functions
-#'
-#' @examples
-#' \dontrun{
-#'   #' @eval assess_family_roxygen(
-#'       "has_news",
-#'       "an integer value indicating the number of discovered NEWS files")
-#' }
-#'
-assess_family_roxygen <- function(name,
-    return_type = "an atomic assessment result") {
-
-  assess_func <- sprintf("assess_%s", name)
-  score_func <- sprintf("score.pkg_metric_%s", name)
-
-  stopifnot(assess_func %in% getNamespaceExports(utils::packageName()))
-  stopifnot(score_func %in% getNamespaceExports(utils::packageName()))
-
-  c("@param x a \\code{pkg_ref} package reference object",
-    "@param ... additional arguments passed on to S3 methods, rarely used",
-    sprintf("@return a \\code{pkg_metric} containing %s", return_type),
-    "@family \\code{assess_*} functions",
-    sprintf("@seealso \\code{\\link{%s}}", score_func),
-    sprintf("@examples assess_%s(pkg_ref(\"%s\"))", name, packageName()))
 }

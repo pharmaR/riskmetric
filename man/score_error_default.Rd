@@ -18,7 +18,8 @@ appropriate scoring method for the atomic metric metadata. Optionally, a
 Default score error handling, emitting a warning and returning 0
 }
 \seealso{
-Other \code{score_error_*} functions: \code{\link{score_error_NA}},
-  \code{\link{score_error_zero}}
+Other \code{score_error_*} functions: 
+\code{\link{score_error_NA}()},
+\code{\link{score_error_zero}()}
 }
 \concept{\code{score_error_*} functions}

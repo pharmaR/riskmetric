@@ -7,7 +7,7 @@
 
 #' @export
 `$<-.pkg_ref` <- function(x, name, value) {
-  `[[<-`(x, name, value = value)
+  `[[<-`(x, as.character(name), value = value)
 }
 
 
@@ -24,8 +24,9 @@
 #'
 #' @export
 `[[.pkg_ref` <- function(x, name, ...) {
-  if (!name %in% names(x)) {
+  if (!name %in% bare_env(x, names(x))) {
     allow_mutation(x, {
+      pkg_ref_cache(x, name)
       ret <- tryCatch(pkg_ref_cache(x, name), error = function(e) e)
       x[[name]] <- ret
       if (inherits(ret, "error")) stop(ret)

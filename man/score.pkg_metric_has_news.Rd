@@ -21,8 +21,10 @@ Coerce the number of news files to binary indication of a valid NEWS
 score(assess_has_news(pkg_ref("riskmetric")))
 }
 \seealso{
-Other \code{score.*} functions: \code{\link{score.pkg_metric_export_help}},
-  \code{\link{score.pkg_metric_news_current}},
-  \code{\link{score}}
+Other \code{score.*} functions: 
+\code{\link{score.pkg_metric_export_help}()},
+\code{\link{score.pkg_metric_license}()},
+\code{\link{score.pkg_metric_news_current}()},
+\code{\link{score}()}
 }
 \concept{\code{score.*} functions}

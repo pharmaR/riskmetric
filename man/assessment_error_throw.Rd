@@ -21,7 +21,8 @@ the error encountered during assessment
 Error handler for assessments to throw error immediately
 }
 \seealso{
-Other assessment error handlers: \code{\link{assessment_error_as_warning}},
-  \code{\link{assessment_error_empty}}
+Other assessment error handlers: 
+\code{\link{assessment_error_as_warning}()},
+\code{\link{assessment_error_empty}()}
 }
 \concept{assessment error handlers}

@@ -1,7 +1,10 @@
+.DS_Store
+
 inst/doc
+docs
+
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 .html
-docs

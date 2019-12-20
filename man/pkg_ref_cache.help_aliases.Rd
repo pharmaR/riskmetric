@@ -17,14 +17,15 @@ pkg_ref_cache.help_aliases(x, name, ...)
 Cache a character vector mapping exported values to documentation filenames
 }
 \seealso{
-Other package reference cache: \code{\link{pkg_ref_cache.description}},
-  \code{\link{pkg_ref_cache.help}},
-  \code{\link{pkg_ref_cache.news_urls}},
-  \code{\link{pkg_ref_cache.news}},
-  \code{\link{pkg_ref_cache.repo_base_url}},
-  \code{\link{pkg_ref_cache.tarball_url}},
-  \code{\link{pkg_ref_cache.web_html}},
-  \code{\link{pkg_ref_cache.web_url}},
-  \code{\link{pkg_ref_cache}}
+Other package reference cache: 
+\code{\link{pkg_ref_cache.description}()},
+\code{\link{pkg_ref_cache.help}()},
+\code{\link{pkg_ref_cache.news_urls}()},
+\code{\link{pkg_ref_cache.news}()},
+\code{\link{pkg_ref_cache.repo_base_url}()},
+\code{\link{pkg_ref_cache.tarball_url}()},
+\code{\link{pkg_ref_cache.web_html}()},
+\code{\link{pkg_ref_cache.web_url}()},
+\code{\link{pkg_ref_cache}()}
 }
 \concept{package reference cache}
