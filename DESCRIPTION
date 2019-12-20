@@ -32,7 +32,8 @@ Imports:
     covr,
     rvest,
     memoise,
-    janitor
+    janitor,
+    cranlogs
 RoxygenNote: 6.1.1
 Suggests:
     knitr,

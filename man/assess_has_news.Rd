@@ -23,7 +23,8 @@ assess_has_news(pkg_ref("riskmetric"))
 \seealso{
 \code{\link{score.pkg_metric_has_news}}
 
-Other \code{assess_*} functions: \code{\link{assess_export_help}},
+Other \code{assess_*} functions: \code{\link{assess_downloads_1yr}},
+  \code{\link{assess_export_help}},
   \code{\link{assess_news_current}}
 }
 \concept{\code{assess_*} functions}
