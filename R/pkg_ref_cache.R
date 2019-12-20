@@ -87,7 +87,8 @@ NULL
 #' @importFrom utils .S3methods
 available_pkg_ref_fields <- function(x) {
   fs <- c(names(getNamespace(packageName())), utils::.S3methods("pkg_ref_cache"))
-  f_re <- paste0("^pkg_ref_cache\\.([^.]+)\\.(", paste0(class(x), collapse = "|"), ")")
+  classes_re <- paste0(class(x), collapse = "|")
+  f_re <- paste0("^pkg_ref_cache\\.([^.]+)\\.(", classes_re, "|default)$")
   fs <- grep(f_re, fs, value = TRUE)
   names(fs) <- fs
   fs <- gsub(f_re, "\\1", fs)

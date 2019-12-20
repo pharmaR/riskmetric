@@ -23,11 +23,17 @@ assess_news_current(pkg_ref("riskmetric"))
 \seealso{
 \code{\link{score.pkg_metric_news_current}}
 
+<<<<<<< HEAD
+Other \code{assess_*} functions: \code{\link{assess_export_help}},
+  \code{\link{assess_has_news}},
+  \code{\link{assess_last_30_bugs_status}}
+=======
 Other \code{assess_*} functions: 
 \code{\link{assess_downloads_1yr}()},
 \code{\link{assess_export_help}()},
 \code{\link{assess_has_news}()},
 \code{\link{assess_license}()},
 \code{\link{assess}()}
+>>>>>>> master
 }
 \concept{\code{assess_*} functions}

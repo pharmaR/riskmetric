@@ -43,11 +43,18 @@ score(assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
 \seealso{
 score_error_default score_error_zero score_error_NA
 
+<<<<<<< HEAD
+Other \code{score.*} functions: \code{\link{score.pkg_metric_export_help}},
+  \code{\link{score.pkg_metric_has_news}},
+  \code{\link{score.pkg_metric_last_30_bugs_status}},
+  \code{\link{score.pkg_metric_news_current}}
+=======
 Other \code{score.*} functions: 
 \code{\link{score.pkg_metric_downloads_1yr}()},
 \code{\link{score.pkg_metric_export_help}()},
 \code{\link{score.pkg_metric_has_news}()},
 \code{\link{score.pkg_metric_license}()},
 \code{\link{score.pkg_metric_news_current}()}
+>>>>>>> master
 }
 \concept{\code{score.*} functions}

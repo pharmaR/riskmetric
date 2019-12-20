@@ -59,8 +59,8 @@ new_pkg_ref <- function(name, version = NA_character_, source, ...) {
 
   source <- match.arg(
     source,
-    c("pkg_remote", "pkg_install", "pkg_source", "pkg_missing"),
-    several.ok = FALSE)
+    c("pkg_bioc_remote", "pkg_cran_remote", "pkg_remote", "pkg_install", "pkg_source", "pkg_missing"),
+    several.ok = TRUE)
 
   pkg_data <- as.environment(append(list(
     name = name,
@@ -150,7 +150,7 @@ as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
       p <- new_pkg_ref(x,
         version = info[,"Version"],
         repo = info[,"Repository"],
-        source = "pkg_remote")
+        source = c("pkg_remote"))
 
       if (!is.null(memoise_cran_mirrors()) &&
           is_url_subpath_of(
@@ -163,6 +163,14 @@ as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
         class(p) <- c("pkg_bioc_remote", class(p))
         return(p)
       }
+      return(p)
+
+    } else if (x %in% bioc_available$Package) {
+      info <- bioc_available[bioc_available[,"Package"] == x,,drop = FALSE]
+      return(new_pkg_ref(x,
+        version = info[,"Version"],
+        repo = "https://bioconductor.org/packages/release/bioc",
+        source = c("pkg_bioc_remote", "pkg_remote")))
     }
 
     # if unable to locate a local or remote version of the package

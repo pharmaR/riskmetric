@@ -47,6 +47,17 @@ memoise_cran_mirrors <- memoise::memoise({
 
 
 
+#' @importFrom BiocManager available
+memoise_bioc_available <- memoise::memoise({
+  function() {
+    con <- url("https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES")
+    on.exit(close(con))
+    as.data.frame(read.dcf(con), stringsAsFactors = FALSE)
+  }
+})
+
+
+
 #' Fetch BioC Mirrors Info
 #'
 #' taken from utils::chooseBioCmirror
