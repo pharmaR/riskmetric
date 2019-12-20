@@ -16,9 +16,7 @@ library(riskmetric)
 library(dplyr)
 library(tibble)
 
-options(
-  repos = "https://cran.rstudio.com",
-  width = 90)
+options(repos = "https://cran.rstudio.com")
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -81,6 +79,8 @@ on a fixed scale from 0 (worst) to 1 (best).
 Given our maintainer metric example, we might rate a package as `1` (great)
 if no maintainer is identified or `0` (poor) if a maintainer is found.
 
+> Learn more: `?score`
+
 ### 5. Summarizing across metric scores
 
 Finally, we may want to look at these scores of individual metrics in some sort
@@ -90,6 +90,8 @@ summarizing algorithm to consistently assess and compare packages.
 
 Notably, risk is an inverse scale from metric scores. High metric scores are
 favorable, whereas high risk scores are unfavorable. 
+
+> Learn more: `?summarize_risk`
 
 
 
