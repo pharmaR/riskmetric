@@ -36,8 +36,9 @@ Imports:
     covr,
     rvest,
     memoise,
-    janitor
-RoxygenNote: 6.1.1
+    janitor,
+    cranlogs
+RoxygenNote: 7.0.2
 Suggests:
     knitr,
     rmarkdown,

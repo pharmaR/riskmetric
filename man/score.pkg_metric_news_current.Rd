@@ -21,9 +21,18 @@ Coerce a logical vector of discovered up-to-date NEWS to a metric score
 score(assess_news_current(pkg_ref("riskmetric")))
 }
 \seealso{
+<<<<<<< HEAD
 Other \code{score.*} functions: \code{\link{score.pkg_metric_export_help}},
   \code{\link{score.pkg_metric_has_news}},
   \code{\link{score.pkg_metric_last_30_bugs_status}},
   \code{\link{score}}
+=======
+Other \code{score.*} functions: 
+\code{\link{score.pkg_metric_downloads_1yr}()},
+\code{\link{score.pkg_metric_export_help}()},
+\code{\link{score.pkg_metric_has_news}()},
+\code{\link{score.pkg_metric_license}()},
+\code{\link{score}()}
+>>>>>>> master
 }
 \concept{\code{score.*} functions}

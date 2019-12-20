@@ -1,6 +1,6 @@
 #' Assess a package for an up-to-date NEWS file
 #'
-#' @eval assess_family_roxygen(
+#' @eval roxygen_assess_family(
 #'   "license",
 #'   "a string indicating the license under which the package is released")
 #'

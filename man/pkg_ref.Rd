@@ -7,14 +7,62 @@
 pkg_ref(x, ...)
 }
 \arguments{
-\item{x}{character value representing a package name, path to a package
-source directory or a git remote url or a package object}
+\item{x}{A singular \code{character} value, \code{character vector} or
+\code{list} of \code{character} values of package names or source code
+directory paths.}
 
-\item{...}{additional arguments passed to class-specific handlers}
+\item{...}{Additional arguments passed to methods.}
 }
 \value{
-a package object
+When a single value is provided, a single \code{pkg_ref} object is
+  returned, possibly with a subclass based on where the package was found. If
+  a \code{vector} or \code{list} is provided, a \code{list_of_pkg_ref} object
+  constructed with \code{\link[vctrs]{list_of}} is returned, which can be
+  considered analogous to a \code{list}. See 'Details' for further
+  information about \code{pkg_ref} subclasses.
 }
 \description{
-Create a package reference
+Create a package reference from package name or filepath, producing an object
+in which package metadata will be collected as risk assessments are
+performed. Depending on where the package was found - whether it is found as
+source code, in a local library or from a remote host - an S3 subclass is
+given to allow for source-specific collection of metadata. See 'Details' for
+a breakdown of subclasses.
 }
+\details{
+Package reference objects are used to collect metadata pertaining to a given
+package. As data is needed for assessing a package's risk, this metadata
+populates fields within the package reference object.
+
+The \code{pkg_ref} S3 subclasses are used extensively for divergent metdata
+collection behaviors dependent on where the package was discovered. Because
+of this, there is a rich hierarchy of subclasses to articulate the different
+ways package information can be found.
+
+\itemize{
+\item{\strong{\code{pkg_ref}}}{ A default class for general metadata
+collection.
+  \itemize{
+  \item{\strong{\code{pkg_source}}}{ A reference to a source code directory.}
+  \item{\strong{\code{pkg_install}}}{ A reference to a package installation
+  location in a package library.}
+  \item{\strong{\code{pkg_remote}}}{ A reference to package metadata on a
+  remote server.
+    \itemize{
+    \item{\strong{\code{pkg_cran_remote}}}{ A reference to package
+    information pulled from the CRAN repository.}
+    \item{\strong{\code{pkg_bioc_remote}}}{ A reference to package
+    information pulled from the Bioconductor repository.}
+    \item{\strong{\code{pkg_git_remote}}}{ A reference to a package source
+    code git repository. (not yet implemented)}
+    }
+  }
+  }
+}
+}
+}
+\seealso{
+Other pkg_ref: 
+\code{\link{as_pkg_ref}()}
+}
+\concept{pkg_ref}

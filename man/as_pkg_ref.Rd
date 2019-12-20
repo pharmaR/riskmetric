@@ -7,14 +7,28 @@
 as_pkg_ref(x, ...)
 }
 \arguments{
-\item{x}{character value representing a package name, path to a package
-source directory or a git remote url or a package object}
+\item{x}{A singular \code{character} value, \code{character vector} or
+\code{list} of \code{character} values of package names or source code
+directory paths.}
 
-\item{...}{additional arguments passed to class-specific handlers}
+\item{...}{Additional arguments passed to methods.}
+
+\item{repos}{Repository urls to use when searching for available packages,
+defaulting to \code{getOption("repos")}.}
 }
 \value{
-a package object
+When a single value is provided, a single \code{pkg_ref} object is
+  returned, possibly with a subclass based on where the package was found. If
+  a \code{vector} or \code{list} is provided, a \code{list_of_pkg_ref} object
+  constructed with \code{\link[vctrs]{list_of}} is returned, which can be
+  considered analogous to a \code{list}. See 'Details' for further
+  information about \code{pkg_ref} subclasses.
 }
 \description{
 Convert into a package object
 }
+\seealso{
+Other pkg_ref: 
+\code{\link{pkg_ref}()}
+}
+\concept{pkg_ref}
