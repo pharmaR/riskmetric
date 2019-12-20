@@ -1,6 +1,6 @@
 #' Assess a package for the presence of a NEWS file
 #'
-#' @eval assess_family_roxygen(
+#' @eval roxygen_assess_family(
 #'   "has_news",
 #'   "an integer value indicating the number of discovered NEWS files")
 #'

@@ -23,8 +23,10 @@ assess_license(pkg_ref("riskmetric"))
 \seealso{
 \code{\link{score.pkg_metric_license}}
 
-Other \code{assess_*} functions: \code{\link{assess_export_help}},
-  \code{\link{assess_has_news}},
-  \code{\link{assess_news_current}}
+Other \code{assess_*} functions: 
+\code{\link{assess_export_help}()},
+\code{\link{assess_has_news}()},
+\code{\link{assess_news_current}()},
+\code{\link{assess}()}
 }
 \concept{\code{assess_*} functions}

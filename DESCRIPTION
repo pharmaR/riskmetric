@@ -34,7 +34,7 @@ Imports:
     memoise,
     janitor,
     cranlogs
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Suggests:
     knitr,
     rmarkdown,

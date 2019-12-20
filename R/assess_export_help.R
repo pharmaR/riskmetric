@@ -1,6 +1,6 @@
 #' Assess a package for availability of documentation for exported values
 #'
-#' @eval assess_family_roxygen(
+#' @eval roxygen_assess_family(
 #'   "export_help",
 #'   "a logical vector indicating existence of documentation for each namespace export")
 #'

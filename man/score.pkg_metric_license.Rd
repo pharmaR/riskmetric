@@ -21,9 +21,10 @@ Maps a license string to a score
 score(assess_license(pkg_ref("riskmetric")))
 }
 \seealso{
-Other \code{score.*} functions: \code{\link{score.pkg_metric_export_help}},
-  \code{\link{score.pkg_metric_has_news}},
-  \code{\link{score.pkg_metric_news_current}},
-  \code{\link{score}}
+Other \code{score.*} functions: 
+\code{\link{score.pkg_metric_export_help}()},
+\code{\link{score.pkg_metric_has_news}()},
+\code{\link{score.pkg_metric_news_current}()},
+\code{\link{score}()}
 }
 \concept{\code{score.*} functions}

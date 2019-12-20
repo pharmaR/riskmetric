@@ -21,9 +21,11 @@ Coerce a logical vector indicating availability of export documentation
 score(assess_export_help(pkg_ref("riskmetric")))
 }
 \seealso{
-Other \code{score.*} functions: \code{\link{score.pkg_metric_downloads_1yr}},
-  \code{\link{score.pkg_metric_has_news}},
-  \code{\link{score.pkg_metric_news_current}},
-  \code{\link{score}}
+Other \code{score.*} functions: 
+\code{\link{score.pkg_metric_downloads_1yr}()},
+\code{\link{score.pkg_metric_has_news}()},
+\code{\link{score.pkg_metric_license}()},
+\code{\link{score.pkg_metric_news_current}()},
+\code{\link{score}()}
 }
 \concept{\code{score.*} functions}

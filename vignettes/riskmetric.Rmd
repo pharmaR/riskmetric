@@ -27,130 +27,252 @@ knitr::opts_chunk$set(
 # Introduction
 
 `riskmetric` provides a workflow to evaluate the quality of a set of R packages
-that involves four major steps. The workflow can help users to choose high
+that involves five major steps. The workflow can help users to choose high
 quality R packages, improve package reliability and prove the validity of R
-packages in a regulated industry. The four steps include:
+packages in a regulated industry. In concept, these steps include:
 
-1. **Finding a source for package information** `pkg_ref()`  
-   this can be any source of package metadata, such as a
-    * package repository webportal from which we can scrape metadata
-    * built and installed package in a local library
-    * directory containing package source code 
-1. **Assessing the package under validation criteria** `assess()`  
-   collect a set of metadata for scoring risk, this might include
-    * a profile of the number of active users over the last month
-    * the availability of documentation for package functions
-    * the use of a unit testing framework
-    * the test coverage
-1. **Scoring assessment criteria**  `score()`
-1. **Summarize scores into an aggregate risk metric** `summarize_risk()`
+### 1. Finding a source for package information
+
+First we need to identify a source of package metadata. There are a number of
+places one may want to look for this information, be it a source code directory,
+local package library or remote package repository. Once we find a source of
+package data, we begin to collect it in a _package reference_ (`pkg_ref`)
+object.
+
+> Learn more: `?pkg_ref`
+
+### 2. Caching package metadata
+
+If more information is needed to perform a given risk assessment, we will use
+what metadata we already have to continue to search for more fine-grained
+information about the package. For example, if we have a location of a locally
+installed package, we can use that path to search for that package's
+`DESCRIPTION` file, and from there read in the `DESCRIPTION` contents. To avoid
+repeatedly processing the same metadata, these intermediate results are cached
+within the `pkg_ref` object so that they can be used in the derivation of
+mulitple risk metrics.
+
+> Learn more: `?pkg_ref_cache`
+
+### 3. Assess this metadata against a risk criterion 
+
+For each measure of risk, we first try to boil down that measure into some
+fundamental nugget of the package metadata that is comparable across packages
+and sources of information. The cross-comparable result of assessing a package
+in this way is what we refer to as a _package metric_ (`pkg_metric`). 
+
+For example, with that `DESCRIPTION` file content, we might look at whether a
+maintainer is identified in the authors list. To ensure we can easily compare
+this information between packages that use the `Authors` field and the
+`Authors@R` field, we would boil this information down to just a single logical
+value indicating whether or not a maintainer was identified.
+
+> Learn more: `?assess`
+
+### 4. Score our metrics
+
+After we have these atomic representations of metrics, we want to score them so
+that they can be meaningfully compared to one another. In practice this just
+embeds a means of converting from the datatype of the metric to a numeric value
+on a fixed scale from 0 (worst) to 1 (best). 
+
+Given our maintainer metric example, we might rate a package as `1` (great)
+if no maintainer is identified or `0` (poor) if a maintainer is found.
+
+> Learn more: `?score`
+
+### 5. Summarizing across metric scores
+
+Finally, we may want to look at these scores of individual metrics in some sort
+of aggregate risk score. Naturally, not all metric scores may warrant the same
+weight. Having scores normalized to a fixed range allows us to define a 
+summarizing algorithm to consistently assess and compare packages. 
+
+Notably, risk is an inverse scale from metric scores. High metric scores are
+favorable, whereas high risk scores are unfavorable. 
+
+> Learn more: `?summarize_risk`
 
 
 
-# Package Reference Objects
+# The `riskmetric` Workflow
 
-Before we get started assessing packages, we need a place to aggregate all of
-our package metadata. To handle this, we use the `pkg_ref` class. As package
-metadata is requested, it will be housed within this object for reuse, avoiding
-repeatedly having to scrape, download, parse or derive the same metadata
-multiple times.
+These five steps are broken down into just a handful of primary functions. 
+
+```{r, echo = FALSE}
+knitr::include_graphics(system.file(
+  file.path("assets", "core-workflow.svg"), 
+  package = "riskmetric"))
+```
+
+## Creating a package reference object
+
+First, we create a _package reference_ class object using the `pkg_ref`
+constructor function. This object will contain metadata as it's collected in the
+various risk assessments. 
 
 ```{r, eval = FALSE}
 library(riskmetric)
-pkg_ref("riskmetric")
+riskmetric_pkg_ref <- pkg_ref("riskmetric")
+print(riskmetric_pkg_ref)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE}
 rver <- gsub("\\.\\d+$", "", paste0(R.version$major, ".", R.version$minor))
 package <- pkg_ref("riskmetric")
 
 # hack in order to mutate package environment directly so nobody accidentally
 # publishes any personal info in their library path
 invisible(riskmetric:::bare_env(package, {
-  package$path <- sprintf("/home/user/username/R/%s/Resources/library/riskmetric", rver)
+  package$path <- sprintf(
+    "/home/user/username/R/%s/Resources/library/riskmetric", 
+    rver)
 }))
 
 package
 ```
 
-A package reference defines one of many different ways of gathering information
-about a package and its development practices. The targets of this reference
-could be a source code directory, installation in a package library, or simply a
-url in a web-hosted repository from which metadata can be scraped. Each piece of
-metadata is captured through a callback function, which can be uniquely handled
-for each source of package information.
+Here we see that the `riskmetric` `pkg_ref` object is actually subclassed as a
+`pkg_install`. There is a hierarchy of `pkg_ref` object classes including
+`pkg_source` for source code directories, `pkg_install` for locally installed
+packages and `pkg_remote` for references to package information pulled from the
+internet including `pkg_cran_remote` and `pkg_bioc_remote` for CRAN and 
+Bioconductor hosted packages respectively. 
 
-Furthermore, `pkg_ref` objects can be coerced to a `tibble` for easier,
-parallel assessment of packages.
+Throughout all of `riskmetric`, S3 classes are used extensively to make use of
+generic functions with divergent, reference mechanism dependent behaviors for
+caching metadata, assessing packages and scoring metrics.
+
+Likewise, some fields have a trailing `...` indicating that they haven't yet
+been computed, but that the reference type has knowledge of how to go out and
+grab that information if the field is requested. Behind the scenes, this is done
+using the `pkg_ref_cache` function, which itself is an S3 generic, using the
+name of the field and `pkg_ref` class to dispatch to appropriate functions for
+retrieving metadata.
+
+## Assessing a package
+
+There are a number of prespecified assessments, all prefixed by convention with
+`assess_*`. Every assessment function takes a single argument, a `pkg_ref`
+object and produces a `pkg_metric` object corresponding to the
+`assess_*` function that was applied.
 
 ```{r, eval = FALSE}
-library(dplyr)
-package_tbl <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
-  as_tibble()
+riskmetric_export_help_metric <- assess_export_help(riskmetric_pkg_ref)
+print(riskmetric_export_help_metric[1:5])
 ```
 
 ```{r, echo = FALSE}
-package_tbl <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
-  as_tibble() %>%
-  tibble:::print.tbl()
+rver <- gsub("\\.\\d+$", "", paste0(R.version$major, ".", R.version$minor))
+package <- pkg_ref("riskmetric")
+
+riskmetric_export_help_metric <- assess_export_help(package)
+print(riskmetric_export_help_metric[1:5])
+
+# hack in order to mutate package environment directly so nobody accidentally
+# publishes any personal info in their library path
+invisible(riskmetric:::bare_env(package, {
+  package$path <- sprintf(
+    "/home/user/username/R/%s/Resources/library/riskmetric", 
+    rver)
+}))
+```
+
+Every function in the `assess_*` family of functions is expected to return 
+basic measure of a package. In this case, we return a named logical vector
+indicating whether each export function has an associated help document. 
+
+The return type also leaves a trail of what assessment produced this metric. In
+addition to the `pkg_metric` class, we now have a `pkg_metric_export_help` 
+subclass which is used for dispatching to an appropriate scoring method.
+
+It's worth pointing out that the act of calling this function has had the 
+side-effect of mutating our `riskmetric_pkg_ref` object.
+
+```{r, eval = FALSE}
+riskmetric_pkg_ref
+```
+
+```{r, echo = FALSE}
+package
+```
+
+Here `riskmetric_pkg_ref$help_aliases` has a known value because it was needed
+to asses whether the package has documentation for its exports. 
+
+> _a note on caching_  
+>
+>This happens because `pkg_ref` objects are really just `environment`s with some
+syntactic sugar, and `environments` in R are always modified by-reference. This
+globally mutable behavior is used so that operations performed by one assessment
+can be reused by others. Likewise, computing one field may require that a
+previous field has been computed first, triggering a chain of metadata
+retrieval. In this case, `$help_aliases` required that `$path` be available.
+>
+>This chaining behavior comes for free by implementing the `pkg_ref_cache`
+caching function for each field. For contributors, this alleviates the need to
+remember an order of operations, and for users this behavior means that subsets
+of assessments can be run in an arbitrary order without pulling superfluous
+metadata, keeping track of every-growing objects or ensuring certain assessments
+get called before others.
+
+In addition to the metric-specific `assess_*` family of functions, a more
+comprehensive `assess` function is provided. Notably, `assess` accepts a
+`pkg_ref` object and list of assessments to apply, defaulting to
+`all_assessments()`, which returns a list of all `assess_*` functions in the
+`riskmetric` namespace.
+
+```{r, eval = FALSE}
+assess(riskmetric_pkg_ref)
+```
+
+```{r, echo = FALSE}
+assess(pkg_ref("riskmetric"))
 ```
 
 
+## Scoring package metrics
 
-# Core Verbs
+After a metric has been collected, we `score` the metric to convert it to a 
+quantified representation of risk. 
 
-In `riskmetric`, the core operations of package validation are handled in a
-series of verbs. Once package reference objects have been defined, they can be
-processed by chaining these foundational operations. These verbs, as well as
-many of the features of package assessment, are designed to be highly extensible
-to make it easier for package validation to be a community effort.
+There is a single scoring function, `score`, that dispatches based on the class
+of the metric that is passed to it to interpret the atomic metric result.
 
-See the
-[`extending-riskmetric`](https://pharmar.github.io/riskmetric/articles/extending-riskmetric.html)
-vignette for more details
+```{r}
+score(riskmetric_export_help_metric)
+```
 
-## Creating a Package Reference 
+For convenience, `score` can also operate on the `tibble` produced by `assess`,
+providing a new `tibble` with scored metrics. 
 
-We'll use the `tibble` from above as our example
+```{r, echo = FALSE}
+score(assess(pkg_ref("riskmetric")))
+```
+
+# Cohort assessments
+
+Packages are often part of a larger cohort, so we've made sure to accommodate
+assessments of mulitple packages simultaneously. 
+
+## Creating a `tibble` from `pkg_ref`s
+
+We start by calling our `pkg_ref` constructor function with a list or vector.
+Doing so will return a list of `pkg_ref` objects. With this list, we can use
+`tibble::as_tibble` to convert the `pkg_ref` list into a `tibble`, automatically
+populating some useful index columns like `package` and `version`. To clean
+things up further we can use the `magrittr` pipe (`%>%`) to chain these commands
+together.
 
 ```{r}
 package_tbl <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble()
 ```
 
-## Assess
+## The `riskmetric` workflow on multiple packages
 
-The first component of the validation process is an assessment. This is used for
-iterating over assessment functions which serve to fetch any necessary package
-metadata and produce an atomic value reflective of each assessment. For example,
-when assessing whether a package's NEWS files are up-to-date, it may return a
-logical vector indicating which NEWS files have entries for the current package
-version.
-
-The `assess` function iterates over a list of assessment functions, adding a
-column per assessment. By default, it will use all the available assessment
-functions (all functions in the `riskmetric` exports beginning with `assess_*`).
-Once applied, an assessment produces a `pkg_metric` object.
-
-```{r}
-package_tbl %>%
-  assess()
-```
-
-`assess` will use all available `riskmetric` assessment functions by default. A
-subset of functions, or additional user-defined functions, can be used by
-passing a list of functions to the `assessments` argument.
-
-
-
-## Score
-
-After gathering the available metric metadata, every metric object is scored.
-Scoring a metric translates the assessment atomic values into a single numeric
-score. For example, we might score the number of available NEWS files by giving
-a package a perfect score (`1.0`) only when all NEWS files have been updated for
-the latest version, or alternatively we might score it as the fraction of NEWS
-files that are up-to-date.
+`assess` and `score` can operate on `tibble`s, making it easy to simultaneously
+test an entire cohort of packages at once. 
 
 ```{r}
 package_tbl %>%
@@ -158,17 +280,24 @@ package_tbl %>%
   score()
 ```
 
-Keeping the scoring separated from the assessment allows us to easily iterate on
-how scores are defined and allows for the scoring function to be easily
-overwritten.
+## Summarizing risk
 
-## Summarizing Package Risk
+Finally, we provide the `summarize_risk` function, a shorthand for aggregating
+a weighted average of risk scores across `tibble` columns. We specify a default
+set of weights, but these can be set modified to reconfigure this aggregation.
 
-What we ultimately want is a single numeric value which indicates the "risk"
-involved with using a given package. For the `dplyr`-savvy, this will look quite
-familiar. We've defined a default summarizing function `summarize_risk`. It
-accepts the full data.frame and performs a default risk assessment assuming all
-the available `riskmetric` assessments have been performed.
+`summarize_risk` returns a named `numeric` vector of summarized scores for each 
+of the packages.
+
+```{r}
+package_tbl %>%
+  assess() %>%
+  score() %>%
+  summarize_risk()
+```
+
+Naturally, using `dplyr::mutate`, we can store this information back into the
+package `tibble` for consideration among the individual scores.
 
 ```{r}
 package_tbl %>%
@@ -176,6 +305,8 @@ package_tbl %>%
   score() %>%
   mutate(risk = summarize_risk(.))
 ```
+
+
 
 # How you can help...
 
@@ -186,10 +317,9 @@ Our priority so far has been to set up an extensible framework as the foundation
 for a community effort, and that's where you come in! There are a few things you
 can do to get started.
 
+1. [Propose a new metric on the `riskmetric` GitHub](https://github.com/pharmaR/riskmetric/issues/new?labels=Metric%20Proposal)
+1. [Take part in the discussion](https://github.com/pharmaR/riskmetric/issues?q=is%3Aopen+is%3Aissue+label%3A%22Metric+Proposal%22) about which metrics are captured and how they are measured
 1. Check out the `extending-riskmetric` vignette to see how to extend the
 functionality with your own metrics
-1. [Take part in the discussion](https://github.com/pharmaR/riskmetric/issues?q=is%3Aopen+is%3Aissue+label%3A%22Metric+Proposal%22)
-about which metrics are captured and how they are measured
-1. [Propose a new metric on the `riskmetric` GitHub](https://github.com/pharmaR/riskmetric/issues/new?labels=Metric%20Proposal)
 where we can further discuss new metric proposals
 1. Help us to develop new metrics and package functionality

@@ -2,14 +2,18 @@
 % Please edit documentation in R/assess.R
 \name{assess}
 \alias{assess}
-\title{Function for applying assess_* family of functions to packages}
+\title{Apply assess_* family of functions to a package reference}
 \usage{
-assess(x, assessments = all_assessments(), ...,
-  error_handler = assessment_error_empty)
+assess(
+  x,
+  assessments = all_assessments(),
+  ...,
+  error_handler = assessment_error_empty
+)
 }
 \arguments{
-\item{x}{A single package reference object or \code{\link[tibble]{tibble}} of
-package references to assess}
+\item{x}{A single \code{\link{pkg_ref}} object or
+\code{\link[tibble]{tibble}} of package references to assess}
 
 \item{assessments}{A list of assessment functions to apply to each package
 reference. By default, a list of all exported assess_* functions from the
@@ -28,8 +32,25 @@ A \code{\link[tibble]{tibble}} with one row per package reference and
   pacakge reference.
 }
 \description{
-Function for applying assess_* family of functions to packages
+By default, use all \code{assess_*} funtions in the \code{riskmetric}
+namespace and produce a \code{\link[tibble]{tibble}} with one column per
+assessment applied.
 }
+\section{Assessment function catalog}{
+
+\describe{
+\item{\code{\link{assess_news_current}}}{NEWS file contains entry for current version number}
+\item{\code{\link{assess_export_help}}}{exported objects have documentation}
+\item{\code{\link{assess_license}}}{software is released with an acceptable license}
+\item{\code{\link{assess_has_news}}}{number of discovered NEWS files}
+}
+}
+
 \seealso{
-as_tibble.pkg_ref
+Other \code{assess_*} functions: 
+\code{\link{assess_export_help}()},
+\code{\link{assess_has_news}()},
+\code{\link{assess_license}()},
+\code{\link{assess_news_current}()}
 }
+\concept{\code{assess_*} functions}
