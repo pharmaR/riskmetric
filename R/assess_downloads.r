@@ -2,7 +2,7 @@
 #'
 #' @details The more times a package has been downloaded the more extensive the user testing and the greater chance there is of someone finding a bug and logging it.
 #'
-#' @eval assess_family_roxygen(
+#' @eval roxygen_assess_family(
 #'   "downloads_1yr",
 #'   "a numeric value between [0,1] indicating the volume of downloads")
 #'
