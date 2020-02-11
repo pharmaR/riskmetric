@@ -17,7 +17,7 @@ attributes(assess_has_vignettes)$label <- "number of discovered vignettes files"
 
 #' @export
 assess_has_vignettes.pkg_ref <- function(x, ...) {
-  pkg_metric(nrow(x$vignettes), class = "pkg_metric_has_vignettes")
+  pkg_metric(length(x$vignettes), class = "pkg_metric_has_vignettes")
 }
 
 

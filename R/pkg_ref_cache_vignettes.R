@@ -30,7 +30,7 @@ pkg_ref_cache.vignettes.pkg_source <- function(x, name, ...) {
 #'
 #' @param path a package directory path expected to contain Vignettes files
 #'
-#' @return a list of parsed Vignettes files
+#' @return a vector of parsed Vignettes files
 #'
 vignettes_from_dir <- function(path) {
   # accommodate unique vignettes files
@@ -42,31 +42,34 @@ vignettes_from_dir <- function(path) {
 
   file_path = unique(tools::file_path_sans_ext(files))
   filename = basename(file_path)
+  names(file_path) <- filename
 
-  res <- data.frame(filename = filename, path = file_path)
-  res <- res[tolower(res$filename) != tolower("index"), ]
+  file_path = unique(tools::file_path_sans_ext(files))
+  filename = basename(file_path)
+  names(file_path) <- filename
 
-  res
+  file_path[tolower(filename) != tolower("index")]
 }
 
 #' Build a list of Vignettes files discovered within a package website
 #'
 #' @param path a package directory path expected to contain Vignettes files
 #'
-#' @return a data frame of Vignettes files
+#' @return a vector of Vignettes files
 #'
 vignettes_from_url <- function(url) {
 
-  file_path <- xml2::read_html(url) %>%
-    rvest::html_nodes("a") %>%
-    rvest::html_attr("href") %>%
-    grep("vignettes", x = ., value = TRUE)
+  nodes <- xml2::xml_find_all(x$web_html, xpath = '//a[contains(@href,"vignettes")]')
+  if (!length(nodes)) return(c())
+
+  file_path <- unlist(xml2::xml_attrs(nodes, "href"))
 
   filename <- tools::file_path_sans_ext(basename(file_path))
   file_path <- sprintf("%s/%s", url, file_path)
 
-  res <- data.frame(filename = filename, path = file_path)
-  res <- res[tolower(res$filename) != tolower("index"), ]
+  filename <- tools::file_path_sans_ext(basename(file_path))
+  file_path <- paste0(url, "/", file_path)
+  names(file_path) <- filename
 
-  res
+  file_path
 }
