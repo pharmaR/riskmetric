@@ -35,7 +35,7 @@ pkg_ref_cache.vignettes.pkg_source <- function(x, name, ...) {
 vignettes_from_dir <- function(path) {
   # accommodate unique vignettes files
 
-  folder <- c(source = "/vignettes", boundle = "/inst/doc", binary = "/doc")
+  folder <- c(source = "/vignettes", bundle = "/inst/doc", binary = "/doc")
   files <- unlist(lapply(paste0(path, folder), list.files, full.names = TRUE))
 
   if (!length(files)) return(data.frame())
