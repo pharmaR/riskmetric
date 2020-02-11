@@ -63,7 +63,7 @@ vignettes_from_url <- function(url) {
     grep("vignettes", x = ., value = TRUE)
 
   filename <- tools::file_path_sans_ext(basename(file_path))
-  file_path <- paste0(url, "/", file_path)
+  file_path <- sprintf("%s/%s", url, file_path)
 
   res <- data.frame(filename = filename, path = file_path)
   res <- res[tolower(res$filename) != tolower("index"), ]
