@@ -165,8 +165,9 @@ as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
       }
       return(p)
 
-    } else if (x %in% bioc_available$Package) {
-      info <- bioc_available[bioc_available[,"Package"] == x,,drop = FALSE]
+    } else if (x %in% memoise_bioc_available()[,"Package"]) {
+      bp <- memoise_bioc_available()
+      info <- bp[bp[,"Package"] == x,,drop = FALSE]
       return(new_pkg_ref(x,
         version = info[,"Version"],
         repo = "https://bioconductor.org/packages/release/bioc",
