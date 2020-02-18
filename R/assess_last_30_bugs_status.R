@@ -1,6 +1,6 @@
 #' Assess how many recent BugReports have been closed
 #'
-#' @eval assess_family_roxygen(
+#' @eval roxygen_assess_family(
 #'   "last_30_bugs_status",
 #'   "a logical vector indicating whether a recent BugReport was closed")
 #'
