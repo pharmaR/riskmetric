@@ -15,17 +15,20 @@ pkg_ref_cache.bug_reports(x, ...)
 Retrieve a list of BugReports metadata
 }
 \seealso{
-Other package reference cache: \code{\link{pkg_ref_cache.bug_reports_host}},
-  \code{\link{pkg_ref_cache.bug_reports_url}},
-  \code{\link{pkg_ref_cache.description}},
-  \code{\link{pkg_ref_cache.help_aliases}},
-  \code{\link{pkg_ref_cache.help}},
-  \code{\link{pkg_ref_cache.news_urls}},
-  \code{\link{pkg_ref_cache.news}},
-  \code{\link{pkg_ref_cache.repo_base_url}},
-  \code{\link{pkg_ref_cache.tarball_url}},
-  \code{\link{pkg_ref_cache.web_html}},
-  \code{\link{pkg_ref_cache.web_url}},
-  \code{\link{pkg_ref_cache}}
+Other package reference cache: 
+\code{\link{pkg_ref_cache.bug_reports_host}()},
+\code{\link{pkg_ref_cache.bug_reports_url}()},
+\code{\link{pkg_ref_cache.description}()},
+\code{\link{pkg_ref_cache.downloads}()},
+\code{\link{pkg_ref_cache.help_aliases}()},
+\code{\link{pkg_ref_cache.help}()},
+\code{\link{pkg_ref_cache.news_urls}()},
+\code{\link{pkg_ref_cache.news}()},
+\code{\link{pkg_ref_cache.repo_base_url}()},
+\code{\link{pkg_ref_cache.tarball_url}()},
+\code{\link{pkg_ref_cache.vignettes}()},
+\code{\link{pkg_ref_cache.web_html}()},
+\code{\link{pkg_ref_cache.web_url}()},
+\code{\link{pkg_ref_cache}()}
 }
 \concept{package reference cache}

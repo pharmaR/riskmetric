@@ -17,30 +17,20 @@ pkg_ref_cache.tarball_url(x, name, ...)
 Cache value of a package's source tarball URL
 }
 \seealso{
-<<<<<<< HEAD
-Other package reference cache: \code{\link{pkg_ref_cache.bug_reports_host}},
-  \code{\link{pkg_ref_cache.bug_reports_url}},
-  \code{\link{pkg_ref_cache.bug_reports}},
-  \code{\link{pkg_ref_cache.description}},
-  \code{\link{pkg_ref_cache.help_aliases}},
-  \code{\link{pkg_ref_cache.help}},
-  \code{\link{pkg_ref_cache.news_urls}},
-  \code{\link{pkg_ref_cache.news}},
-  \code{\link{pkg_ref_cache.repo_base_url}},
-  \code{\link{pkg_ref_cache.web_html}},
-  \code{\link{pkg_ref_cache.web_url}},
-  \code{\link{pkg_ref_cache}}
-=======
 Other package reference cache: 
+\code{\link{pkg_ref_cache.bug_reports_host}()},
+\code{\link{pkg_ref_cache.bug_reports_url}()},
+\code{\link{pkg_ref_cache.bug_reports}()},
 \code{\link{pkg_ref_cache.description}()},
+\code{\link{pkg_ref_cache.downloads}()},
 \code{\link{pkg_ref_cache.help_aliases}()},
 \code{\link{pkg_ref_cache.help}()},
 \code{\link{pkg_ref_cache.news_urls}()},
 \code{\link{pkg_ref_cache.news}()},
 \code{\link{pkg_ref_cache.repo_base_url}()},
+\code{\link{pkg_ref_cache.vignettes}()},
 \code{\link{pkg_ref_cache.web_html}()},
 \code{\link{pkg_ref_cache.web_url}()},
 \code{\link{pkg_ref_cache}()}
->>>>>>> master
 }
 \concept{package reference cache}

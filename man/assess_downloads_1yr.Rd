@@ -26,8 +26,13 @@ assess_downloads_1yr(pkg_ref("riskmetric"))
 \seealso{
 \code{\link{score.pkg_metric_downloads_1yr}}
 
-Other \code{assess_*} functions: \code{\link{assess_export_help}},
-  \code{\link{assess_has_news}},
-  \code{\link{assess_news_current}}
+Other \code{assess_*} functions: 
+\code{\link{assess_export_help}()},
+\code{\link{assess_has_news}()},
+\code{\link{assess_has_vignettes}()},
+\code{\link{assess_last_30_bugs_status}()},
+\code{\link{assess_license}()},
+\code{\link{assess_news_current}()},
+\code{\link{assess}()}
 }
 \concept{\code{assess_*} functions}

@@ -6,6 +6,13 @@
 \usage{
 bug_report_metadata(bug_reports_data, x)
 }
+\arguments{
+\item{bug_reports_data}{data to represent a bug report history - generally a
+return object from making a request to a repository's issues API}
+
+\item{x}{a \code{pkg_ref} object where a \code{bug_reports_host} field can be
+found}
+}
 \description{
 Helper for structuring bug reports
 }

@@ -81,8 +81,6 @@ new_pkg_ref <- function(name, version = NA_character_, source, ...) {
 #'   \code{list} of \code{character} values of package names or source code
 #'   directory paths.
 #' @param ... Additional arguments passed to methods.
-#' @param repos Repository urls to use when searching for available packages,
-#'   defaulting to \code{getOption("repos")}.
 #'
 #' @return When a single value is provided, a single \code{pkg_ref} object is
 #'   returned, possibly with a subclass based on where the package was found. If

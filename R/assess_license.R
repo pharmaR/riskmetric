@@ -33,7 +33,6 @@ assess_license.pkg_ref <- function(x, ...) {
 #' Maps a license string to a score
 #'
 #' @eval score_family_roxygen("license")
-#' @return
 #'
 #' @export
 score.pkg_metric_license <- function(x, ...) {

@@ -16,6 +16,12 @@ pkg_ref_cache.bug_reports.default <- function(x, ...) {
 
 
 #' Helper for structuring bug reports
+#'
+#' @param bug_reports_data data to represent a bug report history - generally a
+#'   return object from making a request to a repository's issues API
+#' @param x a \code{pkg_ref} object where a \code{bug_reports_host} field can be
+#'   found
+#'
 bug_report_metadata <- function(bug_reports_data, x) {
   structure(bug_reports_data,
     class = c(

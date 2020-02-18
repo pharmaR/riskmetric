@@ -4,11 +4,15 @@
 \alias{score_family_roxygen}
 \title{Helper for creating a roxygen header from template for score.* functions}
 \usage{
-score_family_roxygen(name)
+score_family_roxygen(name, dontrun = FALSE)
 }
 \arguments{
 \item{name}{the name of the scoring function, assuming naming conventions are
 followed}
+
+\item{dontrun}{logical indicating whether examples should be wrapped in
+a dontrun block. This is particularly useful for assessments which may
+require an internet connection.}
 }
 \value{
 roxygen section template for score family functions
@@ -18,7 +22,7 @@ Helper for creating a roxygen header from template for score.* functions
 }
 \examples{
 \dontrun{
-  #' @eval score_family_functions("has_news")
+#' @eval score_family_functions("has_news")
 }
 
 }

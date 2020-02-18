@@ -1,5 +1,8 @@
 .DS_Store
 
+vignettes
+!vignettes/*.Rmd
+
 inst/doc
 docs
 
