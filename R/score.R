@@ -119,10 +119,10 @@ score.tbl_df <- function(x, ..., error_handler = score.default) {
 #'
 #' @examples
 #' \dontrun{
-#' #' @eval score_family_functions("has_news")
+#' #' @eval roxygen_score_family("has_news")
 #' }
 #'
-score_family_roxygen <- function(name, dontrun = FALSE) {
+roxygen_score_family <- function(name, dontrun = FALSE) {
 
   assess_func <- sprintf("assess_%s", name)
   score_func <- sprintf("score.pkg_metric_%s", name)

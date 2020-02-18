@@ -26,7 +26,7 @@ assess_has_news.pkg_ref <- function(x, ...) {
 #'
 #' Coerce the number of news files to binary indication of valid NEWS files
 #'
-#' @eval score_family_roxygen("has_news")
+#' @eval roxygen_score_family("has_news")
 #' @return \code{1} if any NEWS files are found, otherwise \code{0}
 #'
 #' @export

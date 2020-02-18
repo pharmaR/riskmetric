@@ -38,7 +38,7 @@ assess_downloads_1yr.pkg_ref <- function(x, ...) {
 #'
 #' \deqn{ 1 - 1 / (1 + exp(log(x)-log(1.5e5))) = 1 - 150,000 / (x + 150,000) }
 #'
-#' @eval score_family_roxygen("downloads_1yr")
+#' @eval roxygen_score_family("downloads_1yr")
 #' @return numeric value between \code{0} (low) and \code{1} (high download
 #'   volume) converting the number of downloads.
 #'
