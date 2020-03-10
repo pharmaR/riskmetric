@@ -11,8 +11,8 @@ test_that("pkg_ref(x) returns x when x is a pkg_ref", {
   expect_identical(x, pkg_ref(x))
 })
 test_that("pkg_ref returns correct class/length when givin list", {
-  expect_equal(length(pkg_ref(list("a", "b", "c"))), 3)
-  expect_is(class(pkg_ref(list("a", "b", "c"))), c("vctrs_list_of", "vctrs_vctr"))
+  expect_equal(length(pkg_ref(list("testthat", "vctrs"))), 2)
+  expect_is(pkg_ref(list("testthat", "vctrs")), c("list_of_pkg_ref", "vctrs_list_of", "vctrs_vctr"))
 })
 
 
@@ -21,14 +21,14 @@ test_that("pkg_ref returns correct class/length when givin list", {
 
 ##### Errors #####
 test_that("new_pkg_ref throws error when given unnamed ellipses arguments", {
-  expect_error(new_pkg_ref(name = "aName", source = "pkg_install", "unnamedArg"),
+  expect_error(new_pkg_ref(name = "aName", source = "pkg_install", version = 0, "unnamedArg"),
                "pkg_ref ellipses arguments must be named")
 })
 test_that("new-pkg_ref throws error when given invalid repo", {
   expect_error(new_pkg_ref(name = "aName", source = "badSource"))
 })
 test_that("pkg_ref throws error when a non-character or pkg_ref is passed", {
-  expect_error(pkg_ref(1), " Don't know how to convert")
+  expect_error(pkg_ref(1), "Don't know how to convert")
 })
 test_that("pkg_ref throws error when an invalid package/filepath",{
   expect_error(pkg_ref("*asdf"), "can't interpret character")
