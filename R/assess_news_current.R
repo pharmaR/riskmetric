@@ -44,7 +44,7 @@ search_version_string <- function(ver) {
 #'
 #' Coerce a logical vector of discovered up-to-date NEWS to a metric score
 #'
-#' @eval score_family_roxygen("news_current")
+#' @eval roxygen_score_family("news_current")
 #' @return \code{1} if any NEWS files are up-to-date, otherwise \code{0}
 #'
 #' @export

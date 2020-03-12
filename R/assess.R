@@ -4,21 +4,31 @@
 #'   followed
 #' @param return_type an optional added commentary about the return type of the
 #'   assessment function
+#' @param dontrun logical indicating whether examples should be wrapped in
+#'   a dontrun block. This is particularly useful for assessments which may
+#'   require an internet connection.
 #'
 #' @return roxygen section template for assess family functions
 #'
 #' @examples
 #' \dontrun{
-#'   #' @eval roxygen_assess_family(
-#'       "has_news",
-#'       "an integer value indicating the number of discovered NEWS files")
+#' #' @eval roxygen_assess_family(
+#' #'   "has_news",
+#' #'   "an integer value indicating the number of discovered NEWS files")
 #' }
 #'
 roxygen_assess_family <- function(name,
-    return_type = "an atomic assessment result") {
+    return_type = "an atomic assessment result",
+    dontrun = FALSE) {
 
   assess_func <- sprintf("assess_%s", name)
   score_func <- sprintf("score.pkg_metric_%s", name)
+  example_template <- if (dontrun) {
+    "@examples \n\\dontrun{\nassess_%s(pkg_ref(\"%s\"))\n}"
+  } else {
+    "@examples assess_%s(pkg_ref(\"%s\"))"
+  }
+
 
   if (!assess_func %in% getNamespaceExports(utils::packageName()) ||
       !score_func %in% getNamespaceExports(utils::packageName())) {
@@ -38,7 +48,7 @@ roxygen_assess_family <- function(name,
     sprintf("@return a \\code{pkg_metric} containing %s", return_type),
     "@family \\code{assess_*} functions",
     sprintf("@seealso \\code{\\link{%s}}", score_func),
-    sprintf("@examples assess_%s(pkg_ref(\"%s\"))", name, packageName()))
+    sprintf(example_template, name, packageName()))
 }
 
 

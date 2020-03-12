@@ -2,7 +2,8 @@
 #'
 #' @eval roxygen_assess_family(
 #'   "last_30_bugs_status",
-#'   "a logical vector indicating whether a recent BugReport was closed")
+#'   "a logical vector indicating whether a recent BugReport was closed",
+#'   dontrun = TRUE)
 #'
 #' @export
 assess_last_30_bugs_status <- function(x, ...) {
@@ -38,7 +39,7 @@ bug_reports_status.gitlab_bug_report <- function(x, ...) {
 
 #' Score a package for number of recently opened BugReports that are now closed
 #'
-#' @eval score_family_roxygen("last_30_bugs_status")
+#' @eval roxygen_score_family("last_30_bugs_status", dontrun = TRUE)
 #' @return a fractional value indicating percentage of last 30 bug reports that
 #'   are now closed
 #'

@@ -1,3 +1,4 @@
+#' @importFrom utils .DollarNames
 #' @export
 `.DollarNames.pkg_ref` <- function(x, pattern) {
   names(x)

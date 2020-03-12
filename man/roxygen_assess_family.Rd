@@ -4,7 +4,11 @@
 \alias{roxygen_assess_family}
 \title{Helper for creating a roxygen header from template for assess_* functions}
 \usage{
-roxygen_assess_family(name, return_type = "an atomic assessment result")
+roxygen_assess_family(
+  name,
+  return_type = "an atomic assessment result",
+  dontrun = FALSE
+)
 }
 \arguments{
 \item{name}{the name of the assessment, assuming naming conventions are
@@ -12,6 +16,10 @@ followed}
 
 \item{return_type}{an optional added commentary about the return type of the
 assessment function}
+
+\item{dontrun}{logical indicating whether examples should be wrapped in
+a dontrun block. This is particularly useful for assessments which may
+require an internet connection.}
 }
 \value{
 roxygen section template for assess family functions
@@ -21,9 +29,9 @@ Helper for creating a roxygen header from template for assess_* functions
 }
 \examples{
 \dontrun{
-  #' @eval roxygen_assess_family(
-      "has_news",
-      "an integer value indicating the number of discovered NEWS files")
+#' @eval roxygen_assess_family(
+#'   "has_news",
+#'   "an integer value indicating the number of discovered NEWS files")
 }
 
 }

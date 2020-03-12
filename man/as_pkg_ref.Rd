@@ -12,9 +12,6 @@ as_pkg_ref(x, ...)
 directory paths.}
 
 \item{...}{Additional arguments passed to methods.}
-
-\item{repos}{Repository urls to use when searching for available packages,
-defaulting to \code{getOption("repos")}.}
 }
 \value{
 When a single value is provided, a single \code{pkg_ref} object is

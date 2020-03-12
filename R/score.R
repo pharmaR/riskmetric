@@ -111,18 +111,26 @@ score.tbl_df <- function(x, ..., error_handler = score.default) {
 #'
 #' @param name the name of the scoring function, assuming naming conventions are
 #'   followed
+#' @param dontrun logical indicating whether examples should be wrapped in
+#'   a dontrun block. This is particularly useful for assessments which may
+#'   require an internet connection.
 #'
 #' @return roxygen section template for score family functions
 #'
 #' @examples
 #' \dontrun{
-#'   #' @eval score_family_functions("has_news")
+#' #' @eval roxygen_score_family("has_news")
 #' }
 #'
-score_family_roxygen <- function(name) {
+roxygen_score_family <- function(name, dontrun = FALSE) {
 
   assess_func <- sprintf("assess_%s", name)
   score_func <- sprintf("score.pkg_metric_%s", name)
+  example_template <- if (dontrun) {
+    "@examples \n\\dontrun{score(%s(pkg_ref(\"%s\")))\n}"
+  } else {
+    "@examples score(%s(pkg_ref(\"%s\")))"
+  }
 
   if (!assess_func %in% getNamespaceExports(utils::packageName()))
     warning(sprintf(paste0("Error when generating documentation for %s. ",
@@ -139,5 +147,5 @@ score_family_roxygen <- function(name) {
   c(sprintf("@param x a \\code{pkg_metric_%s} packge metric object", name),
     "@param ... additional arguments unused",
     "@family \\code{score.*} functions",
-    sprintf("@examples score(%s(pkg_ref(\"%s\")))", assess_func, packageName()))
+    sprintf(example_template, assess_func, packageName()))
 }

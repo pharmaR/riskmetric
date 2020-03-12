@@ -26,7 +26,7 @@ assess_has_vignettes.pkg_ref <- function(x, ...) {
 #'
 #' Coerce the number of vignettes files to binary indication of valid Vignettes
 #'
-#' @eval score_family_roxygen("has_vignettes")
+#' @eval roxygen_score_family("has_vignettes")
 #' @return \code{1} if any Vignettes files are found, otherwise \code{0}
 #'
 #' @export

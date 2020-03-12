@@ -19,12 +19,17 @@ a fractional value indicating percentage of last 30 bug reports that
 Score a package for number of recently opened BugReports that are now closed
 }
 \examples{
-score(assess_last_30_bugs_status(pkg_ref("riskmetric")))
+\dontrun{score(assess_last_30_bugs_status(pkg_ref("riskmetric")))
+}
 }
 \seealso{
-Other \code{score.*} functions: \code{\link{score.pkg_metric_export_help}},
-  \code{\link{score.pkg_metric_has_news}},
-  \code{\link{score.pkg_metric_news_current}},
-  \code{\link{score}}
+Other \code{score.*} functions: 
+\code{\link{score.pkg_metric_downloads_1yr}()},
+\code{\link{score.pkg_metric_export_help}()},
+\code{\link{score.pkg_metric_has_news}()},
+\code{\link{score.pkg_metric_has_vignettes}()},
+\code{\link{score.pkg_metric_license}()},
+\code{\link{score.pkg_metric_news_current}()},
+\code{\link{score}()}
 }
 \concept{\code{score.*} functions}

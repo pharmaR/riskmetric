@@ -2,7 +2,8 @@
 % Please edit documentation in R/assess_downloads.r
 \name{score.pkg_metric_downloads_1yr}
 \alias{score.pkg_metric_downloads_1yr}
-\title{Score a package for the number of downloads in the past year}
+\title{Defining an Assessment Scoring Function
+Score a package for the number of downloads in the past year}
 \usage{
 \method{score}{pkg_metric_downloads_1yr}(x, ...)
 }
@@ -12,26 +13,32 @@
 \item{...}{additional arguments unused}
 }
 \value{
-numeric value between \code{0} (low) and \code{1} (high download volume) converting the number of downloads.
+numeric value between \code{0} (low) and \code{1} (high download
+  volume) converting the number of downloads.
 }
 \description{
-Convert the number of downloads \code{x} in the past year into a validation score [0,1] 
-\deqn{ 1 - 150,000 / (x + 150,000) }
+Convert the number of downloads \code{x} in the past year into a validation
+score [0,1] \deqn{ 1 - 150,000 / (x + 150,000) }
 }
 \details{
-The scoring function is a simplification of the classic logistic curve
-\deqn{ 1 / (1 + exp(-k(x-x[0])) }
-with a log scale for the number of downloads \eqn{x = log(x)}, 
-sigmoid midpoint is 1000 downloads, ie. \eqn{x[0] = log(1,000)}, 
-and logistic growth rate of \eqn{k = 0.5}.
+The scoring function is a simplification of the classic logistic curve \deqn{
+1 / (1 + exp(-k(x-x[0])) } with a log scale for the number of downloads
+\eqn{x = log(x)}, sigmoid midpoint is 1000 downloads, ie. \eqn{x[0] =
+log(1,000)}, and logistic growth rate of \eqn{k = 0.5}.
+
+\deqn{ 1 - 1 / (1 + exp(log(x)-log(1.5e5))) = 1 - 150,000 / (x + 150,000) }
 }
 \examples{
 score(assess_downloads_1yr(pkg_ref("riskmetric")))
 }
 \seealso{
-Other \code{score.*} functions: \code{\link{score.pkg_metric_export_help}},
-  \code{\link{score.pkg_metric_has_news}},
-  \code{\link{score.pkg_metric_news_current}},
-  \code{\link{score}}
+Other \code{score.*} functions: 
+\code{\link{score.pkg_metric_export_help}()},
+\code{\link{score.pkg_metric_has_news}()},
+\code{\link{score.pkg_metric_has_vignettes}()},
+\code{\link{score.pkg_metric_last_30_bugs_status}()},
+\code{\link{score.pkg_metric_license}()},
+\code{\link{score.pkg_metric_news_current}()},
+\code{\link{score}()}
 }
 \concept{\code{score.*} functions}

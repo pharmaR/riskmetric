@@ -29,7 +29,7 @@ assess_export_help.pkg_install <- function(x, ...) {
 #'
 #' Coerce a logical vector indicating availability of export documentation
 #'
-#' @eval score_family_roxygen("export_help")
+#' @eval roxygen_score_family("export_help")
 #' @return \code{1} if any NEWS files are found, otherwise \code{0}
 #'
 #' @export
