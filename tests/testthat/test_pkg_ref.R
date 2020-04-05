@@ -8,7 +8,7 @@ context("pkg_ref")
 # })
 test_that("pkg_ref(x) returns x when x is a pkg_ref", {
   x <- pkg_ref("testthat")
-  expect_identical(x, pkg_ref(x))
+  expect_reference(x, pkg_ref(x))
 })
 test_that("pkg_ref returns correct class/length when givin list", {
   expect_equal(length(pkg_ref(list("testthat", "vctrs"))), 2)

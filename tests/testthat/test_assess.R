@@ -1,6 +1,6 @@
 context("assessments")
 
-pkg_tested <- "testthat"
+pkg_tested <- "plyr"
 
 test_that("assess returns a tibble tibble with one col per assessment", {
   a_pkg_ref <- pkg_ref(pkg_tested)
