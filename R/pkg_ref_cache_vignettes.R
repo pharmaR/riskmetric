@@ -1,4 +1,4 @@
-#' Cache a list of Vignettes files from a package reference
+#' Cache a List of Vignettes Files from a Package Reference
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
@@ -26,7 +26,7 @@ pkg_ref_cache.vignettes.pkg_source <- function(x, name, ...) {
 
 
 
-#' Build a list of Vignettes files discovered within a given directory
+#' Build a List of Vignettes Files Discovered Within a Given Directory
 #'
 #' @param path a package directory path expected to contain Vignettes files
 #'
@@ -51,7 +51,7 @@ vignettes_from_dir <- function(path) {
   file_path[tolower(filename) != tolower("index")]
 }
 
-#' Build a list of Vignettes files discovered within a package website
+#' Build a List of Vignettes Files Discovered Within a Package Website
 #'
 #' @param web_html a \code{pkg_ref$web_html} document containing links to Vignettes files
 #'
