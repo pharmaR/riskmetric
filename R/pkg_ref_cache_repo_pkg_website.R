@@ -11,6 +11,7 @@ pkg_ref_cache.pkg_website.pkg_remote <- function(x, name, ...) {
 
   db  <- rvest::html_table(x$web_html)[[1]]
   url <- db[grep("URL",db[,1], ignore.case = TRUE) ,2]
+  if(length(url) == 0) url <- NA
   url
 }
 
