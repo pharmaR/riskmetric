@@ -26,7 +26,7 @@ pkg_ref_cache.pkg_website.pkg_source <- function(x, name, ...) {
 
 }
 
-get_description_field <- function(mat, colnames){
+get_matrix_columns <- function(mat, colnames){
   colnames(mat) <- tolower(colnames(mat))
   if (! colnames %in% colnames(mat)){
     return(NA)
