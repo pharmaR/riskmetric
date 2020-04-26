@@ -40,7 +40,9 @@ assessment applied.
 
 \describe{
 \item{\code{\link{assess_news_current}}}{NEWS file contains entry for current version number}
+\item{\code{\link{assess_has_bug_reports_url}}}{presence of a bug_reports_url in repository}
 \item{\code{\link{assess_downloads_1yr}}}{number of downloads in the past year}
+\item{\code{\link{assess_covr_coverage}}}{Package unit test coverage}
 \item{\code{\link{assess_has_vignettes}}}{number of discovered vignettes files}
 \item{\code{\link{assess_has_news}}}{number of discovered NEWS files}
 \item{\code{\link{assess_export_help}}}{exported objects have documentation}
@@ -51,8 +53,10 @@ assessment applied.
 
 \seealso{
 Other \code{assess_*} functions: 
+\code{\link{assess_covr_coverage}()},
 \code{\link{assess_downloads_1yr}()},
 \code{\link{assess_export_help}()},
+\code{\link{assess_has_bug_reports_url}()},
 \code{\link{assess_has_news}()},
 \code{\link{assess_has_vignettes}()},
 \code{\link{assess_last_30_bugs_status}()},

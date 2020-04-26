@@ -19,8 +19,10 @@ score(assess_license(pkg_ref("riskmetric")))
 }
 \seealso{
 Other \code{score.*} functions: 
+\code{\link{score.pkg_metric_covr_coverage}()},
 \code{\link{score.pkg_metric_downloads_1yr}()},
 \code{\link{score.pkg_metric_export_help}()},
+\code{\link{score.pkg_metric_has_bug_reports_url}()},
 \code{\link{score.pkg_metric_has_news}()},
 \code{\link{score.pkg_metric_has_vignettes}()},
 \code{\link{score.pkg_metric_last_30_bugs_status}()},

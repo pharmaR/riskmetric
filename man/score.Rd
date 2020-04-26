@@ -44,8 +44,10 @@ score(assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
 score_error_default score_error_zero score_error_NA
 
 Other \code{score.*} functions: 
+\code{\link{score.pkg_metric_covr_coverage}()},
 \code{\link{score.pkg_metric_downloads_1yr}()},
 \code{\link{score.pkg_metric_export_help}()},
+\code{\link{score.pkg_metric_has_bug_reports_url}()},
 \code{\link{score.pkg_metric_has_news}()},
 \code{\link{score.pkg_metric_has_vignettes}()},
 \code{\link{score.pkg_metric_last_30_bugs_status}()},
