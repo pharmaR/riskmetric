@@ -23,5 +23,5 @@ attr(assess_has_bug_reports_url,"label") <- "presence of a bug reports url in re
 #' @export
 score.pkg_metric_has_bug_reports_url <- function(x, ...) {
   # Return a score of TRUE if a bug report url is found, false otherwise
-  ifelse(!is.null(x), TRUE, FALSE)
+  length(x) > 0
 }
