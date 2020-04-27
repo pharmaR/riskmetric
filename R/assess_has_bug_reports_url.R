@@ -11,7 +11,7 @@ assess_has_bug_reports_url <- function(x, ...){
 
 # assign a friendly name for assess column
 attr(assess_has_bug_reports_url,"column_name") <- "has_bug_reports_url"
-attr(assess_has_bug_reports_url,"label") <- "presence of a bug_reports_url in repository"
+attr(assess_has_bug_reports_url,"label") <- "presence of a bug reports url in repository"
 
 #' Score a package for the presence of a bug report url
 #'
