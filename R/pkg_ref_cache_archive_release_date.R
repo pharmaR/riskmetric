@@ -17,7 +17,7 @@ pkg_ref_cache.archive_release_date.pkg_cran_remote <- function(x, name, ...) {
   text <- unlist(strsplit(rvest::html_text(node), "\n"))
   db   <- do.call(rbind, strsplit(text[-1], "\\s+"))
   version <- package_version(gsub(paste0(x$name, "_(.*)\\.tar\\.gz"), "\\1", db[,2]))
-  version <- unlist(lapply(version, paste, collapse = "."))
+  version <- as.character(version)
   date  <- db[,3]
   cbind(name = x$name, version, date)
 
