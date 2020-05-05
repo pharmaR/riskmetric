@@ -25,12 +25,19 @@ pkg_ref_cache.maintainer.pkg_source <- function(x, name, ...) {
   a   <- get_matrix_columns(x$description, c("author"))
   a_r <- get_matrix_columns(x$description, c("authors@r"))
 
+  maintainer <- NA
+
   if(! is.na(a)){
     maintainer <- unlist(strsplit(a, ","))[1]
   }
 
   if(! is.na(a_r)){
-    maintainer <- grep("cre", eval(parse(text = a_r)), value = TRUE)
+
+    a_r_exp <- parse(text = a_r)
+    if( all(all.names(a_r_exp, unique = TRUE) %in% c("c", "person") ) ){
+      maintainer <- grep("cre", eval(a_r_exp), value = TRUE)
+    }
+
   }
 
   maintainer
