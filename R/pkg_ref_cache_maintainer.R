@@ -16,21 +16,21 @@ pkg_ref_cache.maintainer.pkg_remote <- function(x, name, ...) {
 
 pkg_ref_cache.maintainer.pkg_install <- function(x, name, ...) {
 
-  get_description_field(x$description, "maintainer")
+  get_matrix_columns(x$description, "maintainer")
 
 }
 
 pkg_ref_cache.maintainer.pkg_source <- function(x, name, ...) {
 
-  a   <- get_description_field(x$description, c("author"))
-  a_r <- get_description_field(x$description, c("authors@r"))
+  a   <- get_matrix_columns(x$description, c("author"))
+  a_r <- get_matrix_columns(x$description, c("authors@r"))
 
   if(! is.na(a)){
     maintainer <- unlist(strsplit(a, ","))[1]
   }
 
   if(! is.na(a_r)){
-    maintainer <- grep("cre", eval(parse(text = tmp)), value = TRUE)
+    maintainer <- grep("cre", eval(parse(text = a_r)), value = TRUE)
   }
 
   maintainer

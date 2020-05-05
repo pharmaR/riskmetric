@@ -16,7 +16,7 @@ pkg_ref_cache.pkg_website.pkg_remote <- function(x, name, ...) {
 }
 
 pkg_ref_cache.pkg_website.default <- function(x, name, ...) {
-  get_description_field(x$description, "url")
+  get_matrix_columns(x$description, "url")
 }
 
 get_matrix_columns <- function(mat, colnames){
