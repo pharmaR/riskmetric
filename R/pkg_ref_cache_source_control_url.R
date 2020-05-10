@@ -1,10 +1,11 @@
-pkg_res_cache.source_control_url <- function(url){
-  url <- tolower(x$pkg_website)
-  s_url <- "(github\\.com|bitbucket\\.org|gitlab\\.com)"
-
-  if(! is.na(url)){
-    res <- grep(s_url, strsplit(url, ",")[[1]], value = TRUE)
-  }
-
-  res
+#' Cache package's Source Control URL
+#'
+#' @inheritParams pkg_ref_cache
+#' @family package reference cache
+#'
+pkg_ref_cache.source_control_url <- function(x, name, ...) {
+  grep(
+    "(github\\.com|bitbucket\\.org|gitlab\\.com)",
+    x$pkg_websites,
+    value = TRUE)
 }
