@@ -21,3 +21,11 @@ test_that("assess returns the correct classes", {
   expect_is(a_pkg_assess$export_help[[1]], c("pkg_metric_export_help", "pkg_metric", "logical"))
   expect_is(a_pkg_assess$news_current[[1]], c("pkg_metric_news_current", "pkg_metric", "logical"))
 })
+
+# I'm thinking something like the below could be done for all assessments
+test_that("assess_has_bug_reports_url returns the correct url", {
+  a_pkg_ref <- pkg_ref(pkg_tested)
+  a_pkg_assess <- assess(a_pkg_ref)
+  expect_is(a_pkg_assess$has_bug_reports_url[[1]], c("pkg_metric_has_bug_reports_url", "pkg_metric", "character"))
+  expect_match(a_pkg_assess$has_bug_reports_url[[1]], "https://github.com/hadley/plyr/issues")
+})

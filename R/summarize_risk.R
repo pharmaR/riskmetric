@@ -33,8 +33,9 @@ summarize_risk <- function(data, weights = .risk_weights) {
   weights <- weights[which(names(weights) %in% names(data))]
   weights <- weights / sum(weights, na.rm = TRUE)
 
-  # calculate risks
-  risk <- 1 - rowSums(as.matrix(data[names(weights)]) %*% weights, na.rm = TRUE)
+  # calculate 'quality' and subtract from 1 to get 'risk'
+  qual <- colSums(apply(data[names(weights)], 1L, `*`, weights), na.rm = TRUE)
+  risk <- 1 - qual
 
   # name if possible
   if ("package" %in% names(data))
@@ -49,6 +50,11 @@ summarize_risk <- function(data, weights = .risk_weights) {
 #'
 #' @export
 .risk_weights <- c(
-  has_news = 0.4,
-  export_help = 0.4,
-  news_current = 0.2)
+  news_current = 1,
+  has_vignettes = 2,
+  has_bug_reports_url = 2,
+  bugs_status = 1,
+  license = 0,
+  export_help = 2,
+  has_news = 1,
+  covr_coverage = 3)
