@@ -7,38 +7,35 @@ pkg_ref_cache.maintainer <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.maintainer")
 }
 
-pkg_ref_cache.maintainer.pkg_remote <- function(x, name, ...) {
 
+
+pkg_ref_cache.maintainer.pkg_remote <- function(x, name, ...) {
   db  <- rvest::html_table(x$web_html)[[1]]
   maintainer <- db[grep("Maintainer",db[,1], ignore.case = TRUE) ,2]
   maintainer
 }
 
+
+
 pkg_ref_cache.maintainer.pkg_install <- function(x, name, ...) {
+  if ("Maintainer" %in% colnames(x$description))
+    return(x$description[,"Maintainer"])
 
-  get_matrix_columns(x$description, "maintainer")
+  a   <- if ("Author" %in% colnames(x$description)) x$description[,"Author"] else NA
+  a_r <- if ("Authors@R" %in% colnames(x$description)) x$description[,"Authors@R"] else NA
 
-}
-
-pkg_ref_cache.maintainer.pkg_source <- function(x, name, ...) {
-
-  a   <- get_matrix_columns(x$description, c("author"))
-  a_r <- get_matrix_columns(x$description, c("authors@r"))
-
-  maintainer <- NA
-
-  if(! is.na(a)){
-    maintainer <- unlist(strsplit(a, ","))[1]
-  }
-
-  if(! is.na(a_r)){
-
+  if (!is.na(a_r)) {
     a_r_exp <- parse(text = a_r)
-    if( all(all.names(a_r_exp, unique = TRUE) %in% c("c", "person") ) ){
-      maintainer <- grep("cre", eval(a_r_exp), value = TRUE)
+    if (all(all.names(a_r_exp, unique = TRUE) %in% c("c", "person"))) {
+      return(grep("cre", eval(a_r_exp), value = TRUE))
     }
-
+  } else if (!is.na(a)) {
+    return(trimws(strsplit(a, ","))[[1]])
   }
 
-  maintainer
+  NA
 }
+
+
+
+pkg_ref_cache.maintainer.pkg_source <- pkg_ref_cache.maintainer.pkg_install
