@@ -29,10 +29,3 @@ pkg_ref_cache.release_date.pkg_install <- function(x, name, ...) {
 
 
 pkg_ref_cache.release_date.pkg_source <- pkg_ref_cache.release_date.pkg_install
-  colnames(x$description) <- tolower(colnames(x$description))
-  if (!"date" %in% colnames(x$description)){
-    return(NA)
-  }else{
-    return(x$description[, "date"])
-  }
-}
