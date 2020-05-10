@@ -18,12 +18,8 @@ pkg_ref_cache.release_date.pkg_remote <- function(x, name, ...) {
 
 pkg_ref_cache.release_date.pkg_install <- function(x, name, ...) {
 
-  colnames(x$description) <- tolower(colnames(x$description))
-  if (!"date" %in% colnames(x$description)){
-      return(NA)
-    }else{
-      return(x$description[, "date"])
-    }
+  if (!"Date" %in% colnames(x$description)) return(NA)
+  x$description[, "Date"]
 }
 
 
