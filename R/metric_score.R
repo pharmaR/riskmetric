@@ -35,7 +35,7 @@ metric_score.default <- function(x, ...) {
 
 #' @export
 metric_score.pkg_metric_error <- function(x, ...,
-    error_handler = score.default) {
+    error_handler = score_error_default) {
   error_handler(x, ...)
 }
 

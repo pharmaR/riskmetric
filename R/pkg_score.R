@@ -39,12 +39,23 @@ pkg_score <- function(x, ..., error_handler = score_error_default) {
 
 
 #' @export
-pkg_score.tbl_df <- function(x, ..., error_handler = score.default) {
+pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
   assessment_columns <- get_assessment_columns(x)
   for (coln in which(assessment_columns)) {
-    x[[coln]] <- vapply(x[[coln]], score, numeric(1L), error_handler = error_handler)
+    x[[coln]] <- vapply(x[[coln]],
+      metric_score,
+      numeric(1L),
+      error_handler = error_handler)
+
     class(x[[coln]]) <- c("pkg_score", class(x[[coln]]))
   }
+
+  x[["pkg_score"]] <- summarize_scores(x)
+
+  # reorder columns so that metadata columns come first
+  pkg_cols <- intersect(names(x), c("package", "version", "pkg_ref", "pkg_score"))
+  x <- x[,c(pkg_cols, setdiff(names(x), pkg_cols))]
+
   x
 }
 
