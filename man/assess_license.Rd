@@ -21,16 +21,17 @@ Assess a package for an up-to-date NEWS file
 assess_license(pkg_ref("riskmetric"))
 }
 \seealso{
-\code{\link{score.pkg_metric_license}}
+\code{\link{metric_score.pkg_metric_license}}
 
 Other \code{assess_*} functions: 
 \code{\link{assess_covr_coverage}()},
 \code{\link{assess_downloads_1yr}()},
 \code{\link{assess_export_help}()},
+\code{\link{assess_has_bug_reports_url}()},
 \code{\link{assess_has_news}()},
 \code{\link{assess_has_vignettes}()},
 \code{\link{assess_last_30_bugs_status}()},
 \code{\link{assess_news_current}()},
-\code{\link{assess}()}
+\code{\link{pkg_assess}()}
 }
 \concept{\code{assess_*} functions}

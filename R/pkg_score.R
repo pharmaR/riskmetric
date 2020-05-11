@@ -20,83 +20,26 @@
 #'
 #' @examples
 #' # scoring a single assessment
-#' score(assess_has_news(pkg_ref("riskmetric")))
+#' metric_score(assess_has_news(pkg_ref("riskmetric")))
 #'
 #' # scoring many assessments as a tibble
 #' \dontrun{
 #' library(dplyr)
-#' score(assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
+#' pkg_score(pkg_assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
 #' }
 #'
 #' @family \code{score.*} functions
 #' @seealso score_error_default score_error_zero score_error_NA
 #'
 #' @export
-score <- function(x, ..., error_handler = score_error_default) {
-  UseMethod("score")
+pkg_score <- function(x, ..., error_handler = score_error_default) {
+  UseMethod("pkg_score")
 }
 
 
 
 #' @export
-score.default <- function(x, ...) {
-  if (!inherits(x, "pkg_metric")) {
-    warning(sprintf(paste0(
-        "Don't know how to score object of class %s. score is only intended ",
-        "to be used with objects inheriting class 'pkg_metric', ",
-        "returning default score of 0."),
-      paste0('"', class(x), '"', collapse = ", ")))
-  } else {
-    warning(sprintf(paste0(
-        "no available scoring algorithm for metric of class %s, ",
-        "returning default score of 0."),
-      paste0('"', class(x)[1], '"')))
-  }
-
-  0
-}
-
-
-
-#' @export
-score.pkg_metric_error <- function(x, ..., error_handler = score.default) {
-  error_handler(x, ...)
-}
-
-
-
-#' Default score error handling, emitting a warning and returning 0
-#'
-#' @inheritParams score
-#'
-#' @export
-#' @family \code{score_error_*} functions
-score_error_default <- score.default
-
-
-
-#' Score error handler to silently return 0
-#'
-#' @inheritParams score
-#'
-#' @export
-#' @family \code{score_error_*} functions
-score_error_zero <- function(...) 0
-
-
-
-#' Score error handler to silently return NA
-#'
-#' @inheritParams score
-#'
-#' @export
-#' @family \code{score_error_*} functions
-score_error_NA <- function(...) NA_real_
-
-
-
-#' @export
-score.tbl_df <- function(x, ..., error_handler = score.default) {
+pkg_score.tbl_df <- function(x, ..., error_handler = score.default) {
   assessment_columns <- get_assessment_columns(x)
   for (coln in which(assessment_columns)) {
     x[[coln]] <- vapply(x[[coln]], score, numeric(1L), error_handler = error_handler)
@@ -125,11 +68,11 @@ score.tbl_df <- function(x, ..., error_handler = score.default) {
 roxygen_score_family <- function(name, dontrun = FALSE) {
 
   assess_func <- sprintf("assess_%s", name)
-  score_func <- sprintf("score.pkg_metric_%s", name)
+  score_func <- sprintf("metric_score.pkg_metric_%s", name)
   example_template <- if (dontrun) {
-    "@examples \n\\dontrun{score(%s(pkg_ref(\"%s\")))\n}"
+    "@examples \n\\dontrun{metric_score(%s(pkg_ref(\"%s\")))\n}"
   } else {
-    "@examples score(%s(pkg_ref(\"%s\")))"
+    "@examples metric_score(%s(pkg_ref(\"%s\")))"
   }
 
   if (!assess_func %in% getNamespaceExports(utils::packageName()))
@@ -146,6 +89,6 @@ roxygen_score_family <- function(name, dontrun = FALSE) {
 
   c(sprintf("@param x a \\code{pkg_metric_%s} packge metric object", name),
     "@param ... additional arguments unused",
-    "@family \\code{score.*} functions",
+    "@family \\code{metric_score.*} functions",
     sprintf(example_template, assess_func, packageName()))
 }

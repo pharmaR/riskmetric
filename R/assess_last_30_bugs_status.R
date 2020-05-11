@@ -44,6 +44,6 @@ bug_reports_status.gitlab_bug_report <- function(x, ...) {
 #'   are now closed
 #'
 #' @export
-score.pkg_metric_last_30_bugs_status <- function(x, ...) {
+metric_score.pkg_metric_last_30_bugs_status <- function(x, ...) {
   mean(x, na.rm = TRUE)
 }

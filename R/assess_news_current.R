@@ -48,6 +48,6 @@ search_version_string <- function(ver) {
 #' @return \code{1} if any NEWS files are up-to-date, otherwise \code{0}
 #'
 #' @export
-score.pkg_metric_news_current <- function(x, ...) {
+metric_score.pkg_metric_news_current <- function(x, ...) {
   as.numeric(length(x) && all(x))
 }

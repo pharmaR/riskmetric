@@ -24,16 +24,15 @@ dataset, this function can be used to calculate a vector of risks.
 \examples{
 \dontrun{
 library(dplyr)
-summarize_risk(score(assess(as_tibble(pkg_ref("riskmetric")))))
+summarize_risk(pkg_score(pkg_assess(as_tibble(pkg_ref("riskmetric")))))
 }
 
 # or, using the cleaner dplyr syntax
 \dontrun{
 library(dplyr)
 pkg_ref("riskmetric") \%>\%
-  as_tibble() \%>\%
-  assess() \%>\%
-  score() \%>\%
+  pkg_assess() \%>\%
+  pkg_score() \%>\%
   mutate(risk = summarize_risk(.))
 }
 

@@ -35,7 +35,7 @@ assess_license.pkg_ref <- function(x, ...) {
 #' @eval roxygen_score_family("license")
 #'
 #' @export
-score.pkg_metric_license <- function(x, ...) {
+metric_score.pkg_metric_license <- function(x, ...) {
   # defering scoring of licenses until we have a bit more consensus or guidance
   NA_real_
 }
