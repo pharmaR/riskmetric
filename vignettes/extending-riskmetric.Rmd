@@ -162,8 +162,10 @@ package <- pkg_ref("riskmetric")
 
 # hack in order to mutate package environment directly so nobody accidentally
 # publishes any personal info in their library path
+ip <- data.frame(installed.packages())
 invisible(riskmetric:::bare_env(package, {
-  package$path <- sprintf("/home/user/username/R/%s/Resources/library/riskmetric", rver)
+  package$path <- file.path (ip$LibPath[ip$Package == "riskmetric"], "riskmetric")
+  #package$path <- sprintf("/home/user/username/R/%s/Resources/library/riskmetric", rver)
 }))
 
 package
@@ -187,15 +189,32 @@ order of assessments without worry about how metadata is acquired.
 ## Writing a Metadata Cache
 
 Now, for our new metric, we want to cache the package name's first letter. We
-need to add a new `pkg_ref_cache` function for our field. Thankfully, any
-subclass of `pkg_ref` can access the first letter the same way, so we just need
-the one function.
+need to add a new `pkg_ref_cache` function for our field. These functions
+minimally require a `default` dispatch method like the following:
 
 ```{r}
 pkg_ref_cache.name_first_letter <- function(x, name, ...) {
-  substr(x$name, 0, 1)
+  UseMethod("pkg_ref_cache.name_first_letter")
+}
+pkg_ref_cache.name_first_letter.default <- function(x, name, ...) {
+  substr (x$name, 0, 1)
 }
 ```
+The `default` method can also be replaced by methods for particular types of
+`pkg_ref_cache` objects (such as `pkg_source` or `pkg_install`). This cached
+field will then appear in the object:
+```{r}
+package <- pkg_ref("riskmetric")
+package
+```
+We can see that the `name_first_letter` field appears, yet has not yet been
+evaluated. Once it has, the value will appear in full within the printed
+object:
+```{r}
+package$name_first_letter
+package
+```
+
 
 After adding this caching function, we need to make a small modification to
 `assess_name_first_letter.pkg_ref` in order use our newly cached value.
