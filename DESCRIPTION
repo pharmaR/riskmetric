@@ -16,32 +16,30 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
-    BiocManager,
     utils,
     tools,
     xml2,
     httr,
     curl,
-    jsonlite,
-    remotes,
-    gh,
     urltools,
-    magrittr,
+    memoise,
+    BiocManager,
+    cranlogs,
+    jsonlite,
     stringr,
-    dplyr,
-    tibble,
     vctrs,
     pillar,
     crayon,
     fansi,
     covr,
-    rvest,
-    memoise,
-    janitor,
-    cranlogs
-RoxygenNote: 7.0.2
+    remotes,
+    gh,
+RoxygenNote: 7.1.0
 Suggests:
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    dplyr,
+    tibble,
+    magrittr,
 VignetteBuilder: knitr
