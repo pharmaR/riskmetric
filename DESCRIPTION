@@ -25,15 +25,11 @@ Imports:
     memoise,
     BiocManager,
     cranlogs,
+    covr,
+    gh,
     jsonlite,
-    stringr,
     vctrs,
     pillar,
-    crayon,
-    fansi,
-    covr,
-    remotes,
-    gh,
 RoxygenNote: 7.1.0
 Suggests:
     knitr,
