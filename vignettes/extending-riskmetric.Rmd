@@ -225,13 +225,13 @@ functions return a numeric value representing how well the package conforms to
 best practices with values between 0 (poor practice) and 1 (best practice).
 
 ```{r}
-score.pkg_metric_name_first_letter <- function(x, ...) {
+metric_score.pkg_metric_name_first_letter <- function(x, ...) {
   as.numeric(x == "r")
 }
 ```
 
 
-# Adding our Assessment to the `assess()` Verb
+# Adding our Assessment to the `pkg_assess()` Verb
 
 The `assess` function accepts a list of functions to apply. `riskmetric`
 provides a shorthande, `all_assessments()` to collect all the included
@@ -242,30 +242,30 @@ assessment toolkit.
 library(dplyr)
 pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble() %>%
-  assess(c(all_assessments(), assess_name_first_letter))
+  pkg_assess(c(all_assessments(), assess_name_first_letter))
 ```
 
 Our scoring function will automatically get picked up and used by the score
 method.
 
-```{r}
+```{r, warning = FALSE}
 pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble() %>%
-  assess(c(all_assessments(), assess_name_first_letter)) %>%
-  score()
+  pkg_assess(c(all_assessments(), assess_name_first_letter)) %>%
+  pkg_score()
 ```
 
-and we can define our own summarizing function to aggregate our scores into a
-single numeric risk.
+and we can define our own summarizing weights by passing a named list to `pkg_score`.
 
-```{r}
+```{r, warning = FALSE}
 pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble() %>%
-  assess(c(all_assessments(), assess_name_first_letter)) %>%
-  score() %>%
-  mutate(risk = (has_news + name_first_letter) / 2)
+  pkg_assess(c(all_assessments(), assess_name_first_letter)) %>%
+  pkg_score(weights = c(has_news = 1, name_first_letter = 1))
 ```
 
+Of course you can do any downstream processing of the resulting `tibble` if
+you'd like to further fine-tune your summarization using a nonlinear function.
 
 # How you can help...
 
