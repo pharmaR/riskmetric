@@ -7,20 +7,21 @@
 pkg_score(x, ..., error_handler = score_error_default)
 }
 \arguments{
-\item{x}{a \code{pkg_metric} object, whose subclass is used to choose the
+\item{x}{A \code{pkg_metric} object, whose subclass is used to choose the
 appropriate scoring method for the atomic metric metadata. Optionally, a
 \code{\link[tibble]{tibble}} can be provided, in which cases all
 \code{pkg_metric} values will be scored.}
 
-\item{...}{additional arguments unused}
+\item{...}{Additional arguments passed to \code{summarize_scores} when an
+object of class \code{tbl_df} is provided, unused otherwise.}
 
-\item{error_handler}{specify a function to be called if the class can't be
+\item{error_handler}{Specify a function to be called if the class can't be
 identified. Most commonly this occurs for \code{pkg_metric} objects of
 subclass \code{pkg_metric_error}, which is produced when an error is
 encountered when calculating an associated assessment.}
 }
 \value{
-a numeric value if a single \code{pkg_metric} is provided, or a
+A numeric value if a single \code{pkg_metric} is provided, or a
   \code{\link[tibble]{tibble}} with \code{pkg_metric} objects scored and
   returned as numeric values when a \code{\link[tibble]{tibble}} is provided.
 }

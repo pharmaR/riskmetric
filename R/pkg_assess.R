@@ -153,6 +153,8 @@ pkg_assess <- function(x, assessments = all_assessments(), ...,
   UseMethod("pkg_assess")
 }
 
+
+
 #' @export
 pkg_assess.pkg_ref <- function(x, assessments = all_assessments(), ...,
     error_handler = assessment_error_empty) {
@@ -165,9 +167,9 @@ pkg_assess.pkg_ref <- function(x, assessments = all_assessments(), ...,
     assessment_name <- names(assessments)[[i]]
 
     xout[[assessment_name]] <- tryCatch({
-      assessment_f(x$pkg_ref)
+      assessment_f(x)
     }, error = function(e) {
-      error_handler(e, x$pkg_ref$name, assessment_name)
+      error_handler(e, x$name, assessment_name)
     })
 
     attributes(xout[[assessment_name]])$label <- attributes(assessment_f)$label
@@ -178,6 +180,8 @@ pkg_assess.pkg_ref <- function(x, assessments = all_assessments(), ...,
     class = "list_of_pkg_metric")
 }
 
+
+
 #' @export
 pkg_assess.list_of_pkg_ref <- function(x, assessments = all_assessments(), ...,
     error_handler = assessment_error_empty) {
@@ -186,6 +190,8 @@ pkg_assess.list_of_pkg_ref <- function(x, assessments = all_assessments(), ...,
     assessments = assessments,
     error_handler = error_handler)
 }
+
+
 
 #' @export
 pkg_assess.tbl_df <- function(x, assessments = all_assessments(), ...,
