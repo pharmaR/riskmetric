@@ -5,6 +5,6 @@ assess_source_2 <- assess(test_source_2)
 
 test_that("assess_has_news returns expected result for source packages", {
   # TODO: add other package types
-  expect_true(assess_source_1$has_news[[1]])
-  expect_false(assess_source_2$has_news[[1]])
+  expect_equal(unclass(assess_source_1$has_news[[1]]), 1)
+  expect_equal(unclass(assess_source_2$has_news[[1]]), 0)
 })
