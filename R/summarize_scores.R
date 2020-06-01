@@ -27,6 +27,11 @@
 #'
 #' @export
 summarize_scores <- function(data, weights = .risk_weights) {
+  UseMethod("summarize_scores")
+}
+
+#' @export
+summarize_scores.data.frame <- function(data, weights = .risk_weights) {
   # re-weight for fields that are in the dataset
   weights <- weights[which(names(weights) %in% names(data))]
   weights <- weights / sum(weights, na.rm = TRUE)
@@ -40,6 +45,14 @@ summarize_scores <- function(data, weights = .risk_weights) {
     names(risk) <- data[["package"]]
 
   risk
+}
+
+#' @export
+summarize_scores.list <- function(data, weights = .risk_weights) {
+  weights <- weights[which(names(weights) %in% names(data))]
+  weights <- weights / sum(weights, na.rm = TRUE)
+
+  1 - sum(as.numeric(data[names(weights)]) * weights, na.rm = TRUE)
 }
 
 
