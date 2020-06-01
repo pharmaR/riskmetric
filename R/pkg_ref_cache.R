@@ -87,11 +87,19 @@ NULL
 #' @importFrom utils .S3methods
 available_pkg_ref_fields <- function(x) {
   fs <- c(names(getNamespace(packageName())), utils::.S3methods("pkg_ref_cache"))
-  classes_re <- paste0(class(x), collapse = "|")
-  f_re <- paste0("^pkg_ref_cache\\.([^.]+)\\.(", classes_re, "|default)$")
-  fs <- grep(f_re, fs, value = TRUE)
-  names(fs) <- fs
-  fs <- gsub(f_re, "\\1", fs)
+
+  # build data.frame by function name and S3 dispatch (to 2 levels of dispatch)
+  fs_df <- as.data.frame(t(vapply(strsplit(fs, "\\."), `[`, character(3L), 1:3)))
+  names(fs_df) <- c("func", "field", "class")
+  fs_df <- fs_df[fs_df$func == "pkg_ref_cache",]
+
+  fs_df <- Filter(function(method) {
+    # filter for functions that implement an S3 for a subclass or don't have
+    # any dispatched functions (all dispatched classes are NA).
+    any(method$class %in% c(class(x), "default")) || all(is.na(method$class))
+  }, Filter(nrow, split(fs_df, fs_df$field)))
+
+  fs <- names(fs_df)
   fs <- fs[order(fs)]
   fs
 }
