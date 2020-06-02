@@ -4,6 +4,3 @@
 \name{riskmetric}
 \alias{riskmetric}
 \title{riskmetric package documentation}
-\description{
-riskmetric package documentation
-}

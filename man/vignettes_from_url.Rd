@@ -2,7 +2,7 @@
 % Please edit documentation in R/pkg_ref_cache_vignettes.R
 \name{vignettes_from_url}
 \alias{vignettes_from_url}
-\title{Build a list of Vignettes files discovered within a package website}
+\title{Build a List of Vignettes Files Discovered Within a Package Website}
 \usage{
 vignettes_from_url(web_html)
 }
@@ -13,5 +13,5 @@ vignettes_from_url(web_html)
 a vector of Vignettes files
 }
 \description{
-Build a list of Vignettes files discovered within a package website
+Build a List of Vignettes Files Discovered Within a Package Website
 }

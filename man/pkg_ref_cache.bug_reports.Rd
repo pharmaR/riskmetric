@@ -16,6 +16,7 @@ Retrieve a list of BugReports metadata
 }
 \seealso{
 Other package reference cache: 
+\code{\link{pkg_ref_cache.archive_release_dates}()},
 \code{\link{pkg_ref_cache.bug_reports_host}()},
 \code{\link{pkg_ref_cache.bug_reports_url}()},
 \code{\link{pkg_ref_cache.covr_coverage}()},
@@ -25,13 +26,17 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.function_coverage}()},
 \code{\link{pkg_ref_cache.help_aliases}()},
 \code{\link{pkg_ref_cache.help}()},
+\code{\link{pkg_ref_cache.maintainer}()},
 \code{\link{pkg_ref_cache.news_urls}()},
 \code{\link{pkg_ref_cache.news}()},
+\code{\link{pkg_ref_cache.release_date}()},
 \code{\link{pkg_ref_cache.repo_base_url}()},
+\code{\link{pkg_ref_cache.source_control_url}()},
 \code{\link{pkg_ref_cache.tarball_url}()},
 \code{\link{pkg_ref_cache.vignettes}()},
 \code{\link{pkg_ref_cache.web_html}()},
 \code{\link{pkg_ref_cache.web_url}()},
+\code{\link{pkg_ref_cache.website_urls}()},
 \code{\link{pkg_ref_cache}()}
 }
 \concept{package reference cache}

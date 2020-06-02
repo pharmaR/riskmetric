@@ -35,8 +35,12 @@ score(assess_downloads_1yr(pkg_ref("riskmetric")))
 Other \code{score.*} functions: 
 \code{\link{score.pkg_metric_covr_coverage}()},
 \code{\link{score.pkg_metric_export_help}()},
+\code{\link{score.pkg_metric_has_bug_reports_url}()},
+\code{\link{score.pkg_metric_has_maintainer}()},
 \code{\link{score.pkg_metric_has_news}()},
+\code{\link{score.pkg_metric_has_source_control}()},
 \code{\link{score.pkg_metric_has_vignettes}()},
+\code{\link{score.pkg_metric_has_website}()},
 \code{\link{score.pkg_metric_last_30_bugs_status}()},
 \code{\link{score.pkg_metric_license}()},
 \code{\link{score.pkg_metric_news_current}()},
