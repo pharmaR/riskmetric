@@ -3,13 +3,6 @@ memoise_cran_db <- memoise::memoise({
   function() {
     cran <- tools::CRAN_package_db()
     # remove first instance of column name MD5Sum
-    cran <- cran[, - which(names(cran) == "MD5sum")[1]]
-
-    cran_name <- tolower(names(cran))
-    cran_name <- gsub("[-/@ ]", "_", cran_name)
-    cran_name <- gsub(".", "_", cran_name, fixed = TRUE)
-
-    names(cran) <- cran_name
     cran
   }
 }
