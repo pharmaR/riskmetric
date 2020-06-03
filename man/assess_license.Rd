@@ -2,7 +2,7 @@
 % Please edit documentation in R/assess_license.R
 \name{assess_license}
 \alias{assess_license}
-\title{Assess a package for an up-to-date NEWS file}
+\title{Assess a package for an acceptable license}
 \usage{
 assess_license(x, ...)
 }
@@ -15,7 +15,7 @@ assess_license(x, ...)
 a \code{pkg_metric} containing a string indicating the license under which the package is released
 }
 \description{
-Assess a package for an up-to-date NEWS file
+Assess a package for an acceptable license
 }
 \examples{
 assess_license(pkg_ref("riskmetric"))
