@@ -2,7 +2,7 @@
 % Please edit documentation in R/pkg_ref_cache_vignettes.R
 \name{vignettes_from_dir}
 \alias{vignettes_from_dir}
-\title{Build a list of Vignettes files discovered within a given directory}
+\title{Build a List of Vignettes Files Discovered Within a Given Directory}
 \usage{
 vignettes_from_dir(path)
 }
@@ -13,5 +13,5 @@ vignettes_from_dir(path)
 a vector of parsed Vignettes files
 }
 \description{
-Build a list of Vignettes files discovered within a given directory
+Build a List of Vignettes Files Discovered Within a Given Directory
 }

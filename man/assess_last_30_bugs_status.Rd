@@ -29,8 +29,12 @@ Other \code{assess_*} functions:
 \code{\link{assess_covr_coverage}()},
 \code{\link{assess_downloads_1yr}()},
 \code{\link{assess_export_help}()},
+\code{\link{assess_has_bug_reports_url}()},
+\code{\link{assess_has_maintainer}()},
 \code{\link{assess_has_news}()},
+\code{\link{assess_has_source_control}()},
 \code{\link{assess_has_vignettes}()},
+\code{\link{assess_has_website}()},
 \code{\link{assess_license}()},
 \code{\link{assess_news_current}()},
 \code{\link{assess}()}
