@@ -1,4 +1,4 @@
-#' Assess a package for an up-to-date NEWS file
+#' Assess a package code coverage using the `covr` package
 #'
 #' @eval roxygen_assess_family(
 #'   "news_current",
