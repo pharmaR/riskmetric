@@ -2,7 +2,7 @@
 % Please edit documentation in R/assess_covr_coverage.R
 \name{assess_covr_coverage}
 \alias{assess_covr_coverage}
-\title{Assess a package for an up-to-date NEWS file}
+\title{Assess a package code coverage using the `covr` package}
 \usage{
 assess_covr_coverage(x, ...)
 }
@@ -15,7 +15,7 @@ assess_covr_coverage(x, ...)
 a \code{pkg_metric} containing a list containing fields 'filecoverage' and 'totalcoverage' containing a named numeric vector of file unit test coverage and a singular numeric value representing overall test coverage respectively.
 }
 \description{
-Assess a package for an up-to-date NEWS file
+Assess a package code coverage using the `covr` package
 }
 \examples{
 assess_news_current(pkg_ref("riskmetric"))
@@ -26,8 +26,12 @@ assess_news_current(pkg_ref("riskmetric"))
 Other \code{assess_*} functions: 
 \code{\link{assess_downloads_1yr}()},
 \code{\link{assess_export_help}()},
+\code{\link{assess_has_bug_reports_url}()},
+\code{\link{assess_has_maintainer}()},
 \code{\link{assess_has_news}()},
+\code{\link{assess_has_source_control}()},
 \code{\link{assess_has_vignettes}()},
+\code{\link{assess_has_website}()},
 \code{\link{assess_last_30_bugs_status}()},
 \code{\link{assess_license}()},
 \code{\link{assess_news_current}()},
