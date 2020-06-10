@@ -2,7 +2,7 @@
 % Please edit documentation in R/assess_license.R
 \name{assess_license}
 \alias{assess_license}
-\title{Assess a package for an up-to-date NEWS file}
+\title{Assess a package for an acceptable license}
 \usage{
 assess_license(x, ...)
 }
@@ -15,7 +15,7 @@ assess_license(x, ...)
 a \code{pkg_metric} containing a string indicating the license under which the package is released
 }
 \description{
-Assess a package for an up-to-date NEWS file
+Assess a package for an acceptable license
 }
 \examples{
 assess_license(pkg_ref("riskmetric"))
@@ -28,8 +28,11 @@ Other \code{assess_*} functions:
 \code{\link{assess_downloads_1yr}()},
 \code{\link{assess_export_help}()},
 \code{\link{assess_has_bug_reports_url}()},
+\code{\link{assess_has_maintainer}()},
 \code{\link{assess_has_news}()},
+\code{\link{assess_has_source_control}()},
 \code{\link{assess_has_vignettes}()},
+\code{\link{assess_has_website}()},
 \code{\link{assess_last_30_bugs_status}()},
 \code{\link{assess_news_current}()},
 \code{\link{pkg_assess}()}

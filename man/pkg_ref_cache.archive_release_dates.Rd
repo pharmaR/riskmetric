@@ -31,7 +31,6 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.maintainer}()},
 \code{\link{pkg_ref_cache.news_urls}()},
 \code{\link{pkg_ref_cache.news}()},
-\code{\link{pkg_ref_cache.pkg_websites}()},
 \code{\link{pkg_ref_cache.release_date}()},
 \code{\link{pkg_ref_cache.repo_base_url}()},
 \code{\link{pkg_ref_cache.source_control_url}()},
@@ -39,6 +38,7 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.vignettes}()},
 \code{\link{pkg_ref_cache.web_html}()},
 \code{\link{pkg_ref_cache.web_url}()},
+\code{\link{pkg_ref_cache.website_urls}()},
 \code{\link{pkg_ref_cache}()}
 }
 \concept{package reference cache}

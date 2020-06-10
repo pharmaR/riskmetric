@@ -7,9 +7,14 @@ pkg_ref_cache.covr_coverage <- function(x, ...) {
   UseMethod("pkg_ref_cache.covr_coverage")
 }
 
+
+
 #' @importFrom tools testInstalledPackage
 #' @importFrom covr package_coverage
 pkg_ref_cache.covr_coverage.pkg_source <- function(x, ...) {
+  # use custom 'code' to avoid triggering errors upon test failure.
+  # practically identical to covr::package_coverage with the exclusion of
+  # `if (result != 0L) show_failures(out_dir)`
   expr <- bquote(tools::testInstalledPackage(.(x$name), types = 'tests'))
-  covr::package_coverage(type = "none", code = deparse(expr))
+  covr::package_coverage(path = x$path, type = "none", code = deparse(expr))
 }

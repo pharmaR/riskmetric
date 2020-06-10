@@ -1,4 +1,4 @@
-#' Assess a package for an up-to-date NEWS file
+#' Assess a package for an acceptable license
 #'
 #' @eval roxygen_assess_family(
 #'   "license",
