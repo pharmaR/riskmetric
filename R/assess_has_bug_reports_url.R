@@ -4,14 +4,17 @@
 #' "a character value containing the BugReports field contents")
 #'
 #' @export
-assess_has_bug_reports_url <- function(x, ...){
-  has_bug_reports_url <- x$bug_reports_url
-  pkg_metric(has_bug_reports_url, class = "pkg_metric_has_bug_reports_url")
+assess_has_bug_reports_url <- function(x, ...) {
+  pkg_metric(
+    as.character(x$bug_reports_url),
+    class = "pkg_metric_has_bug_reports_url")
 }
 
 # assign a friendly name for assess column
 attr(assess_has_bug_reports_url,"column_name") <- "has_bug_reports_url"
 attr(assess_has_bug_reports_url,"label") <- "presence of a bug reports url in repository"
+
+
 
 #' Score a package for the presence of a bug report url
 #'
@@ -21,7 +24,7 @@ attr(assess_has_bug_reports_url,"label") <- "presence of a bug reports url in re
 #'   filled in
 #'
 #' @export
-score.pkg_metric_has_bug_reports_url <- function(x, ...) {
-  # Return a score of TRUE if a bug report url is found, false otherwise
-  length(x) > 0
+metric_score.pkg_metric_has_bug_reports_url <- function(x, ...) {
+  # Return a score of 1 if a bug report url is found, 0 otherwise
+  as.numeric(length(x) > 0)
 }

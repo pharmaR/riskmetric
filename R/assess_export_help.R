@@ -33,7 +33,7 @@ assess_export_help.pkg_install <- function(x, ...) {
 #' @return \code{1} if any NEWS files are found, otherwise \code{0}
 #'
 #' @export
-score.pkg_metric_export_help <- function(x, ...) {
+metric_score.pkg_metric_export_help <- function(x, ...) {
   sum(x, na.rm = TRUE) / length(x)
 }
 

@@ -21,7 +21,7 @@ Assess a package code coverage using the `covr` package
 assess_news_current(pkg_ref("riskmetric"))
 }
 \seealso{
-\code{\link{score.pkg_metric_news_current}}
+\code{\link{metric_score.pkg_metric_news_current}}
 
 Other \code{assess_*} functions: 
 \code{\link{assess_downloads_1yr}()},
@@ -35,6 +35,6 @@ Other \code{assess_*} functions:
 \code{\link{assess_last_30_bugs_status}()},
 \code{\link{assess_license}()},
 \code{\link{assess_news_current}()},
-\code{\link{assess}()}
+\code{\link{pkg_assess}()}
 }
 \concept{\code{assess_*} functions}

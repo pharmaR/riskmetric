@@ -14,21 +14,24 @@
 #' @examples
 #' \dontrun{
 #' library(dplyr)
-#' summarize_risk(score(assess(as_tibble(pkg_ref("riskmetric")))))
+#' summarize_scores(pkg_score(pkg_assess(as_tibble(pkg_ref("riskmetric")))))
 #' }
 #'
 #' # or, using the cleaner dplyr syntax
 #' \dontrun{
 #' library(dplyr)
 #' pkg_ref("riskmetric") %>%
-#'   as_tibble() %>%
-#'   assess() %>%
-#'   score() %>%
-#'   mutate(risk = summarize_risk(.))
+#'   pkg_assess() %>%
+#'   pkg_score()
 #' }
 #'
 #' @export
-summarize_risk <- function(data, weights = .risk_weights) {
+summarize_scores <- function(data, weights = .risk_weights) {
+  UseMethod("summarize_scores")
+}
+
+#' @export
+summarize_scores.data.frame <- function(data, weights = .risk_weights) {
   # re-weight for fields that are in the dataset
   weights <- weights[which(names(weights) %in% names(data))]
   weights <- weights / sum(weights, na.rm = TRUE)
@@ -42,6 +45,14 @@ summarize_risk <- function(data, weights = .risk_weights) {
     names(risk) <- data[["package"]]
 
   risk
+}
+
+#' @export
+summarize_scores.list <- function(data, weights = .risk_weights) {
+  weights <- weights[which(names(weights) %in% names(data))]
+  weights <- weights / sum(weights, na.rm = TRUE)
+
+  1 - sum(as.numeric(data[names(weights)]) * weights, na.rm = TRUE)
 }
 
 

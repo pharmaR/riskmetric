@@ -23,6 +23,6 @@ attributes(assess_has_website)$label <- "a vector of associated website urls"
 #' @return \code{1} if any website url is provided, otherwise \code{0}
 #'
 #' @export
-score.pkg_metric_has_website <- function(x, ...) {
+metric_score.pkg_metric_has_website <- function(x, ...) {
   as.numeric(length(x) > 0)
 }

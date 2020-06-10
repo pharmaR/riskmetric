@@ -34,12 +34,22 @@ bug_report_metadata <- function(bug_reports_data, x) {
 
 # Helper for scraping bug reports depending on url host name
 scrape_bug_reports <- function(x, ...) {
-  UseMethod("scrape_bug_reports", structure(1L, class = x$bug_reports_host))
+  disp_class <- x$bug_reports_host %||% "NULL"
+  UseMethod("scrape_bug_reports", structure(1L, class = disp_class))
 }
 
 
+
+scrape_bug_reports.NULL <- function(x, ...) {
+  stop("package DESCRIPTION does not have a BugReports field")
+}
+
+
+
 scrape_bug_reports.default <- function(x, ...) {
-  stop("BugReports host not implemented")
+  stop(sprintf(
+    "scraping bug reports fromm BugReports host '%s' not implemented",
+    x$bug_reports_host))
 }
 
 

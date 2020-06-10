@@ -67,7 +67,7 @@ this information between packages that use the `Authors` field and the
 `Authors@R` field, we would boil this information down to just a single logical
 value indicating whether or not a maintainer was identified.
 
-> Learn more: `?assess`
+> Learn more: `?pkg_assess`
 
 ### 4. Score our metrics
 
@@ -79,7 +79,7 @@ on a fixed scale from 0 (worst) to 1 (best).
 Given our maintainer metric example, we might rate a package as `1` (great)
 if no maintainer is identified or `0` (poor) if a maintainer is found.
 
-> Learn more: `?score`
+> Learn more: `?pkg_score`
 
 ### 5. Summarizing across metric scores
 
@@ -91,7 +91,7 @@ summarizing algorithm to consistently assess and compare packages.
 Notably, risk is an inverse scale from metric scores. High metric scores are
 favorable, whereas high risk scores are unfavorable. 
 
-> Learn more: `?summarize_risk`
+> Learn more: `?summarize_scores`
 
 
 
@@ -217,38 +217,59 @@ metadata, keeping track of every-growing objects or ensuring certain assessments
 get called before others.
 
 In addition to the metric-specific `assess_*` family of functions, a more
-comprehensive `assess` function is provided. Notably, `assess` accepts a
+comprehensive `pkg_assess` function is provided. Notably, `pkg_assess` accepts a
 `pkg_ref` object and list of assessments to apply, defaulting to
 `all_assessments()`, which returns a list of all `assess_*` functions in the
 `riskmetric` namespace.
 
 ```{r, eval = FALSE}
-assess(riskmetric_pkg_ref)
+pkg_assess(riskmetric_pkg_ref)
 ```
 
 ```{r, echo = FALSE}
-assess(pkg_ref("riskmetric"))
+pkg_assess(pkg_ref("riskmetric"))
+```
+
+Since that is a lot to take in, `pkg_assess` also operates on `tibble`s, 
+returning a cleaner output that might be easier to sort through when assessing
+a package.
+
+```{r, eval = FALSE}
+pkg_assess(as_tibble(riskmetric_pkg_ref))
+```
+
+```{r, echo = FALSE}
+pkg_assess(as_tibble(pkg_ref("riskmetric")))
 ```
 
 
 ## Scoring package metrics
 
-After a metric has been collected, we `score` the metric to convert it to a 
+After a metric has been collected, we "score" the metric to convert it to a 
 quantified representation of risk. 
 
-There is a single scoring function, `score`, that dispatches based on the class
-of the metric that is passed to it to interpret the atomic metric result.
+There is a single scoring function, `metric_score`, that dispatches based on the
+class of the metric that is passed to it to interpret the atomic metric result.
 
 ```{r}
-score(riskmetric_export_help_metric)
+metric_score(riskmetric_export_help_metric)
 ```
 
-For convenience, `score` can also operate on the `tibble` produced by `assess`,
-providing a new `tibble` with scored metrics. 
+For convenience, `pkg_score` is provided as a convenience to operate on
+`pkg_ref` objects directly. It can also operate on the `tibble` produced by
+`pkg_assess` applied to a `pkg_ref` `tibble`, providing a new `tibble` with
+scored metrics.
 
-```{r, echo = FALSE}
-score(assess(pkg_ref("riskmetric")))
+```{r, warning  = FALSE}
+pkg_score(pkg_assess(as_tibble(pkg_ref("riskmetric"))))
 ```
+
+> Note that `pkg_assess` and `pkg_score` accepts an `error_handler` argument
+which determines how errors are escalated for communication. We've chosen to
+default to being cautious, displaying warnings liberally to ensure thorough
+documentation of the risk assessment process. If these warnings are bothersome,
+there are alternative reporting schemes in the `assessment_error_*` and
+`score_error_*` families of functions.
 
 # Cohort assessments
 
@@ -271,42 +292,25 @@ package_tbl <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
 
 ## The `riskmetric` workflow on multiple packages
 
-`assess` and `score` can operate on `tibble`s, making it easy to simultaneously
-test an entire cohort of packages at once. 
+`pkg_assess` and `pkg_score` can operate on `tibble`s, making it easy to
+simultaneously test an entire cohort of packages at once.
 
-```{r}
+```{r, warning = FALSE}
 package_tbl %>%
-  assess() %>%
-  score()
+  pkg_assess() %>%
+  pkg_score()
 ```
 
-## Summarizing risk
+Notice that a summary column, `pkg_score`, is included in addition to our metric
+scores. This value is  a shorthand for aggregating a weighted average of risk
+scores across `tibble` columns using `summarize_scores`.
 
-Finally, we provide the `summarize_risk` function, a shorthand for aggregating
-a weighted average of risk scores across `tibble` columns. We specify a default
-set of weights, but these can be set modified to reconfigure this aggregation.
-
-`summarize_risk` returns a named `numeric` vector of summarized scores for each 
-of the packages.
-
-```{r}
+```{r, warning = FALSE}
 package_tbl %>%
-  assess() %>%
-  score() %>%
-  summarize_risk()
+  pkg_assess() %>%
+  pkg_score() %>%
+  summarize_scores()
 ```
-
-Naturally, using `dplyr::mutate`, we can store this information back into the
-package `tibble` for consideration among the individual scores.
-
-```{r}
-package_tbl %>%
-  assess() %>%
-  score() %>%
-  mutate(risk = summarize_risk(.))
-```
-
-
 
 # How you can help...
 

@@ -30,6 +30,6 @@ assess_has_vignettes.pkg_ref <- function(x, ...) {
 #' @return \code{1} if any Vignettes files are found, otherwise \code{0}
 #'
 #' @export
-score.pkg_metric_has_vignettes <- function(x, ...) {
+metric_score.pkg_metric_has_vignettes <- function(x, ...) {
   as.numeric(x > 0)
 }
