@@ -1,0 +1,12 @@
+Package: test_package_2
+Title: A Test Package Used to Test Source Assessments
+Version: 0.0.0.9000
+Authors@R: "Eli Miller <first.last@example.com> [aut, cre]"
+Description: What the package does (one paragraph)
+Depends:
+    R (>= 3.1.2)
+License: CC BY 2.0
+LazyData: true
+Suggests:
+    testthat
+RoxygenNote: 5.0.1
