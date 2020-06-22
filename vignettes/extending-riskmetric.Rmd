@@ -53,7 +53,7 @@ which other assessments can refer to or build off of.
 Importantly, not all references to packages are equal. We can collect
 information given the source code, a locally installed package or by scraping
 data about a package from the web. There's a hierarchy of subclasses that
-encapsulate these disperate use cases. 
+encapsulate these disparate use cases.
 
 ```
 pkg_ref
