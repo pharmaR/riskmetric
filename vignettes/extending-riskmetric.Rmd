@@ -271,7 +271,7 @@ you'd like to further fine-tune your summarization using a nonlinear function.
 
 The `riskmetric` package was designed to be easily extensible. You can develop
 dispatched functions in your development environment, hone them into well formed
-assessments and contribute them back to the core `riskmetrics` package once
+assessments and contribute them back to the core `riskmetric` package once
 you're done.
 
 If you'd like feedback before embarking on developing a new metric, please feel
