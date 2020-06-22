@@ -234,7 +234,7 @@ metric_score.pkg_metric_name_first_letter <- function(x, ...) {
 # Adding our Assessment to the `pkg_assess()` Verb
 
 The `assess` function accepts a list of functions to apply. `riskmetric`
-provides a shorthande, `all_assessments()` to collect all the included
+provides a shorthand, `all_assessments()`, to collect all the included
 assessment functions, and you're free to add to that list to customize your own
 assessment toolkit.
 
