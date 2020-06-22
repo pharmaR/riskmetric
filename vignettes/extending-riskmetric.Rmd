@@ -178,7 +178,7 @@ return the newly derived value.
 package$description
 ```
 
-Because the `pkg_ref` object stores an environment, caching this values once
+Because the `pkg_ref` object stores an environment, caching this value once
 makes them available for any future attempts to access the field. This is
 helpful because we, as developers of the package, don't need to think critically
 about the order that assessments are performed, and allows users to redefine the
