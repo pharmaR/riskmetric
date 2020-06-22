@@ -61,11 +61,11 @@ pkg_ref
  ├─ pkg_install
  └─ pkg_remote
      ├─ pkg_cran_remote
-     └─ pkg_bioc_remote
+     └─ pkg_bioc_remoteimplementations
 ```
 
 These subclasses direct the behavior of all downstream operations and provides
-flexibility about how to bucket the implmentations of how similar data can be
+flexibility about how to bucket the implementations of how similar data can be
 collected from a number of potential sources. For example, to determine the
 author of a package it would be easiest to look at a package's `DESCRIPTION`
 file where this content is maintained. However, without access to the source or
