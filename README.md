@@ -50,9 +50,9 @@ library(riskmetric)
 
 pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble() %>%
-  assess() %>%
-  score() %>%
-  mutate(risk = summarize_risk(.))
+  pkg_assess() %>%
+  pkg_score() %>%
+  mutate(risk = summarize_scores(.))
 ```
 
 ## Get Involved
