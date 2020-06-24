@@ -57,7 +57,7 @@ pkg_ref(c("riskmetric", "utils", "tools")) %>%
 
 ## Get Involved
 
-We had a bi-weekly sprint meeting for developer to discuss the progress.
+We have a bi-weekly sprint meeting for developer to discuss the progress.
 
 * Contact `yilong.zhang@merck.com` to add into the meeting invitation. 
 * Date: 1st and 3rd Wednesday of the month.
