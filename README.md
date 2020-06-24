@@ -22,9 +22,9 @@ context for validation within regulated industries.
 We separate three steps in the workflow to assess the risk of an R package using `riskmetric`:
 
 1. **Finding a source for package information (installed package or CRAN/git source)** `pkg_ref()`
-1. **Assessing the package under validation criteria** `assess()`  
-1. **Scoring assessment criteria**  `score()`
-1. **Summarize scores into an aggregate risk metric** `summarize_risk()`
+1. **Assessing the package under validation criteria** `pkg_assess()`
+1. **Scoring assessment criteria** `pkg_score()`
+1. **Summarize scores into an aggregate risk metric** `summarize_scores()`
 
 The results will be a datasets of validation criteria and its overall risk score for each package as
 showin in the example below. 
