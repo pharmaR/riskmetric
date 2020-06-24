@@ -31,7 +31,7 @@ showin in the example below.
 
 ## Installation
 
-`riskmetric` is not yet on CRAN. Until it is, install using `devtools`.
+`riskmetric` is not yet on CRAN. Until it is, install it using `devtools`.
 
 ```r
 devtools::install_github("pharmaR/riskmetric")
