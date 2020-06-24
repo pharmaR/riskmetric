@@ -57,9 +57,9 @@ pkg_ref(c("riskmetric", "utils", "tools")) %>%
 
 ## Get Involved
 
-We have a bi-weekly sprint meeting for developer to discuss the progress.
+We have a bi-weekly sprint meeting for developers to discuss the progress.
 
-* Contact `yilong.zhang@merck.com` to add into the meeting invitation. 
+* Contact `yilong.zhang@merck.com` to be added to the meeting.
 * Date: 1st and 3rd Wednesday of the month.
 * Meeting Time: 12:00PM - 12:30PM EST
 * [Project Planning Meeting Structure](https://github.com/pharmaR/riskmetric/issues/57) 
