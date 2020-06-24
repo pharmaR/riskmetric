@@ -26,8 +26,8 @@ We separate three steps in the workflow to assess the risk of an R package using
 1. **Scoring assessment criteria** `pkg_score()`
 1. **Summarize scores into an aggregate risk metric** `summarize_scores()`
 
-The results will be a datasets of validation criteria and its overall risk score for each package as
-showin in the example below. 
+The results will be assembled in a dataset of validation criteria containing an
+overall risk score for each package as shown in the example below.
 
 ## Installation
 
