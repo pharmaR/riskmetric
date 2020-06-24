@@ -19,7 +19,7 @@ exploring the heterogeneity of code quality, and begin a broader conversation
 about the validation of R packages. Primarily, this effort aims to provide some
 context for validation within regulated industries.
 
-We sperate three steps in the workflow to assess the risk of an R package using `riskmetric`:
+We separate three steps in the workflow to assess the risk of an R package using `riskmetric`:
 
 1. **Finding a source for package information (installed package or CRAN/git source)** `pkg_ref()`
 1. **Assessing the package under validation criteria** `assess()`  
