@@ -35,6 +35,6 @@ assess_covr_coverage.pkg_source <- function(x, ...) {
 #' @return A \code{numeric}
 #'
 #' @export
-score.pkg_metric_covr_coverage <- function(x, ...) {
+metric_score.pkg_metric_covr_coverage <- function(x, ...) {
   x$totalcoverage / 100
 }

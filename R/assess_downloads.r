@@ -43,7 +43,7 @@ assess_downloads_1yr.pkg_ref <- function(x, ...) {
 #'   volume) converting the number of downloads.
 #'
 #' @export
-score.pkg_metric_downloads_1yr <- function(x, ...) {
+metric_score.pkg_metric_downloads_1yr <- function(x, ...) {
   # simplification from logistic: 1 - 1 / (1 + exp(log(x)-log(1.5e5)))
   1 - 1.5e5 / (x + 1.5e5)
 }

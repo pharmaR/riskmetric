@@ -23,6 +23,6 @@ attributes(assess_has_maintainer)$label <- "a vector of associated maintainers"
 #' @return \code{1} if any maintainer is provided, otherwise \code{0}
 #'
 #' @export
-score.pkg_metric_has_maintainer <- function(x, ...) {
+metric_score.pkg_metric_has_maintainer <- function(x, ...) {
   as.numeric(length(x) > 0)
 }

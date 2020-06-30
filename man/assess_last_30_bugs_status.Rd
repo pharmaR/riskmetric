@@ -23,7 +23,7 @@ assess_last_30_bugs_status(pkg_ref("riskmetric"))
 }
 }
 \seealso{
-\code{\link{score.pkg_metric_last_30_bugs_status}}
+\code{\link{metric_score.pkg_metric_last_30_bugs_status}}
 
 Other \code{assess_*} functions: 
 \code{\link{assess_covr_coverage}()},
@@ -37,6 +37,6 @@ Other \code{assess_*} functions:
 \code{\link{assess_has_website}()},
 \code{\link{assess_license}()},
 \code{\link{assess_news_current}()},
-\code{\link{assess}()}
+\code{\link{pkg_assess}()}
 }
 \concept{\code{assess_*} functions}

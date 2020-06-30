@@ -23,6 +23,6 @@ attributes(assess_has_source_control)$label <- "a vector of associated source co
 #' @return \code{1} if any source control url is provided, otherwise \code{0}
 #'
 #' @export
-score.pkg_metric_has_source_control <- function(x, ...) {
+metric_score.pkg_metric_has_source_control <- function(x, ...) {
   as.numeric(length(x) > 0)
 }

@@ -1,3 +1,12 @@
+#' If not NULL else
+#'
+#' A shorthand for a common comparison
+#'
+#' @name if_not_null_else
+`%||%` <- function(lhs, rhs) if (is.null(lhs)) rhs else lhs
+
+
+
 #' Accessor for tools namespace
 #'
 #' used internally for

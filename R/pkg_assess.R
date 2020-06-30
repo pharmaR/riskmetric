@@ -22,7 +22,7 @@ roxygen_assess_family <- function(name,
     dontrun = FALSE) {
 
   assess_func <- sprintf("assess_%s", name)
-  score_func <- sprintf("score.pkg_metric_%s", name)
+  score_func <- sprintf("metric_score.pkg_metric_%s", name)
   example_template <- if (dontrun) {
     "@examples \n\\dontrun{\nassess_%s(pkg_ref(\"%s\"))\n}"
   } else {
@@ -32,15 +32,16 @@ roxygen_assess_family <- function(name,
 
   if (!assess_func %in% getNamespaceExports(utils::packageName()) ||
       !score_func %in% getNamespaceExports(utils::packageName())) {
-    stop(sprintf(paste0(
-      "All assess_* functions must have a corresponding score.* method ",
-      "implemented.\n\n",
-      "To remove build errors, ensure that the following functions are ",
-      "implemented:\n\n",
-      "  %s()\n",
-      "  %s()\n")),
+    stop(sprintf(
+      paste0(
+        "All assess_* functions must have a corresponding score.* method ",
+        "implemented.\n\n",
+        "To remove build errors, ensure that the following functions are ",
+        "implemented:\n\n",
+        "  %s()\n",
+        "  %s()\n"),
       assess_func,
-      score_func)
+      score_func))
   }
 
   c("@param x a \\code{pkg_ref} package reference object",
@@ -148,12 +149,56 @@ use_assessments_column_names <- function(x) {
 #' @importFrom tibble as_tibble
 #' @importFrom vctrs new_list_of
 #' @export
-assess <- function(x, assessments = all_assessments(), ...,
+pkg_assess <- function(x, assessments = all_assessments(), ...,
+    error_handler = assessment_error_empty) {
+  UseMethod("pkg_assess")
+}
+
+
+
+#' @export
+pkg_assess.pkg_ref <- function(x, assessments = all_assessments(), ...,
     error_handler = assessment_error_empty) {
 
-  x <- tibble::as_tibble(x)
   assessments <- use_assessments_column_names(assessments)
+  xout <- list()
 
+  for (i in seq_along(assessments)) {
+    assessment_f <- assessments[[i]]
+    assessment_name <- names(assessments)[[i]]
+
+    xout[[assessment_name]] <- tryCatch({
+      assessment_f(x)
+    }, error = function(e) {
+      error_handler(e, x$name, assessment_name)
+    })
+
+    attributes(xout[[assessment_name]])$label <- attributes(assessment_f)$label
+  }
+
+  vctrs::new_list_of(xout,
+    structure(logical(), class = "pkg_metric"),
+    class = "list_of_pkg_metric")
+}
+
+
+
+#' @export
+pkg_assess.list_of_pkg_ref <- function(x, assessments = all_assessments(), ...,
+    error_handler = assessment_error_empty) {
+
+  pkg_assess(tibble::as_tibble(x),
+    assessments = assessments,
+    error_handler = error_handler)
+}
+
+
+
+#' @export
+pkg_assess.tbl_df <- function(x, assessments = all_assessments(), ...,
+    error_handler = assessment_error_empty) {
+
+  assessments <- use_assessments_column_names(assessments)
   for (i in seq_along(assessments)) {
     assessment_f <- assessments[[i]]
     assessment_name <- names(assessments)[[i]]
