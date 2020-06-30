@@ -10,8 +10,8 @@ pkg_ref_cache.website_urls <- function(x, name, ...) {
 
 
 pkg_ref_cache.website_urls.pkg_remote <- function(x, name, ...) {
-  db  <- rvest::html_table(x$web_html)[[1]]
-  url <- db[grep("URL",db[,1], ignore.case = TRUE) ,2]
+  url_xpath <- "//td[.='URL:']/following::td[1]/a"
+  url  <- xml_text(xml_find_all(x$web_html, url_xpath))
   if(length(url) == 0) return(character(0L))
   url
 }

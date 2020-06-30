@@ -10,8 +10,8 @@ pkg_ref_cache.maintainer <- function(x, name, ...) {
 
 
 pkg_ref_cache.maintainer.pkg_remote <- function(x, name, ...) {
-  db  <- rvest::html_table(x$web_html)[[1]]
-  maintainer <- db[grep("Maintainer",db[,1], ignore.case = TRUE) ,2]
+  maintainer_xpath <- "//td[.='Maintainer:']/following::td[1]"
+  maintainer <- xml_text(xml_find_all(x$web_html, maintainer_xpath))
   maintainer
 }
 
