@@ -11,7 +11,7 @@ pkg_ref_cache.website_urls <- function(x, name, ...) {
 
 pkg_ref_cache.website_urls.pkg_remote <- function(x, name, ...) {
   url_xpath <- "//td[.='URL:']/following::td[1]/a"
-  url  <- xml_text(xml_find_all(x$web_html, url_xpath))
+  url  <- xml2::xml_text(xml2::xml_find_all(x$web_html, url_xpath))
   if(length(url) == 0) return(character(0L))
   url
 }

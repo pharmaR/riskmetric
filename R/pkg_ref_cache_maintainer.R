@@ -11,7 +11,7 @@ pkg_ref_cache.maintainer <- function(x, name, ...) {
 
 pkg_ref_cache.maintainer.pkg_remote <- function(x, name, ...) {
   maintainer_xpath <- "//td[.='Maintainer:']/following::td[1]"
-  maintainer <- xml_text(xml_find_all(x$web_html, maintainer_xpath))
+  maintainer <- xml2::xml_text(xml2::xml_find_all(x$web_html, maintainer_xpath))
   maintainer
 }
 
