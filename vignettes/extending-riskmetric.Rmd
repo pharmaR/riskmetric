@@ -33,7 +33,7 @@ print_riskmetric_function <- function(names) {
 `riskmetric` is designed to be readily extensible. This is done through use of
 the S3 method dispatch system and a conscious acknowledgement of the varying
 needs that someone may have when assessing package risk. With this in mind,
-every user facing function is designed first and foremost to be flexible.
+every user-facing function is designed first and foremost to be flexible.
 
 Here we'll walk through a trivial example where we'll extend `riskmetric` to add
 a new assessment, scoring and risk summary function to determine the risk
@@ -53,7 +53,7 @@ which other assessments can refer to or build off of.
 Importantly, not all references to packages are equal. We can collect
 information given the source code, a locally installed package or by scraping
 data about a package from the web. There's a hierarchy of subclasses that
-encapsulate these disperate use cases. 
+encapsulate these disparate use cases.
 
 ```
 pkg_ref
@@ -65,7 +65,7 @@ pkg_ref
 ```
 
 These subclasses direct the behavior of all downstream operations and provides
-flexibility about how to bucket the implmentations of how similar data can be
+flexibility about how to bucket the implementations of how similar data can be
 collected from a number of potential sources. For example, to determine the
 author of a package it would be easiest to look at a package's `DESCRIPTION`
 file where this content is maintained. However, without access to the source or
@@ -178,7 +178,7 @@ return the newly derived value.
 package$description
 ```
 
-Because the `pkg_ref` object stores an environment, caching this values once
+Because the `pkg_ref` object stores an environment, caching this value once
 makes them available for any future attempts to access the field. This is
 helpful because we, as developers of the package, don't need to think critically
 about the order that assessments are performed, and allows users to redefine the
@@ -234,7 +234,7 @@ metric_score.pkg_metric_name_first_letter <- function(x, ...) {
 # Adding our Assessment to the `pkg_assess()` Verb
 
 The `assess` function accepts a list of functions to apply. `riskmetric`
-provides a shorthande, `all_assessments()` to collect all the included
+provides a shorthand, `all_assessments()`, to collect all the included
 assessment functions, and you're free to add to that list to customize your own
 assessment toolkit.
 
@@ -271,7 +271,7 @@ you'd like to further fine-tune your summarization using a nonlinear function.
 
 The `riskmetric` package was designed to be easily extensible. You can develop
 dispatched functions in your development environment, hone them into well formed
-assessments and contribute them back to the core `riskmetrics` package once
+assessments and contribute them back to the core `riskmetric` package once
 you're done.
 
 If you'd like feedback before embarking on developing a new metric, please feel

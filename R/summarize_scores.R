@@ -22,7 +22,8 @@
 #' library(dplyr)
 #' pkg_ref("riskmetric") %>%
 #'   pkg_assess() %>%
-#'   pkg_score()
+#'   pkg_score() %>%
+#'   summarize_scores()
 #' }
 #'
 #' @export

@@ -19,19 +19,19 @@ exploring the heterogeneity of code quality, and begin a broader conversation
 about the validation of R packages. Primarily, this effort aims to provide some
 context for validation within regulated industries.
 
-We sperate three steps in the workflow to assess the risk of an R package using `riskmetric`:
+We separate three steps in the workflow to assess the risk of an R package using `riskmetric`:
 
 1. **Finding a source for package information (installed package or CRAN/git source)** `pkg_ref()`
-1. **Assessing the package under validation criteria** `assess()`  
-1. **Scoring assessment criteria**  `score()`
-1. **Summarize scores into an aggregate risk metric** `summarize_risk()`
+1. **Assessing the package under validation criteria** `pkg_assess()`
+1. **Scoring assessment criteria** `pkg_score()`
+1. **Summarize scores into an aggregate risk metric** `summarize_scores()`
 
-The results will be a datasets of validation criteria and its overall risk score for each package as
-showin in the example below. 
+The results will be assembled in a dataset of validation criteria containing an
+overall risk score for each package as shown in the example below.
 
 ## Installation
 
-`riskmetric` is not yet on CRAN. Until it is, install using `devtools`.
+`riskmetric` is not yet on CRAN. Until it is, install it using `devtools`.
 
 ```r
 devtools::install_github("pharmaR/riskmetric")
@@ -50,16 +50,16 @@ library(riskmetric)
 
 pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble() %>%
-  assess() %>%
-  score() %>%
-  mutate(risk = summarize_risk(.))
+  pkg_assess() %>%
+  pkg_score() %>%
+  mutate(risk = summarize_scores(.))
 ```
 
 ## Get Involved
 
-We had a bi-weekly sprint meeting for developer to discuss the progress.
+We have a bi-weekly sprint meeting for developers to discuss the progress.
 
-* Contact `yilong.zhang@merck.com` to add into the meeting invitation. 
+* Contact `yilong.zhang@merck.com` to be added to the meeting.
 * Date: 1st and 3rd Wednesday of the month.
 * Meeting Time: 12:00PM - 12:30PM EST
 * [Project Planning Meeting Structure](https://github.com/pharmaR/riskmetric/issues/57) 
