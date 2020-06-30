@@ -1,3 +1,11 @@
+#' A subclass wrapping an error with an additional parent class
+#'
+pkg_metric_error <- function(e) {
+  pkg_metric(e, class = "pkg_metric_error")
+}
+
+
+
 #' Error handler for assessments with safe fallback
 #'
 #' @inheritParams format_assessment_message

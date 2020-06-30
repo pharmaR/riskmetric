@@ -6,25 +6,12 @@
 #'
 #' @export
 assess_license <- function(x, ...) {
-  UseMethod("assess_license")
+  pkg_metric(x$license, class = "pkg_metric_license")
 }
 
 attributes(assess_license)$column_name <- "license"
 attributes(assess_license)$label <-
   "software is released with an acceptable license"
-
-
-
-#' @export
-assess_license.pkg_ref <- function(x, ...) {
-  license <- if ("License" %in% colnames(x$description)) {
-    unname(x$description[,"License"])
-  } else {
-    NA_character_
-  }
-
-  pkg_metric(license, class = "pkg_metric_license")
-}
 
 
 

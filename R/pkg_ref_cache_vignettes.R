@@ -10,7 +10,7 @@ pkg_ref_cache.vignettes <- function(x, name, ...) {
 
 
 pkg_ref_cache.vignettes.pkg_remote <- function(x, name, ...) {
-  vignettes_from_url(x$web_url)
+  vignettes_from_html(x$web_html)
 }
 
 
@@ -51,13 +51,15 @@ vignettes_from_dir <- function(path) {
   file_path[tolower(filename) != tolower("index")]
 }
 
+
+
 #' Build a List of Vignettes Files Discovered Within a Package Website
 #'
 #' @param web_html a \code{pkg_ref$web_html} document containing links to Vignettes files
 #'
 #' @return a vector of Vignettes files
 #'
-vignettes_from_url <- function(web_html) {
+vignettes_from_html <- function(web_html) {
 
   nodes <- xml2::xml_find_all(web_html, xpath = '//a[contains(@href,"vignettes")]')
   if (!length(nodes)) return(c())

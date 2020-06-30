@@ -12,8 +12,8 @@ assess_downloads_1yr <- function(x, ...){
 }
 
 # assign a friendly name for assess column
-attr(assess_downloads_1yr,"column_name") <- "downloads_1yr"
-attr(assess_downloads_1yr,"label") <- "number of downloads in the past year"
+attr(assess_downloads_1yr, "column_name") <- "downloads_1yr"
+attr(assess_downloads_1yr, "label") <- "number of downloads in the past year"
 
 
 
@@ -45,5 +45,5 @@ assess_downloads_1yr.pkg_ref <- function(x, ...) {
 #' @export
 metric_score.pkg_metric_downloads_1yr <- function(x, ...) {
   # simplification from logistic: 1 - 1 / (1 + exp(log(x)-log(1.5e5)))
-  1 - 1.5e5 / (x + 1.5e5)
+  1 - 1.5 / (x / 1e5 + 1.5)
 }

@@ -41,6 +41,20 @@ metric_score.pkg_metric_error <- function(x, ...,
 
 
 
+#' @export
+metric_score.pkg_metric_na <- function(x, ...) {
+  structure(NA_real_, class = c("pkg_score_todo", "numeric"))
+}
+
+
+
+#' @export
+metric_score.pkg_metric_todo <- function(x, ...) {
+  structure(NA_real_, class = c("pkg_score_na", "numeric"))
+}
+
+
+
 #' Default score error handling, emitting a warning and returning 0
 #'
 #' @inheritParams metric_score

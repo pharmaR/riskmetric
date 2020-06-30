@@ -15,6 +15,14 @@ attributes(assess_export_help)$label <- "exported objects have documentation"
 
 
 #' @export
+assess_export_help.pkg_remote <- function(x, ...) {
+  pkg_metric_na(
+    "Cannot scrape exported documentation from a remote package webpage")
+}
+
+
+
+#' @export
 assess_export_help.pkg_install <- function(x, ...) {
   # ignore S3-dispatched methods
   exports <- getNamespaceExports(x$name)
