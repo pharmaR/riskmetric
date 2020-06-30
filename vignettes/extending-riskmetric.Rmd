@@ -61,7 +61,7 @@ pkg_ref
  ├─ pkg_install
  └─ pkg_remote
      ├─ pkg_cran_remote
-     └─ pkg_bioc_remoteimplementations
+     └─ pkg_bioc_remote
 ```
 
 These subclasses direct the behavior of all downstream operations and provides
