@@ -17,7 +17,7 @@ pkg_metric_error <- function(e) {
 #'
 #' @export
 assessment_error_empty <- function(e, ...) {
-  pkg_metric(e, class = "pkg_metric_error")
+  pkg_metric_error(e)
 }
 
 
