@@ -25,7 +25,6 @@ When a single value is provided, a single \code{pkg_ref} object is
 Convert into a package object
 }
 \seealso{
-Other pkg_ref: 
-\code{\link{pkg_ref}()}
+Other pkg_ref: \code{\link{pkg_ref}}
 }
 \concept{pkg_ref}

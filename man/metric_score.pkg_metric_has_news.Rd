@@ -21,17 +21,16 @@ Coerce the number of news files to binary indication of valid NEWS files
 metric_score(assess_has_news(pkg_ref("riskmetric")))
 }
 \seealso{
-Other \code{metric_score.*} functions: 
-\code{\link{metric_score.pkg_metric_covr_coverage}()},
-\code{\link{metric_score.pkg_metric_downloads_1yr}()},
-\code{\link{metric_score.pkg_metric_export_help}()},
-\code{\link{metric_score.pkg_metric_has_bug_reports_url}()},
-\code{\link{metric_score.pkg_metric_has_maintainer}()},
-\code{\link{metric_score.pkg_metric_has_source_control}()},
-\code{\link{metric_score.pkg_metric_has_vignettes}()},
-\code{\link{metric_score.pkg_metric_has_website}()},
-\code{\link{metric_score.pkg_metric_last_30_bugs_status}()},
-\code{\link{metric_score.pkg_metric_license}()},
-\code{\link{metric_score.pkg_metric_news_current}()}
+Other \code{metric_score.*} functions: \code{\link{metric_score.pkg_metric_covr_coverage}},
+  \code{\link{metric_score.pkg_metric_downloads_1yr}},
+  \code{\link{metric_score.pkg_metric_export_help}},
+  \code{\link{metric_score.pkg_metric_has_bug_reports_url}},
+  \code{\link{metric_score.pkg_metric_has_maintainer}},
+  \code{\link{metric_score.pkg_metric_has_source_control}},
+  \code{\link{metric_score.pkg_metric_has_vignettes}},
+  \code{\link{metric_score.pkg_metric_has_website}},
+  \code{\link{metric_score.pkg_metric_last_30_bugs_status}},
+  \code{\link{metric_score.pkg_metric_license}},
+  \code{\link{metric_score.pkg_metric_news_current}}
 }
 \concept{\code{metric_score.*} functions}

@@ -18,8 +18,7 @@ a pkg_metric object of pkg_metric_error subclass
 Error handler for assessments with safe fallback
 }
 \seealso{
-Other assessment error handlers: 
-\code{\link{assessment_error_as_warning}()},
-\code{\link{assessment_error_throw}()}
+Other assessment error handlers: \code{\link{assessment_error_as_warning}},
+  \code{\link{assessment_error_throw}}
 }
 \concept{assessment error handlers}

@@ -21,8 +21,7 @@ a pkg_metric object of pkg_metric_error subclass
 Error handler for assessments to deescalate errors to warnings
 }
 \seealso{
-Other assessment error handlers: 
-\code{\link{assessment_error_empty}()},
-\code{\link{assessment_error_throw}()}
+Other assessment error handlers: \code{\link{assessment_error_empty}},
+  \code{\link{assessment_error_throw}}
 }
 \concept{assessment error handlers}

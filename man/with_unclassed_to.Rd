@@ -4,7 +4,8 @@
 \alias{with_unclassed_to}
 \title{Evaluate an expression after first removing a range of S3 classes}
 \usage{
-with_unclassed_to(x, .class = 1:length(class(x)), expr, envir = parent.frame())
+with_unclassed_to(x, .class = 1:length(class(x)), expr,
+  envir = parent.frame())
 }
 \arguments{
 \item{x}{a structured S3-classed object}

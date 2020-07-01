@@ -4,12 +4,8 @@
 \alias{pkg_assess}
 \title{Apply assess_* family of functions to a package reference}
 \usage{
-pkg_assess(
-  x,
-  assessments = all_assessments(),
-  ...,
-  error_handler = assessment_error_empty
-)
+pkg_assess(x, assessments = all_assessments(), ...,
+  error_handler = assessment_error_empty)
 }
 \arguments{
 \item{x}{A single \code{\link{pkg_ref}} object or
@@ -55,18 +51,17 @@ assessment applied.
 }
 
 \seealso{
-Other \code{assess_*} functions: 
-\code{\link{assess_covr_coverage}()},
-\code{\link{assess_downloads_1yr}()},
-\code{\link{assess_export_help}()},
-\code{\link{assess_has_bug_reports_url}()},
-\code{\link{assess_has_maintainer}()},
-\code{\link{assess_has_news}()},
-\code{\link{assess_has_source_control}()},
-\code{\link{assess_has_vignettes}()},
-\code{\link{assess_has_website}()},
-\code{\link{assess_last_30_bugs_status}()},
-\code{\link{assess_license}()},
-\code{\link{assess_news_current}()}
+Other \code{assess_*} functions: \code{\link{assess_covr_coverage}},
+  \code{\link{assess_downloads_1yr}},
+  \code{\link{assess_export_help}},
+  \code{\link{assess_has_bug_reports_url}},
+  \code{\link{assess_has_maintainer}},
+  \code{\link{assess_has_news}},
+  \code{\link{assess_has_source_control}},
+  \code{\link{assess_has_vignettes}},
+  \code{\link{assess_has_website}},
+  \code{\link{assess_last_30_bugs_status}},
+  \code{\link{assess_license}},
+  \code{\link{assess_news_current}}
 }
 \concept{\code{assess_*} functions}
