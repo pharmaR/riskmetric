@@ -33,7 +33,7 @@ summarize_scores <- function(data, weights = .risk_weights) {
 
 #' @export
 summarize_scores.data.frame <- function(data, weights = .risk_weights) {
-  weights <- find_all_weights(data, weights)
+  weights <- add_default_weights(data, weights)
 
   # calculate 'quality' and subtract from 1 to get 'risk'
   qual <- colSums(apply(data[names(weights)], 1L, `*`, weights), na.rm = TRUE)
@@ -48,7 +48,7 @@ summarize_scores.data.frame <- function(data, weights = .risk_weights) {
 
 #' @export
 summarize_scores.list <- function(data, weights = .risk_weights) {
-  weights <- find_all_weights(data, weights)
+  weights <- add_default_weights(data, weights)
 
   1 - sum(as.numeric(data[names(weights)]) * weights, na.rm = TRUE)
 }
@@ -79,7 +79,7 @@ summarize_scores.list <- function(data, weights = .risk_weights) {
 #' @return a named vector with weights for each score column. If a
 #' weight is not provided by the user, it will default to 1.
 #'
-find_all_weights <- function(data, weights) {
+add_default_weights <- function(data, weights) {
   # re-weight for fields that are in the dataset
   weights <- weights[which(names(weights) %in% names(data))]
 
