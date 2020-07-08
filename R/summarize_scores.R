@@ -48,8 +48,7 @@ summarize_scores.data.frame <- function(data, weights = .risk_weights) {
 
 #' @export
 summarize_scores.list <- function(data, weights = .risk_weights) {
-  weights <- weights[which(names(weights) %in% names(data))]
-  weights <- weights / sum(weights, na.rm = TRUE)
+  weights <- find_all_weights(data, weights)
 
   1 - sum(as.numeric(data[names(weights)]) * weights, na.rm = TRUE)
 }
@@ -71,8 +70,9 @@ summarize_scores.list <- function(data, weights = .risk_weights) {
 
 #' create vector of weights based on the data columms and user-given weights
 #'
-#' @param data a \code{\link[tibble]{tibble}} of scored assessments whose column
-#'   names match those provided by riskmetric's \code{\link{assess}} function.
+#' @param data a \code{\link[tibble]{tibble}} or list of scored assessments
+#'   whose column names match those provided by riskmetric's \code{\link{assess}}
+#'   function.
 #' @param weights a set of numeric weights to give to each score column when
 #'   calculating risk.
 #'
