@@ -33,9 +33,7 @@ summarize_scores <- function(data, weights = .risk_weights) {
 
 #' @export
 summarize_scores.data.frame <- function(data, weights = .risk_weights) {
-  # re-weight for fields that are in the dataset
-  weights <- weights[which(names(weights) %in% names(data))]
-  weights <- weights / sum(weights, na.rm = TRUE)
+  weights <- find_all_weights(data, weights)
 
   # calculate 'quality' and subtract from 1 to get 'risk'
   qual <- colSums(apply(data[names(weights)], 1L, `*`, weights), na.rm = TRUE)
@@ -70,3 +68,29 @@ summarize_scores.list <- function(data, weights = .risk_weights) {
   export_help = 2,
   has_news = 1,
   covr_coverage = 3)
+
+#' create vector of weights based on the data columms and user-given weights
+#'
+#' @param data a \code{\link[tibble]{tibble}} of scored assessments whose column
+#'   names match those provided by riskmetric's \code{\link{assess}} function.
+#' @param weights a set of numeric weights to give to each score column when
+#'   calculating risk.
+#'
+#' @return a named vector with weights for each score column. If a
+#' weight is not provided by the user, it will default to 1.
+#'
+find_all_weights <- function(data, weights) {
+  # re-weight for fields that are in the dataset
+  weights <- weights[which(names(weights) %in% names(data))]
+
+  # add default weights of 1 to those assessments not in .risk_weights
+  assessments <- vapply(data, inherits, logical(1L), "pkg_score")
+  assessments <- names(assessments)[assessments]
+  all_weights <- rep(1, length(assessments))
+  names(all_weights) <- assessments
+  all_weights[names(all_weights) %in% names(weights)] <- weights
+
+  all_weights <- all_weights / sum(all_weights, na.rm = TRUE)
+
+  return(all_weights)
+}
