@@ -20,6 +20,7 @@ Other package reference cache: \code{\link{pkg_ref_cache.archive_release_dates}}
   \code{\link{pkg_ref_cache.bug_reports_url}},
   \code{\link{pkg_ref_cache.bug_reports}},
   \code{\link{pkg_ref_cache.covr_coverage}},
+  \code{\link{pkg_ref_cache.cran_checks}},
   \code{\link{pkg_ref_cache.description}},
   \code{\link{pkg_ref_cache.downloads}},
   \code{\link{pkg_ref_cache.expression_coverage}},
