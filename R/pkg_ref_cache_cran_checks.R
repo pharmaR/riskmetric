@@ -52,7 +52,7 @@ pkg_ref_cache.cran_checks.pkg_bioc_remote <- function(x, name, ...) {
   return(rst)
 }
 
-pkg_ref_cache.pkg_source <- function(x, name, ...){
+pkg_ref_cache.cran_checks.pkg_source <- function(x, name, ...){
   check_results <- devtools::check(x$path)
   return(check_results)
 }
