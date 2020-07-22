@@ -62,7 +62,6 @@ collection.
 }
 }
 \seealso{
-Other pkg_ref: 
-\code{\link{as_pkg_ref}()}
+Other pkg_ref: \code{\link{as_pkg_ref}}
 }
 \concept{pkg_ref}

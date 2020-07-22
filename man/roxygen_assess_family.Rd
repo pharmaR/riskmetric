@@ -4,11 +4,8 @@
 \alias{roxygen_assess_family}
 \title{Helper for creating a roxygen header from template for assess_* functions}
 \usage{
-roxygen_assess_family(
-  name,
-  return_type = "an atomic assessment result",
-  dontrun = FALSE
-)
+roxygen_assess_family(name, return_type = "an atomic assessment result",
+  dontrun = FALSE)
 }
 \arguments{
 \item{name}{the name of the assessment, assuming naming conventions are

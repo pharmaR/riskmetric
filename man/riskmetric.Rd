@@ -3,4 +3,8 @@
 \docType{package}
 \name{riskmetric}
 \alias{riskmetric}
+\alias{riskmetric-package}
 \title{riskmetric package documentation}
+\description{
+riskmetric package documentation
+}
