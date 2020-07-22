@@ -1,9 +1,13 @@
-pkg_ref_cache.cran_checks <- function (x, name, ...)
+pkg_ref_cache.cran_checks <- function (x, ...)
 {
    UseMethod("pkg_ref_cache.cran_checks")
 }
 
-pkg_ref_cache.cran_checks.pkg_cran_remote <- function(x, name, ...) {
+pkg_ref_cache.cran_checks.default <- function (x, ...) {
+  return(NA)
+}
+
+pkg_ref_cache.cran_checks.pkg_cran_remote <- function(x, ...) {
   URLbase <- "https://cran.r-project.org/web/checks/check_results_"
   webURL <- paste0(URLbase, x$name, ".html")
 
@@ -18,7 +22,7 @@ pkg_ref_cache.cran_checks.pkg_cran_remote <- function(x, name, ...) {
   return(rst)
 }
 
-pkg_ref_cache.cran_checks.pkg_bioc_remote <- function(x, name, ...) {
+pkg_ref_cache.cran_checks.pkg_bioc_remote <- function(x, ...) {
   URLbase <- "http://bioconductor.org/checkResults/release/bioc-LATEST/"
   webURL <- paste0(URLbase, x$name)
 
@@ -35,7 +39,7 @@ pkg_ref_cache.cran_checks.pkg_bioc_remote <- function(x, name, ...) {
   return(rst)
 }
 
-pkg_ref_cache.cran_checks.pkg_bioc_remote <- function(x, name, ...) {
+pkg_ref_cache.cran_checks.pkg_bioc_remote <- function(x, ...) {
   URLbase <- "http://bioconductor.org/checkResults/release/bioc-LATEST/"
   webURL <- paste0(URLbase, x$name)
 
@@ -52,7 +56,7 @@ pkg_ref_cache.cran_checks.pkg_bioc_remote <- function(x, name, ...) {
   return(rst)
 }
 
-pkg_ref_cache.cran_checks.pkg_source <- function(x, name, ...){
+pkg_ref_cache.cran_checks.pkg_source <- function(x, ...){
   check_results <- devtools::check(x$path)
   return(check_results)
 }
