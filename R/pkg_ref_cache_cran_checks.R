@@ -9,9 +9,9 @@ pkg_ref_cache.cran_checks.pkg_cran_remote <- function(x, name, ...) {
 
   page <- read_html(webURL)
   tables <- xml2::xml_find_all(page, ".//table")
-  table_cran <- xml_find_all(tables[[1]], "//tr")
-  fields <- lapply(table_cran, xml_find_all, ".//td|.//th")
-  fields <- lapply(fields, xml_text, trim=T)
+  table_cran <- xml2::xml_find_all(tables[[1]], "//tr")
+  fields <- lapply(table_cran, xml2::xml_find_all, ".//td|.//th")
+  fields <- lapply(fields, xml2::xml_text, trim=T)
   #sapply(fields, "[[", 6)[-1]
   rst <- as.data.frame(do.call(rbind, fields[-1]))
   colnames(rst) <- fields[[1]]
