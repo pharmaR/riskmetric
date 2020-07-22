@@ -46,6 +46,7 @@ assessment applied.
 \item{\code{\link{assess_license}}}{software is released with an acceptable license}
 \item{\code{\link{assess_last_30_bugs_status}}}{vector indicating whether BugReports status is closed}
 \item{\code{\link{assess_has_website}}}{a vector of associated website urls}
+\item{\code{\link{assess_cran_checks}}}{assess_cran_checks}
 \item{\code{\link{assess_has_maintainer}}}{a vector of associated maintainers}
 }
 }
