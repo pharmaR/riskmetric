@@ -25,7 +25,16 @@
 #' # scoring many assessments as a tibble
 #' \dontrun{
 #' library(dplyr)
-#' score(assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
+#' score(assess(as_tibble(pkg_ref(c("riskmetric", "dplyr")))))
+#' }
+#' 
+#' # define custom weights
+#' \dontrun{
+#' library(dplyr)
+#' wgt <- c(0.25, 0.25, 0.5)
+#' wgt <- setNames(wgt, c("has_vignettes", "has_source_control", "downloads_1yr"))
+#' pkg_ref(c("riskmetric", "dplyr")) %>% as_tibble() %>% 
+#'   pkg_assess() %>% pkg_score(weights = wgt)
 #' }
 #'
 #' @family \code{score.*} functions
