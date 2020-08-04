@@ -28,6 +28,7 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.function_coverage}()},
 \code{\link{pkg_ref_cache.help_aliases}()},
 \code{\link{pkg_ref_cache.help}()},
+\code{\link{pkg_ref_cache.license}()},
 \code{\link{pkg_ref_cache.maintainer}()},
 \code{\link{pkg_ref_cache.news_urls}()},
 \code{\link{pkg_ref_cache.news}()},
