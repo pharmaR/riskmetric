@@ -26,7 +26,6 @@ Imports:
     BiocManager,
     cranlogs,
     covr,
-    gh,
     jsonlite,
     vctrs,
     pillar,
