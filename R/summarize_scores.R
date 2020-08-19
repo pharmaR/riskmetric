@@ -78,14 +78,14 @@ check_weights <- function(weights){
     stop("The weights must contain non-negative values only.")
 }
 
-  # add default weights of 1 to those assessments not in .risk_weights
-  assessments <- vapply(data, inherits, logical(1L), "pkg_score")
-  assessments <- names(assessments)[assessments]
-  all_weights <- rep(1, length(assessments))
-  names(all_weights) <- assessments
-  all_weights[names(all_weights) %in% names(weights)] <- weights
+# Check weights values and standardize them.
+standardize_weights <- function(data, weights){
+  # check that the weights vector is numeric and non-negative
+  check_weights(weights)
 
-  all_weights <- all_weights / sum(all_weights, na.rm = TRUE)
+  # re-weight for fields that are in the dataset
+  weights <- weights[which(names(weights) %in% names(data))]
 
-  return(all_weights)
+  # standardize weights from 0 to 1
+  weights <- weights / sum(weights, na.rm = TRUE)
 }
