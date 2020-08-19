@@ -6,8 +6,8 @@
 #'
 #' @param data a \code{\link[tibble]{tibble}} of scored assessments whose column
 #'   names match those provided by riskmetric's \code{\link{assess}} function.
-#' @param weights a set of numeric weights to give to each score column when
-#'   calculating risk
+#' @param weights an optional vector of non-negative weights to be assigned to
+#'   each assessment.
 #'
 #' @return a numeric vector of risk scores
 #'
