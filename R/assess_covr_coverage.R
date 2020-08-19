@@ -17,6 +17,13 @@ attributes(assess_covr_coverage)$label <- "Package unit test coverage"
 
 
 
+#' @export
+assess_covr_coverage.default <- function(x, ...) {
+  pkg_metric_na()
+}
+
+
+
 #' @importFrom covr coverage_to_list
 #' @export
 assess_covr_coverage.pkg_source <- function(x, ...) {

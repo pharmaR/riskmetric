@@ -26,11 +26,10 @@ Imports:
     BiocManager,
     cranlogs,
     covr,
-    gh,
     jsonlite,
     vctrs,
     pillar,
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests:
     knitr,
     rmarkdown,
