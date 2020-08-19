@@ -64,9 +64,13 @@ pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
 
 #' @export
 pkg_score.list_of_pkg_metric <- function(x, ...,
-  error_handler = score_error_default) {
+                                         error_handler = score_error_default) {
 
-  lapply(x, metric_score, error_handler = error_handler)
+  lapply(x, function(xi) {
+    s <- metric_score(xi, error_handler = error_handler)
+    class(s) <- c("pkg_score", class(s))
+    s
+  })
 }
 
 
