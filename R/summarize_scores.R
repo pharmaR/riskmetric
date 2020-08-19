@@ -68,20 +68,15 @@ summarize_scores.list <- function(data, weights = .risk_weights) {
   has_news = 1,
   covr_coverage = 3)
 
-#' create vector of weights based on the data columms and user-given weights
-#'
-#' @param data a \code{\link[tibble]{tibble}} or list of scored assessments
-#'   whose column names match those provided by riskmetric's \code{\link{assess}}
-#'   function.
-#' @param weights a set of numeric weights to give to each score column when
-#'   calculating risk.
-#'
-#' @return a named vector with weights for each score column. If a
-#' weight is not provided by the user, it will default to 1.
-#'
-add_default_weights <- function(data, weights) {
-  # re-weight for fields that are in the dataset
-  weights <- weights[which(names(weights) %in% names(data))]
+# Check that the provided weights are numeric and non-negative.
+check_weights <- function(weights){
+
+  if(class(weights) != "numeric")
+    stop("The weights must be a vector of class 'numeric'.")
+
+  if(!all(weights >= 0))
+    stop("The weights must contain non-negative values only.")
+}
 
   # add default weights of 1 to those assessments not in .risk_weights
   assessments <- vapply(data, inherits, logical(1L), "pkg_score")
