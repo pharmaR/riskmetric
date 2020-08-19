@@ -33,7 +33,8 @@ summarize_scores <- function(data, weights = .risk_weights) {
 
 #' @export
 summarize_scores.data.frame <- function(data, weights = .risk_weights) {
-  weights <- add_default_weights(data, weights)
+  # perform checks and standardize weights
+  weights <- standardize_weights(data, weights)
 
   # calculate 'quality' and subtract from 1 to get 'risk'
   qual <- colSums(apply(data[names(weights)], 1L, `*`, weights), na.rm = TRUE)
@@ -48,12 +49,11 @@ summarize_scores.data.frame <- function(data, weights = .risk_weights) {
 
 #' @export
 summarize_scores.list <- function(data, weights = .risk_weights) {
-  weights <- add_default_weights(data, weights)
+  # perform checks and standardize weights
+  weights <- standardize_weights(data, weights)
 
   1 - sum(as.numeric(data[names(weights)]) * weights, na.rm = TRUE)
 }
-
-
 
 #' Default weights to use for summarizing risk
 #'
