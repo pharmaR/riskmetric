@@ -9,5 +9,5 @@
 #' @export
 #'
 get_cran_version <- function(pkgname) {
-  with(memoise_cran_db(), version[match(pkgname, package)])
+  with(memoise_cran_db(), Version[match(pkgname, Package)])
 }
