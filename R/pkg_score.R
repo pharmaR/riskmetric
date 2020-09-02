@@ -1,4 +1,4 @@
-#' Score a package assement, collapsing results into a single numeric
+#' Score a package assessment, collapsing results into a single numeric
 #'
 #' Scores reflect the adherence to best practices. Scores always range from 0
 #' (worst-) to 1 (best- practice), and can then be used to consistently evaluate

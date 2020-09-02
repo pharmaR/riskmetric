@@ -45,3 +45,4 @@ Suggests:
     rmarkdown,
     testthat
 VignetteBuilder: knitr
+Config/testthat/edition: 3

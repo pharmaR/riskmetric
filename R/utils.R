@@ -1,5 +1,8 @@
 #' If not NULL else
 #'
+#' @param lhs Left-hand side
+#' @param rhs Right-hand side
+#'
 #' A shorthand for a common comparison
 #'
 #' @name if_not_null_else
