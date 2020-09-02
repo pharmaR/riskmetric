@@ -9,9 +9,8 @@ pkg_ref_cache.release_date <- function(x, name, ...) {
 
 
 pkg_ref_cache.release_date.pkg_remote <- function(x, name, ...) {
-
-  db  <- rvest::html_table(x$web_html)[[1]]
-  date <- db[grep("Publish",db[,1], ignore.case = TRUE) ,2]
+  release_xpath <- "//td[.='Published:']/following::td[1]"
+  date <- xml2::xml_text(xml2::xml_find_all(x$web_html, release_xpath))
   date
 }
 

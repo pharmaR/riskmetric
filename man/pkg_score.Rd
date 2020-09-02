@@ -26,9 +26,8 @@ A numeric value if a single \code{pkg_metric} is provided, or a
   returned as numeric values when a \code{\link[tibble]{tibble}} is provided.
 }
 \description{
-Scores reflect the adherence to best practices. Scores always range from 0
-(worst-) to 1 (best- practice), and can then be used to consistently evaluate
-the risk involved with using a package.
+pkg_score() calculates the risk involved with using a package. Risk ranges
+from 0 (low-risk) to 1 (high-risk).
 }
 \examples{
 # scoring a single assessment

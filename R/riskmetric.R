@@ -2,8 +2,6 @@
 #'
 #' @import tools
 #' @import memoise
-#' @import janitor
-#' @import dplyr
 #'
 #' @docType package
 #' @name riskmetric

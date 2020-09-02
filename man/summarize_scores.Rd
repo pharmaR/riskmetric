@@ -32,7 +32,8 @@ summarize_scores(pkg_score(pkg_assess(as_tibble(pkg_ref("riskmetric")))))
 library(dplyr)
 pkg_ref("riskmetric") \%>\%
   pkg_assess() \%>\%
-  pkg_score()
+  pkg_score() \%>\%
+  summarize_scores()
 }
 
 }

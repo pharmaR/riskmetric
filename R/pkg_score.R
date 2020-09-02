@@ -1,8 +1,7 @@
 #' Score a package assessment, collapsing results into a single numeric
 #'
-#' Scores reflect the adherence to best practices. Scores always range from 0
-#' (worst-) to 1 (best- practice), and can then be used to consistently evaluate
-#' the risk involved with using a package.
+#' pkg_score() calculates the risk involved with using a package. Risk ranges
+#' from 0 (low-risk) to 1 (high-risk).
 #'
 #' @param x A \code{pkg_metric} object, whose subclass is used to choose the
 #'   appropriate scoring method for the atomic metric metadata. Optionally, a
