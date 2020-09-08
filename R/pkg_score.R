@@ -25,9 +25,7 @@
 #' # scoring many assessments as a tibble
 #' \dontrun{
 #' library(dplyr)
-#' score(assess(as_tibble(pkg_ref(c("riskmetric", "dplyr")))))
-#' }
-#'
+#' pkg_score(pkg_assess(pkg_ref(c("riskmetric", "dplyr"))))
 #'
 #' # define custom weights
 #' library(dplyr)
