@@ -1,4 +1,4 @@
-Package: test_package_2
+Package: testPackage2
 Title: A Test Package Used to Test Source Assessments
 Version: 0.0.0.9000
 Authors@R: "Eli Miller <first.last@example.com> [aut, cre]"

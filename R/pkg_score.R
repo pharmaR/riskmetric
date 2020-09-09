@@ -1,4 +1,4 @@
-#' Score a package assement, collapsing results into a single numeric
+#' Score a package assessment, collapsing results into a single numeric
 #'
 #' pkg_score() calculates the risk involved with using a package. Risk ranges
 #' from 0 (low-risk) to 1 (high-risk).

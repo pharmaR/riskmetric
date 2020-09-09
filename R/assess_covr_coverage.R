@@ -1,7 +1,7 @@
 #' Assess a package code coverage using the `covr` package
 #'
 #' @eval roxygen_assess_family(
-#'   "news_current",
+#'   "covr_coverage",
 #'   paste0("a list containing fields 'filecoverage' and 'totalcoverage' ",
 #'     "containing a named numeric vector of file unit test coverage and a ",
 #'     "singular numeric value representing overall test coverage ",

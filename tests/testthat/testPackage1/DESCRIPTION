@@ -1,4 +1,5 @@
-Package: test_package_1
+Package: testPackage1
+Type: Package
 Title: A Test Package Used to Test Source Assessments
 Version: 0.1.0
 Authors@R: "Eli Miller <first.last@example.com> [aut, cre]"
@@ -10,4 +11,4 @@ License: MIT + file LICENSE
 LazyData: true
 Suggests:
     testthat
-RoxygenNote: 5.0.1
+RoxygenNote: 7.0.2
