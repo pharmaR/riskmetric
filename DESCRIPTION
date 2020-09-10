@@ -29,12 +29,12 @@ Imports:
     jsonlite,
     vctrs,
     pillar,
+    tibble
 RoxygenNote: 7.1.1
 Suggests:
     knitr,
     rmarkdown,
     testthat,
     dplyr,
-    tibble,
     magrittr,
 VignetteBuilder: knitr
