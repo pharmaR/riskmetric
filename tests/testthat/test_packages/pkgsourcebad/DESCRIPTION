@@ -1,12 +1,11 @@
-Package: test_package_1
+Package: pkgsourcebad
 Title: A Test Package Used to Test Source Assessments
-Version: 0.1.0
+Version: 0.0.0.9000
 Authors@R: "Eli Miller <first.last@example.com> [aut, cre]"
 Description: What the package does (one paragraph)
-BugReports: https://github.com/elimillera/test_package_1/issues
 Depends:
     R (>= 3.1.2)
-License: MIT + file LICENSE
+License: CC BY 2.0
 LazyData: true
 Suggests:
     testthat

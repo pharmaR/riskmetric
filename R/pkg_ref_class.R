@@ -177,7 +177,7 @@ as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
 
   # case when a directory path to source code is provided
   #   e.g. '../dplyr'
-  } else if (dir.exists(x) & file.exists(file.path(x, "DESCRIPTION"))) {
+  } else if (dir.exists(x) && file.exists(file.path(x, "DESCRIPTION"))) {
     desc <- read.dcf(file.path(x, "DESCRIPTION"))
     name <- unname(desc[,"Package"])
 

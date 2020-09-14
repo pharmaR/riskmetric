@@ -9,7 +9,7 @@ pkg_ref_cache.web_html <- function(x, name, ...) {
 
 
 
-#' @importFrom xml2 read_html
+#' @importFrom httr content GET
 pkg_ref_cache.web_html.pkg_remote <- function(x, name, ...) {
-  xml2::read_html(x$web_url)
+  httr::content(httr::GET(x$web_url))
 }

@@ -1,5 +1,3 @@
-context("Test CRAN related metrics")
-
 test_that("CRAN current version returns correct format", {
   expect_match(get_cran_version("dplyr"), "\\d+(\\.\\d+){2,3}")
   expect_match(get_cran_version("tidyverse"), "\\d+(\\.\\d+){2,3}")
