@@ -16,7 +16,6 @@ pkg_metric <- function(x, ..., class = c()) {
 
 
 
-
 #' @importFrom vctrs vec_ptype_abbr
 #' @method vec_ptype_abbr pkg_metric
 #' @export

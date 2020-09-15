@@ -40,16 +40,13 @@ scrape_bug_reports <- function(x, ...) {
 
 
 
-scrape_bug_reports.NULL <- function(x, ...) {
-  stop("package DESCRIPTION does not have a BugReports field")
-}
-
-
-
 scrape_bug_reports.default <- function(x, ...) {
-  stop(sprintf(
-    "scraping bug reports fromm BugReports host '%s' not implemented",
-    x$bug_reports_host))
+  if (is.null(x$bug_reports_host) || length(x$bug_reports_host) == 0L)
+    stop("package DESCRIPTION does not have a BugReports field")
+  else
+    stop(sprintf(
+      "scraping bug reports fromm BugReports host '%s' not implemented",
+      x$bug_reports_host))
 }
 
 
