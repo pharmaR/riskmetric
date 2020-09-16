@@ -34,8 +34,10 @@ RoxygenNote: 7.1.1
 Suggests:
     knitr,
     rmarkdown,
-    testthat,
     dplyr,
     magrittr,
+    testthat,
+    jsonlite,
+    webmockr
 VignetteBuilder: knitr
 Config/testthat/edition: 3

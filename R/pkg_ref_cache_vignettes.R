@@ -10,7 +10,7 @@ pkg_ref_cache.vignettes <- function(x, name, ...) {
 
 
 pkg_ref_cache.vignettes.pkg_remote <- function(x, name, ...) {
-  vignettes_from_html(x$web_html)
+  vignettes_from_html(x)
 }
 
 
@@ -44,10 +44,6 @@ vignettes_from_dir <- function(path) {
   filename = basename(file_path)
   names(file_path) <- filename
 
-  file_path = unique(tools::file_path_sans_ext(files))
-  filename = basename(file_path)
-  names(file_path) <- filename
-
   file_path[tolower(filename) != tolower("index")]
 }
 
@@ -55,22 +51,20 @@ vignettes_from_dir <- function(path) {
 
 #' Build a List of Vignettes Files Discovered Within a Package Website
 #'
-#' @param web_html a \code{pkg_ref$web_html} document containing links to Vignettes files
+#' @param x a \code{pkg_ref} object
 #'
 #' @return a vector of Vignettes files
 #'
-vignettes_from_html <- function(web_html) {
-
-  nodes <- xml2::xml_find_all(web_html, xpath = '//a[contains(@href,"vignettes")]')
+#' @importFrom xml2 xml_attrs
+#' @importFrom tools file_path_sans_ext
+#'
+vignettes_from_html <- function(x) {
+  nodes <- xml2::xml_find_all(x$web_html, xpath = '//a[contains(@href,"vignettes")]')
   if (!length(nodes)) return(c())
 
   file_path <- unlist(xml2::xml_attrs(nodes, "href"))
-
   filename <- tools::file_path_sans_ext(basename(file_path))
-  file_path <- sprintf("%s/%s", url, file_path)
-
-  filename <- tools::file_path_sans_ext(basename(file_path))
-  file_path <- paste0(url, "/", file_path)
+  file_path <- sprintf("%s/%s", x$web_url, file_path)
   names(file_path) <- filename
 
   file_path

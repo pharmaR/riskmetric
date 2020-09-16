@@ -1,19 +1,13 @@
 
 memoise_cran_db <- memoise::memoise({
-  function() {
-    cran <- tools::CRAN_package_db()
-    # remove first instance of column name MD5Sum
-    cran
-  }
-}
-)
+  function() tools::CRAN_package_db()
+})
 
 
 
 #' Fetch CRAN Mirrors Info
 #'
 #' @param all default \code{TRUE}, passed to \code{\link{utils}[getCRANmirrors]}
-#' @param host_exists whether cran can be contacted
 #' @param ... additional arguments passed to \code{\link{utils}[getCRANmirrors]}
 #'
 #' @importFrom curl nslookup
@@ -21,8 +15,12 @@ memoise_cran_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
   # NOTE: might need to implement actual caching to avoid inconsistent behavior
   # when run with spotty internet
-  function(all = TRUE, ...,
-           host_exists = !is.null(curl::nslookup("cran.r-project.org", error = FALSE))) {
+  function(all = TRUE, ..., .local = getOption("riskmetric.tests")) {
+    if (!is.null(.local)) {
+      return(read.csv(
+        file.path(.local, "test_webmocks", "data", "cran_mirrors.csv"),
+        stringsAsFactors = FALSE))
+    }
 
     tryCatch({
       utils::getCRANmirrors(all = all, ...)
@@ -49,15 +47,13 @@ memoise_bioc_available <- memoise::memoise({
 #'
 #' taken from utils::chooseBioCmirror
 #'
-#' @param host_exists whether bioconductor can be contacted
-#'
 #' @importFrom curl nslookup
 #'
 memoise_bioc_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
   # NOTE: might need to implement actual caching to avoid inconsistent behavior
   # when run with spotty internet
-  function(host_exists = !is.null(curl::nslookup("bioconductor.org", error = FALSE))) {
+  function() {
     tryCatch({
       read.csv("https://bioconductor.org/BioC_mirrors.csv")
     }, error = function(e) {
@@ -75,11 +71,19 @@ memoise_installed_packages <- memoise::memoise({
 
 
 memoise_available_packages <- memoise::memoise({
-  function(..., repos = getOption("repos")) {
-    if (is.null(repos))
+  function(..., repos = getOption("repos"), .local = getOption("riskmetric.tests")) {
+    if (!is.null(.local)) {
+      db <- read.csv(
+        file.path(.local, "test_webmocks", "data", "cran_packages.csv"),
+        stringsAsFactors = FALSE)
+      db[, "Repository"] <- contrib.url(repos, getOption("pkgType"))
+      return(db)
+    } else if (is.null(repos)) {
       return(utils::available.packages(NULL))
-    else if ("@CRAN@" %in% repos)
-      repos[repos == "@CRAN@"] <- "https://cran.rstudio.com/"
+    } else if ("@CRAN@" %in% repos) {
+      repos[repos == "@CRAN@"] <- "https://cloud.r-project.org"
+    }
+
     utils::available.packages(repos = repos, ...)
   }
 })

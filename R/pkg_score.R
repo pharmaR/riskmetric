@@ -54,7 +54,7 @@ pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
 
   # reorder columns so that metadata columns come first
   pkg_cols <- intersect(names(x), c("package", "version", "pkg_ref", "pkg_score"))
-  x <- x[,c(pkg_cols, setdiff(names(x), pkg_cols))]
+  x <- x[, c(pkg_cols, setdiff(names(x), pkg_cols))]
 
   x
 }

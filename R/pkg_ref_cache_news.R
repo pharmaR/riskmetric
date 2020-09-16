@@ -9,8 +9,9 @@ pkg_ref_cache.news <- function(x, name, ...) {
 
 
 
+#' @importFrom httr content GET
 pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
-  lapply(x$news_urls, xml2::read_html)
+  lapply(lapply(x$news_urls, httr::GET), httr::content)
 }
 
 

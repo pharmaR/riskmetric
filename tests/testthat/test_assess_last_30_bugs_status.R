@@ -1,8 +1,10 @@
-test_source_1 <- pkg_ref("./test_package_1")
-assess_source_1 <- pkg_assess(test_source_1)
-
 test_that("assess_last_30_bugs_status returns expected result for source package", {
-  # TODO: add other package types
-  # This is calling github.com/elimillera/test_package_1/issues
-  expect_equal(as.vector(assess_source_1$bugs_status), c(FALSE, TRUE, FALSE))
+  # using mocked github api response
+  expect_s3_class(
+    assess_source_riskmetric$bugs_status,
+    c("pkg_metric_last_30_bugs_status", "pkg_metric", "logical"))
+
+  expect_equal(
+    as.vector(assess_source_riskmetric$bugs_status),
+    c(FALSE, TRUE, FALSE))
 })
