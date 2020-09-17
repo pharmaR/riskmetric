@@ -4,7 +4,9 @@
 \name{.risk_weights}
 \alias{.risk_weights}
 \title{Default weights to use for summarizing risk}
-\format{An object of class \code{numeric} of length 8.}
+\format{
+An object of class \code{numeric} of length 8.
+}
 \usage{
 .risk_weights
 }

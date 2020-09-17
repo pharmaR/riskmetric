@@ -4,10 +4,10 @@
 \alias{vignettes_from_html}
 \title{Build a List of Vignettes Files Discovered Within a Package Website}
 \usage{
-vignettes_from_html(web_html)
+vignettes_from_html(x)
 }
 \arguments{
-\item{web_html}{a \code{pkg_ref$web_html} document containing links to Vignettes files}
+\item{x}{a \code{pkg_ref} object}
 }
 \value{
 a vector of Vignettes files
