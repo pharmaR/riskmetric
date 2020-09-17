@@ -130,42 +130,67 @@ capture_expr_output <- function(expr) {
 
   # close log file and read in lines
   close(log_file_con)
-  log_text <- readLines(log_file)
-  log_chars <- cumsum(nchar(log_text) + 1L) # +1 newline character
+  log_text <- readLines(log_file, warn = FALSE)
 
-  # backup one character for each newline, calculate new indices after
-  # inserting into output
-  cnd_i <- match(cnds_seek, log_chars)
-  cnds_new_index <- unlist(lapply(split(cnd_i, cnd_i), seq_along))
-  cnds_new_index <- cnds_new_index + cumsum(ifelse(duplicated(cnd_i), 0L, cnd_i))
+  if (length(cnds)) {
+    # NOTE: Windows might use two newline characters "\r\n"?
+    log_newlines <- cumsum(nchar(log_text) + 1L)
 
-  # inject conditions throughout console output as they were emitted
-  outputs <- rep(list(NULL), length(log_text) + length(cnds_new_index))
-  outputs[cnds_new_index] <- cnds
-  outputs[-cnds_new_index] <- log_text
+    # rejoin into singular string to split at newlines, as well as any condition
+    # emission points
+    log_text <- paste0(log_text, collapse = "\n")
+    log_cuts <- sort(unique(c(log_newlines, cnds_seek)))
+    log_cuts <- log_cuts[log_cuts < nchar(log_text)]
+    log_text <- substring(log_text, c(1, log_cuts + 1L), c(log_cuts, nchar(log_text)))
+    log_chars <- cumsum(nchar(log_text))
+
+    # find where to insert emitted conditions among output
+    cnd_i <- match(cnds_seek, log_chars)
+    cnds_new_index <- cnd_i + seq_along(cnd_i)
+
+    # inject conditions throughout console output as they were emitted
+    outputs <- rep(list(NULL), length(log_text) + length(cnds_new_index))
+    outputs[cnds_new_index] <- cnds
+    outputs[-cnds_new_index] <- log_text
+  } else {
+    outputs <- log_text
+  }
 
   structure(
     substitute(expr),
     traceback = .traceback(3L),
     output = outputs,
-    class = c("expr_output", "list"))
+    class = c("expr_output", "expression"))
 }
-
 
 
 #' Handle pretty printing of expression output
 #'
 #' @param x expr_output to print
+#' @param ... additional arguments unused
 #'
-print.expr_output <- function(x) {
+#' @export
+#'
+print.expr_output <- function(x, ...) {
   crayon_gray <- crayon::make_style(rgb(.5, .5, .5))
 
-  x_call <- capture.output(as.call(as.list(x)))
-  x_call[1] <- paste(">", x_call[1])
-  x_call[-1] <- paste("+", x_call[-1])
-  str_call <- crayon::blue(paste(x_call, collapse = "\n"))
+  x_call <- as.call(as.list(x))
 
-  str_output <- paste(
+  if (x_call[[1]] == "{") {
+    x_call_str <- vapply(
+      x_call[-1],
+      function(xi) paste0(capture.output(xi), collapse = "\n"),
+      character(1L))
+  } else {
+    x_call_str <- capture.output(x_call)
+  }
+
+  x_call_str[1] <- paste(">", x_call_str[1])
+  x_call_str[-1] <- paste("+", x_call_str[-1])
+  str_call <- crayon::blue(paste(x_call_str, collapse = "\n"))
+
+  str_output <- sprintf(
+    "%s %s",
     crayon_gray("#"),
     unlist(
       crayon::col_strsplit(
@@ -182,15 +207,18 @@ print.expr_output <- function(x) {
         }, character(1L)),
         "\n")))
 
-  x_ends_in_error <- inherits(tail(attr(x, "output"), 1L)[[1]], "error")
+  x_has_error <- any(vapply(attr(x, "output"), inherits, logical(1L), "error"))
   str_traceback <- paste(
-    crayon_gray("#"),
-    paste(capture.output(traceback(attr(x, "traceback"))), collapse = "\n"))
+    sprintf(
+      "%s   %s",
+      crayon_gray("#"),
+      capture.output(traceback(attr(x, "traceback")))),
+    collapse = "\n")
 
   strs <- c(
     str_call,
     str_output,
-    if (x_ends_in_error) str_traceback
+    if (x_has_error) crayon_gray(str_traceback)
   )
 
   cat(paste(strs, collapse = "\n"))
