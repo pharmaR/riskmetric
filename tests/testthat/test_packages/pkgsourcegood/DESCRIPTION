@@ -4,11 +4,12 @@ Title: A Test Package Used to Test Source Assessments
 Version: 0.1.0
 Authors@R: "Eli Miller <first.last@example.com> [aut, cre]"
 Description: What the package does (one paragraph)
-BugReports: https://fake.url.com/pkgsourcegood
+BugReports: https://github.com/pharmar/pkgsourcegood
 Depends:
     R (>= 3.1.2)
 License: MIT + file LICENSE
 LazyData: true
 Suggests:
     testthat
-RoxygenNote: 7.0.2
+Encoding: UTF-8
+RoxygenNote: 7.1.1

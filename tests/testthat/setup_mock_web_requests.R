@@ -5,15 +5,15 @@ options(riskmetric.tests = getwd())
 httr_mock()
 
 # helper function for generating cran-log style API results
-build_downloads <- function(downloads, pkg_name = "temp") {
+build_downloads <- function(downloads = NULL, pkg_name = "temp") {
   day = Sys.Date() - seq_along(downloads)
   downloads_obj <- list(list(
     downloads = rev(mapply(
       function(day, dls) list(list(day = day, downloads = dls)),
       day,
       downloads)),
-    start = day[length(day)],
-    end = day[1],
+    start = Sys.Date(),
+    end = Sys.Date() - ifelse(is.null(downloads), 0L, length(downloads)),
     package = pkg_name
   ))
   as.character(jsonlite::toJSON(downloads_obj, auto_unbox = TRUE))
@@ -67,9 +67,16 @@ build_downloads <- function(downloads, pkg_name = "temp") {
       headers = list(
         "Content-Type" = "application/json; charset=utf-8",
         "Content-Encoding" = "UTF-8"))
+  # other
+  stub_request("get", uri_regex = ".+/downloads/daily/.*") %>%
+    to_return(
+      body = mock_file(path = tempfile(), payload = build_downloads()),
+      headers = list(
+        "Content-Type" = "application/json; charset=utf-8",
+        "Content-Encoding" = "UTF-8"))
 
 # github bugreports via github's repo issues api
-stub_request("get", uri_regex = "api\\.github\\.com/repos/.+/.+/issues\\?.+") %>%
+stub_request("get", uri_regex = "api\\.github\\.com/repos/[^/]+/[^/]+/issues\\?.+") %>%
   to_return(
     body = file("./test_webmocks/data/github_repo_issues_api_response.json"),
     headers = list("Content-Type" = "application/json"))
