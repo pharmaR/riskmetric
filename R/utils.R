@@ -97,81 +97,98 @@ with_unclassed_to <- function(x, .class = 1:length(class(x)), expr,
 #'
 #' @param expr an expression to evaluate, capturing output events as they
 #'   are issued
+#' @inheritParams base::sink
 #'
-capture_expr_output <- function(expr) {
-  env <- environment()
+capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
+    quoted = FALSE) {
 
-  log_file <- tempfile("riskmetric_console_sink_", fileext = ".txt")
-  log_file_con <- file(log_file, "w")
+  expr_quote <- substitute(expr)
+  log_file <- tempfile("riskmetric_sink_", fileext = ".txt")
+  log_file_con <- file(log_file, "wb")
   on.exit(try(close(log_file_con), silent = TRUE))
 
-  error <- NULL
   cnds_seek <- numeric()
+  cnds_err_traceback <- NULL
   cnds <- list() # messages + warnings + misc conditions
 
   append_cnd <- function(cnd, envir) {
     cnd_seek <- seek(log_file_con)
-    assign("cnds_seek", append(cnds_seek, cnd_seek), envir = env)
-    assign("cnds", append(cnds, list(cnd)), envir = env)
+    assign("cnds_seek", append(cnds_seek, cnd_seek), envir = envir)
+    assign("cnds", append(cnds, list(cnd)), envir = envir)
   }
 
-  capture.output(
-    file = log_file_con,
-    withCallingHandlers(
-      tryCatch(expr, error = function(e) {
-        append_cnd(e, env)
-      }),
-      condition = function(cnd) {
-        append_cnd(cnd, env)
-        if      (inherits(cnd, "warning")) invokeRestart('muffleWarning')
-        else if (inherits(cnd, "message")) invokeRestart('muffleMessage')
-      })
-  )
+  fn_env <- environment()
+  sink(log_file_con, split = split)
+  res <- withVisible(try(withCallingHandlers(
+    if (!quoted) eval(expr_quote, env) else eval(expr, env),
+    condition = function(cnd) {
+      append_cnd(cnd, fn_env)
+      if (inherits(cnd, "message")) {
+        invokeRestart('muffleMessage')
+      } else if (inherits(cnd, "warning")) {
+        invokeRestart('muffleWarning')
+      } else if (inherits(cnd, "error")) {
+        syscalls <- head(tail(sys.calls(), -10L), -2L)
+        assign("cnds_err_traceback", syscalls, envir = fn_env)
+      }
+    }), silent = TRUE))
 
-  # close log file and read in lines
+  # read as raw so that we can keep carriage return and console-overwrites
+  sink(NULL)
   close(log_file_con)
-  log_text <- readLines(log_file, warn = FALSE)
+  log_text <- rawToChar(readBin(log_file, "raw", file.size(log_file)))
+  log_text_line_nchars <- nchar(strsplit(gsub("\r", "\n", log_text), "\n")[[1]])
 
-  if (length(cnds)) {
-    # NOTE: Windows might use two newline characters "\r\n"?
-    log_newlines <- cumsum(nchar(log_text) + 1L)
+  # NOTE: Windows might use two newline characters "\r\n"?
+  log_newlines <- cumsum(log_text_line_nchars + 1L)
 
-    # rejoin into singular string to split at newlines, as well as any condition
-    # emission points
-    log_text <- paste0(log_text, collapse = "\n")
-    log_cuts <- sort(unique(c(log_newlines, cnds_seek)))
-    log_cuts <- log_cuts[log_cuts < nchar(log_text)]
-    log_text <- substring(log_text, c(1, log_cuts + 1L), c(log_cuts, nchar(log_text)))
-    log_chars <- cumsum(nchar(log_text))
+  # rejoin into singular string to split at newlines, as well as any condition
+  # emission points
+  log_cuts <- sort(unique(c(log_newlines, cnds_seek)))
+  log_cuts <- log_cuts[log_cuts < nchar(log_text)]
+  log_text <- substring(log_text, c(1, log_cuts + 1L), c(log_cuts, nchar(log_text)))
+  log_chars <- cumsum(nchar(log_text))
 
-    # find where to insert emitted conditions among output
-    cnd_i <- match(cnds_seek, log_chars)
-    cnds_new_index <- cnd_i + seq_along(cnd_i)
+  # find where to insert emitted conditions among output
+  cnd_i <- findInterval(cnds_seek, log_chars)
+  cnds_new_index <- cnd_i + seq_along(cnd_i)
 
-    # inject conditions throughout console output as they were emitted
-    outputs <- rep(list(NULL), length(log_text) + length(cnds_new_index))
+  # inject conditions throughout console output as they were emitted
+  outputs <- rep(list(NULL), length(log_text) + length(cnds_new_index))
+  if (length(cnds_new_index) > 0L) {
     outputs[cnds_new_index] <- cnds
     outputs[-cnds_new_index] <- log_text
   } else {
     outputs <- log_text
   }
 
+  any_output_error <- any(vapply(outputs, inherits, logical(1L), "error"))
+
   structure(
-    substitute(expr),
-    traceback = .traceback(3L),
-    output = outputs,
+    if (!quoted) expr_quote else expr,
+    value = res$value,
+    visible = res$visible,
+    traceback = cnds_err_traceback,
+    output = outputs[nzchar(outputs)],
     class = c("expr_output", "expression"))
 }
+
 
 
 #' Handle pretty printing of expression output
 #'
 #' @param x expr_output to print
+#' @param cr a \code{logical} indicating whether carriage returns should be
+#'   printed, possibly overwriting characters in the output.
 #' @param ... additional arguments unused
+#' @param sleep an \code{numeric} indicating a time to sleep between printing
+#'   each line to console. This can be helpful if the original output overwrites
+#'   valuable information in the log that is eventually overwritten and you
+#'   would like to watch it play out as it was formatted.
 #'
 #' @export
 #'
-print.expr_output <- function(x, ...) {
+print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
   crayon_gray <- crayon::make_style(rgb(.5, .5, .5))
 
   x_call <- as.call(as.list(x))
@@ -189,37 +206,30 @@ print.expr_output <- function(x, ...) {
   x_call_str[-1] <- paste("+", x_call_str[-1])
   str_call <- crayon::blue(paste(x_call_str, collapse = "\n"))
 
-  str_output <- sprintf(
-    "%s %s",
-    crayon_gray("#"),
-    unlist(
-      crayon::col_strsplit(
-        vapply(attr(x, "output"), function(xi) {
-          if (inherits(xi, "message"))
-            crayon::red(.makeMessage(gsub("\n$", "", xi$message)))
-          else if (inherits(xi, "warning"))
-            crayon::red(sprintf("Warning message:\n%s", xi$message))
-          else if (inherits(xi, "error"))
-            crayon::red("Error:", xi$message)
-          else if (inherits(xi, "condition"))
-            crayon::red(.makeMessage(xi))
-          else xi
-        }, character(1L)),
-        "\n")))
-
-  x_has_error <- any(vapply(attr(x, "output"), inherits, logical(1L), "error"))
   str_traceback <- paste(
     sprintf(
-      "%s   %s",
+      "%s  %s",
       crayon_gray("#"),
       capture.output(traceback(attr(x, "traceback")))),
     collapse = "\n")
 
-  strs <- c(
-    str_call,
-    str_output,
-    if (x_has_error) crayon_gray(str_traceback)
-  )
-
-  cat(paste(strs, collapse = "\n"))
+  cat(str_call, "\n", sep = "")
+  for (i in attr(x, "output")) {
+    if (inherits(i, "message")) {
+      cat(crayon::red(i$message))
+    } else if (inherits(i, "warning")) {
+      cat(crayon::red(gsub("^simple", "", .makeMessage(i))))
+    } else if (inherits(i, "error")) {
+      cat(crayon::red("Error:", i$message), "\n", sep = "")
+    } else if (inherits(i, "condition")) {
+      cat(crayon::red(.makeMessage(i)), "\n", sep = "")
+    } else if (cr) {
+      cat(i)
+    } else if (nzchar(gsub("\r", "", i))) {
+      cat(gsub("\r", "\n", i))
+    }
+    if (sleep > 0L) Sys.sleep(sleep)
+  }
+  if (!is.null(attr(x, "traceback"))) cat(crayon_gray(str_traceback), "\n", sep = "")
+  else if (attr(x, "visible")) show(attr(x, "value"))
 }

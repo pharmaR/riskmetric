@@ -1,4 +1,4 @@
-
+#' @importFrom memoise memoise
 memoise_cran_db <- memoise::memoise({
   function() tools::CRAN_package_db()
 })
@@ -11,6 +11,7 @@ memoise_cran_db <- memoise::memoise({
 #' @param ... additional arguments passed to \code{\link{utils}[getCRANmirrors]}
 #'
 #' @importFrom curl nslookup
+#' @importFrom memoise memoise
 memoise_cran_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
   # NOTE: might need to implement actual caching to avoid inconsistent behavior
@@ -33,6 +34,7 @@ memoise_cran_mirrors <- memoise::memoise({
 
 
 #' @importFrom BiocManager available
+#' @importFrom memoise memoise
 memoise_bioc_available <- memoise::memoise({
   function() {
     con <- url("https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES")
@@ -48,6 +50,7 @@ memoise_bioc_available <- memoise::memoise({
 #' taken from utils::chooseBioCmirror
 #'
 #' @importFrom curl nslookup
+#' @importFrom memoise memoise
 #'
 memoise_bioc_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
@@ -64,12 +67,14 @@ memoise_bioc_mirrors <- memoise::memoise({
 
 
 
+#' @importFrom memoise memoise
 memoise_installed_packages <- memoise::memoise({
   function(...) utils::installed.packages(...)
 })
 
 
 
+#' @importFrom memoise memoise
 memoise_available_packages <- memoise::memoise({
   function(..., repos = getOption("repos"), .local = getOption("riskmetric.tests")) {
     if (!is.null(.local)) {

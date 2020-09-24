@@ -56,7 +56,10 @@ scrape_bug_reports.default <- function(x, ...) {
 
 #' @importFrom httr GET content
 scrape_bug_reports.github <- function(x, ...) {
-  owner_repo_issues <- gsub(".*github[^/]*/(.*)", "\\1", x$bug_reports_url)
+  owner_repo_issues <- gsub(
+    ".*github[^/]*/([^/]+/[^/]+).*",
+    "\\1",
+    x$bug_reports_url)
   resp <- httr::GET(sprintf(
     "%s/repos/%s/issues?state=all&per_page=%s",
     getOption("riskmetric.github_api_host"),
