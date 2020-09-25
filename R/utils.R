@@ -117,6 +117,7 @@ capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
     assign("cnds", append(cnds, list(cnd)), envir = envir)
   }
 
+  n_calls <- length(sys.calls())
   fn_env <- environment()
   sink(log_file_con, split = split)
   res <- withVisible(try(withCallingHandlers(
@@ -128,7 +129,7 @@ capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
       } else if (inherits(cnd, "warning")) {
         invokeRestart('muffleWarning')
       } else if (inherits(cnd, "error")) {
-        syscalls <- head(tail(sys.calls(), -10L), -2L)
+        syscalls <- head(tail(sys.calls(), -(9L + n_calls)), -2L)
         assign("cnds_err_traceback", syscalls, envir = fn_env)
       }
     }), silent = TRUE))
@@ -220,7 +221,9 @@ print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
     } else if (inherits(i, "warning")) {
       cat(crayon::red(gsub("^simple", "", .makeMessage(i))))
     } else if (inherits(i, "error")) {
-      cat(crayon::red("Error:", i$message), "\n", sep = "")
+      cat(crayon::red(sprintf("Error%s: %s\n",
+        if (!is.null(i$call)) sprintf(" in %s ", format(i$call)) else "",
+        i$message)))
     } else if (inherits(i, "condition")) {
       cat(crayon::red(.makeMessage(i)), "\n", sep = "")
     } else if (cr) {
