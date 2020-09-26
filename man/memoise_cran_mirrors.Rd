@@ -4,18 +4,12 @@
 \alias{memoise_cran_mirrors}
 \title{Fetch CRAN Mirrors Info}
 \usage{
-memoise_cran_mirrors(
-  all = TRUE,
-  ...,
-  host_exists = !is.null(curl::nslookup("cran.r-project.org", error = FALSE))
-)
+memoise_cran_mirrors(all = TRUE, ..., .local = getOption("riskmetric.tests"))
 }
 \arguments{
 \item{all}{default \code{TRUE}, passed to \code{\link{utils}[getCRANmirrors]}}
 
 \item{...}{additional arguments passed to \code{\link{utils}[getCRANmirrors]}}
-
-\item{host_exists}{whether cran can be contacted}
 }
 \description{
 Fetch CRAN Mirrors Info

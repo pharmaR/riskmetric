@@ -9,4 +9,5 @@ License: CC BY 2.0
 LazyData: true
 Suggests:
     testthat
-RoxygenNote: 5.0.1
+Encoding: UTF-8
+RoxygenNote: 7.1.1

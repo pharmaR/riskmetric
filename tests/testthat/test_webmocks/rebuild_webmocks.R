@@ -4,7 +4,7 @@ repo <- getOption("repos", "https://cloud.r-project.org")
 # resembles the cran package db. sorry lars!!
 db <- riskmetric:::memoise_cran_db()
 db <- db[db[, "Package"] %in% c("glmnet", "lars"),]
-db[,"Package"] <- c("goodcranpkg", "badcranpkg")
+db[,"Package"] <- c("pkgcranremotegood", "pkgcranremotebad")
 write.csv(db, "./tests/testthat/test_webmocks/data/cran_packages.csv")
 
 db <- getCRANmirrors()
