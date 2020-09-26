@@ -27,12 +27,13 @@
 #' }
 #'
 #' @export
-summarize_scores <- function(data, weights = .risk_weights) {
+summarize_scores <- function(data, weights = NULL) {
   UseMethod("summarize_scores")
 }
 
 #' @export
-summarize_scores.data.frame <- function(data, weights = .risk_weights) {
+summarize_scores.data.frame <- function(data, weights = NULL) {
+
   # perform checks and standardize weights
   weights <- standardize_weights(data, weights)
 
@@ -48,7 +49,8 @@ summarize_scores.data.frame <- function(data, weights = .risk_weights) {
 }
 
 #' @export
-summarize_scores.list <- function(data, weights = .risk_weights) {
+summarize_scores.list <- function(data, weights = NULL) {
+
   # perform checks and standardize weights
   weights <- standardize_weights(data, weights)
 
