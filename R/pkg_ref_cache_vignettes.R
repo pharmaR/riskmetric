@@ -33,8 +33,6 @@ pkg_ref_cache.vignettes.pkg_source <- function(x, name, ...) {
 #' @return a vector of parsed Vignettes files
 #'
 vignettes_from_dir <- function(path) {
-  # accommodate unique vignettes files
-
   folder <- c(source = "/vignettes", bundle = "/inst/doc", binary = "/doc")
   files <- unlist(lapply(paste0(path, folder), list.files, full.names = TRUE))
 
@@ -60,6 +58,7 @@ vignettes_from_dir <- function(path) {
 #'
 vignettes_from_html <- function(x) {
   nodes <- xml2::xml_find_all(x$web_html, xpath = '//a[contains(@href,"vignettes")]')
+
   if (!length(nodes)) return(c())
 
   file_path <- unlist(xml2::xml_attrs(nodes, "href"))
