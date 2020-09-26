@@ -97,7 +97,14 @@ with_unclassed_to <- function(x, .class = 1:length(class(x)), expr,
 #'
 #' @param expr an expression to evaluate, capturing output events as they
 #'   are issued
+#' @param env the environment in which \code{expr} should be evaluated,
+#'   defaulting to the calling environment.
+#' @param quoted whether \code{expr} is a quoted object and should be evaluated
+#'   as is, or whether the expression should be captured from the function call.
+#'   Defaults to \code{FALSE}, capturing the passed expression.
 #' @inheritParams base::sink
+#'
+#' @importFrom utils head tail
 #'
 capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
     quoted = FALSE) {
@@ -129,7 +136,7 @@ capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
       } else if (inherits(cnd, "warning")) {
         invokeRestart('muffleWarning')
       } else if (inherits(cnd, "error")) {
-        syscalls <- head(tail(sys.calls(), -(9L + n_calls)), -2L)
+        syscalls <- utils::head(utils::tail(sys.calls(), -(9L + n_calls)), -2L)
         assign("cnds_err_traceback", syscalls, envir = fn_env)
       }
     }), silent = TRUE))
@@ -189,9 +196,8 @@ capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
 #'
 #' @export
 #'
+#'
 print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
-  crayon_gray <- crayon::make_style(rgb(.5, .5, .5))
-
   x_call <- as.call(as.list(x))
 
   if (x_call[[1]] == "{") {
@@ -205,27 +211,27 @@ print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
 
   x_call_str[1] <- paste(">", x_call_str[1])
   x_call_str[-1] <- paste("+", x_call_str[-1])
-  str_call <- crayon::blue(paste(x_call_str, collapse = "\n"))
+  str_call <- paste(x_call_str, collapse = "\n")
 
   str_traceback <- paste(
     sprintf(
       "%s  %s",
-      crayon_gray("#"),
+      "#",
       capture.output(traceback(attr(x, "traceback")))),
     collapse = "\n")
 
   cat(str_call, "\n", sep = "")
   for (i in attr(x, "output")) {
     if (inherits(i, "message")) {
-      cat(crayon::red(i$message))
+      message(i$message)
     } else if (inherits(i, "warning")) {
-      cat(crayon::red(gsub("^simple", "", .makeMessage(i))))
+      message(gsub("^simple", "", .makeMessage(i)))
     } else if (inherits(i, "error")) {
-      cat(crayon::red(sprintf("Error%s: %s\n",
+      message(sprintf("Error%s: %s\n",
         if (!is.null(i$call)) sprintf(" in %s ", format(i$call)) else "",
-        i$message)))
+        i$message))
     } else if (inherits(i, "condition")) {
-      cat(crayon::red(.makeMessage(i)), "\n", sep = "")
+      message(.makeMessage(i))
     } else if (cr) {
       cat(i)
     } else if (nzchar(gsub("\r", "", i))) {
@@ -233,6 +239,6 @@ print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
     }
     if (sleep > 0L) Sys.sleep(sleep)
   }
-  if (!is.null(attr(x, "traceback"))) cat(crayon_gray(str_traceback), "\n", sep = "")
-  else if (attr(x, "visible")) show(attr(x, "value"))
+  if (!is.null(attr(x, "traceback"))) cat(str_traceback, "\n", sep = "")
+  else if (attr(x, "visible")) print(attr(x, "value"))
 }

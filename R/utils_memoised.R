@@ -9,9 +9,13 @@ memoise_cran_db <- memoise::memoise({
 #'
 #' @param all default \code{TRUE}, passed to \code{\link{utils}[getCRANmirrors]}
 #' @param ... additional arguments passed to \code{\link{utils}[getCRANmirrors]}
+#' @param .local an optional local directory to source the CRAN package index
+#'   from, defaulting to \code{getOption("riskmetric.tests")}, used
+#'   for isolating repository requests during testing.
 #'
 #' @importFrom curl nslookup
 #' @importFrom memoise memoise
+#'
 memoise_cran_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
   # NOTE: might need to implement actual caching to avoid inconsistent behavior

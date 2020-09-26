@@ -1,7 +1,7 @@
 Package: riskmetric
 Type: Package
 Title: Risk Metrics to Evaluating R Packages
-Description: Facilites for assessing R packages against a number of metrics to 
+Description: Facilities for assessing R packages against a number of metrics to 
     help quantify their robustness.
 Version: 0.1.0.9001
 Authors@R: c(
@@ -37,7 +37,6 @@ Suggests:
     dplyr,
     magrittr,
     testthat,
-    jsonlite,
     webmockr
 VignetteBuilder: knitr
 Config/testthat/edition: 3

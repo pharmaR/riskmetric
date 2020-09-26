@@ -68,9 +68,8 @@ scrape_bug_reports.github <- function(x, ...) {
 
 
 
-#' @importFrom curl curl
+#' @importFrom httr GET content
 #' @importFrom urltools url_encode
-#' @importFrom jsonlite parse_json
 scrape_bug_reports.gitlab <- function(x, ...) {
   owner_repo_issues <- gsub(".*gitlab[^/]*/(.*)", "\\1", x$bug_reports_url)
   owner_repo <- gsub("(.*)/issues", "\\1", owner_repo_issues)
