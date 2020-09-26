@@ -223,13 +223,13 @@ print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
   cat(str_call, "\n", sep = "")
   for (i in attr(x, "output")) {
     if (inherits(i, "message")) {
-      message(i$message)
+      message(i$message, appendLF = FALSE)
     } else if (inherits(i, "warning")) {
-      message(gsub("^simple", "", .makeMessage(i)))
+      message(gsub("^simple", "", .makeMessage(i)), appendLF = FALSE)
     } else if (inherits(i, "error")) {
       message(sprintf("Error%s: %s\n",
         if (!is.null(i$call)) sprintf(" in %s ", format(i$call)) else "",
-        i$message))
+        i$message), appendLF = FALSE)
     } else if (inherits(i, "condition")) {
       message(.makeMessage(i))
     } else if (cr) {
