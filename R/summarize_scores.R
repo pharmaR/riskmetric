@@ -34,6 +34,8 @@ summarize_scores <- function(data, weights = NULL) {
 #' @export
 summarize_scores.data.frame <- function(data, weights = NULL) {
 
+  if (missing(weights)) weights <- add_default_weights(data)
+
   # perform checks and standardize weights
   weights <- standardize_weights(data, weights)
 
@@ -50,6 +52,8 @@ summarize_scores.data.frame <- function(data, weights = NULL) {
 
 #' @export
 summarize_scores.list <- function(data, weights = NULL) {
+
+  if (missing(weights)) weights <- add_default_weights(data)
 
   # perform checks and standardize weights
   weights <- standardize_weights(data, weights)
@@ -70,6 +74,20 @@ summarize_scores.list <- function(data, weights = NULL) {
   has_news = 1,
   covr_coverage = 3)
 
+# Set the default weight of each metric to 1.
+add_default_weights <- function(data) {
+
+  # ignore columns that are not of class 'pkg_score'
+  ignore_cols <- c("package", "version", "pkg_ref", "pkg_score")
+  metrics <- names(data)[!(names(data) %in% ignore_cols)]
+
+  # assign a weight of 1 to each metric
+  weights <- rep(1, length(metrics))
+  names(weights) <- metrics
+
+  weights
+}
+
 # Check that the provided weights are numeric and non-negative.
 check_weights <- function(weights){
 
@@ -82,6 +100,7 @@ check_weights <- function(weights){
 
 # Check weights values and standardize them.
 standardize_weights <- function(data, weights){
+
   # check that the weights vector is numeric and non-negative
   check_weights(weights)
 
