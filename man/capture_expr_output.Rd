@@ -12,6 +12,13 @@ are issued}
 
 \item{split}{logical: if \code{TRUE}, output will be sent to the new
     sink and to the current output stream, like the Unix program \code{tee}.}
+
+\item{env}{the environment in which \code{expr} should be evaluated,
+defaulting to the calling environment.}
+
+\item{quoted}{whether \code{expr} is a quoted object and should be evaluated
+as is, or whether the expression should be captured from the function call.
+Defaults to \code{FALSE}, capturing the passed expression.}
 }
 \description{
 All messaging condition side effects are captured in the order that they

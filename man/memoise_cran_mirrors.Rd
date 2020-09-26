@@ -10,6 +10,10 @@ memoise_cran_mirrors(all = TRUE, ..., .local = getOption("riskmetric.tests"))
 \item{all}{default \code{TRUE}, passed to \code{\link{utils}[getCRANmirrors]}}
 
 \item{...}{additional arguments passed to \code{\link{utils}[getCRANmirrors]}}
+
+\item{.local}{an optional local directory to source the CRAN package index
+from, defaulting to \code{getOption("riskmetric.tests")}, used
+for isolating repository requests during testing.}
 }
 \description{
 Fetch CRAN Mirrors Info

@@ -6,6 +6,9 @@
 \usage{
 pkg_metric_error(e)
 }
+\arguments{
+\item{e}{an error object to capture}
+}
 \description{
 A subclass wrapping an error with an additional parent class
 }
