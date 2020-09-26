@@ -61,19 +61,6 @@ summarize_scores.list <- function(data, weights = NULL) {
   1 - sum(as.numeric(data[names(weights)]) * weights, na.rm = TRUE)
 }
 
-#' Default weights to use for summarizing risk
-#'
-#' @export
-.risk_weights <- c(
-  news_current = 1,
-  has_vignettes = 2,
-  has_bug_reports_url = 2,
-  bugs_status = 1,
-  license = 0,
-  export_help = 2,
-  has_news = 1,
-  covr_coverage = 3)
-
 # Set the default weight of each metric to 1.
 add_default_weights <- function(data) {
 
