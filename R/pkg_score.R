@@ -50,7 +50,8 @@ pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
     class(x[[coln]]) <- c("pkg_score", class(x[[coln]]))
   }
 
-  x[["pkg_score"]] <- summarize_scores(x, ...)
+  ignore_cols <- c("package", "version", "pkg_ref")
+  x[["pkg_score"]] <- summarize_scores(x[, !names(x) %in% ignore_cols], ...)
 
   # reorder columns so that metadata columns come first
   pkg_cols <- intersect(names(x), c("package", "version", "pkg_ref", "pkg_score"))
