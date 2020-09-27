@@ -43,10 +43,6 @@ summarize_scores.data.frame <- function(data, weights = NULL) {
   qual <- colSums(apply(data[names(weights)], 1L, `*`, weights), na.rm = TRUE)
   risk <- 1 - qual
 
-  # name if possible
-  if ("package" %in% names(data))
-    names(risk) <- data[["package"]]
-
   risk
 }
 
