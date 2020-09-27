@@ -74,7 +74,7 @@ add_default_weights <- function(data) {
 # Check that the provided weights are numeric and non-negative.
 check_weights <- function(weights){
 
-  if(is.numeric(weights))
+  if(!is.numeric(weights))
     stop("The weights must be a numeric vector.")
 
   if(!all(weights >= 0))
