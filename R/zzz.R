@@ -1,4 +1,7 @@
+#' @importFrom backports import
 .onLoad <- function(libname, pkgname) {
+  backports::import(pkgname, "isFALSE")
+
   # set default cache behaviors
   opts <- Filter(Negate(is.null), Map(function(i) i$default(), cache_behaviors))
   names(opts) <- sprintf("riskmetric.%s", names(opts))

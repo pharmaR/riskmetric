@@ -47,7 +47,7 @@ require_cache_behaviors <- function(behaviors) {
 
   opt_names <- paste0(packageName(), ".", behaviors)
   names(opt_names) <- opt_names
-  behaviors_disabled <- Filter(Negate(isTRUE), lapply(opt_names, getOption))
+  behaviors_disabled <- Filter(isFALSE, lapply(opt_names, getOption))
 
   if (length(behaviors_disabled)) {
     e <- simpleError(message = paste(
