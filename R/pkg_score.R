@@ -50,7 +50,8 @@ pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
     class(x[[coln]]) <- c("pkg_score", class(x[[coln]]))
   }
 
-  x[["pkg_score"]] <- summarize_scores(x, ...)
+  ignore_cols <- c("package", "version", "pkg_ref")
+  x[["pkg_score"]] <- summarize_scores(x[, !names(x) %in% ignore_cols], ...)
 
   # reorder columns so that metadata columns come first
   pkg_cols <- intersect(names(x), c("package", "version", "pkg_ref", "pkg_score"))
@@ -63,9 +64,13 @@ pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
 
 #' @export
 pkg_score.list_of_pkg_metric <- function(x, ...,
-  error_handler = score_error_default) {
+                                         error_handler = score_error_default) {
 
-  lapply(x, metric_score, error_handler = error_handler)
+  lapply(x, function(xi) {
+    s <- metric_score(xi, error_handler = error_handler)
+    class(s) <- c("pkg_score", class(s))
+    s
+  })
 }
 
 
