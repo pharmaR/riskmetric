@@ -76,7 +76,8 @@ build_downloads <- function(downloads = NULL, pkg_name = "temp") {
         "Content-Encoding" = "UTF-8"))
 
 # github bugreports via github's repo issues api
-stub_request("get", uri_regex = "api\\.github\\.com/repos/[^/]+/[^/]+/issues\\?.+") %>%
+stub_request("get", uri_regex = "api\\.github\\.com/repos/[^/]+/[^/]+/issues") %>%
+  wi_th(query = list(state = "all", per_page = "30")) %>%
   to_return(
     body = file("./test_webmocks/data/github_repo_issues_api_response.json"),
     headers = list("Content-Type" = "application/json"))
