@@ -34,38 +34,6 @@ is_url_subpath_of <- function(url, urls) {
 
 
 
-#' Return a vector of random uninstalled packages
-#'
-#' @return a character vector of random package names
-#'
-#' @importFrom tools CRAN_package_db
-#' @importFrom utils installed.packages
-not_installed_packages <- function() {
-  installeddb <- utils::installed.packages()
-  crandb <- memoise_cran_db()
-
-  installed_packages <- installeddb[,"Package"]
-  cran_packages <- crandb[["package"]]
-
-  unname(setdiff(cran_packages, installed_packages))
-}
-
-
-
-#' Return a vector of random installed packages
-#'
-#' @param ... additional arguments unused
-#' @return a character vector of random package names
-#'
-#' @importFrom tools CRAN_package_db
-#' @importFrom utils installed.packages
-installed_packages <- function(...) {
-  installeddb <- utils::installed.packages()
-  unname(installeddb[,"Package"])
-}
-
-
-
 #' Evaluate an expression after first removing a range of S3 classes
 #'
 #' @param x a structured S3-classed object
@@ -241,4 +209,26 @@ print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
   }
   if (!is.null(attr(x, "traceback"))) cat(str_traceback, "\n", sep = "")
   else if (attr(x, "visible")) print(attr(x, "value"))
+}
+
+
+
+
+#' Suppress messages and warnings based on one or more regex matches
+#'
+#' @param expr An expression to evaluate
+#' @param messages,warnings A vector of regular expressions that, when matched
+#'   against the respective condition message, should suppress that condition.
+#' @param ... Additional arguments passed to \code{grepl}
+#'
+suppressMatching <- function(expr, messages = NULL, warnings = NULL, ...) {
+  withCallingHandlers(expr,
+    message = function(m) {
+      any_matches <- any(sapply(messages, grepl, m$message, ...))
+      if (!is.null(messages) & any_matches) invokeRestart("muffleMessage")
+    },
+    warning = function(w) {
+      any_matches <- any(sapply(warnings, grepl, w$message, ...))
+      if (!is.null(warnings) & any_matches) invokeRestart("muffleWarning")
+    })
 }
