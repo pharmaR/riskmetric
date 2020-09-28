@@ -36,7 +36,8 @@ Suggests:
     rmarkdown,
     dplyr,
     magrittr,
-    testthat,
-    webmockr
+    testthat
+Remotes:
+    ropensci/webmockr
 VignetteBuilder: knitr
 Config/testthat/edition: 3
