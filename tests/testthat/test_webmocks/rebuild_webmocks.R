@@ -2,7 +2,7 @@ repo <- getOption("repos", "https://cloud.r-project.org")
 
 # no judgement on either package, just using it to stub out something that
 # resembles the cran package db. sorry lars!!
-db <- riskmetric:::memoise_cran_db()
+db <- available.packages()
 db <- db[db[, "Package"] %in% c("glmnet", "lars"),]
 db[,"Package"] <- c("pkgcranremotegood", "pkgcranremotebad")
 write.csv(db, "./tests/testthat/test_webmocks/data/cran_packages.csv")

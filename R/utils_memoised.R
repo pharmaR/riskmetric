@@ -1,10 +1,3 @@
-#' @importFrom memoise memoise
-memoise_cran_db <- memoise::memoise({
-  function() tools::CRAN_package_db()
-})
-
-
-
 #' Fetch CRAN Mirrors Info
 #'
 #' @param all default \code{TRUE}, passed to \code{\link{utils}[getCRANmirrors]}
