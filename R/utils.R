@@ -225,7 +225,9 @@ print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
 #' @examples
 #' riskmetric:::suppressMatchingConditions({
 #'     print(paste(letters[1:3], collapse = ", "))
-#'     warning(warningCondition("easy as", class = "custom_warning"))
+#'     warning(structure(
+#'       list(message = "easy as", call = NULL),
+#'       class = c("custom_warning", "warning", "condition")))
 #'     message(paste(1:3, collapse = ", "))
 #'     message("simple as")
 #'     warning("do re mi")
