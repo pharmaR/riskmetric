@@ -22,7 +22,9 @@ Suppress messages and warnings based on one or more regex matches
 \examples{
 riskmetric:::suppressMatchingConditions({
     print(paste(letters[1:3], collapse = ", "))
-    warning(warningCondition("easy as", class = "custom_warning"))
+    warning(structure(
+      list(message = "easy as", call = NULL),
+      class = c("custom_warning", "warning", "condition")))
     message(paste(1:3, collapse = ", "))
     message("simple as")
     warning("do re mi")
