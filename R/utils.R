@@ -99,11 +99,10 @@ capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
     if (!quoted) eval(expr_quote, env) else eval(expr, env),
     condition = function(cnd) {
       append_cnd(cnd, fn_env)
-      if (inherits(cnd, "message")) {
-        invokeRestart('muffleMessage')
-      } else if (inherits(cnd, "warning")) {
-        invokeRestart('muffleWarning')
+      if (inherits(cnd, "message") || inherits(cnd, "warning")) {
+        invokeRestart(computeRestarts()[[1]])
       } else if (inherits(cnd, "error")) {
+        # trim call stack back to just the scope of the evaluated expression
         syscalls <- utils::head(utils::tail(sys.calls(), -(9L + n_calls)), -2L)
         assign("cnds_err_traceback", syscalls, envir = fn_env)
       }
@@ -217,18 +216,36 @@ print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
 #' Suppress messages and warnings based on one or more regex matches
 #'
 #' @param expr An expression to evaluate
-#' @param messages,warnings A vector of regular expressions that, when matched
-#'   against the respective condition message, should suppress that condition.
-#' @param ... Additional arguments passed to \code{grepl}
+#' @param ... Named parameters, where the name indicates the class of conditions
+#'   to capture and the value is a vector of regular expressions that, when
+#'   matched against the respective condition message, should suppress that
+#'   condition.
+#' @param .opts A named list of arguments to pass to \code{grepl}
 #'
-suppressMatching <- function(expr, messages = NULL, warnings = NULL, ...) {
-  withCallingHandlers(expr,
-    message = function(m) {
-      any_matches <- any(sapply(messages, grepl, m$message, ...))
-      if (!is.null(messages) & any_matches) invokeRestart("muffleMessage")
-    },
-    warning = function(w) {
-      any_matches <- any(sapply(warnings, grepl, w$message, ...))
-      if (!is.null(warnings) & any_matches) invokeRestart("muffleWarning")
-    })
+#' @examples
+#' riskmetric:::suppressMatchingConditions({
+#'     print(paste(letters[1:3], collapse = ", "))
+#'     warning(warningCondition("easy as", class = "custom_warning"))
+#'     message(paste(1:3, collapse = ", "))
+#'     message("simple as")
+#'     warning("do re mi")
+#'   },
+#'   message = "\\d",
+#'   custom_warning = "as$",
+#'   warning = "\\w{2}\\s")
+#'
+suppressMatchingConditions <- function(expr, ..., .opts = list()) {
+  optioned_grepl <- function(pattern, x)
+    do.call(grepl, append(list(pattern = pattern, x = x), .opts))
+
+  generate_cond_handler <- function(cond_regexes) {
+    function(cond) {
+      if (any(sapply(cond_regexes, optioned_grepl, conditionMessage(cond))))
+        tryInvokeRestart(computeRestarts()[[1]])
+    }
+  }
+
+  do.call(withCallingHandlers, append(list(
+    substitute(expr)),
+    lapply(list(...), generate_cond_handler)))
 }

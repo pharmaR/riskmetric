@@ -12,7 +12,7 @@ pkg_ref_cache.news <- function(x, name, ...) {
 #' @importFrom httr content GET
 pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
   # default encoding messages suppressed
-  suppressMatching(
+  suppressMatchingConditions(
     lapply(x$news_urls, function(news_url) {
       response <- httr::GET(news_url)
       httr::content(

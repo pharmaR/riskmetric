@@ -12,5 +12,7 @@ pkg_ref_cache.web_html <- function(x, name, ...) {
 #' @importFrom httr content GET
 pkg_ref_cache.web_html.pkg_remote <- function(x, name, ...) {
   # suppress messages when httr assumes a default content parameters
-  suppressMatching(httr::content(httr::GET(x$web_url)), messages = "default")
+  suppressMatchingConditions(
+    httr::content(httr::GET(x$web_url)),
+    messages = "default")
 }
