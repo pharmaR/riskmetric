@@ -241,7 +241,7 @@ suppressMatchingConditions <- function(expr, ..., .opts = list()) {
   generate_cond_handler <- function(cond_regexes) {
     function(cond) {
       if (any(sapply(cond_regexes, optioned_grepl, conditionMessage(cond))))
-        tryInvokeRestart(computeRestarts()[[1]])
+        invokeRestart(computeRestarts()[[1]])
     }
   }
 
