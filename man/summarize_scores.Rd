@@ -8,7 +8,7 @@ summarize_scores(data, weights = NULL)
 }
 \arguments{
 \item{data}{a \code{\link[tibble]{tibble}} of scored assessments whose column
-names match those provided by riskmetric's \code{\link{assess}} function.}
+names match those provided by riskmetric's \code{\link{pkg_assess}} function.}
 
 \item{weights}{an optional vector of non-negative weights to be assigned to
 each assessment.}

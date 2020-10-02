@@ -6,6 +6,10 @@
 \usage{
 pkg_metric_todo(message = NULL)
 }
+\arguments{
+\item{message}{an optional message directing users and potential contributors
+toward any ongoing work or first steps toward development.}
+}
 \description{
 A pkg_metric subclass for when pkg_metrics have not yet been implemented
 }

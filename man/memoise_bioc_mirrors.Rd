@@ -4,12 +4,7 @@
 \alias{memoise_bioc_mirrors}
 \title{Fetch BioC Mirrors Info}
 \usage{
-memoise_bioc_mirrors(
-  host_exists = !is.null(curl::nslookup("bioconductor.org", error = FALSE))
-)
-}
-\arguments{
-\item{host_exists}{whether bioconductor can be contacted}
+memoise_bioc_mirrors()
 }
 \description{
 taken from utils::chooseBioCmirror

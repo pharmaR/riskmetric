@@ -1,4 +1,4 @@
-#' Score a package assement, collapsing results into a single numeric
+#' Score a package assessment, collapsing results into a single numeric
 #'
 #' pkg_score() calculates the risk involved with using a package. Risk ranges
 #' from 0 (low-risk) to 1 (high-risk).
@@ -55,7 +55,7 @@ pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
 
   # reorder columns so that metadata columns come first
   pkg_cols <- intersect(names(x), c("package", "version", "pkg_ref", "pkg_score"))
-  x <- x[,c(pkg_cols, setdiff(names(x), pkg_cols))]
+  x <- x[, c(pkg_cols, setdiff(names(x), pkg_cols))]
 
   x
 }

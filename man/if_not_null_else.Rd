@@ -7,6 +7,13 @@
 \usage{
 lhs \%||\% rhs
 }
+\arguments{
+\item{lhs}{Left-hand side}
+
+\item{rhs}{Right-hand side
+
+A shorthand for a common comparison}
+}
 \description{
-A shorthand for a common comparison
+If not NULL else
 }

@@ -9,11 +9,18 @@ pkg_ref_cache.news <- function(x, name, ...) {
 
 
 
+#' @importFrom httr content GET
 pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
-  lapply(x$news_urls, xml2::read_html)
+  # default encoding messages suppressed
+  suppressMatchingConditions(
+    lapply(x$news_urls, function(news_url) {
+      response <- httr::GET(news_url)
+      httr::content(
+        response,
+        type = response$headers$`content-type` %||% "text/html")
+    }),
+    messages = "default")
 }
-
-
 
 
 

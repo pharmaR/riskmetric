@@ -49,14 +49,15 @@ vignettes_from_dir <- function(path) {
 
 #' Build a List of Vignettes Files Discovered Within a Package Website
 #'
-#' @param x a \code{pkg_ref} object with a valid \code{web_url} field
+#' @param x a \code{pkg_ref} object
 #'
 #' @return a vector of Vignettes files
 #'
+#' @importFrom xml2 xml_attrs
+#' @importFrom tools file_path_sans_ext
+#'
 vignettes_from_html <- function(x) {
-  nodes <- xml2::xml_find_all(
-    x$web_html,
-    xpath = '//a[contains(@href,"vignettes")]')
+  nodes <- xml2::xml_find_all(x$web_html, xpath = '//a[contains(@href,"vignettes")]')
 
   if (!length(nodes)) return(c())
 

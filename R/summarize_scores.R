@@ -5,7 +5,7 @@
 #' dataset, this function can be used to calculate a vector of risks.
 #'
 #' @param data a \code{\link[tibble]{tibble}} of scored assessments whose column
-#'   names match those provided by riskmetric's \code{\link{assess}} function.
+#'   names match those provided by riskmetric's \code{\link{pkg_assess}} function.
 #' @param weights an optional vector of non-negative weights to be assigned to
 #'   each assessment.
 #'

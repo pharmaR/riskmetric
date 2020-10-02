@@ -6,6 +6,9 @@
 \usage{
 pkg_metric_na(message = NULL)
 }
+\arguments{
+\item{message}{an optional message explaining why a metric is not applicable.}
+}
 \description{
 A pkg_metric subclass for when metrics are explicitly not applicable
 }

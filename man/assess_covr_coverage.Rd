@@ -18,10 +18,10 @@ a \code{pkg_metric} containing a list containing fields 'filecoverage' and 'tota
 Assess a package code coverage using the `covr` package
 }
 \examples{
-assess_news_current(pkg_ref("riskmetric"))
+assess_covr_coverage(pkg_ref("riskmetric"))
 }
 \seealso{
-\code{\link{metric_score.pkg_metric_news_current}}
+\code{\link{metric_score.pkg_metric_covr_coverage}}
 
 Other \code{assess_*} functions: 
 \code{\link{assess_downloads_1yr}()},

@@ -2,7 +2,7 @@
 % Please edit documentation in R/pkg_score.R
 \name{pkg_score}
 \alias{pkg_score}
-\title{Score a package assement, collapsing results into a single numeric}
+\title{Score a package assessment, collapsing results into a single numeric}
 \usage{
 pkg_score(x, ..., error_handler = score_error_default)
 }

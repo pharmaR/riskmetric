@@ -7,7 +7,7 @@
 vignettes_from_html(x)
 }
 \arguments{
-\item{x}{a \code{pkg_ref} object with a valid \code{web_url} field}
+\item{x}{a \code{pkg_ref} object}
 }
 \value{
 a vector of Vignettes files

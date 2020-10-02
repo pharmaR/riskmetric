@@ -1,7 +1,9 @@
 #' A subclass wrapping an error with an additional parent class
 #'
-pkg_metric_error <- function(e) {
-  pkg_metric(e, class = "pkg_metric_error")
+#' @param error an error condition object to capture
+#'
+pkg_metric_error <- function(error) {
+  pkg_metric(error, class = "pkg_metric_error")
 }
 
 
