@@ -38,8 +38,6 @@ Suggests:
     magrittr,
     testthat, 
     webmockr
-Remotes: 
-    ropensci/webmockr
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Config/testthat/edition: 3
