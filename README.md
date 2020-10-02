@@ -1,6 +1,6 @@
 # riskmetric
 
-[![Travis build status](https://travis-ci.org/pharmaR/riskmetric.svg?branch=master)](https://travis-ci.org/pharmaR/riskmetric)
+[![R build status](https://github.com/pharmaR/riskmetric/workflows/R-CMD-check/badge.svg)](https://github.com/pharmaR/riskmetric/actions?workflow=R-CMD-check)
 [![Coverage status](https://codecov.io/gh/pharmaR/riskmetric/branch/master/graph/badge.svg)](https://codecov.io/github/pharmaR/riskmetric?branch=master)
  
 `riskmetric` is a collection of risk metrics to evaluate the quality of R
@@ -24,7 +24,6 @@ We separate three steps in the workflow to assess the risk of an R package using
 1. **Finding a source for package information (installed package or CRAN/git source)** `pkg_ref()`
 1. **Assessing the package under validation criteria** `pkg_assess()`
 1. **Scoring assessment criteria** `pkg_score()`
-1. **Summarize scores into an aggregate risk metric** `summarize_scores()`
 
 The results will be assembled in a dataset of validation criteria containing an
 overall risk score for each package as shown in the example below.
@@ -49,10 +48,8 @@ library(dplyr)
 library(riskmetric)
 
 pkg_ref(c("riskmetric", "utils", "tools")) %>%
-  as_tibble() %>%
   pkg_assess() %>%
-  pkg_score() %>%
-  mutate(risk = summarize_scores(.))
+  pkg_score()
 ```
 
 ## Get Involved
