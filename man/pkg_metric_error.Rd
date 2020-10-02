@@ -4,10 +4,10 @@
 \alias{pkg_metric_error}
 \title{A subclass wrapping an error with an additional parent class}
 \usage{
-pkg_metric_error(e)
+pkg_metric_error(error)
 }
 \arguments{
-\item{e}{an error object to capture}
+\item{error}{an error condition object to capture}
 }
 \description{
 A subclass wrapping an error with an additional parent class
