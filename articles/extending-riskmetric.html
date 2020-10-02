@@ -6,19 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Extending riskmetric • riskmetric</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Extending riskmetric">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="riskmetric">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">riskmetric</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9001</span>
       </span>
     </div>
 
@@ -64,7 +64,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/pharmaR/riskmetric">
+  <a href="https://github.com/pharmaR/riskmetric/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -79,13 +79,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="extending-riskmetric_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Extending riskmetric</h1>
+      <h1 data-toc-skip>Extending riskmetric</h1>
                         <h4 class="author">R Validation Hub</h4>
             
-            <h4 class="date">2019-11-26</h4>
+            <h4 class="date">2020-10-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaR/riskmetric/blob/master/vignettes/extending-riskmetric.Rmd"><code>vignettes/extending-riskmetric.Rmd</code></a></small>
       <div class="hidden name"><code>extending-riskmetric.Rmd</code></div>
@@ -94,8 +94,21 @@
 
     
     
-<p><code>riskmetric</code> is designed to be readily extensible. This is done through use of the S3 method dispatch system and a conscious acknowledgement of the varying needs that someone may have when assessing package risk. With this in mind, every user facing function is designed first and foremost to be flexible.</p>
+<p><code>riskmetric</code> is designed to be readily extensible. This is done through use of the S3 method dispatch system and a conscious acknowledgement of the varying needs that someone may have when assessing package risk. With this in mind, every user-facing function is designed first and foremost to be flexible.</p>
 <p>Here we’ll walk through a trivial example where we’ll extend <code>riskmetric</code> to add a new assessment, scoring and risk summary function to determine the risk associated with a package given its name starts with the letter “r”.</p>
+<div id="package-classes" class="section level1">
+<h1 class="hasAnchor">
+<a href="#package-classes" class="anchor"></a>Package Classes</h1>
+<p>Before we can assess a package we first need to represent a package as data. We refer to this collection of package metadata as a “package reference” - a way of referring to the related information we’ve been able to pull together about a package. This is represented as a <code>pkg_ref</code> class object. As dimensions of risk are assessed, the data needed to evaluate it in those terms is cached within this object, building up a small store of information about the package which other assessments can refer to or build off of.</p>
+<p>Importantly, not all references to packages are equal. We can collect information given the source code, a locally installed package or by scraping data about a package from the web. There’s a hierarchy of subclasses that encapsulate these disparate use cases.</p>
+<pre><code>pkg_ref
+ ├─ pkg_source
+ ├─ pkg_install
+ └─ pkg_remote
+     ├─ pkg_cran_remote
+     └─ pkg_bioc_remote</code></pre>
+<p>These subclasses direct the behavior of all downstream operations and provides flexibility about how to bucket the implementations of how similar data can be collected from a number of potential sources. For example, to determine the author of a package it would be easiest to look at a package’s <code>DESCRIPTION</code> file where this content is maintained. However, without access to the source or installed files, one could find the same information on the CRAN package webpage. Using these subclasses, the appropriate method of collecting this data can be selected.</p>
+</div>
 <div id="adding-an-assessment" class="section level1">
 <h1 class="hasAnchor">
 <a href="#adding-an-assessment" class="anchor"></a>Adding an Assessment</h1>
@@ -114,28 +127,29 @@
 #&gt; [1] "number of discovered NEWS files" 
 #&gt; 
 #&gt; assess_has_news.pkg_install &lt;- NULL</code></pre>
-<p>There are a couple things to note. First, the S3 system is used to dispatch functionality for the appropriate package reference class. Since the way we’d assess the inclusion of a NEWS file might be different for an installed package or remotely sourced metadata, we may have distinct functions to process these datatypes in distinct ways.</p>
-<p>Second, a cosmetic <code>"column_name"</code> attribute is used, which replaces the function name as the name of the new column after using the <code><a href="../reference/assess.html">assess()</a></code> verb.</p>
-<p>Finally, a <code>pkg_metric</code> object is returned, which stores arbitrary data pertaining to the metric and importantly adopts a unique subclass for the assessment function.</p>
+<p>There are a couple things to note. First, the S3 system is used to dispatch functionality for the appropriate package reference class. Since the way we’d assess the inclusion of a NEWS file might be different for an installed package or remotely sourced metadata, we may have separate functions to process these datatypes in distinct ways.</p>
+<p>Second, for each assessment, a <code>pkg_metric</code> object is returned. This stores the atomic data pertaining to the metric and importantly adopts a unique subclass for the assessment function.</p>
+<p>Finally, a cosmetic <code>"column_name"</code> attribute is tagged to the function. This is used when calling the <code>assess</code> function. The <code>assess</code> verb is a convenience function which steps through all available assessments returning a <code>tibble</code> of assessment outputs. The <code>"column_name"</code> provides a more user-friendly label for the assessment in this <code>tibble</code>.</p>
 </div>
 <div id="writing-a-new-assessment" class="section level2">
 <h2 class="hasAnchor">
 <a href="#writing-a-new-assessment" class="anchor"></a>Writing a New Assessment</h2>
 <p>Now we’ll write our assessment. Eventually we want to consider a package high risk if the name does not start with “r”. We’ll need to make a <code>pkg_metric</code> object containing the first letter of the name.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">assess_name_first_letter &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/r/base/UseMethod.html">UseMethod</a></span>(<span class="st">"assess_name_first_letter"</span>)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(assess_name_first_letter, <span class="st">"column_name"</span>) &lt;-<span class="st"> "name_first_letter"</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">assess_name_first_letter.pkg_ref &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">  <span class="kw"><a href="../reference/pkg_metric.html">pkg_metric</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(x<span class="op">$</span>name, <span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">class =</span> <span class="st">"pkg_metric_name_first_letter"</span>)</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">} </a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="va">assess_name_first_letter</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/UseMethod.html">UseMethod</a></span><span class="op">(</span><span class="st">"assess_name_first_letter"</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">assess_name_first_letter</span>, <span class="st">"column_name"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"name_first_letter"</span>
+
+<span class="va">assess_name_first_letter.pkg_ref</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="../reference/pkg_metric.html">pkg_metric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">name</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, class <span class="op">=</span> <span class="st">"pkg_metric_name_first_letter"</span><span class="op">)</span>
+<span class="op">}</span> </pre></div>
 </div>
 </div>
 <div id="adding-pkg_ref-metadata" class="section level1">
 <h1 class="hasAnchor">
 <a href="#adding-pkg_ref-metadata" class="anchor"></a>Adding <code>pkg_ref</code> Metadata</h1>
-<p>Perhaps we want to reuse metadata used when assessing the first letter so that it can be reused by other assessments. For particularly taxing metadata, such as metadat that requires a query against a public API, scraping a web page or a large data download, it’s important to store it for other assessment functions to reuse.</p>
+<p>Perhaps we want to reuse metadata used when assessing the first letter so that it can be reused by other assessments. For particularly taxing metadata, such as metadata that requires a query against a public API, scraping a web page or a large data download, it’s important to store it for other assessment functions to reuse.</p>
 <p>To handle this, we define a function for <code>pkg_ref_cache</code> to dispatch to.</p>
 <div id="example-metadata-caching" class="section level2">
 <h2 class="hasAnchor">
@@ -148,44 +162,59 @@
 #&gt; 
 #&gt; pkg_ref_cache.description.pkg_install &lt;- function (x, name, ...) 
 #&gt; {
-#&gt;     read.dcf(file.path(x$path, "description"))
+#&gt;     read.dcf(file.path(x$path, "DESCRIPTION"))
 #&gt; }</code></pre>
 <p>Once these are defined, they’ll be automatically called when the field is first accessed by the <code>pkg_ref</code> object, and then stored for any downstream uses.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(riskmetric)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">package &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="st">"riskmetric"</span>)</a></code></pre></div>
-<pre><code>#&gt; &lt;pkg_install, pkg_ref&gt; riskmetric v0.1.0.9000
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pharmar.github.io/riskmetric/">riskmetric</a></span><span class="op">)</span>
+<span class="va">package</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="st">"riskmetric"</span><span class="op">)</span></pre></div>
+<pre><code>#&gt; &lt;pkg_install, pkg_ref&gt; riskmetric v0.1.0.9001
 #&gt; $path
-#&gt;   [1] "/home/user/username/R/3.6/Resources/library/riskmetric"
+#&gt;   [1] "/home/user/username/R/4.0/Resources/library/riskmetric"
 #&gt; $source
 #&gt;   [1] "pkg_install"
 #&gt; $version
-#&gt;   [1] '0.1.0.9000'
+#&gt;   [1] '0.1.0.9001'
 #&gt; $name
 #&gt;   [1] "riskmetric"
+#&gt; $bug_reports...
+#&gt; $bug_reports_host...
+#&gt; $bug_reports_url...
 #&gt; $description...
+#&gt; $downloads...
 #&gt; $help...
 #&gt; $help_aliases...
-#&gt; $news...</code></pre>
+#&gt; $license...
+#&gt; $maintainer...
+#&gt; $news...
+#&gt; $release_date...
+#&gt; $source_control_url...
+#&gt; $vignettes...
+#&gt; $website_urls...</code></pre>
 <p>Notice that upon initialization, the <code>description</code> field indicates that it hasn’t yet been evaluated with a trailing <code>...</code> in the name. When accessed, the object will call a caching function to go out and grab the package metadata and return the newly derived value.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">package<span class="op">$</span>description</a></code></pre></div>
-<p>Because the <code>pkg_ref</code> object stores an environment, caching this values once makes them available for any future attempts to access the field. This is helpful because we, as developers of the package, don’t need to think critically about the order that assessments are performed, and allows users to redefine the order of assessments without worry about how metadata is acquired.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="va">package</span><span class="op">$</span><span class="va">description</span></pre></div>
+<p>Because the <code>pkg_ref</code> object stores an environment, caching this value once makes them available for any future attempts to access the field. This is helpful because we, as developers of the package, don’t need to think critically about the order that assessments are performed, and allows users to redefine the order of assessments without worry about how metadata is acquired.</p>
 </div>
 <div id="writing-a-metadata-cache" class="section level2">
 <h2 class="hasAnchor">
 <a href="#writing-a-metadata-cache" class="anchor"></a>Writing a Metadata Cache</h2>
 <p>Now, for our new metric, we want to cache the package name’s first letter. We need to add a new <code>pkg_ref_cache</code> function for our field. Thankfully, any subclass of <code>pkg_ref</code> can access the first letter the same way, so we just need the one function.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">pkg_ref_cache.name_first_letter &lt;-<span class="st"> </span><span class="cf">function</span>(x, name, ...) {</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(x<span class="op">$</span>name, <span class="dv">0</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="va">pkg_ref_cache.name_first_letter</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">name</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">name</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>
+<span class="op">}</span></pre></div>
 <p>After adding this caching function, we need to make a small modification to <code>assess_name_first_letter.pkg_ref</code> in order use our newly cached value.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">assess_name_first_letter.pkg_ref &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="kw"><a href="../reference/pkg_metric.html">pkg_metric</a></span>(x<span class="op">$</span>name_first_letter, <span class="dt">class =</span> <span class="st">"pkg_metric_name_first_letter"</span>)</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">} </a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="va">assess_name_first_letter.pkg_ref</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="../reference/pkg_metric.html">pkg_metric</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">name_first_letter</span>, class <span class="op">=</span> <span class="st">"pkg_metric_name_first_letter"</span><span class="op">)</span>
+<span class="op">}</span> </pre></div>
 <p>Let’s try it out!</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">package<span class="op">$</span>name</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#&gt; [1] "riskmetric"</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">package<span class="op">$</span>name_first_letter</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; [1] "r"</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="va">package</span><span class="op">$</span><span class="va">name</span>
+<span class="co">#&gt; [1] "riskmetric"</span>
+<span class="va">package</span><span class="op">$</span><span class="va">name_first_letter</span>
+<span class="co">#&gt; [1] "r"</span></pre></div>
 </div>
 </div>
 <div id="defining-an-assessment-scoring-function" class="section level1">
@@ -193,83 +222,83 @@
 <a href="#defining-an-assessment-scoring-function" class="anchor"></a>Defining an Assessment Scoring Function</h1>
 <p>Next, we need a function for scoring our assessment output. In this case, our output is a <code>pkg_metric</code> object whose data is the first letter of the package name.</p>
 <p>We’ll add a dispatched function for the <code>score</code> function. As a convention, these functions return a numeric value representing how well the package conforms to best practices with values between 0 (poor practice) and 1 (best practice).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">score.pkg_metric_name_first_letter &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(x <span class="op">==</span><span class="st"> "r"</span>)</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="va">metric_score.pkg_metric_name_first_letter</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="st">"r"</span><span class="op">)</span>
+<span class="op">}</span></pre></div>
 </div>
-<div id="adding-our-assessment-to-the-assess-verb" class="section level1">
+<div id="adding-our-assessment-to-the-pkg_assess-verb" class="section level1">
 <h1 class="hasAnchor">
-<a href="#adding-our-assessment-to-the-assess-verb" class="anchor"></a>Adding our Assessment to the <code>assess()</code> Verb</h1>
-<p>The <code>assess</code> function accepts a list of functions to apply. <code>riskmetric</code> provides a shorthande, <code><a href="../reference/all_assessments.html">all_assessments()</a></code> to collect all the included assessment functions, and you’re free to add to that list to customize your own assessment toolkit.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/assess.html">assess</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="../reference/all_assessments.html">all_assessments</a></span>(), assess_name_first_letter))</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; # A tibble: 3 x 7</span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt;   package version pkg_ref             has_news export_help news_current</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;     &lt;list&lt;p&gt; &lt;list&lt;pkg_&gt; &lt;list&lt;pkg_m&gt;</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt; 0        &lt;lgl [20]&gt;  &lt;lgl [0]&gt;   </span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; 2 utils   3.6.1   utils&lt;install&gt;      0        &lt;lgl [219]&gt; &lt;lgl [0]&gt;   </span></a>
-<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; 3 tools   3.6.1   tools&lt;install&gt;      0        &lt;lgl [119]&gt; &lt;lgl [0]&gt;   </span></a>
-<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co">#&gt; # … with 1 more variable: name_first_letter &lt;list&lt;pkg_metric&gt;&gt;</span></a></code></pre></div>
+<a href="#adding-our-assessment-to-the-pkg_assess-verb" class="anchor"></a>Adding our Assessment to the <code>pkg_assess()</code> Verb</h1>
+<p>The <code>assess</code> function accepts a list of functions to apply. <code>riskmetric</code> provides a shorthand, <code><a href="../reference/all_assessments.html">all_assessments()</a></code>, to collect all the included assessment functions, and you’re free to add to that list to customize your own assessment toolkit.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/all_assessments.html">all_assessments</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">assess_name_first_letter</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 3 x 16</span>
+<span class="co">#&gt;   package version pkg_ref             news_current has_vignettes</span>
+<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;     &lt;list&lt;pkg_m&gt; &lt;list&lt;pkg_me&gt;</span>
+<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt; &lt;lgl [0]&gt;    0            </span>
+<span class="co">#&gt; 2 utils   4.0.2   utils&lt;install&gt;      &lt;lgl [0]&gt;    1            </span>
+<span class="co">#&gt; 3 tools   4.0.2   tools&lt;install&gt;      &lt;lgl [0]&gt;    0            </span>
+<span class="co">#&gt; # … with 11 more variables: has_bug_reports_url &lt;list&lt;pkg_metric&gt;&gt;,</span>
+<span class="co">#&gt; #   bugs_status &lt;list&lt;pkg_metric&gt;&gt;, license &lt;list&lt;pkg_metric&gt;&gt;,</span>
+<span class="co">#&gt; #   export_help &lt;list&lt;pkg_metric&gt;&gt;, downloads_1yr &lt;list&lt;pkg_metric&gt;&gt;,</span>
+<span class="co">#&gt; #   has_website &lt;list&lt;pkg_metric&gt;&gt;, has_maintainer &lt;list&lt;pkg_metric&gt;&gt;,</span>
+<span class="co">#&gt; #   has_news &lt;list&lt;pkg_metric&gt;&gt;, has_source_control &lt;list&lt;pkg_metric&gt;&gt;,</span>
+<span class="co">#&gt; #   covr_coverage &lt;list&lt;pkg_metric&gt;&gt;, name_first_letter &lt;list&lt;pkg_metric&gt;&gt;</span></pre></div>
 <p>Our scoring function will automatically get picked up and used by the score method.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/assess.html">assess</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="../reference/all_assessments.html">all_assessments</a></span>(), assess_name_first_letter)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/score.html">score</a></span>()</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; # A tibble: 3 x 7</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt;   package version pkg_ref             has_news export_help news_current</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;        &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;        0       1                0</span></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt; 2 utils   3.6.1   utils&lt;install&gt;             0       0.995            0</span></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt; 3 tools   3.6.1   tools&lt;install&gt;             0       1                0</span></a>
-<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt; # … with 1 more variable: name_first_letter &lt;dbl&gt;</span></a></code></pre></div>
-<p>and we can define our own summarizing function to aggregate our scores into a single numeric risk.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../reference/pkg_ref.html">pkg_ref</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/assess.html">assess</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="../reference/all_assessments.html">all_assessments</a></span>(), assess_name_first_letter)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/score.html">score</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">risk =</span> (has_news <span class="op">+</span><span class="st"> </span>name_first_letter) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; # A tibble: 3 x 8</span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt;   package version pkg_ref             has_news export_help news_current</span></a>
-<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;        &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;        0       1                0</span></a>
-<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; 2 utils   3.6.1   utils&lt;install&gt;             0       0.995            0</span></a>
-<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt; 3 tools   3.6.1   tools&lt;install&gt;             0       1                0</span></a>
-<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co">#&gt; # … with 2 more variables: name_first_letter &lt;dbl&gt;, risk &lt;dbl&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/all_assessments.html">all_assessments</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">assess_name_first_letter</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 3 x 17</span>
+<span class="co">#&gt;   package version pkg_ref             pkg_score news_current has_vignettes</span>
+<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
+<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.538 0            0            </span>
+<span class="co">#&gt; 2 utils   4.0.2   utils&lt;install&gt;          0.770 0            1            </span>
+<span class="co">#&gt; 3 tools   4.0.2   tools&lt;install&gt;          0.846 0            0            </span>
+<span class="co">#&gt; # … with 11 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   bugs_status &lt;pkg_scor&gt;, license &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   name_first_letter &lt;pkg_scor&gt;</span></pre></div>
+<p>and we can define our own summarizing weights by passing a named list to <code>pkg_score</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/all_assessments.html">all_assessments</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">assess_name_first_letter</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span>weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>has_news <span class="op">=</span> <span class="fl">1</span>, name_first_letter <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 3 x 17</span>
+<span class="co">#&gt;   package version pkg_ref             pkg_score news_current has_vignettes</span>
+<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
+<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;       0.5 0            0            </span>
+<span class="co">#&gt; 2 utils   4.0.2   utils&lt;install&gt;            1   0            1            </span>
+<span class="co">#&gt; 3 tools   4.0.2   tools&lt;install&gt;            1   0            0            </span>
+<span class="co">#&gt; # … with 11 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   bugs_status &lt;pkg_scor&gt;, license &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   name_first_letter &lt;pkg_scor&gt;</span></pre></div>
+<p>Of course you can do any downstream processing of the resulting <code>tibble</code> if you’d like to further fine-tune your summarization using a nonlinear function.</p>
 </div>
 <div id="how-you-can-help" class="section level1">
 <h1 class="hasAnchor">
 <a href="#how-you-can-help" class="anchor"></a>How you can help…</h1>
-<p>The <code>riskmetric</code> package was designed to be easily extensible. You can develop dispatched functions in your development environment, hone them into well formed assessments and contribute them back to the core <code>riskmetrics</code> package once you’re done.</p>
+<p>The <code>riskmetric</code> package was designed to be easily extensible. You can develop dispatched functions in your development environment, hone them into well formed assessments and contribute them back to the core <code>riskmetric</code> package once you’re done.</p>
 <p>If you’d like feedback before embarking on developing a new metric, please feel free to <a href="https://github.com/pharmaR/riskmetric/issues/new?labels=Metric%20Proposal">file an issue on the riskmetric GitHub</a>.</p>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#adding-an-assessment">Adding an Assessment</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#assessment-example">Assessment Example</a></li>
-      <li><a href="#writing-a-new-assessment">Writing a New Assessment</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#adding-pkg_ref-metadata">Adding <code>pkg_ref</code> Metadata</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#example-metadata-caching">Example Metadata Caching</a></li>
-      <li><a href="#writing-a-metadata-cache">Writing a Metadata Cache</a></li>
-      </ul>
-</li>
-      <li><a href="#defining-an-assessment-scoring-function">Defining an Assessment Scoring Function</a></li>
-      <li><a href="#adding-our-assessment-to-the-assess-verb">Adding our Assessment to the <code>assess()</code> Verb</a></li>
-      <li><a href="#how-you-can-help">How you can help…</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -280,7 +309,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

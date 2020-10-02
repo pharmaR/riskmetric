@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -53,7 +57,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -67,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">riskmetric</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9001</span>
       </span>
     </div>
 
@@ -100,7 +104,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/pharmaR/riskmetric">
+  <a href="https://github.com/pharmaR/riskmetric/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -136,6 +140,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -158,9 +167,15 @@ mutation, used to handle recursive initialization of cached fields</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="assess.html">assess()</a></code> </p>
+          <p><code><a href="assess_covr_coverage.html">assess_covr_coverage()</a></code> </p>
         </td>
-        <td><p>Function for applying assess_* family of functions to packages</p></td>
+        <td><p>Assess a package code coverage using the `covr` package</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess_downloads_1yr.html">assess_downloads_1yr()</a></code> </p>
+        </td>
+        <td><p>Assess a package for the number of downloads in the past year</p></td>
       </tr><tr>
         
         <td>
@@ -170,15 +185,51 @@ mutation, used to handle recursive initialization of cached fields</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="assess_family_roxygen.html">assess_family_roxygen()</a></code> </p>
+          <p><code><a href="assess_has_bug_reports_url.html">assess_has_bug_reports_url()</a></code> </p>
         </td>
-        <td><p>Helper for creating a roxygen header from template for assess_* functions</p></td>
+        <td><p>Assess a package for the presence of a url field where bugs can be reported.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess_has_maintainer.html">assess_has_maintainer()</a></code> </p>
+        </td>
+        <td><p>Assess a package for an associated maintainer</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="assess_has_news.html">assess_has_news()</a></code> </p>
         </td>
         <td><p>Assess a package for the presence of a NEWS file</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess_has_source_control.html">assess_has_source_control()</a></code> </p>
+        </td>
+        <td><p>Assess a package for an associated source control url</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess_has_vignettes.html">assess_has_vignettes()</a></code> </p>
+        </td>
+        <td><p>Assess a package for the presence of Vignettes files</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess_has_website.html">assess_has_website()</a></code> </p>
+        </td>
+        <td><p>Assess a package for an associated website url</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess_last_30_bugs_status.html">assess_last_30_bugs_status()</a></code> </p>
+        </td>
+        <td><p>Assess how many recent BugReports have been closed</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="assess_license.html">assess_license()</a></code> </p>
+        </td>
+        <td><p>Assess a package for an acceptable license</p></td>
       </tr><tr>
         
         <td>
@@ -220,10 +271,22 @@ object, used to sidestep pkg_ref assignment guardrails</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="bug_report_metadata.html">bug_report_metadata()</a></code> </p>
+        </td>
+        <td><p>Helper for structuring bug reports</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="cache_behaviors.html">cache_behaviors</a></code> </p>
         </td>
         <td><p>List of available caching behaviors with metadata, including default and
 annotations for building documentation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="capture_expr_output.html">capture_expr_output()</a></code> </p>
+        </td>
+        <td><p>Capture side effects issued by an evaluated expression</p></td>
       </tr><tr>
         
         <td>
@@ -236,24 +299,6 @@ annotations for building documentation</p></td>
           <p><code><a href="dec_mutations_count.html">dec_mutations_count()</a></code> </p>
         </td>
         <td><p>decrement the number of allowed mutations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dev_tips.html">dev_tips()</a></code> </p>
-        </td>
-        <td><p>Provide tips for improving a metric</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dev_tips.pkg_metric_export_help.html">dev_tips(<i>&lt;pkg_metric_export_help&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Provide development hints for improving exported value documentation</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dot-risk_weights.html">.risk_weights</a></code> </p>
-        </td>
-        <td><p>Default weights to use for summarizing risk</p></td>
       </tr><tr>
         
         <td>
@@ -275,21 +320,15 @@ annotations for building documentation</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="get_cran_version.html">get_cran_version()</a></code> </p>
+          <p><code><a href="if_not_null_else.html">`%||%`</a></code> </p>
         </td>
-        <td><p>Get current CRAN version</p></td>
+        <td><p>If not NULL else</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="inc_mutations_count.html">inc_mutations_count()</a></code> </p>
         </td>
         <td><p>increment the number of allowed mutations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="installed_packages.html">installed_packages()</a></code> </p>
-        </td>
-        <td><p>Return a vector of random installed packages</p></td>
       </tr><tr>
         
         <td>
@@ -311,15 +350,94 @@ annotations for building documentation</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="metric_score.html">metric_score()</a></code> </p>
+        </td>
+        <td><p>Score a package metric</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_covr_coverage.html">metric_score(<i>&lt;pkg_metric_covr_coverage&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for unit test coverage</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_downloads_1yr.html">metric_score(<i>&lt;pkg_metric_downloads_1yr&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Defining an Assessment Scoring Function
+Score a package for the number of downloads in the past year</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_export_help.html">metric_score(<i>&lt;pkg_metric_export_help&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for availability of documentation for exported values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_has_bug_reports_url.html">metric_score(<i>&lt;pkg_metric_has_bug_reports_url&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for the presence of a bug report url</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_has_maintainer.html">metric_score(<i>&lt;pkg_metric_has_maintainer&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for inclusion of an associated maintainer</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_has_news.html">metric_score(<i>&lt;pkg_metric_has_news&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for the presence of a NEWS file</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_has_source_control.html">metric_score(<i>&lt;pkg_metric_has_source_control&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for inclusion of an associated source control url</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_has_vignettes.html">metric_score(<i>&lt;pkg_metric_has_vignettes&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for the presence of a Vignettes file</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_has_website.html">metric_score(<i>&lt;pkg_metric_has_website&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for inclusion of an associated website url</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_last_30_bugs_status.html">metric_score(<i>&lt;pkg_metric_last_30_bugs_status&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for number of recently opened BugReports that are now closed</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_license.html">metric_score(<i>&lt;pkg_metric_license&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for acceptable license</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metric_score.pkg_metric_news_current.html">metric_score(<i>&lt;pkg_metric_news_current&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Score a package for NEWS files updated to current version</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="news_from_dir.html">news_from_dir()</a></code> </p>
         </td>
         <td><p>Build a list of NEWS files discovered within a given directory</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="not_installed_packages.html">not_installed_packages()</a></code> </p>
+          <p><code><a href="pkg_assess.html">pkg_assess()</a></code> </p>
         </td>
-        <td><p>Return a vector of random uninstalled packages</p></td>
+        <td><p>Apply assess_* family of functions to a package reference</p></td>
       </tr><tr>
         
         <td>
@@ -330,21 +448,81 @@ score function</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="pkg_metric_error.html">pkg_metric_error()</a></code> </p>
+        </td>
+        <td><p>A subclass wrapping an error with an additional parent class</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_metric_na.html">pkg_metric_na()</a></code> </p>
+        </td>
+        <td><p>A pkg_metric subclass for when metrics are explicitly not applicable</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_metric_todo.html">pkg_metric_todo()</a></code> </p>
+        </td>
+        <td><p>A pkg_metric subclass for when pkg_metrics have not yet been implemented</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="pkg_ref.html">pkg_ref()</a></code> </p>
         </td>
         <td><p>Create a package reference</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="pkg_ref_cache.html">pkg_ref_cache()</a></code> </p>
+          <p><code><a href="pkg_ref_cache.archive_release_dates.html">pkg_ref_cache.archive_release_dates()</a></code> </p>
         </td>
-        <td><p>S3 function to extend a package reference with new fields</p></td>
+        <td><p>Cache a List of Archived Package Release Date from a Package Reference</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.bug_reports.html">pkg_ref_cache.bug_reports()</a></code> </p>
+        </td>
+        <td><p>Retrieve a list of BugReports metadata</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.bug_reports_host.html">pkg_ref_cache.bug_reports_host()</a></code> </p>
+        </td>
+        <td><p>Get the host name of a BugReports url</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.bug_reports_url.html">pkg_ref_cache.bug_reports_url()</a></code> </p>
+        </td>
+        <td><p>Get the BugReports url</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.covr_coverage.html">pkg_ref_cache.covr_coverage()</a></code> </p>
+        </td>
+        <td><p>Retrieve output of covr::package_coverage</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="pkg_ref_cache.description.html">pkg_ref_cache.description()</a></code> </p>
         </td>
         <td><p>Cache the DESCRIPTION file contents for a package reference</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.downloads.html">pkg_ref_cache(<i>&lt;downloads&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Cache a list of available help files as LaTeX objects</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.expression_coverage.html">pkg_ref_cache.expression_coverage()</a></code> </p>
+        </td>
+        <td><p>Retrieve output of covr::package_coverage, tallied by expression</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.function_coverage.html">pkg_ref_cache.function_coverage()</a></code> </p>
+        </td>
+        <td><p>Retrieve output of covr::package_coverage, tallied by function</p></td>
       </tr><tr>
         
         <td>
@@ -360,6 +538,18 @@ score function</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="pkg_ref_cache.license.html">pkg_ref_cache.license()</a></code> </p>
+        </td>
+        <td><p>Get the package license</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.maintainer.html">pkg_ref_cache.maintainer()</a></code> </p>
+        </td>
+        <td><p>Cache package's Maintainer</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="pkg_ref_cache.news.html">pkg_ref_cache.news()</a></code> </p>
         </td>
         <td><p>Cache a list of NEWS files from a package reference</p></td>
@@ -372,15 +562,33 @@ score function</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="pkg_ref_cache.release_date.html">pkg_ref_cache.release_date()</a></code> </p>
+        </td>
+        <td><p>Cache a List of Package Release Date from a Package Reference</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="pkg_ref_cache.repo_base_url.html">pkg_ref_cache.repo_base_url()</a></code> </p>
         </td>
         <td><p>Cache value of a package's source repo's URL</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="pkg_ref_cache.source_control_url.html">pkg_ref_cache(<i>&lt;source_control_url&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Cache package's Source Control URL</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="pkg_ref_cache.tarball_url.html">pkg_ref_cache.tarball_url()</a></code> </p>
         </td>
         <td><p>Cache value of a package's source tarball URL</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_ref_cache.vignettes.html">pkg_ref_cache.vignettes()</a></code> </p>
+        </td>
+        <td><p>Cache a List of Vignettes Files from a Package Reference</p></td>
       </tr><tr>
         
         <td>
@@ -396,10 +604,28 @@ score function</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="pkg_ref_cache.website_urls.html">pkg_ref_cache.website_urls()</a></code> </p>
+        </td>
+        <td><p>Cache package's Website URL</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="pkg_ref_mutability_error.html">pkg_ref_mutability_error()</a></code> </p>
         </td>
         <td><p>pretty printing for a pkg_ref mutability error caused by trying to do
 assignment within the pkg_ref without permission</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pkg_score.html">pkg_score()</a></code> </p>
+        </td>
+        <td><p>Score a package assessment, collapsing results into a single numeric</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.expr_output.html">print(<i>&lt;expr_output&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Handle pretty printing of expression output</p></td>
       </tr><tr>
         
         <td>
@@ -411,7 +637,25 @@ assignment within the pkg_ref without permission</p></td>
         <td>
           <p><code><a href="riskmetric.html">riskmetric</a></code> </p>
         </td>
-        <td><p>riskmetric package documentation</p></td>
+        <td><p>riskmetric</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="riskmetric_metadata_caching.html">pkg_ref_cache()</a></code> </p>
+        </td>
+        <td><p>S3 generic to calculate a `pkg_ref` field</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="roxygen_assess_family.html">roxygen_assess_family()</a></code> </p>
+        </td>
+        <td><p>Helper for creating a roxygen header from template for assess_* functions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="roxygen_assess_family_catalog.html">roxygen_assess_family_catalog()</a></code> </p>
+        </td>
+        <td><p>Helper for creating a roxygen itemized list for assess_* functions</p></td>
       </tr><tr>
         
         <td>
@@ -421,27 +665,9 @@ assignment within the pkg_ref without permission</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="score.html">score()</a></code> </p>
+          <p><code><a href="roxygen_score_family.html">roxygen_score_family()</a></code> </p>
         </td>
-        <td><p>Score a package assement, collapsing results into a single numeric</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="score.pkg_metric_export_help.html">score(<i>&lt;pkg_metric_export_help&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Score a package for availability of documentation for exported values</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="score.pkg_metric_has_news.html">score(<i>&lt;pkg_metric_has_news&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Score a package for the presence of a NEWS file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="score.pkg_metric_news_current.html">score(<i>&lt;pkg_metric_news_current&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Score a package for NEWS files updated to current version</p></td>
+        <td><p>Helper for creating a roxygen header from template for score.* functions</p></td>
       </tr><tr>
         
         <td>
@@ -463,27 +689,39 @@ assignment within the pkg_ref without permission</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="score_family_roxygen.html">score_family_roxygen()</a></code> </p>
-        </td>
-        <td><p>Helper for creating a roxygen header from template for score.* functions</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="sub-sub-.pkg_ref.html">`[[`(<i>&lt;pkg_ref&gt;</i>)</a></code> </p>
         </td>
         <td><p>Lazily instantiated, immutable metadata access</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="summarize_risk.html">summarize_risk()</a></code> </p>
+          <p><code><a href="summarize_scores.html">summarize_scores()</a></code> </p>
         </td>
         <td><p>Summarize a default set of assessments into a single risk score</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="suppressMatchingConditions.html">suppressMatchingConditions()</a></code> </p>
+        </td>
+        <td><p>Suppress messages and warnings based on one or more regex matches</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="use_assessments_column_names.html">use_assessments_column_names()</a></code> </p>
         </td>
         <td><p>reassign assignment list names with column_name attribute if available</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="vignettes_from_dir.html">vignettes_from_dir()</a></code> </p>
+        </td>
+        <td><p>Build a List of Vignettes Files Discovered Within a Given Directory</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="vignettes_from_html.html">vignettes_from_html()</a></code> </p>
+        </td>
+        <td><p>Build a List of Vignettes Files Discovered Within a Package Website</p></td>
       </tr><tr>
         
         <td>
@@ -495,11 +733,10 @@ assignment within the pkg_ref without permission</p></td>
     </table>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -510,7 +747,7 @@ assignment within the pkg_ref without permission</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
