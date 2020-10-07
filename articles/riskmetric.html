@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Get Started</h1>
                         <h4 class="author">R Validation Hub</h4>
             
-            <h4 class="date">2020-10-02</h4>
+            <h4 class="date">2020-10-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaR/riskmetric/blob/master/vignettes/riskmetric.Rmd"><code>vignettes/riskmetric.Rmd</code></a></small>
       <div class="hidden name"><code>riskmetric.Rmd</code></div>
@@ -263,7 +263,14 @@
 #&gt; [1] "presence of a bug reports url in repository"
 #&gt; 
 #&gt; $bugs_status
-#&gt; &lt;pkg_metric_error in FUN(X[[i]], ...): subscript out of bounds&gt;
+#&gt;  [1]  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE
+#&gt; [13] FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+#&gt; [25]  TRUE  TRUE FALSE FALSE  TRUE FALSE
+#&gt; attr(,"class")
+#&gt; [1] "pkg_metric_last_30_bugs_status" "pkg_metric"                    
+#&gt; [3] "logical"                       
+#&gt; attr(,"label")
+#&gt; [1] "vector indicating whether BugReports status is closed"
 #&gt; 
 #&gt; $license
 #&gt; [1] "MIT + file LICENSE"
@@ -379,7 +386,7 @@
 <span class="co">#&gt; # A tibble: 1 x 16</span>
 <span class="co">#&gt;   package version pkg_ref             pkg_score news_current has_vignettes</span>
 <span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
-<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.583 0            0            </span>
+<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.531 0            0            </span>
 <span class="co">#&gt; # … with 10 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   bugs_status &lt;pkg_scor&gt;, license &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span>
@@ -413,7 +420,7 @@
 <span class="co">#&gt; # A tibble: 3 x 16</span>
 <span class="co">#&gt;   package version pkg_ref             pkg_score news_current has_vignettes</span>
 <span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
-<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.583 0            0            </span>
+<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.531 0            0            </span>
 <span class="co">#&gt; 2 utils   4.0.2   utils&lt;install&gt;          0.750 0            1            </span>
 <span class="co">#&gt; 3 tools   4.0.2   tools&lt;install&gt;          0.833 0            0            </span>
 <span class="co">#&gt; # … with 10 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
@@ -427,7 +434,7 @@
   <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/summarize_scores.html">summarize_scores</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.5833333 0.7503805 0.8333333</span></pre></div>
+<span class="co">#&gt; [1] 0.5305556 0.7503805 0.8333333</span></pre></div>
 </div>
 </div>
 <div id="how-you-can-help" class="section level1">
