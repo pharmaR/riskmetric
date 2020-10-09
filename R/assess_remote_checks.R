@@ -13,10 +13,14 @@ assess_cran_checks.default <- function(x, ...) {
 
 #' @export
 assess_cran_checks.pkg_cran_remote <- function(x, ...) {
-  pkg_metric(table(x$cran_checks[["Status"]]), class = "pkg_metric_cran_checks")
+  pkg_metric(table(factor(x$cran_checks[["Status"]], 
+                          levels = c("OK","WARN","ERROR", "NOTE", "FAIL"))), 
+             class = "pkg_metric_cran_checks")
 }
 
 #' @export
 assess_cran_checks.pkg_bioc_remote <- function(x, ...) {
-  pkg_metric(table(x$cran_checks[["Status"]]), class = "pkg_metric_cran_checks")
+  pkg_metric(table(factor(x$cran_checks[["CHECK"]], 
+                          levels=c("OK","WARNINGS","ERROR","TIMEOUT"))), 
+             class = "pkg_metric_cran_checks")
 }

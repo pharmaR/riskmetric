@@ -22,7 +22,6 @@ pkg_ref_cache.cran_checks.pkg_cran_remote <- function(x, ...) {
   table_cran <- xml_find_all(tables[[1]], "//tr")
   fields <- lapply(table_cran, xml_find_all, ".//td|.//th")
   fields <- lapply(fields, xml_text, trim=T)
-  #sapply(fields, "[[", 6)[-1]
   rst <- as.data.frame(do.call(rbind, fields[-1]))
   colnames(rst) <- fields[[1]]
   return(rst)
@@ -40,7 +39,6 @@ pkg_ref_cache.cran_checks.pkg_bioc_remote <- function(x, ...) {
   fields <- lapply(rows, xml_find_all, ".//td|.//th")
   fields <- lapply(fields, function(x) x[grepl("node|status", xml_attr(x, "class"))])
   text <- lapply(fields, xml_text, trim=T)
-  #sapply(fields, "[[", 6)[-1]
   rst <- as.data.frame(do.call(rbind, text))
   colnames(rst) <- sapply(xml_find_all(rows[[1]], ".//td"), xml_text, trim=TRUE)[-1]
   return(rst)
