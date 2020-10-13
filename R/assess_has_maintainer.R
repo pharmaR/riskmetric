@@ -26,3 +26,6 @@ attributes(assess_has_maintainer)$label <- "a vector of associated maintainers"
 metric_score.pkg_metric_has_maintainer <- function(x, ...) {
   as.numeric(length(x) > 0)
 }
+
+attributes(metric_score.pkg_metric_has_maintainer)$label <-
+  "A binary indicator of whether a package has a maintainer."

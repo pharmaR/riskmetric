@@ -33,3 +33,6 @@ assess_has_news.pkg_ref <- function(x, ...) {
 metric_score.pkg_metric_has_news <- function(x, ...) {
   as.numeric(x > 0)
 }
+
+attributes(metric_score.pkg_metric_has_news)$label <-
+  "A binary indicator of whether a package has an associated NEWS file."

@@ -19,7 +19,7 @@ attributes(assess_covr_coverage)$label <- "Package unit test coverage"
 
 #' @export
 assess_covr_coverage.default <- function(x, ...) {
-  pkg_metric_na()
+  as_pkg_metric_na(pkg_metric(class = "pkg_metric_covr_coverage"))
 }
 
 
@@ -45,3 +45,6 @@ assess_covr_coverage.pkg_source <- function(x, ...) {
 metric_score.pkg_metric_covr_coverage <- function(x, ...) {
   x$totalcoverage / 100
 }
+
+attributes(metric_score.pkg_metric_covr_coverage)$label <-
+  "The fraction of lines of code which are covered by a unit test."

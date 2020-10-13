@@ -47,3 +47,6 @@ bug_reports_status.gitlab_bug_report <- function(x, ...) {
 metric_score.pkg_metric_last_30_bugs_status <- function(x, ...) {
   mean(x, na.rm = TRUE)
 }
+
+attributes(metric_score.pkg_metric_last_30_bugs_status)$label <- 
+  "The fraction of the last 30 bugs which have already been closed."

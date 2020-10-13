@@ -9,7 +9,7 @@
 #'
 #' @export
 #'
-pkg_metric <- function(x, ..., class = c()) {
+pkg_metric <- function(x = NA, ..., class = c()) {
   if (is.null(x)) x <- list()
   structure(x, ..., class = c(class, "pkg_metric", class(x)))
 }

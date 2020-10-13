@@ -26,3 +26,7 @@ attributes(assess_has_source_control)$label <- "a vector of associated source co
 metric_score.pkg_metric_has_source_control <- function(x, ...) {
   as.numeric(length(x) > 0)
 }
+
+attributes(metric_score.pkg_metric_has_source_control)$label <- paste0(
+  "A binary indicator of whether the package has an associated ",
+  "version-controled repository.")

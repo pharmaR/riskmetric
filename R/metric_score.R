@@ -8,6 +8,8 @@
 #' @export
 #'
 metric_score <- function(x, ...) {
+  if (inherits(x, "pkg_metric_condition")) 
+    return(metric_score_condition(x, ...))
   UseMethod("metric_score")
 }
 
@@ -32,25 +34,23 @@ metric_score.default <- function(x, ...) {
 }
 
 
+metric_score_condition <- function(x, ...) {
+  UseMethod("metric_score_condition")
+}
 
-#' @export
-metric_score.pkg_metric_error <- function(x, ...,
+metric_score_condition.pkg_metric_error <- function(x, ...,
     error_handler = score_error_default) {
   error_handler(x, ...)
 }
 
 
-
-#' @export
-metric_score.pkg_metric_na <- function(x, ...) {
-  structure(NA_real_, class = c("pkg_score_todo", "numeric"))
+metric_score_condition.pkg_metric_na <- function(x, ...) {
+  structure(NA_real_, class = c("pkg_score_na", "numeric"))
 }
 
 
-
-#' @export
-metric_score.pkg_metric_todo <- function(x, ...) {
-  structure(NA_real_, class = c("pkg_score_na", "numeric"))
+metric_score_condition.pkg_metric_todo <- function(x, ...) {
+  structure(NA_real_, class = c("pkg_score_todo", "numeric"))
 }
 
 

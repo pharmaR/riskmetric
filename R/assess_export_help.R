@@ -46,6 +46,10 @@ metric_score.pkg_metric_export_help <- function(x, ...) {
 }
 
 
+attributes(metric_score.pkg_metric_export_help)$label <-
+  "The fraction of exported objects that are documented."
+
+
 
 #' #' Provide development hints for improving exported value documentation
 #' #' @inheritParams dev_tips

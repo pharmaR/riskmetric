@@ -58,6 +58,21 @@ with_unclassed_to <- function(x, .class = 1:length(class(x)), expr,
 
 
 
+#' Find the S3 method that will be evaluated when an S3 generic is called by 
+#' an object of class \code{classes}
+#'
+#' @inheritParams utils::getS3method
+#' @param classes a character vector of classes used to search for the
+#' appropriate S3 method
+#' 
+firstS3method <- function(f, classes, envir = parent.frame()) {
+  s3methods <- lapply(classes, getS3method, f = f, envir = envir, optional = TRUE)
+  # [1][[1]] hacky way of coercing an empty list to NULL 
+  Filter(Negate(is.null), s3methods)[1][[1]]
+} 
+
+
+
 #' Capture side effects issued by an evaluated expression
 #'
 #' All messaging condition side effects are captured in the order that they

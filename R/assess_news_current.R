@@ -51,3 +51,7 @@ search_version_string <- function(ver) {
 metric_score.pkg_metric_news_current <- function(x, ...) {
   as.numeric(length(x) && all(x))
 }
+
+attributes(metric_score.pkg_metric_news_current)$label <- paste0(
+  "A binary indicator of whether the associated NEWS file has an entry for ",
+  "the current version of the package.")
