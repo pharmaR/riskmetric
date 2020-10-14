@@ -7,6 +7,9 @@
 as_pkg_metric_na(x, message = NULL)
 }
 \arguments{
+\item{x}{a \code{pkg_metric} object to wrap in a \code{pkg_metric_na}
+subclass}
+
 \item{message}{an optional message explaining why a metric is not applicable.}
 }
 \description{

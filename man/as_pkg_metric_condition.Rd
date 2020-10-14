@@ -7,7 +7,12 @@
 as_pkg_metric_condition(x, ..., subclass = c())
 }
 \arguments{
-\item{message}{an optional message explaining why a metric is not applicable.}
+\item{x}{an object to wrap in a \code{pkg_metric_condition} class}
+
+\item{...}{additional arguments added as attributes to object \code{x}}
+
+\item{subclass}{an optional subclass of \code{pkg_metric_condition} to
+include}
 }
 \description{
 A pkg_metric subclass for general metric evaluation conditions

@@ -7,6 +7,9 @@
 as_pkg_metric_todo(x, message = NULL)
 }
 \arguments{
+\item{x}{a \code{pkg_metric} object to wrap in a \code{pkg_metric_todo}
+subclass}
+
 \item{message}{an optional message directing users and potential contributors
 toward any ongoing work or first steps toward development.}
 }

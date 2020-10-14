@@ -8,9 +8,6 @@ as_pkg_metric_error(error)
 }
 \arguments{
 \item{error}{an error condition object to capture}
-
-\item{superclass}{an optional superclass for the pkg_metric subclass (more
-specific than a pkg_metric, but less specific than the error subclass)}
 }
 \description{
 A subclass wrapping an error with an additional parent class

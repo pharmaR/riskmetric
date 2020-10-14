@@ -1,8 +1,6 @@
 #' A subclass wrapping an error with an additional parent class
 #'
 #' @param error an error condition object to capture
-#' @param superclass an optional superclass for the pkg_metric subclass (more
-#'   specific than a pkg_metric, but less specific than the error subclass)
 #' 
 as_pkg_metric_error <- function(error) {
   as_pkg_metric_condition(error, subclass = "pkg_metric_error")

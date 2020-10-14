@@ -16,8 +16,9 @@ attributes(assess_export_help)$label <- "exported objects have documentation"
 
 #' @export
 assess_export_help.pkg_remote <- function(x, ...) {
-  pkg_metric_na(
-    "Cannot scrape exported documentation from a remote package webpage")
+  as_pkg_metric_na(
+    pkg_metric(class = "pkg_metric_export_help"),
+    message = "Cannot scrape exported documentation from a remote package webpage")
 }
 
 
