@@ -65,9 +65,17 @@ with_unclassed_to <- function(x, .class = 1:length(class(x)), expr,
 #' @param classes a character vector of classes used to search for the
 #' appropriate S3 method
 #' 
+#' @importFrom utils getS3method
+#' 
 firstS3method <- function(f, classes, envir = parent.frame()) {
-  s3methods <- lapply(classes, getS3method, f = f, envir = envir, optional = TRUE)
-  # [1][[1]] hacky way of coercing an empty list to NULL 
+  s3methods <- lapply(
+    classes, 
+    utils::getS3method, 
+    f = f, 
+    envir = envir, 
+    optional = TRUE)
+
+  # [1][[1]] hacky way of getting first elem while coercing empty list to NULL 
   Filter(Negate(is.null), s3methods)[1][[1]]
 } 
 
@@ -257,7 +265,7 @@ print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
 #'   matched against the respective condition message, should suppress that
 #'   condition.
 #' @param .opts A named list of arguments to pass to \code{grepl}
-#'
+#' @param .envir The environment in which \code{expr} is to be evaluated
 #' @examples
 #' riskmetric:::suppressMatchingConditions({
 #'     print(paste(letters[1:3], collapse = ", "))
@@ -272,7 +280,9 @@ print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
 #'   custom_warning = "as$",
 #'   warning = "\\w{2}\\s")
 #'
-suppressMatchingConditions <- function(expr, ..., .opts = list()) {
+suppressMatchingConditions <- function(expr, ..., .opts = list(), 
+    .envir = parent.frame()) {
+
   optioned_grepl <- function(pattern, x)
     do.call(grepl, append(list(pattern = pattern, x = x), .opts))
 
@@ -283,7 +293,6 @@ suppressMatchingConditions <- function(expr, ..., .opts = list()) {
     }
   }
 
-  do.call(withCallingHandlers, append(list(
-    substitute(expr)),
-    lapply(list(...), generate_cond_handler)))
+  do.call(withCallingHandlers, 
+    append(list(expr), lapply(list(...), generate_cond_handler)))
 }
