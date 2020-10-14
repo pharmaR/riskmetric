@@ -6,5 +6,5 @@
 #'   toward any ongoing work or first steps toward development.
 #'
 as_pkg_metric_todo <- function(x, message = NULL) {
-  as_pkg_metric_condition(NA_real_, message = message, subclass = "pkg_metric_todo")
+  as_pkg_metric_condition(x, message = message, subclass = "pkg_metric_todo")
 }

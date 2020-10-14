@@ -24,6 +24,13 @@ assess_export_help.pkg_remote <- function(x, ...) {
 
 
 #' @export
+assess_export_help.pkg_source <- function(x, ...) {
+  as_pkg_metric_todo(pkg_metric(class = "pkg_metric_export_help"))
+}
+
+
+
+#' @export
 assess_export_help.pkg_install <- function(x, ...) {
   # ignore S3-dispatched methods
   exports <- getNamespaceExports(x$name)
@@ -45,7 +52,6 @@ assess_export_help.pkg_install <- function(x, ...) {
 metric_score.pkg_metric_export_help <- function(x, ...) {
   sum(x, na.rm = TRUE) / length(x)
 }
-
 
 attributes(metric_score.pkg_metric_export_help)$label <-
   "The fraction of exported objects that are documented."
