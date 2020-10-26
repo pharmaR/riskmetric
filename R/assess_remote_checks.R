@@ -7,6 +7,7 @@ assess_cran_checks <- function(x, ...) {
 }
 attr(assess_cran_checks, "column_name") <- "cran_checks"
 
+#' @export
 assess_cran_checks.default <- function(x, ...) {
   pkg_metric_na(message="Package is not a CRAN or BioC reference so there are no CRAN/BioC checks to assess")
 }
