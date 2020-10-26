@@ -18,10 +18,10 @@ pkg_ref_cache.cran_checks.pkg_cran_remote <- function(x, ...) {
   webURL <- paste0(URLbase, x$name, ".html")
 
   page <- read_html(webURL)
-  tables <- xml_find_all(page, ".//table")
-  table_cran <- xml_find_all(tables[[1]], "//tr")
-  fields <- lapply(table_cran, xml_find_all, ".//td|.//th")
-  fields <- lapply(fields, xml_text, trim=T)
+  tables <- xml2::xml_find_all(page, ".//table")
+  table_cran <- xml2::xml_find_all(tables[[1]], "//tr")
+  fields <- lapply(table_cran, xml2::xml_find_all, ".//td|.//th")
+  fields <- lapply(fields, xml2::xml_text, trim = TRUE)
   rst <- as.data.frame(do.call(rbind, fields[-1]))
   colnames(rst) <- fields[[1]]
   return(rst)
