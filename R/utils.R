@@ -139,18 +139,27 @@ capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
   n_calls <- length(sys.calls())
   fn_env <- environment()
   sink(log_file_con, split = split)
-  res <- withVisible(try(withCallingHandlers(
+  res <- withVisible(tryCatch(withCallingHandlers(
     if (!quoted) eval(expr_quote, env) else eval(expr, env),
     condition = function(cnd) {
-      append_cnd(cnd, fn_env)
       if (inherits(cnd, "message") || inherits(cnd, "warning")) {
+        calls <- utils::head(utils::tail(sys.calls(), -(8L + n_calls)), -5L)
+        cnd$call <- if (length(calls) > 1) calls[[length(calls) - 1]] else NULL
+        append_cnd(cnd, fn_env)
         invokeRestart(computeRestarts()[[1]])
       } else if (inherits(cnd, "error")) {
         # trim call stack back to just the scope of the evaluated expression
-        syscalls <- utils::head(utils::tail(sys.calls(), -(9L + n_calls)), -2L)
-        assign("cnds_err_traceback", syscalls, envir = fn_env)
+        calls <- utils::head(utils::tail(sys.calls(), -(8L + n_calls)), -2L)
+        cnd$call <- if (length(calls) > 1) calls[[length(calls) - 1]] else NULL
+        append_cnd(cnd, fn_env)
+        assign("cnds_err_traceback", rev(calls), envir = fn_env)
+      } else {
+        append_cnd(cnd, fn_env)
       }
-    }), silent = TRUE))
+    }), 
+    error = function(e) {
+      e
+    }))
 
   # read as raw so that we can keep carriage return and console-overwrites
   sink(NULL)
@@ -184,12 +193,20 @@ capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
   any_output_error <- any(vapply(outputs, inherits, logical(1L), "error"))
 
   structure(
-    if (!quoted) expr_quote else expr,
-    value = res$value,
-    visible = res$visible,
-    traceback = cnds_err_traceback,
-    output = outputs[nzchar(outputs)],
-    class = c("expr_output", "expression"))
+    res$value,
+    .recording = list(
+      expr = if (!quoted) expr_quote else expr,
+      attributes = attributes(res$value), 
+      visible = res$visible,
+      traceback = cnds_err_traceback,
+      output = outputs[nzchar(outputs)]),
+    class = c("with_eval_recording", class(res$value)))
+}
+
+
+
+is_error <- function(expr_output) {
+  any(vapply(attr(expr_output, "output"), inherits, logical(1L), "error"))
 }
 
 
@@ -197,6 +214,9 @@ capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
 #' Handle pretty printing of expression output
 #'
 #' @param x expr_output to print
+#' @param playback a \code{logical} indicating whether evaluation output
+#'   should be played back (\code{FALSE}), or whether the result value should
+#'   be printed as is (\code{TRUE}, the default)
 #' @param cr a \code{logical} indicating whether carriage returns should be
 #'   printed, possibly overwriting characters in the output.
 #' @param ... additional arguments unused
@@ -208,16 +228,24 @@ capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
 #' @export
 #'
 #'
-print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
-  x_call <- as.call(as.list(x))
+print.with_eval_recording <- function(x, playback = FALSE, cr = TRUE, ..., 
+    sleep = 0) {
 
-  if (x_call[[1]] == "{") {
+  # extract expr execution recording
+  rec <- attr(x, ".recording")
+
+  # extract value
+  val <- x
+  attributes(val) <- rec$attributes
+  if (!playback) return(print(val))
+
+  if (rec$expr[[1]] == "{") {
     x_call_str <- vapply(
-      x_call[-1],
-      function(xi) paste0(capture.output(xi), collapse = "\n"),
+      rec$expr[-1],
+      function(xi) paste0(deparse(xi), collapse = "\n"),
       character(1L))
   } else {
-    x_call_str <- capture.output(x_call)
+    x_call_str <- capture.output(rec$expr)
   }
 
   x_call_str[1] <- paste(">", x_call_str[1])
@@ -226,20 +254,20 @@ print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
 
   str_traceback <- paste(
     sprintf(
-      "%s  %s",
+      "%s %s",
       "#",
-      capture.output(traceback(attr(x, "traceback")))),
+      capture.output(traceback(rec$traceback))),
     collapse = "\n")
 
   cat(str_call, "\n", sep = "")
-  for (i in attr(x, "output")) {
+  for (i in rec$output) {
     if (inherits(i, "message")) {
       message(i$message, appendLF = FALSE)
     } else if (inherits(i, "warning")) {
       message(gsub("^simple", "", .makeMessage(i)), appendLF = FALSE)
     } else if (inherits(i, "error")) {
       message(sprintf("Error%s: %s\n",
-        if (!is.null(i$call)) sprintf(" in %s ", format(i$call)) else "",
+        if (!is.null(i$call)) sprintf(" in %s", format(i$call)) else "",
         i$message), appendLF = FALSE)
     } else if (inherits(i, "condition")) {
       message(.makeMessage(i))
@@ -250,8 +278,10 @@ print.expr_output <- function(x, cr = TRUE, ..., sleep = 0) {
     }
     if (sleep > 0L) Sys.sleep(sleep)
   }
-  if (!is.null(attr(x, "traceback"))) cat(str_traceback, "\n", sep = "")
-  else if (attr(x, "visible")) print(attr(x, "value"))
+  if (!is.null(rec$traceback) && length(rec$traceback)) 
+    cat(str_traceback, "\n", sep = "")
+  else if (rec$visible) 
+    val
 }
 
 
@@ -296,3 +326,22 @@ suppressMatchingConditions <- function(expr, ..., .opts = list(),
   do.call(withCallingHandlers, 
     append(list(expr), lapply(list(...), generate_cond_handler)))
 }
+
+
+
+#' Evaluate an expression in the context of a pkg_ref
+#' 
+#' \code{pkg_ref} objects are environments and can be passed to \code{with}
+#' in much the same way. This specialized function makes sure that any fields
+#' within the \code{pkg_ref} have been appropriately evaluated before trying
+#' to execute the expression.
+#' 
+#' @inheritParams base::with
+#'
+#' @export
+with.pkg_ref <- function(data, expr, ...) {
+  expr <- substitute(expr)
+  for (n in intersect(names(data), all.names(expr))) data[[n]] 
+  eval(expr, as.list(data), enclos = parent.frame())
+}
+
