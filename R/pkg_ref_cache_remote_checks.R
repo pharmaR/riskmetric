@@ -33,13 +33,13 @@ pkg_ref_cache.cran_checks.pkg_bioc_remote <- function(x, ...) {
   webURL <- paste0(URLbase, x$name)
 
   page <- read_html(webURL)
-  tables <- xml_find_all(page, ".//table")
-  rows <- xml_find_all(tables[[3]], "//tr")
-  rows <- rows[grepl("odd", xml_attr(rows, "class"))]
-  fields <- lapply(rows, xml_find_all, ".//td|.//th")
-  fields <- lapply(fields, function(x) x[grepl("node|status", xml_attr(x, "class"))])
-  text <- lapply(fields, xml_text, trim=T)
+  tables <- xml2::xml_find_all(page, ".//table")
+  rows <- xml2::xml_find_all(tables[[3]], "//tr")
+  rows <- rows[grepl("odd", xml2::xml_attr(rows, "class"))]
+  fields <- lapply(rows, xml2::xml_find_all, ".//td|.//th")
+  fields <- lapply(fields, function(x) x[grepl("node|status", xml2::xml_attr(x, "class"))])
+  text <- lapply(fields, xml2::xml_text, trim = TRUE)
   rst <- as.data.frame(do.call(rbind, text))
-  colnames(rst) <- sapply(xml_find_all(rows[[1]], ".//td"), xml_text, trim=TRUE)[-1]
+  colnames(rst) <- sapply(xml2::xml_find_all(rows[[1]], ".//td"), xml2::xml_text, trim = TRUE)[-1]
   return(rst)
 }
