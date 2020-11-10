@@ -13,6 +13,8 @@ pkg_metric_eval(expr, ..., class = c(), env = parent.frame())
 \item{...}{additional attributes to bind to the \code{pkg_metric} object}
 
 \item{class}{a subclass to differentiate the \code{pkg_metric} object}
+
+\item{env}{An environment in which \code{expr} is to be evaluated}
 }
 \value{
 a \code{pkg_metric} object containing the result of \code{expr}

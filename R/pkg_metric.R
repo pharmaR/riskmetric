@@ -49,6 +49,7 @@ as_pkg_metric.expr_output <- function(x, class = c()) {
 #' 
 #' @param expr An expression to evaluate in order to calculate a
 #'   \code{pkg_metric}
+#' @param env An environment in which \code{expr} is to be evaluated
 #' @inheritParams pkg_metric
 #' 
 #' @return a \code{pkg_metric} object containing the result of \code{expr} 
