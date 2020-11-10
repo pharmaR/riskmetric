@@ -27,9 +27,9 @@ assess_covr_coverage.default <- function(x, ...) {
 #' @importFrom covr coverage_to_list
 #' @export
 assess_covr_coverage.pkg_source <- function(x, ...) {
-  pkg_metric(
-    covr::coverage_to_list(x$covr_coverage),
-    class = "pkg_metric_covr_coverage")
+  pkg_metric_eval(class = "pkg_metric_covr_coverage", {
+    covr::coverage_to_list(x$covr_coverage)
+  })
 }
 
 

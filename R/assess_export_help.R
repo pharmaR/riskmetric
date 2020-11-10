@@ -32,11 +32,13 @@ assess_export_help.pkg_source <- function(x, ...) {
 
 #' @export
 assess_export_help.pkg_install <- function(x, ...) {
-  # ignore S3-dispatched methods
-  exports <- getNamespaceExports(x$name)
-  out <- exports %in% names(x$help_aliases)
-  names(out) <- exports
-  pkg_metric(out, class = "pkg_metric_export_help")
+  pkg_metric_eval(class = "pkg_metric_export_help", {
+    # ignore S3-dispatched methods
+    exports <- getNamespaceExports(x$name)
+    out <- exports %in% names(x$help_aliases)
+    names(out) <- exports
+    out
+  })
 }
 
 

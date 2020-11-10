@@ -6,7 +6,9 @@
 #'
 #' @export
 assess_license <- function(x, ...) {
-  pkg_metric(x$license, class = "pkg_metric_license")
+  pkg_metric_eval(class = "pkg_metric_license", {
+    x$license
+  })
 }
 
 attributes(assess_license)$column_name <- "license"

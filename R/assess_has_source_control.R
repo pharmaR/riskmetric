@@ -6,7 +6,9 @@
 #'
 #' @export
 assess_has_source_control <- function(x, ...) {
-  pkg_metric(x$source_control_url, class = "pkg_metric_has_source_control")
+  pkg_metric_eval(class = "pkg_metric_has_source_control", {
+    x$source_control_url
+  })
 }
 
 attributes(assess_has_source_control)$column_name <- "has_source_control"

@@ -6,7 +6,9 @@
 #'
 #' @export
 assess_has_website <- function(x, ...) {
-  pkg_metric(x$website_urls, class = "pkg_metric_has_website")
+  pkg_metric_eval(class = "pkg_metric_has_website", {
+    x$website_urls
+  })
 }
 
 attributes(assess_has_website)$column_name <- "has_website"

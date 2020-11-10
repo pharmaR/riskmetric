@@ -6,7 +6,9 @@
 #'
 #' @export
 assess_has_maintainer <- function(x, ...) {
-  pkg_metric(as.character(x$maintainer), class = "pkg_metric_has_maintainer")
+  pkg_metric_eval(class = "pkg_metric_has_maintainer", {
+    as.character(x$maintainer)
+  })
 }
 
 attributes(assess_has_maintainer)$column_name <- "has_maintainer"

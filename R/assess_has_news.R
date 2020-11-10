@@ -17,7 +17,9 @@ attributes(assess_has_news)$label <- "number of discovered NEWS files"
 
 #' @export
 assess_has_news.pkg_ref <- function(x, ...) {
-  pkg_metric(length(x$news), class = "pkg_metric_has_news")
+  pkg_metric(class = "pkg_metric_has_news", {
+    length(x$news)
+  })
 }
 
 

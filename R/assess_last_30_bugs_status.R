@@ -7,7 +7,9 @@
 #'
 #' @export
 assess_last_30_bugs_status <- function(x, ...) {
-  bug_reports_status(x)
+  pkg_metric_eval(class = "pkg_metric_last_30_bugs_status", {
+    bug_reports_status(x)
+  })
 }
 
 attributes(assess_last_30_bugs_status)$column_name <- "bugs_status"
@@ -22,17 +24,13 @@ bug_reports_status <- function(x, ...) {
 
 
 bug_reports_status.github_bug_report <- function(x, ...) {
-  pkg_metric(
-    vapply(x$bug_reports, "[[", character(1L), "state") == "closed",
-    class = "pkg_metric_last_30_bugs_status")
+  vapply(x$bug_reports, "[[", character(1L), "state") == "closed"
 }
 
 
 
 bug_reports_status.gitlab_bug_report <- function(x, ...) {
-  pkg_metric(
-    vapply(x$bug_reports, "[[", character(1L), "state") == "closed",
-    class = "pkg_metric_last_30_bugs_status")
+  vapply(x$bug_reports, "[[", character(1L), "state") == "closed"
 }
 
 
