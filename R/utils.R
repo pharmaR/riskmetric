@@ -6,7 +6,7 @@
 #' A shorthand for a common comparison
 #'
 #' @name if_not_null_else
-`%||%` <- function(lhs, rhs) if (is.null(lhs)) rhs else lhs
+`%||%` <- function(lhs, rhs) if (!length(lhs) || is.null(lhs)) rhs else lhs
 
 
 
