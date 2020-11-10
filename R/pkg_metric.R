@@ -55,7 +55,9 @@ as_pkg_metric.expr_output <- function(x, class = c()) {
 #'
 pkg_metric_eval <- function(expr, ..., class = c(), env = parent.frame()) {
   out <- capture_expr_output(substitute(expr), env = env, quoted = TRUE)
-  as_pkg_metric(out, class = class)
+  out_metric <- as_pkg_metric(out, class = class)
+  if (inherits(out, "error")) out_metric <- as_pkg_metric_error(out_metric)
+  out_metric
 }
 
 
