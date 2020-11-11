@@ -3,17 +3,17 @@
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
 #'
-pkg_ref_cache.cran_checks <- function (x, ...)
+pkg_ref_cache.remote_checks <- function (x, ...)
 {
-   UseMethod("pkg_ref_cache.cran_checks")
+   UseMethod("pkg_ref_cache.remote_checks")
 }
 
-pkg_ref_cache.cran_checks.default <- function (x, ...) {
+pkg_ref_cache.remote_checks.default <- function (x, ...) {
   return(NA)
 }
 
 #' @importFrom xml2 read_html xml_find_all xml_text
-pkg_ref_cache.cran_checks.pkg_cran_remote <- function(x, ...) {
+pkg_ref_cache.remote_checks.pkg_cran_remote <- function(x, ...) {
   URLbase <- "https://cran.r-project.org/web/checks/check_results_"
   webURL <- paste0(URLbase, x$name, ".html")
 
@@ -28,7 +28,7 @@ pkg_ref_cache.cran_checks.pkg_cran_remote <- function(x, ...) {
 }
 
 #' @importFrom xml2 read_html xml_find_all xml_text
-pkg_ref_cache.cran_checks.pkg_bioc_remote <- function(x, ...) {
+pkg_ref_cache.remote_checks.pkg_bioc_remote <- function(x, ...) {
   URLbase <- "http://bioconductor.org/checkResults/release/bioc-LATEST/"
   webURL <- paste0(URLbase, x$name)
 
