@@ -37,6 +37,7 @@ Other \code{assess_*} functions:
 \code{\link{assess_has_website}()},
 \code{\link{assess_license}()},
 \code{\link{assess_news_current}()},
+\code{\link{assess_remote_checks}()},
 \code{\link{pkg_assess}()}
 }
 \concept{\code{assess_*} functions}

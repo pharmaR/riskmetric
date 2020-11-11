@@ -32,6 +32,7 @@ assess_remote_checks.pkg_bioc_remote <- function(x, ...) {
 
 #' Score a package based on R CMD check results run by BioC or CRAN
 #'
+#' The scoring function is the number of OS flavors that passed with OK or NOTES + 0.5*the number of OS's that produced WARNINGS divided by the number of OS's checked
 #' @eval roxygen_score_family("remote_checks", dontrun = TRUE)
 #' @return a fractional value indicating percentage OS flavors that did not produce an error or warning from R CMD check
 #'
