@@ -18,3 +18,38 @@ pkg_ref_cache.description.pkg_install <- function(x, name, ...) {
 pkg_ref_cache.description.pkg_source <- function(x, name, ...) {
   read.dcf(file.path(x$path, "DESCRIPTION"))
 }
+
+#' append to pkg_ref_cache.description.R
+#' @importFrom rvest html_nodes html_text
+pkg_ref_cache.description.pkg_cran_remote <- function(x, name, ...) {
+
+  webpage <- httr::content(httr::GET(paste0(x$repo_base_url,"/package=",x$name)),
+                           encoding = "UTF-8")
+
+  titlnode <- rvest::html_nodes(webpage, 'h2')
+  title    <- rvest::html_text(titlnode)
+  title    <- gsub(c("\n |\n|'|\""),"", title)
+
+  descnode <- rvest::html_nodes(webpage, 'p')
+  desc     <- rvest::html_text(descnode)[[1]]
+  desc     <- gsub(c("\n |\n|'|\""),"", desc)
+
+  td_nodes <- rvest::html_nodes(webpage, 'td')
+  td_text  <- rvest::html_text(td_nodes)
+
+  nodnames <- td_text[seq_along(td_text) %% 2 >  0]
+  nodnames <- lapply(nodnames, function(x) trimws(x))
+  nodnames <- lapply(nodnames, function(x) gsub(":", "", x))
+  nodnames <- unlist(nodnames)
+
+  nodvalus <- td_text[seq_along(td_text) %% 2 == 0]
+  nodvalus <- lapply(nodvalus, function(x) trimws(x))
+  nodvalus <- lapply(nodvalus, function(x) gsub(c("\n|'|\""),"", x))
+  nodvalus <- unlist(nodvalus)
+
+  retlist <- as.list(setNames(nodvalus, nodnames))
+  retlist[["Title"]] <- title
+  retlist[["Description"]] <- desc
+
+  return(retlist)
+}
