@@ -19,7 +19,6 @@ pkg_ref_cache.description.pkg_source <- function(x, name, ...) {
   read.dcf(file.path(x$path, "DESCRIPTION"))
 }
 
-usethis::use_package("rvest")  # update DESCRIPTION
 #' @importFrom rvest html_nodes html_text
 #' @importFrom stats setNames
 pkg_ref_cache.description.pkg_cran_remote <- function(x, name, ...) {
