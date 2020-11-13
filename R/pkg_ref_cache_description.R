@@ -19,8 +19,8 @@ pkg_ref_cache.description.pkg_source <- function(x, name, ...) {
   read.dcf(file.path(x$path, "DESCRIPTION"))
 }
 
-#' append to pkg_ref_cache.description.R
 #' @importFrom rvest html_nodes html_text
+#' @importFrom stats setNames
 pkg_ref_cache.description.pkg_cran_remote <- function(x, name, ...) {
 
   webpage <- httr::content(httr::GET(paste0(x$repo_base_url,"/package=",x$name)),
@@ -47,7 +47,7 @@ pkg_ref_cache.description.pkg_cran_remote <- function(x, name, ...) {
   nodvalus <- lapply(nodvalus, function(x) gsub(c("\n|'|\""),"", x))
   nodvalus <- unlist(nodvalus)
 
-  retlist <- as.list(setNames(nodvalus, nodnames))
+  retlist <- as.list(stats::setNames(nodvalus, nodnames))
   retlist[["Title"]] <- title
   retlist[["Description"]] <- desc
 
