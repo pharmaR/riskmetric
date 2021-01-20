@@ -6,7 +6,9 @@
 #'
 #' @export
 assess_license <- function(x, ...) {
-  pkg_metric(x$license, class = "pkg_metric_license")
+  pkg_metric_eval(class = "pkg_metric_license", {
+    x$license
+  })
 }
 
 attributes(assess_license)$column_name <- "license"
@@ -26,3 +28,6 @@ metric_score.pkg_metric_license <- function(x, ...) {
   # defering scoring of licenses until we have a bit more consensus or guidance
   NA_real_
 }
+
+attributes(metric_score.pkg_metric_license)$label <- 
+  "A binary indicator of whether the package ships with an acceptable license."

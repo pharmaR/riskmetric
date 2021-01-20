@@ -5,9 +5,9 @@
 #'
 #' @export
 assess_has_bug_reports_url <- function(x, ...) {
-  pkg_metric(
-    as.character(x$bug_reports_url),
-    class = "pkg_metric_has_bug_reports_url")
+  pkg_metric_eval(class = "pkg_metric_has_bug_reports_url", {
+    as.character(x$bug_reports_url)
+  })
 }
 
 # assign a friendly name for assess column
@@ -28,3 +28,6 @@ metric_score.pkg_metric_has_bug_reports_url <- function(x, ...) {
   # Return a score of 1 if a bug report url is found, 0 otherwise
   as.numeric(length(x) > 0)
 }
+
+attributes(metric_score.pkg_metric_has_bug_reports_url)$label <-
+  "A binary indicator of whether a package links to a location to file bug reports."
