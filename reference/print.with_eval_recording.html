@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class. — available_pkg_ref_fields • riskmetric</title>
+<title>Handle pretty printing of expression output — print.with_eval_recording • riskmetric</title>
 
 
 <!-- jquery -->
@@ -40,10 +39,8 @@ on implementation of a pkg_ref_cache method for a given class. — available_pkg
 
 
 
-<meta property="og:title" content="A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class. — available_pkg_ref_fields" />
-<meta property="og:description" content="A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class." />
+<meta property="og:title" content="Handle pretty printing of expression output — print.with_eval_recording" />
+<meta property="og:description" content="Handle pretty printing of expression output" />
 
 
 
@@ -126,31 +123,49 @@ on implementation of a pkg_ref_cache method for a given class." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_ref_cache.R'><code>R/pkg_ref_cache.R</code></a></small>
-    <div class="hidden name"><code>available_pkg_ref_fields.Rd</code></div>
+    <h1>Handle pretty printing of expression output</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>print.with_eval_recording.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class.</p>
+    <p>Handle pretty printing of expression output</p>
     </div>
 
-    <pre class="usage"><span class='fu'>available_pkg_ref_fields</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='co'># S3 method for with_eval_recording</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, playback <span class='op'>=</span> <span class='cn'>FALSE</span>, cr <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span>, sleep <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a package reference object</p></td>
+      <td><p>expr_output to print</p></td>
+    </tr>
+    <tr>
+      <th>playback</th>
+      <td><p>a <code>logical</code> indicating whether evaluation output
+should be played back (<code>FALSE</code>), or whether the result value should
+be printed as is (<code>TRUE</code>, the default)</p></td>
+    </tr>
+    <tr>
+      <th>cr</th>
+      <td><p>a <code>logical</code> indicating whether carriage returns should be
+printed, possibly overwriting characters in the output.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments unused</p></td>
+    </tr>
+    <tr>
+      <th>sleep</th>
+      <td><p>an <code>numeric</code> indicating a time to sleep between printing
+each line to console. This can be helpful if the original output overwrites
+valuable information in the log that is eventually overwritten and you
+would like to watch it play out as it was formatted.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a list of available fields implemented with a pkg_ref_cache method</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

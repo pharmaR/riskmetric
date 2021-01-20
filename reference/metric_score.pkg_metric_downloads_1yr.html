@@ -7,7 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Defining an Assessment Scoring Function
-Score a package for the number of downloads in the past year — metric_score.pkg_metric_downloads_1yr • riskmetric</title>
+Score a package for the number of downloads in the past year
+regularized
+Convert the number of downloads x in the past year into a validation
+score [0,1] $$ 1 - 150,000 / (x + 150,000) $$ — metric_score.pkg_metric_downloads_1yr • riskmetric</title>
 
 
 <!-- jquery -->
@@ -41,9 +44,14 @@ Score a package for the number of downloads in the past year — metric_score.pk
 
 
 <meta property="og:title" content="Defining an Assessment Scoring Function
-Score a package for the number of downloads in the past year — metric_score.pkg_metric_downloads_1yr" />
-<meta property="og:description" content="Convert the number of downloads x in the past year into a validation
-score [0,1] $$ 1 - 150,000 / (x + 150,000) $$" />
+Score a package for the number of downloads in the past year
+regularized
+Convert the number of downloads x in the past year into a validation
+score [0,1] $$ 1 - 150,000 / (x + 150,000) $$ — metric_score.pkg_metric_downloads_1yr" />
+<meta property="og:description" content="The scoring function is a simplification of the classic logistic curve $$
+1 / (1 + exp(-k(x-x[0])) $$ with a log scale for the number of downloads
+\(x = log(x)\), sigmoid midpoint is 1000 downloads, ie. \(x[0] =
+log(1,000)\), and logistic growth rate of \(k = 0.5\)." />
 
 
 
@@ -83,7 +91,7 @@ score [0,1] $$ 1 - 150,000 / (x + 150,000) $$" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -109,7 +117,7 @@ score [0,1] $$ 1 - 150,000 / (x + 150,000) $$" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/pharmaR/riskmetric/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -127,14 +135,19 @@ score [0,1] $$ 1 - 150,000 / (x + 150,000) $$" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Defining an Assessment Scoring Function
-Score a package for the number of downloads in the past year</h1>
+Score a package for the number of downloads in the past year
+regularized
+Convert the number of downloads <code>x</code> in the past year into a validation
+score [0,1] $$ 1 - 150,000 / (x + 150,000) $$</h1>
     <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/assess_downloads.R'><code>R/assess_downloads.R</code></a></small>
     <div class="hidden name"><code>metric_score.pkg_metric_downloads_1yr.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convert the number of downloads <code>x</code> in the past year into a validation
-score [0,1] $$ 1 - 150,000 / (x + 150,000) $$</p>
+    <p>The scoring function is a simplification of the classic logistic curve $$
+1 / (1 + exp(-k(x-x[0])) $$ with a log scale for the number of downloads
+\(x = log(x)\), sigmoid midpoint is 1000 downloads, ie. \(x[0] =
+log(1,000)\), and logistic growth rate of \(k = 0.5\).</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for pkg_metric_downloads_1yr</span>
@@ -159,11 +172,7 @@ score [0,1] $$ 1 - 150,000 / (x + 150,000) $$</p>
   volume) converting the number of downloads.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The scoring function is a simplification of the classic logistic curve $$
-1 / (1 + exp(-k(x-x[0])) $$ with a log scale for the number of downloads
-\(x = log(x)\), sigmoid midpoint is 1000 downloads, ie. \(x[0] =
-log(1,000)\), and logistic growth rate of \(k = 0.5\).</p>
-<p>$$ 1 - 1 / (1 + exp(log(x)-log(1.5e5))) = 1 - 150,000 / (x + 150,000) $$</p>
+    <p>$$ 1 - 1 / (1 + exp(log(x)-log(1.5e5))) = 1 - 150,000 / (x + 150,000) $$</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other <code>metric_score.*</code> functions: 
@@ -181,10 +190,7 @@ log(1,000)\), and logistic growth rate of \(k = 0.5\).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='metric_score.html'>metric_score</a></span><span class='op'>(</span><span class='fu'><a href='assess_downloads_1yr.html'>assess_downloads_1yr</a></span><span class='op'>(</span><span class='fu'><a href='pkg_ref.html'>pkg_ref</a></span><span class='op'>(</span><span class='st'>"riskmetric"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0
-#&gt; attr(,"class")
-#&gt; [1] "pkg_metric_downloads_1yr" "pkg_metric"              
-#&gt; [3] "numeric"                 </div></pre>
+</div><div class='output co'>#&gt; [1] 0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

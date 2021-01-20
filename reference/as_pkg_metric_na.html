@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class. — available_pkg_ref_fields • riskmetric</title>
+<title>A pkg_metric subclass for when metrics are explicitly not applicable — as_pkg_metric_na • riskmetric</title>
 
 
 <!-- jquery -->
@@ -40,10 +39,8 @@ on implementation of a pkg_ref_cache method for a given class. — available_pkg
 
 
 
-<meta property="og:title" content="A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class. — available_pkg_ref_fields" />
-<meta property="og:description" content="A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class." />
+<meta property="og:title" content="A pkg_metric subclass for when metrics are explicitly not applicable — as_pkg_metric_na" />
+<meta property="og:description" content="A pkg_metric subclass for when metrics are explicitly not applicable" />
 
 
 
@@ -126,31 +123,31 @@ on implementation of a pkg_ref_cache method for a given class." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_ref_cache.R'><code>R/pkg_ref_cache.R</code></a></small>
-    <div class="hidden name"><code>available_pkg_ref_fields.Rd</code></div>
+    <h1>A pkg_metric subclass for when metrics are explicitly not applicable</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_metric_na.R'><code>R/pkg_metric_na.R</code></a></small>
+    <div class="hidden name"><code>as_pkg_metric_na.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class.</p>
+    <p>A pkg_metric subclass for when metrics are explicitly not applicable</p>
     </div>
 
-    <pre class="usage"><span class='fu'>available_pkg_ref_fields</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>as_pkg_metric_na</span><span class='op'>(</span><span class='va'>x</span>, message <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a package reference object</p></td>
+      <td><p>a <code>pkg_metric</code> object to wrap in a <code>pkg_metric_na</code>
+subclass</p></td>
+    </tr>
+    <tr>
+      <th>message</th>
+      <td><p>an optional message explaining why a metric is not applicable.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a list of available fields implemented with a pkg_ref_cache method</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

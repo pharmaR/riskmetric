@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class. — available_pkg_ref_fields • riskmetric</title>
+<title>Evaluate an expression in the context of a pkg_ref — with.pkg_ref • riskmetric</title>
 
 
 <!-- jquery -->
@@ -40,10 +39,11 @@ on implementation of a pkg_ref_cache method for a given class. — available_pkg
 
 
 
-<meta property="og:title" content="A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class. — available_pkg_ref_fields" />
-<meta property="og:description" content="A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class." />
+<meta property="og:title" content="Evaluate an expression in the context of a pkg_ref — with.pkg_ref" />
+<meta property="og:description" content="pkg_ref objects are environments and can be passed to with
+in much the same way. This specialized function makes sure that any fields
+within the pkg_ref have been appropriately evaluated before trying
+to execute the expression." />
 
 
 
@@ -126,31 +126,48 @@ on implementation of a pkg_ref_cache method for a given class." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_ref_cache.R'><code>R/pkg_ref_cache.R</code></a></small>
-    <div class="hidden name"><code>available_pkg_ref_fields.Rd</code></div>
+    <h1>Evaluate an expression in the context of a pkg_ref</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>with.pkg_ref.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class.</p>
+    <p><code>pkg_ref</code> objects are environments and can be passed to <code>with</code>
+in much the same way. This specialized function makes sure that any fields
+within the <code>pkg_ref</code> have been appropriately evaluated before trying
+to execute the expression.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>available_pkg_ref_fields</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='co'># S3 method for pkg_ref</span>
+<span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>expr</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a package reference object</p></td>
+      <th>data</th>
+      <td><p>data to use for constructing an environment. For the
+    default <code>with</code> method this may be an environment, a list, a
+    data frame, or an integer as in <code>sys.call</code>. For <code>within</code>,
+    it can be a list or a data frame.</p></td>
+    </tr>
+    <tr>
+      <th>expr</th>
+      <td><p>expression to evaluate; particularly for <code><a href='https://rdrr.io/r/base/with.html'>within()</a></code>
+    often a &#8220;compound&#8221; expression, i.e., of the form</p><pre>   <span class='op'>{</span>
+     <span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'>somefun</span><span class='op'>(</span><span class='op'>)</span>
+     <span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'>otherfun</span><span class='op'>(</span><span class='op'>)</span>
+     <span class='va'>.....</span>
+     <span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>unused1</span>, <span class='va'>temp</span><span class='op'>)</span>
+   <span class='op'>}</span>
+</pre></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>arguments to be passed to (future) methods.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a list of available fields implemented with a pkg_ref_cache method</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

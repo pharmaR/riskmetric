@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class. — available_pkg_ref_fields • riskmetric</title>
+<title>Find the S3 method that will be evaluated when an S3 generic is called by 
+an object of class classes — firstS3method • riskmetric</title>
 
 
 <!-- jquery -->
@@ -40,10 +40,10 @@ on implementation of a pkg_ref_cache method for a given class. — available_pkg
 
 
 
-<meta property="og:title" content="A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class. — available_pkg_ref_fields" />
-<meta property="og:description" content="A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class." />
+<meta property="og:title" content="Find the S3 method that will be evaluated when an S3 generic is called by 
+an object of class classes — firstS3method" />
+<meta property="og:description" content="Find the S3 method that will be evaluated when an S3 generic is called by 
+an object of class classes" />
 
 
 
@@ -126,31 +126,38 @@ on implementation of a pkg_ref_cache method for a given class." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_ref_cache.R'><code>R/pkg_ref_cache.R</code></a></small>
-    <div class="hidden name"><code>available_pkg_ref_fields.Rd</code></div>
+    <h1>Find the S3 method that will be evaluated when an S3 generic is called by 
+an object of class <code>classes</code></h1>
+    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>firstS3method.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class.</p>
+    <p>Find the S3 method that will be evaluated when an S3 generic is called by 
+an object of class <code>classes</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>available_pkg_ref_fields</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>firstS3method</span><span class='op'>(</span><span class='va'>f</span>, <span class='va'>classes</span>, envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a package reference object</p></td>
+      <th>f</th>
+      <td><p>character: name of the generic.</p></td>
+    </tr>
+    <tr>
+      <th>classes</th>
+      <td><p>a character vector of classes used to search for the
+appropriate S3 method</p></td>
+    </tr>
+    <tr>
+      <th>envir</th>
+      <td><p>the <code><a href='https://rdrr.io/r/base/environment.html'>environment</a></code> in which the method and its
+    generic are searched first.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a list of available fields implemented with a pkg_ref_cache method</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

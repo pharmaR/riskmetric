@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class. — available_pkg_ref_fields • riskmetric</title>
+<title>Evaluate a metric — pkg_metric_eval • riskmetric</title>
 
 
 <!-- jquery -->
@@ -40,10 +39,9 @@ on implementation of a pkg_ref_cache method for a given class. — available_pkg
 
 
 
-<meta property="og:title" content="A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class. — available_pkg_ref_fields" />
-<meta property="og:description" content="A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class." />
+<meta property="og:title" content="Evaluate a metric — pkg_metric_eval" />
+<meta property="og:description" content="Evalute code relevant to a metric, capturing the evaluated code as well as 
+any messages, warnings or errors that are thrown in the process." />
 
 
 
@@ -126,31 +124,43 @@ on implementation of a pkg_ref_cache method for a given class." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_ref_cache.R'><code>R/pkg_ref_cache.R</code></a></small>
-    <div class="hidden name"><code>available_pkg_ref_fields.Rd</code></div>
+    <h1>Evaluate a metric</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_metric.R'><code>R/pkg_metric.R</code></a></small>
+    <div class="hidden name"><code>pkg_metric_eval.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class.</p>
+    <p>Evalute code relevant to a metric, capturing the evaluated code as well as 
+any messages, warnings or errors that are thrown in the process.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>available_pkg_ref_fields</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pkg_metric_eval</span><span class='op'>(</span><span class='va'>expr</span>, <span class='va'>...</span>, class <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>, env <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a package reference object</p></td>
+      <th>expr</th>
+      <td><p>An expression to evaluate in order to calculate a
+<code>pkg_metric</code></p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional attributes to bind to the <code>pkg_metric</code> object</p></td>
+    </tr>
+    <tr>
+      <th>class</th>
+      <td><p>a subclass to differentiate the <code>pkg_metric</code> object</p></td>
+    </tr>
+    <tr>
+      <th>env</th>
+      <td><p>An environment in which <code>expr</code> is to be evaluated</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list of available fields implemented with a pkg_ref_cache method</p>
+    <p>a <code>pkg_metric</code> object containing the result of <code>expr</code></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

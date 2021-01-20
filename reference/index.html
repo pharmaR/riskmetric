@@ -79,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,7 +105,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/pharmaR/riskmetric/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -158,6 +158,36 @@
         </td>
         <td><p>a wrapper to assert that a pkg_ref has been permitted to do an additional
 mutation, used to handle recursive initialization of cached fields</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_pkg_metric.html">as_pkg_metric()</a></code> </p>
+        </td>
+        <td><p>Convert an object to a <code>pkg_metric</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_pkg_metric_condition.html">as_pkg_metric_condition()</a></code> </p>
+        </td>
+        <td><p>A pkg_metric subclass for general metric evaluation conditions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_pkg_metric_error.html">as_pkg_metric_error()</a></code> </p>
+        </td>
+        <td><p>A subclass wrapping an error with an additional parent class</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_pkg_metric_na.html">as_pkg_metric_na()</a></code> </p>
+        </td>
+        <td><p>A pkg_metric subclass for when metrics are explicitly not applicable</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_pkg_metric_todo.html">as_pkg_metric_todo()</a></code> </p>
+        </td>
+        <td><p>A pkg_metric subclass for when pkg_metrics have not yet been implemented</p></td>
       </tr><tr>
         
         <td>
@@ -290,12 +320,6 @@ annotations for building documentation</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="coverage.html">coverage()</a></code> </p>
-        </td>
-        <td><p>Compute test coverage using covr for a RemoteReference</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="dec_mutations_count.html">dec_mutations_count()</a></code> </p>
         </td>
         <td><p>decrement the number of allowed mutations</p></td>
@@ -305,6 +329,13 @@ annotations for building documentation</p></td>
           <p><code><a href="dot-tools.html">.tools()</a></code> </p>
         </td>
         <td><p>Accessor for tools namespace</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="firstS3method.html">firstS3method()</a></code> </p>
+        </td>
+        <td><p>Find the S3 method that will be evaluated when an S3 generic is called by 
+an object of class <code>classes</code></p></td>
       </tr><tr>
         
         <td>
@@ -365,7 +396,10 @@ annotations for building documentation</p></td>
           <p><code><a href="metric_score.pkg_metric_downloads_1yr.html">metric_score(<i>&lt;pkg_metric_downloads_1yr&gt;</i>)</a></code> </p>
         </td>
         <td><p>Defining an Assessment Scoring Function
-Score a package for the number of downloads in the past year</p></td>
+Score a package for the number of downloads in the past year
+regularized
+Convert the number of downloads <code>x</code> in the past year into a validation
+score [0,1] $$ 1 - 150,000 / (x + 150,000) $$</p></td>
       </tr><tr>
         
         <td>
@@ -448,21 +482,9 @@ score function</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="pkg_metric_error.html">pkg_metric_error()</a></code> </p>
+          <p><code><a href="pkg_metric_eval.html">pkg_metric_eval()</a></code> </p>
         </td>
-        <td><p>A subclass wrapping an error with an additional parent class</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_metric_na.html">pkg_metric_na()</a></code> </p>
-        </td>
-        <td><p>A pkg_metric subclass for when metrics are explicitly not applicable</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_metric_todo.html">pkg_metric_todo()</a></code> </p>
-        </td>
-        <td><p>A pkg_metric subclass for when pkg_metrics have not yet been implemented</p></td>
+        <td><p>Evaluate a metric</p></td>
       </tr><tr>
         
         <td>
@@ -623,7 +645,7 @@ assignment within the pkg_ref without permission</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="print.expr_output.html">print(<i>&lt;expr_output&gt;</i>)</a></code> </p>
+          <p><code><a href="print.with_eval_recording.html">print(<i>&lt;with_eval_recording&gt;</i>)</a></code> </p>
         </td>
         <td><p>Handle pretty printing of expression output</p></td>
       </tr><tr>
@@ -722,6 +744,12 @@ assignment within the pkg_ref without permission</p></td>
           <p><code><a href="vignettes_from_html.html">vignettes_from_html()</a></code> </p>
         </td>
         <td><p>Build a List of Vignettes Files Discovered Within a Package Website</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="with.pkg_ref.html">with(<i>&lt;pkg_ref&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Evaluate an expression in the context of a pkg_ref</p></td>
       </tr><tr>
         
         <td>

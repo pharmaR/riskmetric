@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -65,7 +65,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/pharmaR/riskmetric/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Get Started</h1>
                         <h4 class="author">R Validation Hub</h4>
             
-            <h4 class="date">2020-10-07</h4>
+            <h4 class="date">2021-01-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaR/riskmetric/blob/master/vignettes/riskmetric.Rmd"><code>vignettes/riskmetric.Rmd</code></a></small>
       <div class="hidden name"><code>riskmetric.Rmd</code></div>
@@ -151,10 +151,10 @@
 <h2 class="hasAnchor">
 <a href="#creating-a-package-reference-object" class="anchor"></a>Creating a package reference object</h2>
 <p>First, we create a <em>package reference</em> class object using the <code>pkg_ref</code> constructor function. This object will contain metadata as it’s collected in the various risk assessments.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pharmar.github.io/riskmetric/">riskmetric</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pharmar.github.io/riskmetric/">riskmetric</a></span><span class="op">)</span>
 <span class="va">riskmetric_pkg_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="st">"riskmetric"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span></code></pre></div>
 <pre><code>#&gt; &lt;pkg_install, pkg_ref&gt; riskmetric v0.1.0.9001
 #&gt; $path
 #&gt;   [1] "/home/user/username/R/4.0/Resources/library/riskmetric"
@@ -186,9 +186,9 @@
 <h2 class="hasAnchor">
 <a href="#assessing-a-package" class="anchor"></a>Assessing a package</h2>
 <p>There are a number of prespecified assessments, all prefixed by convention with <code>assess_*</code>. Every assessment function takes a single argument, a <code>pkg_ref</code> object and produces a <code>pkg_metric</code> object corresponding to the <code>assess_*</code> function that was applied.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">riskmetric_export_help_metric</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/assess_export_help.html">assess_export_help</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">riskmetric_export_help_metric</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">riskmetric_export_help_metric</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/assess_export_help.html">assess_export_help</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">riskmetric_export_help_metric</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>#&gt;        all_assessments    assess_news_current assessment_error_throw 
 #&gt;                   TRUE                   TRUE                   TRUE 
 #&gt;   assess_has_vignettes             pkg_assess 
@@ -196,8 +196,8 @@
 <p>Every function in the <code>assess_*</code> family of functions is expected to return basic measure of a package. In this case, we return a named logical vector indicating whether each export function has an associated help document.</p>
 <p>The return type also leaves a trail of what assessment produced this metric. In addition to the <code>pkg_metric</code> class, we now have a <code>pkg_metric_export_help</code> subclass which is used for dispatching to an appropriate scoring method.</p>
 <p>It’s worth pointing out that the act of calling this function has had the side-effect of mutating our <code>riskmetric_pkg_ref</code> object.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">riskmetric_pkg_ref</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">riskmetric_pkg_ref</span></code></pre></div>
 <pre><code>#&gt; &lt;pkg_install, pkg_ref&gt; riskmetric v0.1.0.9001
 #&gt; $help_aliases
 #&gt;                            %||%                        .tools
@@ -235,8 +235,8 @@
 <p>This chaining behavior comes for free by implementing the <code>pkg_ref_cache</code> caching function for each field. For contributors, this alleviates the need to remember an order of operations, and for users this behavior means that subsets of assessments can be run in an arbitrary order without pulling superfluous metadata, keeping track of every-growing objects or ensuring certain assessments get called before others.</p>
 </blockquote>
 <p>In addition to the metric-specific <code>assess_*</code> family of functions, a more comprehensive <code>pkg_assess</code> function is provided. Notably, <code>pkg_assess</code> accepts a <code>pkg_ref</code> object and list of assessments to apply, defaulting to <code><a href="../reference/all_assessments.html">all_assessments()</a></code>, which returns a list of all <code>assess_*</code> functions in the <code>riskmetric</code> namespace.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span></code></pre></div>
 <pre><code>#&gt; &lt;list_of&lt;pkg_metric&gt;[12]&gt;
 #&gt; $news_current
 #&gt; logical(0)
@@ -248,36 +248,15 @@
 #&gt; 
 #&gt; $has_vignettes
 #&gt; [1] 0
-#&gt; attr(,"class")
-#&gt; [1] "pkg_metric_has_vignettes" "pkg_metric"              
-#&gt; [3] "integer"                 
-#&gt; attr(,"label")
-#&gt; [1] "number of discovered vignettes files"
 #&gt; 
 #&gt; $has_bug_reports_url
 #&gt; [1] "https://github.com/pharmaR/riskmetric/issues"
-#&gt; attr(,"class")
-#&gt; [1] "pkg_metric_has_bug_reports_url" "pkg_metric"                    
-#&gt; [3] "character"                     
-#&gt; attr(,"label")
-#&gt; [1] "presence of a bug reports url in repository"
 #&gt; 
 #&gt; $bugs_status
-#&gt;  [1]  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE
-#&gt; [13] FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-#&gt; [25]  TRUE  TRUE FALSE FALSE  TRUE FALSE
-#&gt; attr(,"class")
-#&gt; [1] "pkg_metric_last_30_bugs_status" "pkg_metric"                    
-#&gt; [3] "logical"                       
-#&gt; attr(,"label")
-#&gt; [1] "vector indicating whether BugReports status is closed"
+#&gt; &lt;simpleError in FUN(X[[i]], ...): subscript out of bounds&gt;
 #&gt; 
 #&gt; $license
 #&gt; [1] "MIT + file LICENSE"
-#&gt; attr(,"class")
-#&gt; [1] "pkg_metric_license" "pkg_metric"         "character"         
-#&gt; attr(,"label")
-#&gt; [1] "software is released with an acceptable license"
 #&gt; 
 #&gt; $export_help
 #&gt;             all_assessments         assess_news_current 
@@ -298,44 +277,26 @@
 #&gt;                        TRUE                        TRUE 
 #&gt; assessment_error_as_warning          assess_has_website 
 #&gt;                        TRUE                        TRUE 
-#&gt;            summarize_scores       assess_has_maintainer 
+#&gt;            summarize_scores               as_pkg_metric 
 #&gt;                        TRUE                        TRUE 
-#&gt;         score_error_default             assess_has_news 
+#&gt;       assess_has_maintainer         score_error_default 
 #&gt;                        TRUE                        TRUE 
-#&gt;                  pkg_metric                    coverage 
+#&gt;             assess_has_news                  pkg_metric 
 #&gt;                        TRUE                        TRUE 
 #&gt;   assess_has_source_control                     pkg_ref 
 #&gt;                        TRUE                        TRUE 
 #&gt;        assess_covr_coverage 
 #&gt;                        TRUE 
-#&gt; attr(,"class")
-#&gt; [1] "pkg_metric_export_help" "pkg_metric"             "logical"               
-#&gt; attr(,"label")
-#&gt; [1] "exported objects have documentation"
 #&gt; 
 #&gt; $downloads_1yr
 #&gt; [1] 0
-#&gt; attr(,"class")
-#&gt; [1] "pkg_metric_downloads_1yr" "pkg_metric"              
-#&gt; [3] "numeric"                 
-#&gt; attr(,"label")
-#&gt; [1] "number of downloads in the past year"
 #&gt; 
 #&gt; $has_website
 #&gt; [1] "https://pharmar.github.io/riskmetric/"
 #&gt; [2] "https://github.com/pharmaR/riskmetric"
-#&gt; attr(,"class")
-#&gt; [1] "pkg_metric_has_website" "pkg_metric"             "character"             
-#&gt; attr(,"label")
-#&gt; [1] "a vector of associated website urls"
 #&gt; 
 #&gt; $has_maintainer
 #&gt; [1] "R Validation Hub &lt;psi.aims.r.validation@gmail.com&gt;"
-#&gt; attr(,"class")
-#&gt; [1] "pkg_metric_has_maintainer" "pkg_metric"               
-#&gt; [3] "character"                
-#&gt; attr(,"label")
-#&gt; [1] "a vector of associated maintainers"
 #&gt; 
 #&gt; $has_news
 #&gt; [1] 0
@@ -346,21 +307,18 @@
 #&gt; 
 #&gt; $has_source_control
 #&gt; [1] "https://github.com/pharmaR/riskmetric"
-#&gt; attr(,"class")
-#&gt; [1] "pkg_metric_has_source_control" "pkg_metric"                   
-#&gt; [3] "character"                    
-#&gt; attr(,"label")
-#&gt; [1] "a vector of associated source control urls"
 #&gt; 
 #&gt; $covr_coverage
 #&gt; [1] NA
 #&gt; attr(,"class")
-#&gt; [1] "pkg_metric_na" "pkg_metric"    "logical"      
+#&gt; [1] "pkg_metric_na"            "pkg_metric_condition"    
+#&gt; [3] "pkg_metric_covr_coverage" "pkg_metric"              
+#&gt; [5] "logical"                 
 #&gt; attr(,"label")
 #&gt; [1] "Package unit test coverage"</code></pre>
 <p>Since that is a lot to take in, <code>pkg_assess</code> also operates on <code>tibble</code>s, returning a cleaner output that might be easier to sort through when assessing a package.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 1 x 15
 #&gt;   package version pkg_ref             news_current has_vignettes
 #&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;     &lt;list&lt;pkg_m&gt; &lt;list&lt;pkg_me&gt;
@@ -377,21 +335,21 @@
 <a href="#scoring-package-metrics" class="anchor"></a>Scoring package metrics</h2>
 <p>After a metric has been collected, we “score” the metric to convert it to a quantified representation of risk.</p>
 <p>There is a single scoring function, <code>metric_score</code>, that dispatches based on the class of the metric that is passed to it to interpret the atomic metric result.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu"><a href="../reference/metric_score.html">metric_score</a></span><span class="op">(</span><span class="va">riskmetric_export_help_metric</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/metric_score.html">metric_score</a></span><span class="op">(</span><span class="va">riskmetric_export_help_metric</span><span class="op">)</span>
+<span class="co">#&gt; [1] 1</span></code></pre></div>
 <p>For convenience, <code>pkg_score</code> is provided as a convenience to operate on <code>pkg_ref</code> objects directly. It can also operate on the <code>tibble</code> produced by <code>pkg_assess</code> applied to a <code>pkg_ref</code> <code>tibble</code>, providing a new <code>tibble</code> with scored metrics.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="st">"riskmetric"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="st">"riskmetric"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 16</span>
 <span class="co">#&gt;   package version pkg_ref             pkg_score news_current has_vignettes</span>
 <span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
-<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.531 0            0            </span>
+<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.583 0            0            </span>
 <span class="co">#&gt; # … with 10 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   bugs_status &lt;pkg_scor&gt;, license &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
-<span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;</span></pre></div>
+<span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;</span></code></pre></div>
 <blockquote>
 <p>Note that <code>pkg_assess</code> and <code>pkg_score</code> accepts an <code>error_handler</code> argument which determines how errors are escalated for communication. We’ve chosen to default to being cautious, displaying warnings liberally to ensure thorough documentation of the risk assessment process. If these warnings are bothersome, there are alternative reporting schemes in the <code>assessment_error_*</code> and <code>score_error_*</code> families of functions.</p>
 </blockquote>
@@ -404,37 +362,37 @@
 <div id="creating-a-tibble-from-pkg_refs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-a-tibble-from-pkg_refs" class="anchor"></a>Creating a <code>tibble</code> from <code>pkg_ref</code>s</h2>
-<p>We start by calling our <code>pkg_ref</code> constructor function with a list or vector. Doing so will return a list of <code>pkg_ref</code> objects. With this list, we can use <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">tibble::as_tibble</a></code> to convert the <code>pkg_ref</code> list into a <code>tibble</code>, automatically populating some useful index columns like <code>package</code> and <code>version</code>. To clean things up further we can use the <code>magrittr</code> pipe (<code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>) to chain these commands together.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="va">package_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<p>We start by calling our <code>pkg_ref</code> constructor function with a list or vector. Doing so will return a list of <code>pkg_ref</code> objects. With this list, we can use <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">tibble::as_tibble</a></code> to convert the <code>pkg_ref</code> list into a <code>tibble</code>, automatically populating some useful index columns like <code>package</code> and <code>version</code>. To clean things up further we can use the <code>magrittr</code> pipe (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>) to chain these commands together.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">package_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="the-riskmetric-workflow-on-multiple-packages" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-riskmetric-workflow-on-multiple-packages" class="anchor"></a>The <code>riskmetric</code> workflow on multiple packages</h2>
 <p><code>pkg_assess</code> and <code>pkg_score</code> can operate on <code>tibble</code>s, making it easy to simultaneously test an entire cohort of packages at once.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="va">package_tbl</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">package_tbl</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 16</span>
 <span class="co">#&gt;   package version pkg_ref             pkg_score news_current has_vignettes</span>
 <span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
-<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.531 0            0            </span>
-<span class="co">#&gt; 2 utils   4.0.2   utils&lt;install&gt;          0.750 0            1            </span>
-<span class="co">#&gt; 3 tools   4.0.2   tools&lt;install&gt;          0.833 0            0            </span>
+<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.583 0            0            </span>
+<span class="co">#&gt; 2 utils   4.0.3   utils&lt;install&gt;          0.750 0            1            </span>
+<span class="co">#&gt; 3 tools   4.0.3   tools&lt;install&gt;          0.833 0            0            </span>
 <span class="co">#&gt; # … with 10 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   bugs_status &lt;pkg_scor&gt;, license &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
-<span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;</span></pre></div>
+<span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;</span></code></pre></div>
 <p>Notice that a summary column, <code>pkg_score</code>, is included in addition to our metric scores. This value is a shorthand for aggregating a weighted average of risk scores across <code>tibble</code> columns using <code>summarize_scores</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="va">package_tbl</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">package_tbl</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/summarize_scores.html">summarize_scores</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.5305556 0.7503805 0.8333333</span></pre></div>
+<span class="co">#&gt; [1] 0.5833333 0.7503805 0.8333333</span></code></pre></div>
 </div>
 </div>
 <div id="how-you-can-help" class="section level1">
