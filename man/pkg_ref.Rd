@@ -27,14 +27,15 @@ in which package metadata will be collected as risk assessments are
 performed. Depending on where the package was found - whether it is found as
 source code, in a local library or from a remote host - an S3 subclass is
 given to allow for source-specific collection of metadata. See 'Details' for
-a breakdown of subclasses.
+a breakdown of subclasses. Different sources can be specified by passing a
+subclass as an arguemnt named 'source'.
 }
 \details{
 Package reference objects are used to collect metadata pertaining to a given
 package. As data is needed for assessing a package's risk, this metadata
 populates fields within the package reference object.
 
-The \code{pkg_ref} S3 subclasses are used extensively for divergent metdata
+The \code{pkg_ref} S3 subclasses are used extensively for divergent metadata
 collection behaviors dependent on where the package was discovered. Because
 of this, there is a rich hierarchy of subclasses to articulate the different
 ways package information can be found.

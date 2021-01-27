@@ -5,13 +5,14 @@
 #' performed. Depending on where the package was found - whether it is found as
 #' source code, in a local library or from a remote host - an S3 subclass is
 #' given to allow for source-specific collection of metadata. See 'Details' for
-#' a breakdown of subclasses.
+#' a breakdown of subclasses. Different sources can be specified by passing a
+#' subclass as an arguemnt named 'source'.
 #'
 #' Package reference objects are used to collect metadata pertaining to a given
 #' package. As data is needed for assessing a package's risk, this metadata
 #' populates fields within the package reference object.
 #'
-#' The \code{pkg_ref} S3 subclasses are used extensively for divergent metdata
+#' The \code{pkg_ref} S3 subclasses are used extensively for divergent metadata
 #' collection behaviors dependent on where the package was discovered. Because
 #' of this, there is a rich hierarchy of subclasses to articulate the different
 #' ways package information can be found.
@@ -95,7 +96,19 @@ new_pkg_ref <- function(name, version = NA_character_, source, ...) {
 #' @export
 as_pkg_ref <- function(x, ...) {
   if ((is.list(x) || is.atomic(x)) && length(x) > 1) {
-    pkg_ref_list <- Map(as_pkg_ref, x)
+
+    dots <- list(...)
+
+    # iterate over the list of packages and add sources and versions
+    pkg_ref_list <- list()
+    for(i in seq_along(x)) {
+      if(!is.null(dots$source))
+        source <- ifelse(length(dots$source) > 1, dots$source[i], dots$source)
+      else source <- NULL
+
+      pkg_ref_list[[i]] <- as_pkg_ref(x[i], source=source)
+    }
+
     return(vctrs::new_list_of(pkg_ref_list, ptype = pkg_ref(), class = "list_of_pkg_ref"))
   } else {
     UseMethod("as_pkg_ref")
@@ -125,13 +138,18 @@ as_pkg_ref.pkg_ref <- function(x, ...) {
 as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
   ip <- memoise_installed_packages()
 
+  dots <- list(...)
+
   # case when only a package name is provided
   #   e.g. 'dplyr'
   # regex from available:::valid_package_name_regexp
   if (grepl("^[[:alpha:]][[:alnum:].]*[[:alnum:]]$", x)) {
 
-    # if locally installed
-    if (x %in% ip[,"Package"]) {
+
+    # Check if a 'source' argument was passed, if one was check if its 'pkg_install'
+    if ((!is.null(dots$source) && dots$source == "pkg_install") ||
+        # If no 'source agrument was passed. check if package is installed.
+        (is.null(dots$source) && (x %in% ip[,"Package"]))) {
       path <- find.package(x)
       version <- utils::packageVersion(x, lib.loc = dirname(path))
 
@@ -140,8 +158,10 @@ as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
         path = path,
         source = "pkg_install"))
 
-    # if available at a provided repo
-    } else if (x %in% memoise_available_packages(repos = repos)[,"Package"]) {
+      # Check if a 'source' argument was passed, if one was check if its of type 'pkg_remote'
+    } else if ((!is.null(dots$source) && dots$source %in% c("pkg_remote", "pkg_bioc_remote", "pkg_cran_remote")) ||
+               # If no 'source' argument is passed, check if is available at a repo.
+               (is.null(dots$source) && x %in% memoise_available_packages(repos = repos)[,"Package"])) {
       ap <- memoise_available_packages(repos = repos)
       info <- ap[ap[,"Package"] == x,,drop = FALSE]
 
@@ -177,7 +197,8 @@ as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
 
   # case when a directory path to source code is provided
   #   e.g. '../dplyr'
-  } else if (dir.exists(x) && file.exists(file.path(x, "DESCRIPTION"))) {
+  } else if ((!is.null(dots$source) && dots$source == "pkg_source") ||
+             dir.exists(x) && file.exists(file.path(x, "DESCRIPTION"))) {
     desc <- read.dcf(file.path(x, "DESCRIPTION"))
     name <- unname(desc[,"Package"])
 
