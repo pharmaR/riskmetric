@@ -171,9 +171,10 @@ as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rst
         source = c("pkg_remote"))
 
       if (!is.null(memoise_cran_mirrors()) &&
-          is_url_subpath_of(
+          # isTRUE added to catch any issues where the cran mirror isn't available
+          isTRUE(is_url_subpath_of(
             p$repo_base_url,
-            c(memoise_cran_mirrors()$URL, "https://cran.rstudio.com/"))) {
+            c(memoise_cran_mirrors()$URL, "https://cran.rstudio.com/")))) {
         class(p) <- c("pkg_cran_remote", class(p))
         return(p)
       } else if (!is.null(memoise_bioc_mirrors()) &&
