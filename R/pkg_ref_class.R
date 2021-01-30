@@ -178,7 +178,7 @@ as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rst
         class(p) <- c("pkg_cran_remote", class(p))
         return(p)
       } else if (!is.null(memoise_bioc_mirrors()) &&
-          is_url_subpath_of(p$repo_base_url, memoise_bioc_mirrors()$URL)) {
+          isTRUE(is_url_subpath_of(p$repo_base_url, memoise_bioc_mirrors()$URL))) {
         class(p) <- c("pkg_bioc_remote", class(p))
         return(p)
       }
