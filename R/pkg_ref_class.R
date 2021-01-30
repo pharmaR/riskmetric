@@ -135,7 +135,7 @@ as_pkg_ref.pkg_ref <- function(x, ...) {
 
 #' @importFrom utils installed.packages available.packages packageVersion
 #' @export
-as_pkg_ref.character <- function(x, repos = getOption("repos"), ...) {
+as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rstudio.com"), ...) {
   ip <- memoise_installed_packages()
 
   dots <- list(...)
