@@ -2,7 +2,8 @@
 #'
 #' @eval roxygen_assess_family(
 #'   "r_cmd_check",
-#'   "Tally of errors, warnings and notes from running R CMD check locally")
+#'   "Tally of errors, warnings and notes from running R CMD check locally", 
+#'   dontrun = TRUE)
 
 #' @export
 assess_r_cmd_check <- function(x, ...) {
