@@ -35,6 +35,7 @@ Other \code{assess_*} functions:
 \code{\link{assess_has_website}()},
 \code{\link{assess_last_30_bugs_status}()},
 \code{\link{assess_license}()},
+\code{\link{assess_r_cmd_check}()},
 \code{\link{pkg_assess}()}
 }
 \concept{\code{assess_*} functions}

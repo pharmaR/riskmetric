@@ -47,6 +47,7 @@ assessment applied.
 \item{\code{\link{assess_has_bug_reports_url}}}{presence of a bug reports url in repository}
 \item{\code{\link{assess_has_vignettes}}}{number of discovered vignettes files}
 \item{\code{\link{assess_downloads_1yr}}}{number of downloads in the past year}
+\item{\code{\link{assess_r_cmd_check}}}{Package check results}
 \item{\code{\link{assess_license}}}{software is released with an acceptable license}
 \item{\code{\link{assess_last_30_bugs_status}}}{vector indicating whether BugReports status is closed}
 \item{\code{\link{assess_has_website}}}{a vector of associated website urls}
@@ -67,6 +68,7 @@ Other \code{assess_*} functions:
 \code{\link{assess_has_website}()},
 \code{\link{assess_last_30_bugs_status}()},
 \code{\link{assess_license}()},
-\code{\link{assess_news_current}()}
+\code{\link{assess_news_current}()},
+\code{\link{assess_r_cmd_check}()}
 }
 \concept{\code{assess_*} functions}

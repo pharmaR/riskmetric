@@ -1,5 +1,9 @@
 #' Assess a package's results from running R CMD check 
 #'
+#' @eval roxygen_assess_family(
+#'   "r_cmd_check",
+#'   "Tally of errors, warnings and notes from running R CMD check locally")
+
 #' @export
 assess_r_cmd_check <- function(x, ...) {
   UseMethod("assess_r_cmd_check")
@@ -27,4 +31,15 @@ assess_r_cmd_check.pkg_cran_remote <- function(x, ...) {
 #' @export
 assess_r_cmd_check.pkg_bioc_remote <- function(x, ...) {
   pkg_metric_todo("Assessment of R CMD check on remote pkg refs is not yet implemented but will be in the future")
+}
+
+#' Score a package based on R CMD check results run locally
+#'
+#' The scoring function is 
+#' @eval roxygen_score_family("r_cmd_check", dontrun = TRUE)
+#' @return A weighted sum of errors and warnings of all tests preformed
+#'
+#' @export
+metric_score.pkg_metric_r_cmd_check <- function(x, ...) {
+  sum(x*c(0.1,1,0.5))
 }
