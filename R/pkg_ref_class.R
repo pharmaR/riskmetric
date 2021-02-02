@@ -198,11 +198,14 @@ as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rst
         return(p)
 
       } else {
-        # if unable to locate a local or remote version of the package
+        # if unable to locate a local or remote version of the package and source is remote
         return(new_pkg_ref(x, source = "pkg_missing"))
       }
 
     }
+
+    # if unable to locate a local or remote version of the package
+    return(new_pkg_ref(x, source = "pkg_missing"))
 
   # case when a directory path to source code is provided
   #   e.g. '../dplyr'
