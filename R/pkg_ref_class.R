@@ -170,31 +170,39 @@ as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rst
         repo = info[,"Repository"],
         source = c("pkg_remote"))
 
+      # Check if package is available on CRAN
       if (!is.null(memoise_cran_mirrors()) &&
           # isTRUE added to catch any issues where the cran mirror isn't available
           isTRUE(is_url_subpath_of(
             p$repo_base_url,
             c(memoise_cran_mirrors()$URL, "https://cran.rstudio.com/")))) {
+
         class(p) <- c("pkg_cran_remote", class(p))
         return(p)
+
+        # Check if package is available on Bioconductor
+      }  else if (x %in% memoise_bioc_available()[,"Package"]) {
+        bp <- memoise_bioc_available()
+        info <- bp[bp[,"Package"] == x,,drop = FALSE]
+
+        return(new_pkg_ref(x,
+                           version = info[,"Version"],
+                           repo = "https://bioconductor.org/packages/release/bioc",
+                           source = c("pkg_remote")))
+
+        # Check Bioconductor mirrors
       } else if (!is.null(memoise_bioc_mirrors()) &&
           isTRUE(is_url_subpath_of(p$repo_base_url, memoise_bioc_mirrors()$URL))) {
+
         class(p) <- c("pkg_bioc_remote", class(p))
         return(p)
+
+      } else {
+        # if unable to locate a local or remote version of the package
+        return(new_pkg_ref(x, source = "pkg_missing"))
       }
-      return(p)
 
-    } else if (x %in% memoise_bioc_available()[,"Package"]) {
-      bp <- memoise_bioc_available()
-      info <- bp[bp[,"Package"] == x,,drop = FALSE]
-      return(new_pkg_ref(x,
-        version = info[,"Version"],
-        repo = "https://bioconductor.org/packages/release/bioc",
-        source = c("pkg_bioc_remote", "pkg_remote")))
     }
-
-    # if unable to locate a local or remote version of the package
-    return(new_pkg_ref(x, source = "pkg_missing"))
 
   # case when a directory path to source code is provided
   #   e.g. '../dplyr'
