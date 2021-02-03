@@ -44,3 +44,5 @@ assess_r_cmd_check.pkg_bioc_remote <- function(x, ...) {
 metric_score.pkg_metric_r_cmd_check <- function(x, ...) {
   sum(x*c(0.1,1,0.5))
 }
+attributes(metric_score.pkg_metric_r_cmd_check)$label <-
+  "A weighted sum of errors/warnings/notes from R CMD Check"

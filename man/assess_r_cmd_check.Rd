@@ -18,7 +18,9 @@ a \code{pkg_metric} containing Tally of errors, warnings and notes from running 
 Assess a package's results from running R CMD check
 }
 \examples{
+\dontrun{
 assess_r_cmd_check(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_r_cmd_check}}
