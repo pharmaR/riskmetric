@@ -9,5 +9,5 @@ pkg_ref_cache.function_coverage <- function(x, ...) {
 
 #' @importFrom covr tally_coverage
 pkg_ref_cache.function_coverage.pkg_source <- function(x, ...) {
-  covr::tally_coverage(x$covr_coverage, by = "function")
+  covr::tally_coverage(x$covr_coverage, by = "expression")
 }
