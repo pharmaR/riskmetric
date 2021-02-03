@@ -16,19 +16,29 @@ attributes(assess_export_help)$label <- "exported objects have documentation"
 
 #' @export
 assess_export_help.pkg_remote <- function(x, ...) {
-  pkg_metric_na(
-    "Cannot scrape exported documentation from a remote package webpage")
+  as_pkg_metric_na(
+    pkg_metric(class = "pkg_metric_export_help"),
+    message = "Cannot scrape exported documentation from a remote package webpage")
+}
+
+
+
+#' @export
+assess_export_help.pkg_source <- function(x, ...) {
+  as_pkg_metric_todo(pkg_metric(class = "pkg_metric_export_help"))
 }
 
 
 
 #' @export
 assess_export_help.pkg_install <- function(x, ...) {
-  # ignore S3-dispatched methods
-  exports <- getNamespaceExports(x$name)
-  out <- exports %in% names(x$help_aliases)
-  names(out) <- exports
-  pkg_metric(out, class = "pkg_metric_export_help")
+  pkg_metric_eval(class = "pkg_metric_export_help", {
+    # ignore S3-dispatched methods
+    exports <- getNamespaceExports(x$name)
+    out <- exports %in% names(x$help_aliases)
+    names(out) <- exports
+    out
+  })
 }
 
 
@@ -44,6 +54,9 @@ assess_export_help.pkg_install <- function(x, ...) {
 metric_score.pkg_metric_export_help <- function(x, ...) {
   sum(x, na.rm = TRUE) / length(x)
 }
+
+attributes(metric_score.pkg_metric_export_help)$label <-
+  "The fraction of exported objects that are documented."
 
 
 

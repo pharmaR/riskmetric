@@ -42,11 +42,14 @@ pkg_score <- function(x, ..., error_handler = score_error_default) {
 pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
   assessment_columns <- get_assessment_columns(x)
   for (coln in which(assessment_columns)) {
+    metric_score_s3_fun <- firstS3method("metric_score", class(x[[coln]][[1]]))
+
     x[[coln]] <- vapply(x[[coln]],
       metric_score,
       numeric(1L),
       error_handler = error_handler)
 
+    attr(x[[coln]], "label") <- attr(metric_score_s3_fun, "label")
     class(x[[coln]]) <- c("pkg_score", class(x[[coln]]))
   }
 
@@ -64,10 +67,12 @@ pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
 
 #' @export
 pkg_score.list_of_pkg_metric <- function(x, ...,
-                                         error_handler = score_error_default) {
+    error_handler = score_error_default) {
 
   lapply(x, function(xi) {
     s <- metric_score(xi, error_handler = error_handler)
+    metric_score_s3_fun <- firstS3method("metric_score", class(xi))
+    attr(s, "label") <- attr(metric_score_s3_fun, "label")
     class(s) <- c("pkg_score", class(s))
     s
   })

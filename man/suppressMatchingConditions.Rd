@@ -4,7 +4,7 @@
 \alias{suppressMatchingConditions}
 \title{Suppress messages and warnings based on one or more regex matches}
 \usage{
-suppressMatchingConditions(expr, ..., .opts = list())
+suppressMatchingConditions(expr, ..., .opts = list(), .envir = parent.frame())
 }
 \arguments{
 \item{expr}{An expression to evaluate}
@@ -15,6 +15,8 @@ matched against the respective condition message, should suppress that
 condition.}
 
 \item{.opts}{A named list of arguments to pass to \code{grepl}}
+
+\item{.envir}{The environment in which \code{expr} is to be evaluated}
 }
 \description{
 Suppress messages and warnings based on one or more regex matches

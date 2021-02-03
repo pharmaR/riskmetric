@@ -3,7 +3,10 @@
 \name{metric_score.pkg_metric_downloads_1yr}
 \alias{metric_score.pkg_metric_downloads_1yr}
 \title{Defining an Assessment Scoring Function
-Score a package for the number of downloads in the past year}
+Score a package for the number of downloads in the past year
+regularized
+Convert the number of downloads \code{x} in the past year into a validation
+score [0,1] \deqn{ 1 - 150,000 / (x + 150,000) }}
 \usage{
 \method{metric_score}{pkg_metric_downloads_1yr}(x, ...)
 }
@@ -17,15 +20,12 @@ numeric value between \code{0} (low) and \code{1} (high download
   volume) converting the number of downloads.
 }
 \description{
-Convert the number of downloads \code{x} in the past year into a validation
-score [0,1] \deqn{ 1 - 150,000 / (x + 150,000) }
-}
-\details{
 The scoring function is a simplification of the classic logistic curve \deqn{
 1 / (1 + exp(-k(x-x[0])) } with a log scale for the number of downloads
 \eqn{x = log(x)}, sigmoid midpoint is 1000 downloads, ie. \eqn{x[0] =
 log(1,000)}, and logistic growth rate of \eqn{k = 0.5}.
-
+}
+\details{
 \deqn{ 1 - 1 / (1 + exp(log(x)-log(1.5e5))) = 1 - 150,000 / (x + 150,000) }
 }
 \examples{

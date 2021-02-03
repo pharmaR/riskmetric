@@ -17,7 +17,9 @@ attributes(assess_has_vignettes)$label <- "number of discovered vignettes files"
 
 #' @export
 assess_has_vignettes.pkg_ref <- function(x, ...) {
-  pkg_metric(length(x$vignettes), class = "pkg_metric_has_vignettes")
+  pkg_metric_eval(class = "pkg_metric_has_vignettes", {
+    length(x$vignettes)
+  })
 }
 
 
@@ -33,3 +35,6 @@ assess_has_vignettes.pkg_ref <- function(x, ...) {
 metric_score.pkg_metric_has_vignettes <- function(x, ...) {
   as.numeric(x > 0)
 }
+
+attributes(metric_score.pkg_metric_has_vignettes)$label <- 
+  "A binary indicator of whether the package has any vignettes."

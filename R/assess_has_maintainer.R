@@ -6,7 +6,9 @@
 #'
 #' @export
 assess_has_maintainer <- function(x, ...) {
-  pkg_metric(as.character(x$maintainer), class = "pkg_metric_has_maintainer")
+  pkg_metric_eval(class = "pkg_metric_has_maintainer", {
+    as.character(x$maintainer)
+  })
 }
 
 attributes(assess_has_maintainer)$column_name <- "has_maintainer"
@@ -26,3 +28,6 @@ attributes(assess_has_maintainer)$label <- "a vector of associated maintainers"
 metric_score.pkg_metric_has_maintainer <- function(x, ...) {
   as.numeric(length(x) > 0)
 }
+
+attributes(metric_score.pkg_metric_has_maintainer)$label <-
+  "A binary indicator of whether a package has a maintainer."
