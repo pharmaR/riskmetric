@@ -16,19 +16,21 @@ attributes(assess_news_current)$label <- "NEWS file contains entry for current v
 
 #' @export
 assess_news_current.pkg_ref <- function(x, ...) {
-  news_current <- grepl(search_version_string(x$version), x$news)
-  pkg_metric(news_current, class = "pkg_metric_news_current")
+  pkg_metric(class = "pkg_metric_news_current", {
+    grepl(search_version_string(x$version), x$news)
+  })
 }
 
 
 
 #' @export
 assess_news_current.pkg_remote <- function(x, ...) {
-  html_nodes <- lapply(x$news,
-    xml2::xml_find_all,
-    sprintf("//text()[contains(., '%s')]", search_version_string(x$version)))
-  news_current <- vapply(html_nodes, function(i) length(i) > 0, logical(1L))
-  pkg_metric(news_current, class = "pkg_metric_news_current")
+  pkg_metric_eval(class = "pkg_metric_news_current", {
+    html_nodes <- lapply(x$news,
+      xml2::xml_find_all,
+      sprintf("//text()[contains(., '%s')]", search_version_string(x$version)))
+    vapply(html_nodes, function(i) length(i) > 0, logical(1L))
+  })
 }
 
 
@@ -51,3 +53,7 @@ search_version_string <- function(ver) {
 metric_score.pkg_metric_news_current <- function(x, ...) {
   as.numeric(length(x) && all(x))
 }
+
+attributes(metric_score.pkg_metric_news_current)$label <- paste0(
+  "A binary indicator of whether the associated NEWS file has an entry for ",
+  "the current version of the package.")

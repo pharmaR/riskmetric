@@ -6,7 +6,9 @@
 #'
 #' @export
 assess_has_website <- function(x, ...) {
-  pkg_metric(x$website_urls, class = "pkg_metric_has_website")
+  pkg_metric_eval(class = "pkg_metric_has_website", {
+    x$website_urls
+  })
 }
 
 attributes(assess_has_website)$column_name <- "has_website"
@@ -26,3 +28,6 @@ attributes(assess_has_website)$label <- "a vector of associated website urls"
 metric_score.pkg_metric_has_website <- function(x, ...) {
   as.numeric(length(x) > 0)
 }
+
+attributes(metric_score.pkg_metric_has_website)$label <- 
+  "A binary indicator of whether the package has an acompanying website."
