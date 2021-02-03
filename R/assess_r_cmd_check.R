@@ -15,7 +15,8 @@ attributes(assess_r_cmd_check)$label <- "Package check results"
 
 #' @export
 assess_r_cmd_check.default <- function(x, ...) {
-  as_pkg_metric_na(message = "Source code not available to run R CMD check on.")
+  as_pkg_metric_na(pkg_metric(class = "pkg_metric_r_cmd_check",
+                              message = "Source code not available to run R CMD check on."))
 }
 
 #' @export
@@ -26,12 +27,16 @@ assess_r_cmd_check.pkg_source <- function(x, ...) {
 
 #' @export
 assess_r_cmd_check.pkg_cran_remote <- function(x, ...) {
-  as_pkg_metric_todo("Assessment of R CMD check on remote pkg refs is not yet implemented but will be in the future")
+  as_pkg_metric_todo(pkg_metric(class = "pkg_metric_r_cmd_check",
+                                "Assessment of R CMD check on remote pkg refs is not 
+                                yet implemented but will be in the future"))
 }
 
 #' @export
 assess_r_cmd_check.pkg_bioc_remote <- function(x, ...) {
-  as_pkg_metric_todo("Assessment of R CMD check on remote pkg refs is not yet implemented but will be in the future")
+  as_pkg_metric_todo(pkg_metric(class = "pkg_metric_r_cmd_check",
+                                "Assessment of R CMD check on remote pkg refs 
+                                is not yet implemented but will be in the future"))
 }
 
 #' Score a package based on R CMD check results run locally

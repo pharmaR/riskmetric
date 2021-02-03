@@ -15,6 +15,6 @@ pkg_ref_cache.r_cmd_check.default <- function (x, ...) {
 
 #' @importFrom devtools check
 pkg_ref_cache.r_cmd_check.pkg_source <- function(x, ...){
-  check_results <- devtools::check(x$path)
+  check_results <- devtools::check(x$path, quiet=TRUE)
   return(check_results)
 }
