@@ -10,24 +10,29 @@ assess_remote_checks <- function(x, ...) {
   UseMethod("assess_remote_checks")
 }
 attr(assess_remote_checks, "column_name") <- "remote_checks"
+attributes(assess_remote_checks)$label <- "Number of OS flavors that passed/warned/errored on R CMD check"
 
 #' @export
 assess_remote_checks.default <- function(x, ...) {
-  as_pkg_metric_na(message="Package is not a CRAN or BioC reference so there are no CRAN/BioC checks to assess")
+  as_pkg_metric_na(pkg_metric(class="pkg_metric_remote_checks", 
+                              message="Package is not a CRAN or BioC reference so there 
+                              are no CRAN/BioC checks to assess"))
 }
 
 #' @export
 assess_remote_checks.pkg_cran_remote <- function(x, ...) {
-  pkg_metric(table(factor(x$remote_checks[["Status"]], 
-                          levels = c("OK","WARN","ERROR", "NOTE", "FAIL"))), 
-             class = "pkg_metric_remote_checks")
+  pkg_metric_eval(class = "pkg_metric_remote_checks",{
+    table(factor(x$remote_checks[["Status"]],
+                 levels = c("OK","WARN","ERROR", "NOTE", "FAIL"))) 
+             })
 }
 
 #' @export
 assess_remote_checks.pkg_bioc_remote <- function(x, ...) {
-  pkg_metric(table(factor(x$remote_checks[["CHECK"]], 
-                          levels=c("OK","WARNINGS","ERROR","TIMEOUT"))), 
-             class = "pkg_metric_remote_checks")
+  pkg_metric_eval(class = "pkg_metric_remote_checks", {
+    table(factor(x$remote_checks[["CHECK"]],
+                 levels=c("OK","WARNINGS","ERROR","TIMEOUT")))
+             })
 }
 
 #' Score a package based on R CMD check results run by BioC or CRAN
