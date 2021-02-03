@@ -13,7 +13,7 @@ attr(assess_remote_checks, "column_name") <- "remote_checks"
 
 #' @export
 assess_remote_checks.default <- function(x, ...) {
-  pkg_metric_na(message="Package is not a CRAN or BioC reference so there are no CRAN/BioC checks to assess")
+  as_pkg_metric_na(message="Package is not a CRAN or BioC reference so there are no CRAN/BioC checks to assess")
 }
 
 #' @export
@@ -40,3 +40,5 @@ assess_remote_checks.pkg_bioc_remote <- function(x, ...) {
 metric_score.pkg_metric_remote_checks <- function(x, ...) {
   unname((x["OK"] + (x[grepl("WARN", names(x))] *0.5))/sum(x))
 }
+attributes(metric_score.pkg_metric_remote_checks)$label <-
+  "Weighted sum of OS flavor R CMD check results"
