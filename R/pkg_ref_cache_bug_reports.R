@@ -35,7 +35,7 @@ bug_report_metadata <- function(bug_reports_data, x) {
 # Helper for scraping bug reports depending on url host name
 scrape_bug_reports <- function(x, ...) {
   disp_class <- x$bug_reports_host %||% "NULL"
-  UseMethod("scrape_bug_reports", structure(1L, class = disp_class))
+  UseMethod("scrape_bug_reports", structure(list(), class = disp_class))
 }
 
 

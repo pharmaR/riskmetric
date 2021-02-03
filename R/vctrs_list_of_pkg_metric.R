@@ -11,9 +11,8 @@ pillar_shaft.list_of_pkg_metric <- function(x, ...) {
   }, character(1L))
 
   is_atomic_l1 <- vapply(ucx, function(xi) is.atomic(xi) && length(xi) == 1, logical(1L))
-  p[[1]][is_atomic_l1] <- vapply(ucx[is_atomic_l1], function(xi) {
-    capture.output(pillar::pillar_shaft(xi))
-  }, character(1L))
+  p[[1]][is_atomic_l1] <- ucx[is_atomic_l1]
+  attr(p, "width") <- max(attr(p, "width"), nchar(ucx[is_atomic_l1]))
 
   p
 }

@@ -19,15 +19,16 @@ attr(assess_downloads_1yr, "label") <- "number of downloads in the past year"
 
 #' @export
 assess_downloads_1yr.pkg_ref <- function(x, ...) {
-  downloads_1yr <- sum(x$downloads$count)
-  pkg_metric(downloads_1yr, class = "pkg_metric_downloads_1yr")
+  pkg_metric_eval(class = "pkg_metric_downloads_1yr", {
+    sum(x$downloads$count)
+  })
 }
 
 
 
 #' Defining an Assessment Scoring Function
 #' Score a package for the number of downloads in the past year
-#'
+#'regularized
 #' Convert the number of downloads \code{x} in the past year into a validation
 #' score [0,1] \deqn{ 1 - 150,000 / (x + 150,000) }
 #'
@@ -47,3 +48,8 @@ metric_score.pkg_metric_downloads_1yr <- function(x, ...) {
   # simplification from logistic: 1 - 1 / (1 + exp(log(x)-log(1.5e5)))
   1 - 1.5 / (x / 1e5 + 1.5)
 }
+
+attributes(metric_score.pkg_metric_downloads_1yr)$label <- paste0(
+  "A logistic rating of the number of package downloads in the past year. ",
+  "For more details, see ?riskmetric::metric_score.pkg_metric_downloads_1yr")
+

@@ -5,7 +5,7 @@
 \title{A helper for structuring assessment return objects for dispatch with the
 score function}
 \usage{
-pkg_metric(x, ..., class = c())
+pkg_metric(x = NA, ..., class = c())
 }
 \arguments{
 \item{x}{data to store as a \code{pkg_metric}}
