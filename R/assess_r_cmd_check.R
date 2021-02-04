@@ -21,15 +21,17 @@ assess_r_cmd_check.default <- function(x, ...) {
 
 #' @export
 assess_r_cmd_check.pkg_source <- function(x, ...) {
-  pkg_metric(sapply(x$r_cmd_check[c("notes","errors","warnings")], length), 
-             class = "pkg_metric_r_cmd_check")
+  pkg_metric_eval(class = "pkg_metric_r_cmd_check", {
+    sapply(x$r_cmd_check[c("notes","errors","warnings")], length)
+  })
 }
 
 #' @export
 assess_r_cmd_check.pkg_cran_remote <- function(x, ...) {
   as_pkg_metric_todo(pkg_metric(class = "pkg_metric_r_cmd_check",
-                                "Assessment of R CMD check on remote pkg refs is not 
-                                yet implemented but will be in the future"))
+                                message = "Assessment of R CMD check on remote 
+                                pkg refs is not yet implemented but will be in 
+                                the future"))
 }
 
 #' @export
