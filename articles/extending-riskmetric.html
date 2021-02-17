@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Extending riskmetric</h1>
                         <h4 class="author">R Validation Hub</h4>
             
-            <h4 class="date">2021-01-20</h4>
+            <h4 class="date">2021-02-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaR/riskmetric/blob/master/vignettes/extending-riskmetric.Rmd"><code>vignettes/extending-riskmetric.Rmd</code></a></small>
       <div class="hidden name"><code>extending-riskmetric.Rmd</code></div>
@@ -188,6 +188,7 @@
 #&gt; $maintainer...
 #&gt; $news...
 #&gt; $release_date...
+#&gt; $remote_checks...
 #&gt; $source_control_url...
 #&gt; $vignettes...
 #&gt; $website_urls...</code></pre>
@@ -236,33 +237,34 @@
 <span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/all_assessments.html">all_assessments</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">assess_name_first_letter</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 x 16</span>
+<span class="co">#&gt; # A tibble: 3 x 17</span>
 <span class="co">#&gt;   package version pkg_ref             news_current has_vignettes</span>
 <span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;     &lt;list&lt;pkg_m&gt; &lt;list&lt;pkg_me&gt;</span>
 <span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt; &lt;lgl [0]&gt;    0            </span>
-<span class="co">#&gt; 2 utils   4.0.3   utils&lt;install&gt;      &lt;lgl [0]&gt;    1            </span>
-<span class="co">#&gt; 3 tools   4.0.3   tools&lt;install&gt;      &lt;lgl [0]&gt;    0            </span>
-<span class="co">#&gt; # … with 11 more variables: has_bug_reports_url &lt;list&lt;pkg_metric&gt;&gt;,</span>
+<span class="co">#&gt; 2 utils   4.0.4   utils&lt;install&gt;      &lt;lgl [0]&gt;    1            </span>
+<span class="co">#&gt; 3 tools   4.0.4   tools&lt;install&gt;      &lt;lgl [0]&gt;    0            </span>
+<span class="co">#&gt; # … with 12 more variables: has_bug_reports_url &lt;list&lt;pkg_metric&gt;&gt;,</span>
 <span class="co">#&gt; #   bugs_status &lt;list&lt;pkg_metric&gt;&gt;, license &lt;list&lt;pkg_metric&gt;&gt;,</span>
 <span class="co">#&gt; #   export_help &lt;list&lt;pkg_metric&gt;&gt;, downloads_1yr &lt;list&lt;pkg_metric&gt;&gt;,</span>
-<span class="co">#&gt; #   has_website &lt;list&lt;pkg_metric&gt;&gt;, has_maintainer &lt;list&lt;pkg_metric&gt;&gt;,</span>
-<span class="co">#&gt; #   has_news &lt;list&lt;pkg_metric&gt;&gt;, has_source_control &lt;list&lt;pkg_metric&gt;&gt;,</span>
-<span class="co">#&gt; #   covr_coverage &lt;list&lt;pkg_metric&gt;&gt;, name_first_letter &lt;list&lt;pkg_metric&gt;&gt;</span></code></pre></div>
+<span class="co">#&gt; #   has_website &lt;list&lt;pkg_metric&gt;&gt;, remote_checks &lt;list&lt;pkg_metric&gt;&gt;,</span>
+<span class="co">#&gt; #   has_maintainer &lt;list&lt;pkg_metric&gt;&gt;, has_news &lt;list&lt;pkg_metric&gt;&gt;,</span>
+<span class="co">#&gt; #   has_source_control &lt;list&lt;pkg_metric&gt;&gt;, covr_coverage &lt;list&lt;pkg_metric&gt;&gt;,</span>
+<span class="co">#&gt; #   name_first_letter &lt;list&lt;pkg_metric&gt;&gt;</span></code></pre></div>
 <p>Our scoring function will automatically get picked up and used by the score method.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/all_assessments.html">all_assessments</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">assess_name_first_letter</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 x 17</span>
+<span class="co">#&gt; # A tibble: 3 x 18</span>
 <span class="co">#&gt;   package version pkg_ref             pkg_score news_current has_vignettes</span>
 <span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
-<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.538 0            0            </span>
-<span class="co">#&gt; 2 utils   4.0.3   utils&lt;install&gt;          0.770 0            1            </span>
-<span class="co">#&gt; 3 tools   4.0.3   tools&lt;install&gt;          0.846 0            0            </span>
-<span class="co">#&gt; # … with 11 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.543 0            0            </span>
+<span class="co">#&gt; 2 utils   4.0.4   utils&lt;install&gt;          0.786 0            1            </span>
+<span class="co">#&gt; 3 tools   4.0.4   tools&lt;install&gt;          0.857 0            0            </span>
+<span class="co">#&gt; # … with 12 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   bugs_status &lt;pkg_scor&gt;, license &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;,</span>
-<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;, remote_checks &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   name_first_letter &lt;pkg_scor&gt;</span></code></pre></div>
@@ -272,15 +274,15 @@
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/all_assessments.html">all_assessments</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">assess_name_first_letter</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span>weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>has_news <span class="op">=</span> <span class="fl">1</span>, name_first_letter <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 x 17</span>
+<span class="co">#&gt; # A tibble: 3 x 18</span>
 <span class="co">#&gt;   package version pkg_ref             pkg_score news_current has_vignettes</span>
 <span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
 <span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;       0.5 0            0            </span>
-<span class="co">#&gt; 2 utils   4.0.3   utils&lt;install&gt;            1   0            1            </span>
-<span class="co">#&gt; 3 tools   4.0.3   tools&lt;install&gt;            1   0            0            </span>
-<span class="co">#&gt; # … with 11 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; 2 utils   4.0.4   utils&lt;install&gt;            1   0            1            </span>
+<span class="co">#&gt; 3 tools   4.0.4   tools&lt;install&gt;            1   0            0            </span>
+<span class="co">#&gt; # … with 12 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   bugs_status &lt;pkg_scor&gt;, license &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;,</span>
-<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;, remote_checks &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   name_first_letter &lt;pkg_scor&gt;</span></code></pre></div>

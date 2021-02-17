@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Score a package for inclusion of an associated maintainer — metric_score.pkg_metric_has_maintainer • riskmetric</title>
+<title>Retrieve a CRAN or Bioc checks or run R CMD check — pkg_ref_cache.remote_checks • riskmetric</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Score a package for inclusion of an associated maintainer — metric_score.pkg_metric_has_maintainer" />
-<meta property="og:description" content="Coerce a list of maintainers into a numeric value indicating whether the
-number of listed maintainers is greater than 0." />
+<meta property="og:title" content="Retrieve a CRAN or Bioc checks or run R CMD check — pkg_ref_cache.remote_checks" />
+<meta property="og:description" content="Retrieve a CRAN or Bioc checks or run R CMD check" />
 
 
 
@@ -124,54 +123,58 @@ number of listed maintainers is greater than 0." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Score a package for inclusion of an associated maintainer</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/assess_has_maintainer.R'><code>R/assess_has_maintainer.R</code></a></small>
-    <div class="hidden name"><code>metric_score.pkg_metric_has_maintainer.Rd</code></div>
+    <h1>Retrieve a CRAN or Bioc checks or run R CMD check</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_ref_cache_remote_checks.R'><code>R/pkg_ref_cache_remote_checks.R</code></a></small>
+    <div class="hidden name"><code>pkg_ref_cache.remote_checks.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Coerce a list of maintainers into a numeric value indicating whether the
-number of listed maintainers is greater than 0.</p>
+    <p>Retrieve a CRAN or Bioc checks or run R CMD check</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for pkg_metric_has_maintainer</span>
-<span class='fu'><a href='metric_score.html'>metric_score</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pkg_ref_cache.remote_checks</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a <code>pkg_metric_has_maintainer</code> packge metric object</p></td>
+      <td><p>a package reference object</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional arguments unused</p></td>
+      <td><p>additional arguments used for computing cached values</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>1</code> if any maintainer is provided, otherwise <code>0</code></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other <code>metric_score.*</code> functions: 
-<code><a href='metric_score.pkg_metric_covr_coverage.html'>metric_score.pkg_metric_covr_coverage</a>()</code>,
-<code><a href='metric_score.pkg_metric_downloads_1yr.html'>metric_score.pkg_metric_downloads_1yr</a>()</code>,
-<code><a href='metric_score.pkg_metric_export_help.html'>metric_score.pkg_metric_export_help</a>()</code>,
-<code><a href='metric_score.pkg_metric_has_bug_reports_url.html'>metric_score.pkg_metric_has_bug_reports_url</a>()</code>,
-<code><a href='metric_score.pkg_metric_has_news.html'>metric_score.pkg_metric_has_news</a>()</code>,
-<code><a href='metric_score.pkg_metric_has_source_control.html'>metric_score.pkg_metric_has_source_control</a>()</code>,
-<code><a href='metric_score.pkg_metric_has_vignettes.html'>metric_score.pkg_metric_has_vignettes</a>()</code>,
-<code><a href='metric_score.pkg_metric_has_website.html'>metric_score.pkg_metric_has_website</a>()</code>,
-<code><a href='metric_score.pkg_metric_last_30_bugs_status.html'>metric_score.pkg_metric_last_30_bugs_status</a>()</code>,
-<code><a href='metric_score.pkg_metric_license.html'>metric_score.pkg_metric_license</a>()</code>,
-<code><a href='metric_score.pkg_metric_news_current.html'>metric_score.pkg_metric_news_current</a>()</code>,
-<code><a href='metric_score.pkg_metric_remote_checks.html'>metric_score.pkg_metric_remote_checks</a>()</code></p></div>
+    <div class='dont-index'><p>Other package reference cache: 
+<code><a href='pkg_ref_cache.archive_release_dates.html'>pkg_ref_cache.archive_release_dates</a>()</code>,
+<code><a href='pkg_ref_cache.bug_reports_host.html'>pkg_ref_cache.bug_reports_host</a>()</code>,
+<code><a href='pkg_ref_cache.bug_reports_url.html'>pkg_ref_cache.bug_reports_url</a>()</code>,
+<code><a href='pkg_ref_cache.bug_reports.html'>pkg_ref_cache.bug_reports</a>()</code>,
+<code><a href='pkg_ref_cache.covr_coverage.html'>pkg_ref_cache.covr_coverage</a>()</code>,
+<code><a href='pkg_ref_cache.description.html'>pkg_ref_cache.description</a>()</code>,
+<code><a href='pkg_ref_cache.downloads.html'>pkg_ref_cache.downloads</a>()</code>,
+<code><a href='pkg_ref_cache.expression_coverage.html'>pkg_ref_cache.expression_coverage</a>()</code>,
+<code><a href='pkg_ref_cache.function_coverage.html'>pkg_ref_cache.function_coverage</a>()</code>,
+<code><a href='pkg_ref_cache.help_aliases.html'>pkg_ref_cache.help_aliases</a>()</code>,
+<code><a href='pkg_ref_cache.help.html'>pkg_ref_cache.help</a>()</code>,
+<code><a href='pkg_ref_cache.license.html'>pkg_ref_cache.license</a>()</code>,
+<code><a href='pkg_ref_cache.maintainer.html'>pkg_ref_cache.maintainer</a>()</code>,
+<code><a href='pkg_ref_cache.news_urls.html'>pkg_ref_cache.news_urls</a>()</code>,
+<code><a href='pkg_ref_cache.news.html'>pkg_ref_cache.news</a>()</code>,
+<code><a href='pkg_ref_cache.release_date.html'>pkg_ref_cache.release_date</a>()</code>,
+<code><a href='pkg_ref_cache.repo_base_url.html'>pkg_ref_cache.repo_base_url</a>()</code>,
+<code><a href='pkg_ref_cache.source_control_url.html'>pkg_ref_cache.source_control_url</a>()</code>,
+<code><a href='pkg_ref_cache.tarball_url.html'>pkg_ref_cache.tarball_url</a>()</code>,
+<code><a href='pkg_ref_cache.vignettes.html'>pkg_ref_cache.vignettes</a>()</code>,
+<code><a href='pkg_ref_cache.web_html.html'>pkg_ref_cache.web_html</a>()</code>,
+<code><a href='pkg_ref_cache.web_url.html'>pkg_ref_cache.web_url</a>()</code>,
+<code><a href='pkg_ref_cache.website_urls.html'>pkg_ref_cache.website_urls</a>()</code>,
+<code><a href='pkg_ref_cache.html'>pkg_ref_cache</a>()</code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='metric_score.html'>metric_score</a></span><span class='op'>(</span><span class='fu'><a href='assess_has_maintainer.html'>assess_has_maintainer</a></span><span class='op'>(</span><span class='fu'><a href='pkg_ref.html'>pkg_ref</a></span><span class='op'>(</span><span class='st'>"riskmetric"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
