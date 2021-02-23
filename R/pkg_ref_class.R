@@ -136,17 +136,17 @@ as_pkg_ref.pkg_ref <- function(x, ...) {
 #' @importFrom utils installed.packages available.packages packageVersion
 #' @export
 as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rstudio.com"),
-                                 source = NULL, ...) {
+                                 source = NULL, lib.loc = NULL, ...) {
 
   dots <- list(...)
 
   pkg_source_ <- ifelse(is.null(source),
-                        determine_pkg_source(x, dots$source, repos),
-                        dots$source)
+                        determine_pkg_source(x, source, repos),
+                        source)
 
   switch(pkg_source_,
          pkg_install = {
-           path <- find.package(x)
+           path <- find.package(x, lib.loc = lib.loc)
            version <- utils::packageVersion(x, lib.loc = dirname(path))
 
            new_pkg_ref(x,
