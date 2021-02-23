@@ -17,9 +17,14 @@ test_that("pkg_ref can accept an argument of 'source'", {
   # Multiple pkg_refs with different sources
   ref7 <- pkg_ref(c("urltools", "curl"), source = c("pkg_install",
                                                     "pkg_cran_remote"))
+  # Test Different Library locations
 
   skip_if(getOption("repos") == "fake-cran.fake-r-project.org",
           message = "pkg source tests skipped")
+
+  tempLibLoc <- tempdir()
+  install.packages("coin", lib = tempLibLoc)
+  ref8 <- pkg_ref("coin", source = "pkg_install", lib.loc = tempLibLoc)
 
   expect_equal(ref1$source, "pkg_install")
   expect_equal(ref2$source, "pkg_remote")
@@ -29,4 +34,5 @@ test_that("pkg_ref can accept an argument of 'source'", {
   expect_equal(ref5$source, "pkg_remote")
   expect_equal(sapply(ref6, `[[`, "source"), c("pkg_remote", "pkg_remote"))
   expect_equal(sapply(ref7, `[[`, "source"), c("pkg_install", "pkg_remote"))
+  expect_equal(ref8$source, "pkg_install")
 })

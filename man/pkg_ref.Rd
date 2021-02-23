@@ -28,7 +28,7 @@ performed. Depending on where the package was found - whether it is found as
 source code, in a local library or from a remote host - an S3 subclass is
 given to allow for source-specific collection of metadata. See 'Details' for
 a breakdown of subclasses. Different sources can be specified by passing a
-subclass as an arguemnt named 'source'.
+subclass as an arguemnt named 'source', see details.
 }
 \details{
 Package reference objects are used to collect metadata pertaining to a given
@@ -40,13 +40,19 @@ collection behaviors dependent on where the package was discovered. Because
 of this, there is a rich hierarchy of subclasses to articulate the different
 ways package information can be found.
 
+A source argument can be passed using the `source` argument. This will
+override the logic that riskmetric does when determining a package source.
+This can be useful when you are scoring the most recent version present on a
+repository, or testing a specific library.
+
 \itemize{
 \item{\strong{\code{pkg_ref}}}{ A default class for general metadata
 collection.
   \itemize{
   \item{\strong{\code{pkg_source}}}{ A reference to a source code directory.}
   \item{\strong{\code{pkg_install}}}{ A reference to a package installation
-  location in a package library.}
+  location in a package library. A specific library can be passed by passing
+  the path to the library as the parameter `lib.loc`}
   \item{\strong{\code{pkg_remote}}}{ A reference to package metadata on a
   remote server.
     \itemize{

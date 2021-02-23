@@ -6,7 +6,7 @@
 #' source code, in a local library or from a remote host - an S3 subclass is
 #' given to allow for source-specific collection of metadata. See 'Details' for
 #' a breakdown of subclasses. Different sources can be specified by passing a
-#' subclass as an arguemnt named 'source'.
+#' subclass as an arguemnt named 'source', see details.
 #'
 #' Package reference objects are used to collect metadata pertaining to a given
 #' package. As data is needed for assessing a package's risk, this metadata
@@ -17,13 +17,19 @@
 #' of this, there is a rich hierarchy of subclasses to articulate the different
 #' ways package information can be found.
 #'
+#' A source argument can be passed using the `source` argument. This will
+#' override the logic that riskmetric does when determining a package source.
+#' This can be useful when you are scoring the most recent version present on a
+#' repository, or testing a specific library.
+#'
 #' \itemize{
 #' \item{\strong{\code{pkg_ref}}}{ A default class for general metadata
 #' collection.
 #'   \itemize{
 #'   \item{\strong{\code{pkg_source}}}{ A reference to a source code directory.}
 #'   \item{\strong{\code{pkg_install}}}{ A reference to a package installation
-#'   location in a package library.}
+#'   location in a package library. A specific library can be passed by passing
+#'   the path to the library as the parameter `lib.loc`}
 #'   \item{\strong{\code{pkg_remote}}}{ A reference to package metadata on a
 #'   remote server.
 #'     \itemize{
@@ -143,6 +149,9 @@ as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rst
   pkg_source_ <- ifelse(is.null(source),
                         determine_pkg_source(x, source, repos),
                         source)
+
+  stopifnot(pkg_source_ %in% c("pkg_install", "pkg_source", "pkg_cran_remote",
+                               "pkg_bioc_remote", "pkg_missing"))
 
   switch(pkg_source_,
          pkg_install = {
