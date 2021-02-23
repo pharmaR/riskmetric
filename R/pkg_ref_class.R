@@ -135,89 +135,107 @@ as_pkg_ref.pkg_ref <- function(x, ...) {
 
 #' @importFrom utils installed.packages available.packages packageVersion
 #' @export
-as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rstudio.com"), ...) {
-  ip <- memoise_installed_packages()
+as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rstudio.com"),
+                                 source = NULL, ...) {
 
   dots <- list(...)
 
-  # case when only a package name is provided
-  #   e.g. 'dplyr'
-  # regex from available:::valid_package_name_regexp
-  if (grepl("^[[:alpha:]][[:alnum:].]*[[:alnum:]]$", x)) {
+  pkg_source_ <- ifelse(is.null(source),
+                        determine_pkg_source(x, dots$source, repos),
+                        dots$source)
+
+  switch(pkg_source_,
+         pkg_install = {
+           path <- find.package(x)
+           version <- utils::packageVersion(x, lib.loc = dirname(path))
+
+           new_pkg_ref(x,
+                       version = version,
+                       path = path,
+                       source = "pkg_install")
+         },
+         pkg_source = {
+
+           desc <- read.dcf(file.path(x, "DESCRIPTION"))
+           name <- unname(desc[,"Package"])
+
+           new_pkg_ref(name,
+                       version = package_version(desc[,"Version"][[1]]),
+                       path = normalizePath(x),
+                       source = "pkg_source")
+         },
+         pkg_cran_remote = {
+           ap <- memoise_available_packages(repos = repos)
+           info <- ap[ap[,"Package"] == x,,drop = FALSE]
+
+           new_pkg_ref(x,
+                       version = info[,"Version"],
+                       repo = info[,"Repository"],
+                       source = c("pkg_cran_remote"))
+         },
+         pkg_bioc_remote = {
+           bp <- memoise_bioc_available()
+           info <- bp[bp[,"Package"] == x,,drop = FALSE]
+
+           new_pkg_ref(x,
+                       version = info[,"Version"],
+                       repo = "https://bioconductor.org/packages/release/bioc",
+                       source = c("pkg_bioc_remote"))
+         },
+         pkg_missing = {
+           new_pkg_ref(x,
+                       source = c("pkg_missing"))
+         })
+}
+
+#' Determine the intended source of a new package
+#'
+#' @param x Package name or path to package
+#' @param source type of source passed in `pkg_ref`
+#' @return one of c('pkg_install', 'pkg_install', 'pkg_cran_remote', 'pkg_bioc_remote')
+#' @noRd
+determine_pkg_source <- function(x, source, repos) {
+
+  if (dir.exists(x) && file.exists(file.path(x, "DESCRIPTION"))) {
+    "pkg_source"
 
 
-    # Check if a 'source' argument was passed, if one was check if its 'pkg_install'
-    if ((!is.null(dots$source) && dots$source == "pkg_install") ||
-        # If no 'source agrument was passed. check if package is installed.
-        (is.null(dots$source) && (x %in% ip[,"Package"]))) {
-      path <- find.package(x)
-      version <- utils::packageVersion(x, lib.loc = dirname(path))
+    ## Non-source package
+  } else if (grepl("^[[:alpha:]][[:alnum:].]*[[:alnum:]]$", x)) {
 
-      return(new_pkg_ref(x,
-        version = version,
-        path = path,
-        source = "pkg_install"))
+    ip <- memoise_installed_packages()
 
-      # Check if a 'source' argument was passed, if one was check if its of type 'pkg_remote'
-    } else if ((!is.null(dots$source) && dots$source %in% c("pkg_remote", "pkg_bioc_remote", "pkg_cran_remote")) ||
-               # If no 'source' argument is passed, check if is available at a repo.
-               (is.null(dots$source) && x %in% memoise_available_packages(repos = repos)[,"Package"])) {
+    if (x %in% ip[,"Package"]) {
+      return("pkg_install")
+
+      # If its not installed. Pull the package to check it
+    } else {
       ap <- memoise_available_packages(repos = repos)
       info <- ap[ap[,"Package"] == x,,drop = FALSE]
 
       p <- new_pkg_ref(x,
-        version = info[,"Version"],
-        repo = info[,"Repository"],
-        source = c("pkg_remote"))
-
-      # Check if package is available on CRAN
-      if (!is.null(memoise_cran_mirrors()) &&
-          # isTRUE added to catch any issues where the cran mirror isn't available
-          isTRUE(is_url_subpath_of(
-            p$repo_base_url,
-            c(memoise_cran_mirrors()$URL, "https://cran.rstudio.com/")))) {
-
-        class(p) <- c("pkg_cran_remote", class(p))
-        return(p)
-
-        # Check if package is available on Bioconductor
-      }  else if (x %in% memoise_bioc_available()[,"Package"]) {
-        bp <- memoise_bioc_available()
-        info <- bp[bp[,"Package"] == x,,drop = FALSE]
-
-        return(new_pkg_ref(x,
-                           version = info[,"Version"],
-                           repo = "https://bioconductor.org/packages/release/bioc",
-                           source = c("pkg_remote")))
-
-        # Check Bioconductor mirrors
-      } else if (!is.null(memoise_bioc_mirrors()) &&
-          isTRUE(is_url_subpath_of(p$repo_base_url, memoise_bioc_mirrors()$URL))) {
-
-        class(p) <- c("pkg_bioc_remote", class(p))
-        return(p)
-
-      } else {
-        # if unable to locate a local or remote version of the package and source is remote
-        return(new_pkg_ref(x, source = "pkg_missing"))
-      }
-
+                       version = info[,"Version"],
+                       repo = info[,"Repository"],
+                       source = c("pkg_remote"))
     }
 
-    # if unable to locate a local or remote version of the package
-    return(new_pkg_ref(x, source = "pkg_missing"))
+    if(x %in% memoise_available_packages(repos = repos)[,"Package"] ||
+              (!is.null(memoise_cran_mirrors()) &&
+              # isTRUE added to catch any issues where the cran mirror isn't available
+              isTRUE(is_url_subpath_of(
+                p$repo_base_url,
+                c(memoise_cran_mirrors()$URL, "https://cran.rstudio.com/"))))){
+      "pkg_cran_remote"
 
-  # case when a directory path to source code is provided
-  #   e.g. '../dplyr'
-  } else if ((!is.null(dots$source) && dots$source == "pkg_source") ||
-             dir.exists(x) && file.exists(file.path(x, "DESCRIPTION"))) {
-    desc <- read.dcf(file.path(x, "DESCRIPTION"))
-    name <- unname(desc[,"Package"])
 
-    return(new_pkg_ref(name,
-      version = package_version(desc[,"Version"][[1]]),
-      path = normalizePath(x),
-      source = "pkg_source"))
+    } else if(x %in% memoise_bioc_available()[,"Package"] ||
+              (!is.null(memoise_bioc_mirrors()) &&
+               isTRUE(is_url_subpath_of(p$repo_base_url, memoise_bioc_mirrors()$URL)))) {
+      "pkg_bioc_remote"
+
+    } else {
+      "pkg_missing"
+    }
 
   } else {
     stop(sprintf("can't interpret character '%s' as a package reference", x))
