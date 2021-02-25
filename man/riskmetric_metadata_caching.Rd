@@ -113,6 +113,7 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.maintainer}()},
 \code{\link{pkg_ref_cache.news_urls}()},
 \code{\link{pkg_ref_cache.news}()},
+\code{\link{pkg_ref_cache.r_cmd_check}()},
 \code{\link{pkg_ref_cache.release_date}()},
 \code{\link{pkg_ref_cache.remote_checks}()},
 \code{\link{pkg_ref_cache.repo_base_url}()},

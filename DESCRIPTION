@@ -30,7 +30,8 @@ Imports:
     jsonlite,
     vctrs,
     pillar,
-    tibble
+    tibble,
+    devtools
 Suggests:
     knitr,
     rmarkdown,
