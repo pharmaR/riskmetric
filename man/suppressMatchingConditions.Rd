@@ -4,7 +4,8 @@
 \alias{suppressMatchingConditions}
 \title{Suppress messages and warnings based on one or more regex matches}
 \usage{
-suppressMatchingConditions(expr, ..., .opts = list(), .envir = parent.frame())
+suppressMatchingConditions(expr, ..., .opts = list(),
+  .envir = parent.frame())
 }
 \arguments{
 \item{expr}{An expression to evaluate}

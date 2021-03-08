@@ -4,7 +4,8 @@
 \alias{memoise_cran_mirrors}
 \title{Fetch CRAN Mirrors Info}
 \usage{
-memoise_cran_mirrors(all = TRUE, ..., .local = getOption("riskmetric.tests"))
+memoise_cran_mirrors(all = TRUE, ...,
+  .local = getOption("riskmetric.tests"))
 }
 \arguments{
 \item{all}{default \code{TRUE}, passed to \code{\link{utils}[getCRANmirrors]}}

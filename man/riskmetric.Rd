@@ -3,6 +3,7 @@
 \docType{package}
 \name{riskmetric}
 \alias{riskmetric}
+\alias{riskmetric-package}
 \title{riskmetric}
 \description{
 Facilities for assessing R packages against a number of metrics to help

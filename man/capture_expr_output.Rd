@@ -4,7 +4,8 @@
 \alias{capture_expr_output}
 \title{Capture side effects issued by an evaluated expression}
 \usage{
-capture_expr_output(expr, split = FALSE, env = parent.frame(), quoted = FALSE)
+capture_expr_output(expr, split = FALSE, env = parent.frame(),
+  quoted = FALSE)
 }
 \arguments{
 \item{expr}{an expression to evaluate, capturing output events as they

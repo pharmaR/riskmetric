@@ -23,17 +23,16 @@ Score a package for number of recently opened BugReports that are now closed
 }
 }
 \seealso{
-Other \code{metric_score.*} functions: 
-\code{\link{metric_score.pkg_metric_covr_coverage}()},
-\code{\link{metric_score.pkg_metric_downloads_1yr}()},
-\code{\link{metric_score.pkg_metric_export_help}()},
-\code{\link{metric_score.pkg_metric_has_bug_reports_url}()},
-\code{\link{metric_score.pkg_metric_has_maintainer}()},
-\code{\link{metric_score.pkg_metric_has_news}()},
-\code{\link{metric_score.pkg_metric_has_source_control}()},
-\code{\link{metric_score.pkg_metric_has_vignettes}()},
-\code{\link{metric_score.pkg_metric_has_website}()},
-\code{\link{metric_score.pkg_metric_license}()},
-\code{\link{metric_score.pkg_metric_news_current}()}
+Other \code{metric_score.*} functions: \code{\link{metric_score.pkg_metric_covr_coverage}},
+  \code{\link{metric_score.pkg_metric_downloads_1yr}},
+  \code{\link{metric_score.pkg_metric_export_help}},
+  \code{\link{metric_score.pkg_metric_has_bug_reports_url}},
+  \code{\link{metric_score.pkg_metric_has_maintainer}},
+  \code{\link{metric_score.pkg_metric_has_news}},
+  \code{\link{metric_score.pkg_metric_has_source_control}},
+  \code{\link{metric_score.pkg_metric_has_vignettes}},
+  \code{\link{metric_score.pkg_metric_has_website}},
+  \code{\link{metric_score.pkg_metric_license}},
+  \code{\link{metric_score.pkg_metric_news_current}}
 }
 \concept{\code{metric_score.*} functions}

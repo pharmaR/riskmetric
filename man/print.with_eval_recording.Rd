@@ -4,7 +4,8 @@
 \alias{print.with_eval_recording}
 \title{Handle pretty printing of expression output}
 \usage{
-\method{print}{with_eval_recording}(x, playback = FALSE, cr = TRUE, ..., sleep = 0)
+\method{print}{with_eval_recording}(x, playback = FALSE, cr = TRUE,
+  ..., sleep = 0)
 }
 \arguments{
 \item{x}{expr_output to print}
