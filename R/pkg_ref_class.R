@@ -51,6 +51,16 @@
 #'
 #' @family pkg_ref
 #' @export
+#'
+#' @examples
+#'
+#' # riskmetric will check for installed packages by default
+#' ref_1 <- pkg_ref("utils")
+#' ref_1$source # returns 'pkg_install'
+#'
+#' # You can also override this behavior with a source argument
+#' ref_2 <- pkg_ref("utils", source = "pkg_cran_remote")
+#' ref_2$source # returns 'pkg_cran_remote'
 pkg_ref <- function(x, ...) {
   if (missing(x)) return(structure(logical(0L), class = "pkg_ref"))
   as_pkg_ref(x, ...)
@@ -148,7 +158,7 @@ as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rst
 
   pkg_source_ <- ifelse(is.null(source),
                         determine_pkg_source(x, source, repos),
-                        source)
+                        verify_pkg_source(x, source, repos))
 
   stopifnot(pkg_source_ %in% c("pkg_install", "pkg_source", "pkg_cran_remote",
                                "pkg_bioc_remote", "pkg_missing"))
@@ -201,7 +211,8 @@ as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rst
 #'
 #' @param x Package name or path to package
 #' @param source type of source passed in `pkg_ref`
-#' @return one of c('pkg_install', 'pkg_install', 'pkg_cran_remote', 'pkg_bioc_remote')
+#' @return one of c('pkg_install', 'pkg_install', 'pkg_cran_remote',
+#'   'pkg_bioc_remote', 'pkg_missing')
 #' @noRd
 determine_pkg_source <- function(x, source, repos) {
 
@@ -228,18 +239,11 @@ determine_pkg_source <- function(x, source, repos) {
                        source = c("pkg_remote"))
     }
 
-    if(x %in% memoise_available_packages(repos = repos)[,"Package"] ||
-              (!is.null(memoise_cran_mirrors()) &&
-              # isTRUE added to catch any issues where the cran mirror isn't available
-              isTRUE(is_url_subpath_of(
-                p$repo_base_url,
-                c(memoise_cran_mirrors()$URL, "https://cran.rstudio.com/"))))){
+    if(is_available_cran(x, repos, p)){
       "pkg_cran_remote"
 
 
-    } else if(x %in% memoise_bioc_available()[,"Package"] ||
-              (!is.null(memoise_bioc_mirrors()) &&
-               isTRUE(is_url_subpath_of(p$repo_base_url, memoise_bioc_mirrors()$URL)))) {
+    } else if(is_available_bioc(x, p)) {
       "pkg_bioc_remote"
 
     } else {
@@ -249,4 +253,66 @@ determine_pkg_source <- function(x, source, repos) {
   } else {
     stop(sprintf("can't interpret character '%s' as a package reference", x))
   }
+}
+
+#' Verify a pkg_source when one is manually specified by the user
+#' @noRd
+verify_pkg_source <- function(x, source, repos) {
+
+  switch(source,
+         pkg_install = "pkg_install",
+         pkg_source = {
+           ## Check source pakcage is present if source is "pkg_source"
+           if(source == "pkg_source" && !dir.exists(x)){
+             warning(paste0(c("Package source: `", x, "` does not exist, source is now 'pkg_missing'")))
+             return("pkg_missing")
+           }
+         },
+         pkg_cran_remote = {
+
+           ap <- memoise_available_packages(repos = repos)
+           info <- ap[ap[,"Package"] == x,,drop = FALSE]
+           p <- new_pkg_ref(x,
+                            version = info[,"Version"],
+                            repo = info[,"Repository"],
+                            source = c("pkg_remote"))
+
+           if(!is_available_cran(x, repos, p)) {
+             warning(paste0(c("Package: `", x, "` not found on CRAN, source is now 'pkg_missing'")))
+             return("pkg_missing")
+           }
+
+         },
+         pkg_bioc_remote = {
+
+           ap <- memoise_available_packages(repos = repos)
+           info <- ap[ap[,"Package"] == x,,drop = FALSE]
+           p <- new_pkg_ref(x,
+                            version = info[,"Version"],
+                            repo = info[,"Repository"],
+                            source = c("pkg_remote"))
+
+           if(!is_available_bioc(x, p)){
+             warning(paste0(c("Package: `", x, "` not found on bioconductor, source is now 'pkg_missing'")))
+             return("pkg_missing")
+           }
+         },
+         source)
+
+  source
+}
+
+is_available_cran <- function(x, repos, p) {
+  x %in% memoise_available_packages(repos = repos)[,"Package"] ||
+    (!is.null(memoise_cran_mirrors()) &&
+       # isTRUE added to catch any issues where the cran mirror isn't available
+       isTRUE(is_url_subpath_of(
+         p$repo_base_url,
+         c(memoise_cran_mirrors()$URL, "https://cran.rstudio.com/"))))
+}
+
+is_available_bioc <- function(x, p){
+  x %in% memoise_bioc_available()[,"Package"] ||
+    (!is.null(memoise_bioc_mirrors()) &&
+       isTRUE(is_url_subpath_of(p$repo_base_url, memoise_bioc_mirrors()$URL)))
 }

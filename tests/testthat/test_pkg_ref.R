@@ -36,3 +36,18 @@ test_that("pkg_ref can accept an argument of 'source'", {
   expect_equal(sapply(ref7, `[[`, "source"), c("pkg_install", "pkg_remote"))
   expect_equal(ref8$source, "pkg_install")
 })
+
+test_that("pkg_ref throws nice warnings when you give bad 'source' arguments",{
+
+  expect_warning(p1 <- pkg_ref("UnknownCRANPkg", source = "pkg_cran_remote"),
+                 "Package: `UnknownCRANPkg` not found on CRAN, source is now 'pkg_missing'")
+  expect_equal(p1$source, "pkg_missing")
+
+  expect_warning(p2 <- pkg_ref("UnknownBiocPkg", source = "pkg_bioc_remote"),
+                 "Package: `UnknownBiocPkg` not found on bioconductor, source is now 'pkg_missing'")
+  expect_equal(p2$source, "pkg_missing")
+
+  expect_warning(p3 <- pkg_ref("./MissingPackage", source = "pkg_source"),
+                 "Package source: `./MissingPackage` does not exist, source is now 'pkg_missing'")
+  expect_equal(p3$source, "pkg_missing")
+})
