@@ -72,6 +72,7 @@ pkg_ref <- function(x, ...) {
 
 
 #' @importFrom vctrs new_vctr
+#' @noRd
 new_pkg_ref <- function(name, version = NA_character_, source, ...) {
   dots <- list(...)
   if (length(dots) && is.null(names(dots)) || any(names(dots) == ""))

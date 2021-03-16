@@ -17,6 +17,7 @@
 #' #'   "an integer value indicating the number of discovered NEWS files")
 #' }
 #'
+#' @noRd
 roxygen_assess_family <- function(name,
     return_type = "an atomic assessment result",
     dontrun = FALSE) {
@@ -62,7 +63,7 @@ roxygen_assess_family <- function(name,
 #' \dontrun{
 #'   #' @eval assess_family_catalog_roxygen()
 #' }
-#'
+#' @noRd
 roxygen_assess_family_catalog <- function() {
   assessments <- all_assessments()
   info <- lapply(assessments, attr, "label")
@@ -97,7 +98,7 @@ all_assessments <- function() {
 #' @param tbl a \code{\link[tibble]{tibble}} to select columns among
 #'
 #' @return a logical vector of \code{pkg_metric} column indices
-#'
+#' @noRd
 get_assessment_columns <- function(tbl) {
   vapply(tbl, inherits, logical(1L), "list_of_pkg_metric")
 }
@@ -110,7 +111,7 @@ get_assessment_columns <- function(tbl) {
 #'   attributes
 #'
 #' @return a vector of friendly column names if available
-#'
+#' @noRd
 use_assessments_column_names <- function(x) {
   column_names <- lapply(x, attr, "column_name")
   colname_null <- vapply(column_names, is.null, logical(1L))

@@ -8,7 +8,7 @@
 #'
 #' @importFrom curl nslookup
 #' @importFrom memoise memoise
-#'
+#' @noRd
 memoise_cran_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
   # NOTE: might need to implement actual caching to avoid inconsistent behavior
@@ -32,6 +32,7 @@ memoise_cran_mirrors <- memoise::memoise({
 
 #' @importFrom BiocManager available
 #' @importFrom memoise memoise
+#' @noRd
 memoise_bioc_available <- memoise::memoise({
   function() {
     con <- url("https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES")

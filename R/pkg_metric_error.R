@@ -1,7 +1,7 @@
 #' A subclass wrapping an error with an additional parent class
 #'
 #' @param error an error condition object to capture
-#' 
+#' @noRd
 as_pkg_metric_error <- function(error) {
   as_pkg_metric_condition(error, subclass = "pkg_metric_error")
 }
@@ -66,7 +66,6 @@ assessment_error_as_warning <- function(e, name, assessment) {
 #' @return a character string of formatted text to communicate the error
 #'
 #' @importFrom utils capture.output
-#'
 format_assessment_message <- function(e, name, assessment) {
   out <- "In "
 

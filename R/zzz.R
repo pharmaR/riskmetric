@@ -1,4 +1,5 @@
 #' @importFrom backports import
+#' @noRd
 .onLoad <- function(libname, pkgname) {
   backports::import(pkgname, "isFALSE")
 

@@ -2,7 +2,7 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#'
+#' @noRd
 pkg_ref_cache.archive_release_dates <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.archive_release_dates")
 }

@@ -2,7 +2,7 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#'
+#' @noRd
 pkg_ref_cache.r_cmd_check <- function (x, ...)
 {
   UseMethod("pkg_ref_cache.r_cmd_check")

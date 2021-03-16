@@ -2,7 +2,7 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#'
+#' @noRd
 pkg_ref_cache.covr_coverage <- function(x, ...) {
   UseMethod("pkg_ref_cache.covr_coverage")
 }
@@ -11,6 +11,7 @@ pkg_ref_cache.covr_coverage <- function(x, ...) {
 
 #' @importFrom tools testInstalledPackage
 #' @importFrom covr package_coverage
+#' @noRd
 pkg_ref_cache.covr_coverage.pkg_source <- function(x, ...) {
   # use custom 'code' to avoid triggering errors upon test failure.
   # practically identical to covr::package_coverage with the exclusion of
