@@ -35,7 +35,7 @@ Other \code{metric_score.*} functions:
 \code{\link{metric_score.pkg_metric_has_website}()},
 \code{\link{metric_score.pkg_metric_license}()},
 \code{\link{metric_score.pkg_metric_news_current}()},
-\code{\link{metric_score.pkg_metric_r_cmd_check}()}
+\code{\link{metric_score.pkg_metric_r_cmd_check}()},
 \code{\link{metric_score.pkg_metric_remote_checks}()}
 }
 \concept{\code{metric_score.*} functions}
