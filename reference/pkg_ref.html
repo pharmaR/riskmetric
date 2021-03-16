@@ -45,7 +45,8 @@ in which package metadata will be collected as risk assessments are
 performed. Depending on where the package was found - whether it is found as
 source code, in a local library or from a remote host - an S3 subclass is
 given to allow for source-specific collection of metadata. See 'Details' for
-a breakdown of subclasses." />
+a breakdown of subclasses. Different sources can be specified by passing a
+subclass as an arguemnt named 'source', see details." />
 
 
 
@@ -139,7 +140,8 @@ in which package metadata will be collected as risk assessments are
 performed. Depending on where the package was found - whether it is found as
 source code, in a local library or from a remote host - an S3 subclass is
 given to allow for source-specific collection of metadata. See 'Details' for
-a breakdown of subclasses.</p>
+a breakdown of subclasses. Different sources can be specified by passing a
+subclass as an arguemnt named 'source', see details.</p>
     </div>
 
     <pre class="usage"><span class='fu'>pkg_ref</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
@@ -172,17 +174,22 @@ directory paths.</p></td>
     <p>Package reference objects are used to collect metadata pertaining to a given
 package. As data is needed for assessing a package's risk, this metadata
 populates fields within the package reference object.</p>
-<p>The <code>pkg_ref</code> S3 subclasses are used extensively for divergent metdata
+<p>The <code>pkg_ref</code> S3 subclasses are used extensively for divergent metadata
 collection behaviors dependent on where the package was discovered. Because
 of this, there is a rich hierarchy of subclasses to articulate the different
 ways package information can be found.</p>
+<p>A source argument can be passed using the `source` argument. This will
+override the logic that riskmetric does when determining a package source.
+This can be useful when you are scoring the most recent version present on a
+repository, or testing a specific library.</p>
 <ul>
 <li><p><strong><code>pkg_ref</code></strong> A default class for general metadata
 collection.
   <ul>
 <li><p><strong><code>pkg_source</code></strong> A reference to a source code directory.</p></li>
 <li><p><strong><code>pkg_install</code></strong> A reference to a package installation
-  location in a package library.</p></li>
+  location in a package library. A specific library can be passed by passing
+  the path to the library as the parameter `lib.loc`</p></li>
 <li><p><strong><code>pkg_remote</code></strong> A reference to package metadata on a
   remote server.
     <ul>
@@ -201,6 +208,19 @@ collection.
     <div class='dont-index'><p>Other pkg_ref: 
 <code><a href='as_pkg_ref.html'>as_pkg_ref</a>()</code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># riskmetric will check for installed packages by default</span>
+<span class='va'>ref_1</span> <span class='op'>&lt;-</span> <span class='fu'>pkg_ref</span><span class='op'>(</span><span class='st'>"utils"</span><span class='op'>)</span>
+<span class='va'>ref_1</span><span class='op'>$</span><span class='va'>source</span> <span class='co'># returns 'pkg_install'</span>
+</div><div class='output co'>#&gt; [1] "pkg_install"</div><div class='input'>
+<span class='co'># You can also override this behavior with a source argument</span>
+<span class='va'>ref_2</span> <span class='op'>&lt;-</span> <span class='fu'>pkg_ref</span><span class='op'>(</span><span class='st'>"utils"</span>, source <span class='op'>=</span> <span class='st'>"pkg_cran_remote"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Package: `utils` not found on CRAN, source is now 'pkg_missing'</span></div><div class='input'><span class='va'>ref_2</span><span class='op'>$</span><span class='va'>source</span> <span class='co'># returns 'pkg_cran_remote'</span>
+</div><div class='output co'>#&gt; [1] "pkg_missing"</div><div class='input'>
+<span class='co'># lib.loc can be used to specify a library for pkg_install</span>
+<span class='va'>ref_3</span> <span class='op'>&lt;-</span> <span class='fu'>pkg_ref</span><span class='op'>(</span><span class='st'>"utils"</span>, source <span class='op'>=</span> <span class='st'>"pkg_install"</span>, lib.loc <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

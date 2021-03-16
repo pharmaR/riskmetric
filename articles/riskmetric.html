@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Get Started</h1>
                         <h4 class="author">R Validation Hub</h4>
             
-            <h4 class="date">2021-02-17</h4>
+            <h4 class="date">2021-03-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaR/riskmetric/blob/master/vignettes/riskmetric.Rmd"><code>vignettes/riskmetric.Rmd</code></a></small>
       <div class="hidden name"><code>riskmetric.Rmd</code></div>
@@ -174,6 +174,7 @@
 #&gt; $license...
 #&gt; $maintainer...
 #&gt; $news...
+#&gt; $r_cmd_check...
 #&gt; $release_date...
 #&gt; $remote_checks...
 #&gt; $source_control_url...
@@ -225,6 +226,7 @@
 #&gt; $license...
 #&gt; $maintainer...
 #&gt; $news...
+#&gt; $r_cmd_check...
 #&gt; $release_date...
 #&gt; $remote_checks...
 #&gt; $source_control_url...
@@ -239,7 +241,7 @@
 <p>In addition to the metric-specific <code>assess_*</code> family of functions, a more comprehensive <code>pkg_assess</code> function is provided. Notably, <code>pkg_assess</code> accepts a <code>pkg_ref</code> object and list of assessments to apply, defaulting to <code><a href="../reference/all_assessments.html">all_assessments()</a></code>, which returns a list of all <code>assess_*</code> functions in the <code>riskmetric</code> namespace.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span></code></pre></div>
-<pre><code>#&gt; &lt;list_of&lt;pkg_metric&gt;[13]&gt;
+<pre><code>#&gt; &lt;list_of&lt;pkg_metric&gt;[14]&gt;
 #&gt; $news_current
 #&gt; logical(0)
 #&gt; attr(,"class")
@@ -255,9 +257,7 @@
 #&gt; [1] "https://github.com/pharmaR/riskmetric/issues"
 #&gt; 
 #&gt; $bugs_status
-#&gt;  [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
-#&gt; [13] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE
-#&gt; [25] FALSE  TRUE FALSE  TRUE  TRUE  TRUE
+#&gt; &lt;simpleError in FUN(X[[i]], ...): subscript out of bounds&gt;
 #&gt; 
 #&gt; $license
 #&gt; [1] "MIT + file LICENSE"
@@ -281,16 +281,18 @@
 #&gt;                        TRUE                        TRUE 
 #&gt; assessment_error_as_warning          assess_has_website 
 #&gt;                        TRUE                        TRUE 
-#&gt;            summarize_scores               as_pkg_metric 
+#&gt;            summarize_scores          assess_r_cmd_check 
 #&gt;                        TRUE                        TRUE 
-#&gt;        assess_remote_checks         score_error_default 
+#&gt;               as_pkg_metric        assess_remote_checks 
 #&gt;                        TRUE                        TRUE 
-#&gt;       assess_has_maintainer             assess_has_news 
+#&gt;         score_error_default       assess_has_maintainer 
 #&gt;                        TRUE                        TRUE 
-#&gt;                  pkg_metric   assess_has_source_control 
+#&gt;             assess_has_news                  pkg_metric 
 #&gt;                        TRUE                        TRUE 
-#&gt;                     pkg_ref        assess_covr_coverage 
+#&gt;   assess_has_source_control                     pkg_ref 
 #&gt;                        TRUE                        TRUE 
+#&gt;        assess_covr_coverage 
+#&gt;                        TRUE 
 #&gt; 
 #&gt; $downloads_1yr
 #&gt; [1] 0
@@ -298,6 +300,14 @@
 #&gt; $has_website
 #&gt; [1] "https://pharmar.github.io/riskmetric/"
 #&gt; [2] "https://github.com/pharmaR/riskmetric"
+#&gt; 
+#&gt; $r_cmd_check
+#&gt; [1] NA
+#&gt; attr(,"class")
+#&gt; [1] "pkg_metric_na"          "pkg_metric_condition"   "pkg_metric_r_cmd_check"
+#&gt; [4] "pkg_metric"             "logical"               
+#&gt; attr(,"label")
+#&gt; [1] "Package check results"
 #&gt; 
 #&gt; $remote_checks
 #&gt; [1] NA
@@ -332,16 +342,17 @@
 <p>Since that is a lot to take in, <code>pkg_assess</code> also operates on <code>tibble</code>s, returning a cleaner output that might be easier to sort through when assessing a package.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>#&gt; # A tibble: 1 x 16
-#&gt;   package version pkg_ref             news_current has_vignettes
-#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;     &lt;list&lt;pkg_m&gt; &lt;list&lt;pkg_me&gt;
-#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt; &lt;lgl [0]&gt;    0            
-#&gt; # … with 11 more variables: has_bug_reports_url &lt;list&lt;pkg_metric&gt;&gt;,
+<pre><code>#&gt; # A tibble: 1 x 17
+#&gt;   package    version    pkg_ref             news_current       has_vignettes    
+#&gt;   &lt;chr&gt;      &lt;chr&gt;      &lt;list&lt;pkg_ref&gt;&gt;     &lt;list&lt;pkg_metric&gt;&gt; &lt;list&lt;pkg_metric&gt;
+#&gt; 1 riskmetric 0.1.0.9001 riskmetric&lt;install&gt; &lt;lgl [0]&gt;          0                
+#&gt; # … with 12 more variables: has_bug_reports_url &lt;list&lt;pkg_metric&gt;&gt;,
 #&gt; #   bugs_status &lt;list&lt;pkg_metric&gt;&gt;, license &lt;list&lt;pkg_metric&gt;&gt;,
 #&gt; #   export_help &lt;list&lt;pkg_metric&gt;&gt;, downloads_1yr &lt;list&lt;pkg_metric&gt;&gt;,
-#&gt; #   has_website &lt;list&lt;pkg_metric&gt;&gt;, remote_checks &lt;list&lt;pkg_metric&gt;&gt;,
-#&gt; #   has_maintainer &lt;list&lt;pkg_metric&gt;&gt;, has_news &lt;list&lt;pkg_metric&gt;&gt;,
-#&gt; #   has_source_control &lt;list&lt;pkg_metric&gt;&gt;, covr_coverage &lt;list&lt;pkg_metric&gt;&gt;</code></pre>
+#&gt; #   has_website &lt;list&lt;pkg_metric&gt;&gt;, r_cmd_check &lt;list&lt;pkg_metric&gt;&gt;,
+#&gt; #   remote_checks &lt;list&lt;pkg_metric&gt;&gt;, has_maintainer &lt;list&lt;pkg_metric&gt;&gt;,
+#&gt; #   has_news &lt;list&lt;pkg_metric&gt;&gt;, has_source_control &lt;list&lt;pkg_metric&gt;&gt;,
+#&gt; #   covr_coverage &lt;list&lt;pkg_metric&gt;&gt;</code></pre>
 </div>
 <div id="scoring-package-metrics" class="section level2">
 <h2 class="hasAnchor">
@@ -354,14 +365,14 @@
 <p>For convenience, <code>pkg_score</code> is provided as a convenience to operate on <code>pkg_ref</code> objects directly. It can also operate on the <code>tibble</code> produced by <code>pkg_assess</code> applied to a <code>pkg_ref</code> <code>tibble</code>, providing a new <code>tibble</code> with scored metrics.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="st">"riskmetric"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 17</span>
-<span class="co">#&gt;   package version pkg_ref             pkg_score news_current has_vignettes</span>
-<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
-<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.585 0            0            </span>
-<span class="co">#&gt; # … with 11 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; # A tibble: 1 x 18</span>
+<span class="co">#&gt;   package    version    pkg_ref             pkg_score news_current has_vignettes</span>
+<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;      &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
+<span class="co">#&gt; 1 riskmetric 0.1.0.9001 riskmetric&lt;install&gt;     0.643 0            0            </span>
+<span class="co">#&gt; # … with 12 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   bugs_status &lt;pkg_scor&gt;, license &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;,</span>
-<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;, remote_checks &lt;pkg_scor&gt;,</span>
-<span class="co">#&gt; #   has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;, r_cmd_check &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   remote_checks &lt;pkg_scor&gt;, has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;</span></code></pre></div>
 <blockquote>
 <p>Note that <code>pkg_assess</code> and <code>pkg_score</code> accepts an <code>error_handler</code> argument which determines how errors are escalated for communication. We’ve chosen to default to being cautious, displaying warnings liberally to ensure thorough documentation of the risk assessment process. If these warnings are bothersome, there are alternative reporting schemes in the <code>assessment_error_*</code> and <code>score_error_*</code> families of functions.</p>
@@ -388,16 +399,16 @@
 <code class="sourceCode R"><span class="va">package_tbl</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 x 17</span>
-<span class="co">#&gt;   package version pkg_ref             pkg_score news_current has_vignettes</span>
-<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
-<span class="co">#&gt; 1 riskme… 0.1.0.… riskmetric&lt;install&gt;     0.585 0            0            </span>
-<span class="co">#&gt; 2 utils   4.0.4   utils&lt;install&gt;          0.770 0            1            </span>
-<span class="co">#&gt; 3 tools   4.0.4   tools&lt;install&gt;          0.846 0            0            </span>
-<span class="co">#&gt; # … with 11 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; # A tibble: 3 x 18</span>
+<span class="co">#&gt;   package    version    pkg_ref             pkg_score news_current has_vignettes</span>
+<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;      &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
+<span class="co">#&gt; 1 riskmetric 0.1.0.9001 riskmetric&lt;install&gt;     0.643 0            0            </span>
+<span class="co">#&gt; 2 utils      4.0.4      utils&lt;install&gt;          0.786 0            1            </span>
+<span class="co">#&gt; 3 tools      4.0.4      tools&lt;install&gt;          0.857 0            0            </span>
+<span class="co">#&gt; # … with 12 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   bugs_status &lt;pkg_scor&gt;, license &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;,</span>
-<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;, remote_checks &lt;pkg_scor&gt;,</span>
-<span class="co">#&gt; #   has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;, r_cmd_check &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   remote_checks &lt;pkg_scor&gt;, has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
 <span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;</span></code></pre></div>
 <p>Notice that a summary column, <code>pkg_score</code>, is included in addition to our metric scores. This value is a shorthand for aggregating a weighted average of risk scores across <code>tibble</code> columns using <code>summarize_scores</code>.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -405,7 +416,7 @@
   <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/summarize_scores.html">summarize_scores</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.5846154 0.7695820 0.8461538</span></code></pre></div>
+<span class="co">#&gt; [1] 0.6428571 0.7860404 0.8571429</span></code></pre></div>
 </div>
 </div>
 <div id="how-you-can-help" class="section level1">

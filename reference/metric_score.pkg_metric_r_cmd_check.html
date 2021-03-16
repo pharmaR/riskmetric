@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Score a package for inclusion of an associated website url — metric_score.pkg_metric_has_website • riskmetric</title>
+<title>Score a package based on R CMD check results run locally — metric_score.pkg_metric_r_cmd_check • riskmetric</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Score a package for inclusion of an associated website url — metric_score.pkg_metric_has_website" />
-<meta property="og:description" content="Coerce a list of website urls into a numeric value indicating whether the
-number of listed urls is greater than 0." />
+<meta property="og:title" content="Score a package based on R CMD check results run locally — metric_score.pkg_metric_r_cmd_check" />
+<meta property="og:description" content="The scoring function is" />
 
 
 
@@ -124,17 +123,16 @@ number of listed urls is greater than 0." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Score a package for inclusion of an associated website url</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/assess_has_website.R'><code>R/assess_has_website.R</code></a></small>
-    <div class="hidden name"><code>metric_score.pkg_metric_has_website.Rd</code></div>
+    <h1>Score a package based on R CMD check results run locally</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/assess_r_cmd_check.R'><code>R/assess_r_cmd_check.R</code></a></small>
+    <div class="hidden name"><code>metric_score.pkg_metric_r_cmd_check.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Coerce a list of website urls into a numeric value indicating whether the
-number of listed urls is greater than 0.</p>
+    <p>The scoring function is</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for pkg_metric_has_website</span>
+    <pre class="usage"><span class='co'># S3 method for pkg_metric_r_cmd_check</span>
 <span class='fu'><a href='metric_score.html'>metric_score</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -142,7 +140,7 @@ number of listed urls is greater than 0.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a <code>pkg_metric_has_website</code> packge metric object</p></td>
+      <td><p>a <code>pkg_metric_r_cmd_check</code> packge metric object</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -152,7 +150,7 @@ number of listed urls is greater than 0.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>1</code> if any website url is provided, otherwise <code>0</code></p>
+    <p>A weighted sum of errors and warnings of all tests preformed</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other <code>metric_score.*</code> functions: 
@@ -164,15 +162,16 @@ number of listed urls is greater than 0.</p>
 <code><a href='metric_score.pkg_metric_has_news.html'>metric_score.pkg_metric_has_news</a>()</code>,
 <code><a href='metric_score.pkg_metric_has_source_control.html'>metric_score.pkg_metric_has_source_control</a>()</code>,
 <code><a href='metric_score.pkg_metric_has_vignettes.html'>metric_score.pkg_metric_has_vignettes</a>()</code>,
+<code><a href='metric_score.pkg_metric_has_website.html'>metric_score.pkg_metric_has_website</a>()</code>,
 <code><a href='metric_score.pkg_metric_last_30_bugs_status.html'>metric_score.pkg_metric_last_30_bugs_status</a>()</code>,
 <code><a href='metric_score.pkg_metric_license.html'>metric_score.pkg_metric_license</a>()</code>,
 <code><a href='metric_score.pkg_metric_news_current.html'>metric_score.pkg_metric_news_current</a>()</code>,
-<code><a href='metric_score.pkg_metric_r_cmd_check.html'>metric_score.pkg_metric_r_cmd_check</a>()</code>,
 <code><a href='metric_score.pkg_metric_remote_checks.html'>metric_score.pkg_metric_remote_checks</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='metric_score.html'>metric_score</a></span><span class='op'>(</span><span class='fu'><a href='assess_has_website.html'>assess_has_website</a></span><span class='op'>(</span><span class='fu'><a href='pkg_ref.html'>pkg_ref</a></span><span class='op'>(</span><span class='st'>"riskmetric"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 1</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='fu'><a href='metric_score.html'>metric_score</a></span><span class='op'>(</span><span class='fu'><a href='assess_r_cmd_check.html'>assess_r_cmd_check</a></span><span class='op'>(</span><span class='fu'><a href='pkg_ref.html'>pkg_ref</a></span><span class='op'>(</span><span class='st'>"riskmetric"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
