@@ -66,6 +66,7 @@ assessment_error_as_warning <- function(e, name, assessment) {
 #' @return a character string of formatted text to communicate the error
 #'
 #' @importFrom utils capture.output
+#' @keywords internal
 format_assessment_message <- function(e, name, assessment) {
   out <- "In "
 

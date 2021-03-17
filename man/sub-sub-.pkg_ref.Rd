@@ -18,3 +18,4 @@ If errors are thrown upon instantiation, they are saved and rethrown any time
 the value is attempted to be accessed. These then propegate through
 assessment and scoring functions to affect any downstream metrics.
 }
+\keyword{internal}

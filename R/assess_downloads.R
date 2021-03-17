@@ -27,8 +27,8 @@ assess_downloads_1yr.pkg_ref <- function(x, ...) {
 
 
 #' Defining an Assessment Scoring Function
-#' Score a package for the number of downloads in the past year
-#'regularized
+#'
+#' Score a package for the number of downloads in the past year regularized
 #' Convert the number of downloads \code{x} in the past year into a validation
 #' score [0,1] \deqn{ 1 - 150,000 / (x + 150,000) }
 #'

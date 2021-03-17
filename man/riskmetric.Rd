@@ -8,3 +8,4 @@
 Facilities for assessing R packages against a number of metrics to help
 quantify their robustness.
 }
+\keyword{internal}

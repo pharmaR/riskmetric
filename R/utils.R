@@ -15,6 +15,7 @@
 #'
 #' used internally for
 #'   - tools:::.news_reader_default
+#' @keywords internal
 .tools <- memoise::memoise(function() {
   getNamespace("tools")
 })
@@ -340,6 +341,7 @@ suppressMatchingConditions <- function(expr, ..., .opts = list(),
 #' @inheritParams base::with
 #'
 #' @export
+#' @keywords internal
 with.pkg_ref <- function(data, expr, ...) {
   expr <- substitute(expr)
   for (n in intersect(names(data), all.names(expr))) data[[n]]

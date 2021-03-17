@@ -53,7 +53,7 @@ as_pkg_metric.expr_output <- function(x, class = c()) {
 #' @inheritParams pkg_metric
 #'
 #' @return a \code{pkg_metric} object containing the result of \code{expr}
-#' @noRd
+#' @keywords internal
 pkg_metric_eval <- function(expr, ..., class = c(), env = parent.frame()) {
   out <- capture_expr_output(substitute(expr), env = env, quoted = TRUE)
   out_metric <- as_pkg_metric(out, class = class)

@@ -23,6 +23,7 @@
 #' @param ... additional arguments used to extract from internal environment
 #'
 #' @export
+#' @keywords internal
 `[[.pkg_ref` <- function(x, name, ...) {
   if (!name %in% bare_env(x, names(x))) {
     allow_mutation(x, {

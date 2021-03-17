@@ -9,3 +9,4 @@ memoise_bioc_mirrors()
 \description{
 taken from utils::chooseBioCmirror
 }
+\keyword{internal}

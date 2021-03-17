@@ -1,6 +1,4 @@
 destination: docs
-template:
-  package: riskmetric
 reference:
   - title: "Package Reference"
     desc: "Create Package Reference for Each Package Risk Metric and Cache Metadata"
@@ -22,38 +20,13 @@ reference:
     desc: "Summarizing across metric scores"
     contents:
       - summarize_scores
-  - title: "Roxygen Helper Function"
-    contents:
-      - starts_with("roxygen_")
   - title: "Metric Error Handler"
+    desc: "Error handler functions"
     contents:
       - starts_with("assessment_error")
       - starts_with("score_error")
   - title: "Utilities"
     desc: "Utility functions"
     contents:
-      - allow_mutation
-      - starts_with("as_pkg")
-      - available_pkg_ref_fields
-      - bare_env
-      - bug_report_metadata
-      - cache_behaviors
-      - capture_expr_output
-      - dec_mutations_counts
-      - .tools
-      - firstS3method
-      - format_assessment_message
-      - get_assessment_columns
-      - starts_with("%||%")
-      - inc_mutations_count
-      - is_url_subpath_of
-      - starts_with("memoise")
-      - news_from_dir
-      - print
-      - require_cache_behaviors
-      - supressMatchingConditions
-      - use_assessments_column_names
-      - vignettes_from_dir
-      - vignettes_from_html
-      - with
-      - with_unclassed_to
+      - as_pkg_metric
+      - as_pkg_ref

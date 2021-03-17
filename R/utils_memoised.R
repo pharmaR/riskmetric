@@ -49,7 +49,7 @@ memoise_bioc_available <- memoise::memoise({
 #'
 #' @importFrom curl nslookup
 #' @importFrom memoise memoise
-#'
+#' @keywords internal
 memoise_bioc_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
   # NOTE: might need to implement actual caching to avoid inconsistent behavior

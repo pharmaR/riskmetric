@@ -4,7 +4,7 @@
 #' @param ... additional arguments added as attributes to object \code{x}
 #' @param subclass an optional subclass of \code{pkg_metric_condition} to
 #'   include
-#' @noRd
+#' @keywords internal
 as_pkg_metric_condition <- function(x, ..., subclass = c()) {
   dots <- list(...)
   if (length(names(dots)) != length(dots))
