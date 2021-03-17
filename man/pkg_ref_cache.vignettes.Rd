@@ -10,3 +10,4 @@ pkg_ref_cache.vignettes(x, name, ...)
 Cache a List of Vignettes Files from a Package Reference
 }
 \concept{package reference cache}
+\keyword{internal}
