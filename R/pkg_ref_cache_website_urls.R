@@ -2,7 +2,7 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#' @noRd
+#' @keywords internal
 pkg_ref_cache.website_urls <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.website_urls")
 }

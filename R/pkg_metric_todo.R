@@ -4,7 +4,7 @@
 #'   subclass
 #' @param message an optional message directing users and potential contributors
 #'   toward any ongoing work or first steps toward development.
-#' @noRd
+#' @keywords internal
 as_pkg_metric_todo <- function(x, message = NULL) {
   as_pkg_metric_condition(x, message = message, subclass = "pkg_metric_todo")
 }

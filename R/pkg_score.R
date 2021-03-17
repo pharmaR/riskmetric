@@ -94,7 +94,7 @@ pkg_score.list_of_pkg_metric <- function(x, ...,
 #' \dontrun{
 #' #' @eval roxygen_score_family("has_news")
 #' }
-#' @noRd
+#' @keywords internal
 roxygen_score_family <- function(name, dontrun = FALSE) {
 
   assess_func <- sprintf("assess_%s", name)

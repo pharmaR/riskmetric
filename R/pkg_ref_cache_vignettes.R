@@ -31,7 +31,7 @@ pkg_ref_cache.vignettes.pkg_source <- function(x, name, ...) {
 #' @param path a package directory path expected to contain Vignettes files
 #'
 #' @return a vector of parsed Vignettes files
-#' @noRd
+#' @keywords internal
 vignettes_from_dir <- function(path) {
   folder <- c(source = "/vignettes", bundle = "/inst/doc", binary = "/doc")
   files <- unlist(lapply(paste0(path, folder), list.files, full.names = TRUE))
@@ -55,7 +55,7 @@ vignettes_from_dir <- function(path) {
 #'
 #' @importFrom xml2 xml_attrs
 #' @importFrom tools file_path_sans_ext
-#' @noRd
+#' @keywords internal
 vignettes_from_html <- function(x) {
   nodes <- xml2::xml_find_all(x$web_html, xpath = '//a[contains(@href,"vignettes")]')
 

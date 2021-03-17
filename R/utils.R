@@ -6,7 +6,7 @@
 #' A shorthand for a common comparison
 #'
 #' @name if_not_null_else
-#' @noRd
+#' @keywords internal
 `%||%` <- function(lhs, rhs) if (!length(lhs) || is.null(lhs)) rhs else lhs
 
 
@@ -29,7 +29,7 @@
 #'
 #' @return logical vector indicating which base urls have a sub url of
 #'   \code{url}
-#' @noRd
+#' @keywords internal
 is_url_subpath_of <- function(url, urls) {
   grepl(paste0("(", paste0(gsub("/$", "", urls), collapse = "|"), ")"), url)
 }
@@ -44,7 +44,7 @@ is_url_subpath_of <- function(url, urls) {
 #' @param envir an environment in which the expression is to be evaluated
 #'
 #' @return the result of \code{expr}
-#' @noRd
+#' @keywords internal
 with_unclassed_to <- function(x, .class = 1:length(class(x)), expr,
     envir = parent.frame()) {
 
@@ -68,7 +68,7 @@ with_unclassed_to <- function(x, .class = 1:length(class(x)), expr,
 #' appropriate S3 method
 #'
 #' @importFrom utils getS3method
-#' @noRd
+#' @keywords internal
 firstS3method <- function(f, classes, envir = parent.frame()) {
   s3methods <- lapply(
     classes,
@@ -119,7 +119,7 @@ firstS3method <- function(f, classes, envir = parent.frame()) {
 #' # [1] 3
 #'
 #' @importFrom utils head tail
-#' @noRd
+#' @keywords internal
 capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
     quoted = FALSE) {
 
@@ -229,7 +229,7 @@ is_error <- function(expr_output) {
 #'
 #' @export
 #'
-#' @noRd
+#' @keywords internal
 print.with_eval_recording <- function(x, playback = FALSE, cr = TRUE, ...,
     sleep = 0) {
 
@@ -311,7 +311,7 @@ print.with_eval_recording <- function(x, playback = FALSE, cr = TRUE, ...,
 #'   message = "\\d",
 #'   custom_warning = "as$",
 #'   warning = "\\w{2}\\s")
-#' @noRd
+#' @keywords internal
 suppressMatchingConditions <- function(expr, ..., .opts = list(),
     .envir = parent.frame()) {
 

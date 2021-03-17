@@ -4,7 +4,7 @@
 #' @family package reference cache
 #'
 #' @importFrom cranlogs cran_downloads
-#' @noRd
+#' @keywords internal
 pkg_ref_cache.downloads <- function(x, ...) {
   cran_downloads(x$name, from=Sys.Date()-365, to=Sys.Date())
 }

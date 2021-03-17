@@ -85,7 +85,7 @@ NULL
 #' @return a list of available fields implemented with a pkg_ref_cache method
 #'
 #' @importFrom utils .S3methods
-#' @noRd
+#' @keywords internal
 available_pkg_ref_fields <- function(x) {
   fs <- c(names(getNamespace(packageName())), utils::.S3methods("pkg_ref_cache"))
 
@@ -119,7 +119,7 @@ available_pkg_ref_fields <- function(x) {
 #' @family package reference cache
 #'
 #' @rdname riskmetric_metadata_caching
-#' @noRd
+#' @keywords internal
 pkg_ref_cache <- function(x, name, ..., .class = as.character(name)) {
   UseMethod("pkg_ref_cache", structure(list(), class = .class))
 }

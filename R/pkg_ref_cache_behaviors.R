@@ -1,6 +1,6 @@
 #' List of available caching behaviors with metadata, including default and
 #' annotations for building documentation
-#' @noRd
+#' @keywords internal
 cache_behaviors <- list(
   "per_package_request" = list(
     default = function() interactive(),
@@ -22,7 +22,7 @@ cache_behaviors <- list(
 #' @param annotation_fmt special formating for annotation (second) component
 #' @param wrap_fmt a wrapper for the entirety of the roxygen entries
 #' @param collapse passed to paste
-#' @noRd
+#' @keywords internal
 roxygen_cache_behaviors <- function(fmt = "%s: %s", name_fmt = "%s",
     annotation_fmt = "%s", wrap_fmt = "%s", collapse = "\n") {
 
@@ -42,7 +42,7 @@ roxygen_cache_behaviors <- function(fmt = "%s: %s", name_fmt = "%s",
 #' @param behaviors a character vector of behavior flags to assert as
 #'   requirements for metadata caching. values must have an entry found in
 #'   riskmetric:::cache_behaviors list
-#' @noRd
+#' @keywords internal
 require_cache_behaviors <- function(behaviors) {
   stopifnot(all(behaviors %in% names(cache_behaviors)))
 
