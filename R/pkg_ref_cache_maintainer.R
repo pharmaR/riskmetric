@@ -2,7 +2,7 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#'
+#' @keywords internal
 pkg_ref_cache.maintainer <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.maintainer")
 }

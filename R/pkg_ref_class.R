@@ -72,6 +72,7 @@ pkg_ref <- function(x, ...) {
 
 
 #' @importFrom vctrs new_vctr
+#' @keywords internal
 new_pkg_ref <- function(name, version = NA_character_, source, ...) {
   dots <- list(...)
   if (length(dots) && is.null(names(dots)) || any(names(dots) == ""))
@@ -216,7 +217,7 @@ as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rst
 #' @param source type of source passed in `pkg_ref`
 #' @return one of c('pkg_install', 'pkg_install', 'pkg_cran_remote',
 #'   'pkg_bioc_remote', 'pkg_missing')
-#' @noRd
+#' @keywords internal
 determine_pkg_source <- function(x, source, repos) {
 
   if (dir.exists(x) && file.exists(file.path(x, "DESCRIPTION"))) {
@@ -259,7 +260,7 @@ determine_pkg_source <- function(x, source, repos) {
 }
 
 #' Verify a pkg_source when one is manually specified by the user
-#' @noRd
+#' @keywords internal
 verify_pkg_source <- function(x, source, repos) {
 
   switch(source,

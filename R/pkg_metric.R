@@ -35,7 +35,7 @@ as_pkg_metric.default <- function(x, class = c()) {
 #' @export
 as_pkg_metric.expr_output <- function(x, class = c()) {
   x_metric <- pkg_metric(x, class = class)
-  if (is_error(x)) 
+  if (is_error(x))
     x_metric <- as_pkg_metric_error(x_metric)
   x_metric
 }
@@ -43,17 +43,17 @@ as_pkg_metric.expr_output <- function(x, class = c()) {
 
 
 #' Evaluate a metric
-#' 
-#' Evalute code relevant to a metric, capturing the evaluated code as well as 
+#'
+#' Evalute code relevant to a metric, capturing the evaluated code as well as
 #' any messages, warnings or errors that are thrown in the process.
-#' 
+#'
 #' @param expr An expression to evaluate in order to calculate a
 #'   \code{pkg_metric}
 #' @param env An environment in which \code{expr} is to be evaluated
 #' @inheritParams pkg_metric
-#' 
-#' @return a \code{pkg_metric} object containing the result of \code{expr} 
 #'
+#' @return a \code{pkg_metric} object containing the result of \code{expr}
+#' @keywords internal
 pkg_metric_eval <- function(expr, ..., class = c(), env = parent.frame()) {
   out <- capture_expr_output(substitute(expr), env = env, quoted = TRUE)
   out_metric <- as_pkg_metric(out, class = class)

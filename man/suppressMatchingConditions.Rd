@@ -34,5 +34,5 @@ riskmetric:::suppressMatchingConditions({
   message = "\\\\d",
   custom_warning = "as$",
   warning = "\\\\w{2}\\\\s")
-
 }
+\keyword{internal}

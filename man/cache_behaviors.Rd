@@ -5,7 +5,9 @@
 \alias{cache_behaviors}
 \title{List of available caching behaviors with metadata, including default and
 annotations for building documentation}
-\format{An object of class \code{list} of length 1.}
+\format{
+An object of class \code{list} of length 1.
+}
 \usage{
 cache_behaviors
 }
@@ -13,4 +15,4 @@ cache_behaviors
 List of available caching behaviors with metadata, including default and
 annotations for building documentation
 }
-\keyword{datasets}
+\keyword{internal}

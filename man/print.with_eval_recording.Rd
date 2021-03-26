@@ -26,3 +26,4 @@ would like to watch it play out as it was formatted.}
 \description{
 Handle pretty printing of expression output
 }
+\keyword{internal}

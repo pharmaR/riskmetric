@@ -2,7 +2,7 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#'
+#' @keywords internal
 pkg_ref_cache.remote_checks <- function (x, ...)
 {
    UseMethod("pkg_ref_cache.remote_checks")

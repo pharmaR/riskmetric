@@ -15,3 +15,4 @@ a list of parsed NEWS files
 \description{
 Build a list of NEWS files discovered within a given directory
 }
+\keyword{internal}

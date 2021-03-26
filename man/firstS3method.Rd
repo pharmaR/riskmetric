@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{firstS3method}
 \alias{firstS3method}
-\title{Find the S3 method that will be evaluated when an S3 generic is called by 
+\title{Find the S3 method that will be evaluated when an S3 generic is called by
 an object of class \code{classes}}
 \usage{
 firstS3method(f, classes, envir = parent.frame())
@@ -17,6 +17,7 @@ appropriate S3 method}
     generic are searched first.}
 }
 \description{
-Find the S3 method that will be evaluated when an S3 generic is called by 
+Find the S3 method that will be evaluated when an S3 generic is called by
 an object of class \code{classes}
 }
+\keyword{internal}

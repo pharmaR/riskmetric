@@ -29,3 +29,4 @@ in much the same way. This specialized function makes sure that any fields
 within the \code{pkg_ref} have been appropriately evaluated before trying
 to execute the expression.
 }
+\keyword{internal}

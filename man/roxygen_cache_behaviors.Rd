@@ -26,3 +26,4 @@ roxygen_cache_behaviors(
 \description{
 Document both declare_cache_behavior parameters and options list
 }
+\keyword{internal}

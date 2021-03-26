@@ -14,3 +14,4 @@ riskmetric:::cache_behaviors list}
 \description{
 Stop if a function requires disabled behaviors
 }
+\keyword{internal}

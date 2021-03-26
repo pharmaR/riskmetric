@@ -15,3 +15,4 @@ a vector of Vignettes files
 \description{
 Build a List of Vignettes Files Discovered Within a Package Website
 }
+\keyword{internal}

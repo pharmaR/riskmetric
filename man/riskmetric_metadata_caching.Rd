@@ -124,3 +124,4 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.website_urls}()}
 }
 \concept{package reference cache}
+\keyword{internal}

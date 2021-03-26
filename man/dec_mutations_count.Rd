@@ -12,3 +12,4 @@ dec_mutations_count(x)
 \description{
 decrement the number of allowed mutations
 }
+\keyword{internal}

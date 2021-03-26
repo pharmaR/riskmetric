@@ -18,3 +18,4 @@ for isolating repository requests during testing.}
 \description{
 Fetch CRAN Mirrors Info
 }
+\keyword{internal}

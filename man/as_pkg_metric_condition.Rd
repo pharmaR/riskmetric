@@ -17,3 +17,4 @@ include}
 \description{
 A pkg_metric subclass for general metric evaluation conditions
 }
+\keyword{internal}

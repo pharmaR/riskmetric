@@ -10,3 +10,4 @@
 used internally for
   - tools:::.news_reader_default
 }
+\keyword{internal}

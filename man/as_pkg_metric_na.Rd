@@ -15,3 +15,4 @@ subclass}
 \description{
 A pkg_metric subclass for when metrics are explicitly not applicable
 }
+\keyword{internal}

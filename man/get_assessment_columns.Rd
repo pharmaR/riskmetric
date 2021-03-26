@@ -15,3 +15,4 @@ a logical vector of \code{pkg_metric} column indices
 \description{
 Helper for retrieving a list of columns which contain pkg_metric objects
 }
+\keyword{internal}

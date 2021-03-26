@@ -16,5 +16,5 @@ Helper for creating a roxygen itemized list for assess_* functions
 \dontrun{
   #' @eval assess_family_catalog_roxygen()
 }
-
 }
+\keyword{internal}

@@ -23,6 +23,7 @@
 #' @param ... additional arguments used to extract from internal environment
 #'
 #' @export
+#' @keywords internal
 `[[.pkg_ref` <- function(x, name, ...) {
   if (!name %in% bare_env(x, names(x))) {
     allow_mutation(x, {
@@ -77,7 +78,7 @@
 #' @param envir an environment in which the expression is to be evaluated
 #'
 #' @return the result of \code{expr}
-#'
+#' @keywords internal
 bare_env <- function(x, expr, envir = parent.frame()) {
   old_class <- class(x)
   class(x) <- "environment"
@@ -93,7 +94,7 @@ bare_env <- function(x, expr, envir = parent.frame()) {
 #' @param name name of field for which mutation was attempted
 #' @return a \code{simplError} with subclasses \code{pkg_ref_mutability_error},
 #'   \code{pkg_ref_error}
-#'
+#' @keywords internal
 pkg_ref_mutability_error <- function(name) {
   message <- list(paste0(
     "Assignment to a pkg_ref environment can only be done in a ",
@@ -118,7 +119,7 @@ pkg_ref_mutability_error <- function(name) {
 #' @param envir an environment in which the expression is to be evaluated
 #'
 #' @return the result of \code{expr}
-#'
+#' @keywords internal
 allow_mutation <- function(x, expr, envir = parent.frame()) {
   inc_mutations_count(x)
   on.exit(dec_mutations_count(x))
@@ -131,7 +132,7 @@ allow_mutation <- function(x, expr, envir = parent.frame()) {
 #' increment the number of allowed mutations
 #'
 #' @param x pkg_ref object to increment mutation counter for
-#'
+#' @keywords internal
 inc_mutations_count <- function(x) {
   if (is.null(attr(x, "allowed_mutations"))) attr(x, "allowed_mutations") <- 0
   attr(x, "allowed_mutations") <- attr(x, "allowed_mutations") + 1
@@ -142,7 +143,7 @@ inc_mutations_count <- function(x) {
 #' decrement the number of allowed mutations
 #'
 #' @param x pkg_ref object to decrement mutation counter for
-#'
+#' @keywords internal
 dec_mutations_count <- function(x) {
   attr(x, "allowed_mutations") <- attr(x, "allowed_mutations") - 1
   if (attr(x, "allowed_mutations") <= 0) attr(x, "allowed_mutations") <- NULL

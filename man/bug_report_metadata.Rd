@@ -16,3 +16,4 @@ found}
 \description{
 Helper for structuring bug reports
 }
+\keyword{internal}

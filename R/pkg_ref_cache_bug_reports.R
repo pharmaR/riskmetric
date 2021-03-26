@@ -2,7 +2,7 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#'
+#' @keywords internal
 pkg_ref_cache.bug_reports <- function(x, ...) {
   UseMethod("pkg_ref_cache.bug_reports")
 }
@@ -21,7 +21,7 @@ pkg_ref_cache.bug_reports.default <- function(x, ...) {
 #'   return object from making a request to a repository's issues API
 #' @param x a \code{pkg_ref} object where a \code{bug_reports_host} field can be
 #'   found
-#'
+#' @keywords internal
 bug_report_metadata <- function(bug_reports_data, x) {
   structure(bug_reports_data,
     class = c(
@@ -52,6 +52,7 @@ scrape_bug_reports.default <- function(x, ...) {
 
 
 #' @importFrom httr GET content
+#' @keywords internal
 scrape_bug_reports.github <- function(x, ...) {
   owner_repo_issues <- gsub(
     ".*github[^/]*/([^/]+/[^/]+).*",
@@ -70,6 +71,7 @@ scrape_bug_reports.github <- function(x, ...) {
 
 #' @importFrom httr GET content
 #' @importFrom urltools url_encode
+#' @keywords internal
 scrape_bug_reports.gitlab <- function(x, ...) {
   owner_repo_issues <- gsub(".*gitlab[^/]*/(.*)", "\\1", x$bug_reports_url)
   owner_repo <- gsub("(.*)/issues", "\\1", owner_repo_issues)

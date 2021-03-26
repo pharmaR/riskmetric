@@ -17,3 +17,4 @@ A shorthand for a common comparison}
 \description{
 If not NULL else
 }
+\keyword{internal}

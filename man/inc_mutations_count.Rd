@@ -12,3 +12,4 @@ inc_mutations_count(x)
 \description{
 increment the number of allowed mutations
 }
+\keyword{internal}

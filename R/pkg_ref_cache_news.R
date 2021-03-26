@@ -2,7 +2,7 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#'
+#' @keywords internal
 pkg_ref_cache.news <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.news")
 }
@@ -10,6 +10,7 @@ pkg_ref_cache.news <- function(x, name, ...) {
 
 
 #' @importFrom httr content GET
+#' @keywords internal
 pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
   # default encoding messages suppressed
   suppressMatchingConditions(
@@ -41,7 +42,7 @@ pkg_ref_cache.news.pkg_source <- function(x, name, ...) {
 #' @param path a package directory path expected to contain NEWS files
 #'
 #' @return a list of parsed NEWS files
-#'
+#' @keywords internal
 news_from_dir <- function(path) {
   # accommodate news.Rd, news.md, etc
   files <- list.files(path, pattern = "^NEWS\\.", full.names = TRUE)

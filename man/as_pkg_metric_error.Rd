@@ -12,3 +12,4 @@ as_pkg_metric_error(error)
 \description{
 A subclass wrapping an error with an additional parent class
 }
+\keyword{internal}
