@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">riskmetric</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -100,6 +100,9 @@
       <a href="../articles/extending-riskmetric.html">Extending riskmetric</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -136,8 +139,8 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-package-reference" class="hasAnchor"><a href="#section-package-reference" class="anchor"></a>Package Reference</h2>
+          <p class="section-desc"><p>Create Package Reference for Each Package Risk Metric and Cache Metadata</p></p>
         </th>
       </tr>
       
@@ -148,52 +151,34 @@
       <tr>
         
         <td>
+          <p><code><a href="pkg_ref.html">pkg_ref()</a></code> </p>
+        </td>
+        <td><p>Create a package reference</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-package-assessment" class="hasAnchor"><a href="#section-package-assessment" class="anchor"></a>Package Assessment</h2>
+          <p class="section-desc"><p>Assess Package Metadata against a risk criterion</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="pkg_assess.html">pkg_assess()</a></code> </p>
+        </td>
+        <td><p>Apply assess_* family of functions to a package reference</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="all_assessments.html">all_assessments()</a></code> </p>
         </td>
         <td><p>A default list of assessments to perform for each package</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="allow_mutation.html">allow_mutation()</a></code> </p>
-        </td>
-        <td><p>a wrapper to assert that a pkg_ref has been permitted to do an additional
-mutation, used to handle recursive initialization of cached fields</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_pkg_metric.html">as_pkg_metric()</a></code> </p>
-        </td>
-        <td><p>Convert an object to a <code>pkg_metric</code></p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_pkg_metric_condition.html">as_pkg_metric_condition()</a></code> </p>
-        </td>
-        <td><p>A pkg_metric subclass for general metric evaluation conditions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_pkg_metric_error.html">as_pkg_metric_error()</a></code> </p>
-        </td>
-        <td><p>A subclass wrapping an error with an additional parent class</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_pkg_metric_na.html">as_pkg_metric_na()</a></code> </p>
-        </td>
-        <td><p>A pkg_metric subclass for when metrics are explicitly not applicable</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_pkg_metric_todo.html">as_pkg_metric_todo()</a></code> </p>
-        </td>
-        <td><p>A pkg_metric subclass for when pkg_metrics have not yet been implemented</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_pkg_ref.html">as_pkg_ref()</a></code> </p>
-        </td>
-        <td><p>Convert into a package object</p></td>
       </tr><tr>
         
         <td>
@@ -296,100 +281,32 @@ mutation, used to handle recursive initialization of cached fields</p></td>
           <p><code><a href="assessment_error_throw.html">assessment_error_throw()</a></code> </p>
         </td>
         <td><p>Error handler for assessments to throw error immediately</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-package-risk-score" class="hasAnchor"><a href="#section-package-risk-score" class="anchor"></a>Package Risk Score</h2>
+          <p class="section-desc"><p>Provide Risk Score based on Risk Metrics</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="pkg_score.html">pkg_score()</a></code> </p>
+        </td>
+        <td><p>Score a package assessment, collapsing results into a single numeric</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="available_pkg_ref_fields.html">available_pkg_ref_fields()</a></code> </p>
+          <p><code><a href="pkg_metric.html">pkg_metric()</a></code> </p>
         </td>
-        <td><p>A helper function for retrieving a list of available fields, identified based
-on implementation of a pkg_ref_cache method for a given class.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="bare_env.html">bare_env()</a></code> </p>
-        </td>
-        <td><p>evaluate an expression with a  pkg_ref object reclassed as a bare environment
-object, used to sidestep pkg_ref assignment guardrails</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="bug_report_metadata.html">bug_report_metadata()</a></code> </p>
-        </td>
-        <td><p>Helper for structuring bug reports</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cache_behaviors.html">cache_behaviors</a></code> </p>
-        </td>
-        <td><p>List of available caching behaviors with metadata, including default and
-annotations for building documentation</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="capture_expr_output.html">capture_expr_output()</a></code> </p>
-        </td>
-        <td><p>Capture side effects issued by an evaluated expression</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dec_mutations_count.html">dec_mutations_count()</a></code> </p>
-        </td>
-        <td><p>decrement the number of allowed mutations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dot-tools.html">.tools()</a></code> </p>
-        </td>
-        <td><p>Accessor for tools namespace</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="firstS3method.html">firstS3method()</a></code> </p>
-        </td>
-        <td><p>Find the S3 method that will be evaluated when an S3 generic is called by 
-an object of class <code>classes</code></p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="format_assessment_message.html">format_assessment_message()</a></code> </p>
-        </td>
-        <td><p>Assessment console printing formatter</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_assessment_columns.html">get_assessment_columns()</a></code> </p>
-        </td>
-        <td><p>Helper for retrieving a list of columns which contain pkg_metric objects</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="if_not_null_else.html">`%||%`</a></code> </p>
-        </td>
-        <td><p>If not NULL else</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="inc_mutations_count.html">inc_mutations_count()</a></code> </p>
-        </td>
-        <td><p>increment the number of allowed mutations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="is_url_subpath_of.html">is_url_subpath_of()</a></code> </p>
-        </td>
-        <td><p>check if a url originates from a list of repo urls</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="memoise_bioc_mirrors.html">memoise_bioc_mirrors()</a></code> </p>
-        </td>
-        <td><p>Fetch BioC Mirrors Info</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="memoise_cran_mirrors.html">memoise_cran_mirrors()</a></code> </p>
-        </td>
-        <td><p>Fetch CRAN Mirrors Info</p></td>
+        <td><p>A helper for structuring assessment return objects for dispatch with the
+score function</p></td>
       </tr><tr>
         
         <td>
@@ -407,11 +324,7 @@ an object of class <code>classes</code></p></td>
         <td>
           <p><code><a href="metric_score.pkg_metric_downloads_1yr.html">metric_score(<i>&lt;pkg_metric_downloads_1yr&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Defining an Assessment Scoring Function
-Score a package for the number of downloads in the past year
-regularized
-Convert the number of downloads <code>x</code> in the past year into a validation
-score [0,1] $$ 1 - 150,000 / (x + 150,000) $$</p></td>
+        <td><p>Defining an Assessment Scoring Function</p></td>
       </tr><tr>
         
         <td>
@@ -484,242 +397,56 @@ score [0,1] $$ 1 - 150,000 / (x + 150,000) $$</p></td>
           <p><code><a href="metric_score.pkg_metric_remote_checks.html">metric_score(<i>&lt;pkg_metric_remote_checks&gt;</i>)</a></code> </p>
         </td>
         <td><p>Score a package based on R CMD check results run by BioC or CRAN</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-package-risk-summary" class="hasAnchor"><a href="#section-package-risk-summary" class="anchor"></a>Package Risk Summary</h2>
+          <p class="section-desc"><p>Summarizing across metric scores</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="summarize_scores.html">summarize_scores()</a></code> </p>
+        </td>
+        <td><p>Summarize a default set of assessments into a single risk score</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-metric-error-handler" class="hasAnchor"><a href="#section-metric-error-handler" class="anchor"></a>Metric Error Handler</h2>
+          <p class="section-desc"><p>Error handler functions</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="assessment_error_as_warning.html">assessment_error_as_warning()</a></code> </p>
+        </td>
+        <td><p>Error handler for assessments to deescalate errors to warnings</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="news_from_dir.html">news_from_dir()</a></code> </p>
+          <p><code><a href="assessment_error_empty.html">assessment_error_empty()</a></code> </p>
         </td>
-        <td><p>Build a list of NEWS files discovered within a given directory</p></td>
+        <td><p>Error handler for assessments with safe fallback</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="pkg_assess.html">pkg_assess()</a></code> </p>
+          <p><code><a href="assessment_error_throw.html">assessment_error_throw()</a></code> </p>
         </td>
-        <td><p>Apply assess_* family of functions to a package reference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_metric.html">pkg_metric()</a></code> </p>
-        </td>
-        <td><p>A helper for structuring assessment return objects for dispatch with the
-score function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_metric_eval.html">pkg_metric_eval()</a></code> </p>
-        </td>
-        <td><p>Evaluate a metric</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref.html">pkg_ref()</a></code> </p>
-        </td>
-        <td><p>Create a package reference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.archive_release_dates.html">pkg_ref_cache.archive_release_dates()</a></code> </p>
-        </td>
-        <td><p>Cache a List of Archived Package Release Date from a Package Reference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.bug_reports.html">pkg_ref_cache.bug_reports()</a></code> </p>
-        </td>
-        <td><p>Retrieve a list of BugReports metadata</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.bug_reports_host.html">pkg_ref_cache.bug_reports_host()</a></code> </p>
-        </td>
-        <td><p>Get the host name of a BugReports url</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.bug_reports_url.html">pkg_ref_cache.bug_reports_url()</a></code> </p>
-        </td>
-        <td><p>Get the BugReports url</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.covr_coverage.html">pkg_ref_cache.covr_coverage()</a></code> </p>
-        </td>
-        <td><p>Retrieve output of covr::package_coverage</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.description.html">pkg_ref_cache.description()</a></code> </p>
-        </td>
-        <td><p>Cache the DESCRIPTION file contents for a package reference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.downloads.html">pkg_ref_cache(<i>&lt;downloads&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Cache a list of available help files as LaTeX objects</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.expression_coverage.html">pkg_ref_cache.expression_coverage()</a></code> </p>
-        </td>
-        <td><p>Retrieve output of covr::package_coverage, tallied by expression</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.help.html">pkg_ref_cache.help()</a></code> </p>
-        </td>
-        <td><p>Cache a list of available help files as LaTeX objects</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.help_aliases.html">pkg_ref_cache.help_aliases()</a></code> </p>
-        </td>
-        <td><p>Cache a character vector mapping exported values to documentation filenames</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.license.html">pkg_ref_cache.license()</a></code> </p>
-        </td>
-        <td><p>Get the package license</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.maintainer.html">pkg_ref_cache.maintainer()</a></code> </p>
-        </td>
-        <td><p>Cache package's Maintainer</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.news.html">pkg_ref_cache.news()</a></code> </p>
-        </td>
-        <td><p>Cache a list of NEWS files from a package reference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.news_urls.html">pkg_ref_cache.news_urls()</a></code> </p>
-        </td>
-        <td><p>Cache appropriate urls for NEWS files</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.r_cmd_check.html">pkg_ref_cache.r_cmd_check()</a></code> </p>
-        </td>
-        <td><p>Run R CMD check and capture the results</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.release_date.html">pkg_ref_cache.release_date()</a></code> </p>
-        </td>
-        <td><p>Cache a List of Package Release Date from a Package Reference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.remote_checks.html">pkg_ref_cache.remote_checks()</a></code> </p>
-        </td>
-        <td><p>Retrieve a CRAN or Bioc checks or run R CMD check</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.repo_base_url.html">pkg_ref_cache.repo_base_url()</a></code> </p>
-        </td>
-        <td><p>Cache value of a package's source repo's URL</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.source_control_url.html">pkg_ref_cache(<i>&lt;source_control_url&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Cache package's Source Control URL</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.tarball_url.html">pkg_ref_cache.tarball_url()</a></code> </p>
-        </td>
-        <td><p>Cache value of a package's source tarball URL</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.vignettes.html">pkg_ref_cache.vignettes()</a></code> </p>
-        </td>
-        <td><p>Cache a List of Vignettes Files from a Package Reference</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.web_html.html">pkg_ref_cache.web_html()</a></code> </p>
-        </td>
-        <td><p>Cache package's remote display page HTML</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.web_url.html">pkg_ref_cache.web_url()</a></code> </p>
-        </td>
-        <td><p>Cache package's remote web URL</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_cache.website_urls.html">pkg_ref_cache.website_urls()</a></code> </p>
-        </td>
-        <td><p>Cache package's Website URL</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_ref_mutability_error.html">pkg_ref_mutability_error()</a></code> </p>
-        </td>
-        <td><p>pretty printing for a pkg_ref mutability error caused by trying to do
-assignment within the pkg_ref without permission</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pkg_score.html">pkg_score()</a></code> </p>
-        </td>
-        <td><p>Score a package assessment, collapsing results into a single numeric</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.with_eval_recording.html">print(<i>&lt;with_eval_recording&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Handle pretty printing of expression output</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="require_cache_behaviors.html">require_cache_behaviors()</a></code> </p>
-        </td>
-        <td><p>Stop if a function requires disabled behaviors</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="riskmetric.html">riskmetric</a></code> </p>
-        </td>
-        <td><p>riskmetric</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="riskmetric_metadata_caching.html">pkg_ref_cache()</a></code> </p>
-        </td>
-        <td><p>S3 generic to calculate a `pkg_ref` field</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="roxygen_assess_family.html">roxygen_assess_family()</a></code> </p>
-        </td>
-        <td><p>Helper for creating a roxygen header from template for assess_* functions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="roxygen_assess_family_catalog.html">roxygen_assess_family_catalog()</a></code> </p>
-        </td>
-        <td><p>Helper for creating a roxygen itemized list for assess_* functions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="roxygen_cache_behaviors.html">roxygen_cache_behaviors()</a></code> </p>
-        </td>
-        <td><p>Document both declare_cache_behavior parameters and options list</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="roxygen_score_family.html">roxygen_score_family()</a></code> </p>
-        </td>
-        <td><p>Helper for creating a roxygen header from template for score.* functions</p></td>
+        <td><p>Error handler for assessments to throw error immediately</p></td>
       </tr><tr>
         
         <td>
@@ -738,54 +465,31 @@ assignment within the pkg_ref without permission</p></td>
           <p><code><a href="score_error_zero.html">score_error_zero()</a></code> </p>
         </td>
         <td><p>Score error handler to silently return 0</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-utilities" class="hasAnchor"><a href="#section-utilities" class="anchor"></a>Utilities</h2>
+          <p class="section-desc"><p>Utility functions</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="as_pkg_metric.html">as_pkg_metric()</a></code> </p>
+        </td>
+        <td><p>Convert an object to a <code>pkg_metric</code></p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="sub-sub-.pkg_ref.html">`[[`(<i>&lt;pkg_ref&gt;</i>)</a></code> </p>
+          <p><code><a href="as_pkg_ref.html">as_pkg_ref()</a></code> </p>
         </td>
-        <td><p>Lazily instantiated, immutable metadata access</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summarize_scores.html">summarize_scores()</a></code> </p>
-        </td>
-        <td><p>Summarize a default set of assessments into a single risk score</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="suppressMatchingConditions.html">suppressMatchingConditions()</a></code> </p>
-        </td>
-        <td><p>Suppress messages and warnings based on one or more regex matches</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="use_assessments_column_names.html">use_assessments_column_names()</a></code> </p>
-        </td>
-        <td><p>reassign assignment list names with column_name attribute if available</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="vignettes_from_dir.html">vignettes_from_dir()</a></code> </p>
-        </td>
-        <td><p>Build a List of Vignettes Files Discovered Within a Given Directory</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="vignettes_from_html.html">vignettes_from_html()</a></code> </p>
-        </td>
-        <td><p>Build a List of Vignettes Files Discovered Within a Package Website</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="with.pkg_ref.html">with(<i>&lt;pkg_ref&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Evaluate an expression in the context of a pkg_ref</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="with_unclassed_to.html">with_unclassed_to()</a></code> </p>
-        </td>
-        <td><p>Evaluate an expression after first removing a range of S3 classes</p></td>
+        <td><p>Convert into a package object</p></td>
       </tr>
     </tbody>
     </table>
@@ -801,7 +505,7 @@ assignment within the pkg_ref without permission</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by R Validation Hub, Doug Kelkhoff, Yilong Zhang, Kevin K.</p>
+  <p>Developed by R Validation Hub, Doug Kelkhoff, Marly Gotti, Eli Miller, Kevin K, Yilong Zhang, Eric Milliman, Juliane Manitz.</p>
 </div>
 
 <div class="pkgdown">

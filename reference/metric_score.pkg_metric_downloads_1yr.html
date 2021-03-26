@@ -6,11 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Defining an Assessment Scoring Function
-Score a package for the number of downloads in the past year
-regularized
-Convert the number of downloads x in the past year into a validation
-score [0,1] $$ 1 - 150,000 / (x + 150,000) $$ — metric_score.pkg_metric_downloads_1yr • riskmetric</title>
+<title>Defining an Assessment Scoring Function — metric_score.pkg_metric_downloads_1yr • riskmetric</title>
 
 
 <!-- jquery -->
@@ -43,15 +39,10 @@ score [0,1] $$ 1 - 150,000 / (x + 150,000) $$ — metric_score.pkg_metric_downlo
 
 
 
-<meta property="og:title" content="Defining an Assessment Scoring Function
-Score a package for the number of downloads in the past year
-regularized
+<meta property="og:title" content="Defining an Assessment Scoring Function — metric_score.pkg_metric_downloads_1yr" />
+<meta property="og:description" content="Score a package for the number of downloads in the past year regularized
 Convert the number of downloads x in the past year into a validation
-score [0,1] $$ 1 - 150,000 / (x + 150,000) $$ — metric_score.pkg_metric_downloads_1yr" />
-<meta property="og:description" content="The scoring function is a simplification of the classic logistic curve $$
-1 / (1 + exp(-k(x-x[0])) $$ with a log scale for the number of downloads
-\(x = log(x)\), sigmoid midpoint is 1000 downloads, ie. \(x[0] =
-log(1,000)\), and logistic growth rate of \(k = 0.5\)." />
+score [0,1] $$ 1 - 150,000 / (x + 150,000) $$" />
 
 
 
@@ -83,7 +74,7 @@ log(1,000)\), and logistic growth rate of \(k = 0.5\)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">riskmetric</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -113,6 +104,9 @@ log(1,000)\), and logistic growth rate of \(k = 0.5\)." />
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -134,20 +128,15 @@ log(1,000)\), and logistic growth rate of \(k = 0.5\)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Defining an Assessment Scoring Function
-Score a package for the number of downloads in the past year
-regularized
-Convert the number of downloads <code>x</code> in the past year into a validation
-score [0,1] $$ 1 - 150,000 / (x + 150,000) $$</h1>
+    <h1>Defining an Assessment Scoring Function</h1>
     <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/assess_downloads.R'><code>R/assess_downloads.R</code></a></small>
     <div class="hidden name"><code>metric_score.pkg_metric_downloads_1yr.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The scoring function is a simplification of the classic logistic curve $$
-1 / (1 + exp(-k(x-x[0])) $$ with a log scale for the number of downloads
-\(x = log(x)\), sigmoid midpoint is 1000 downloads, ie. \(x[0] =
-log(1,000)\), and logistic growth rate of \(k = 0.5\).</p>
+    <p>Score a package for the number of downloads in the past year regularized
+Convert the number of downloads <code>x</code> in the past year into a validation
+score [0,1] $$ 1 - 150,000 / (x + 150,000) $$</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for pkg_metric_downloads_1yr</span>
@@ -172,7 +161,11 @@ log(1,000)\), and logistic growth rate of \(k = 0.5\).</p>
   volume) converting the number of downloads.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>$$ 1 - 1 / (1 + exp(log(x)-log(1.5e5))) = 1 - 150,000 / (x + 150,000) $$</p>
+    <p>The scoring function is a simplification of the classic logistic curve $$
+1 / (1 + exp(-k(x-x[0])) $$ with a log scale for the number of downloads
+\(x = log(x)\), sigmoid midpoint is 1000 downloads, ie. \(x[0] =
+log(1,000)\), and logistic growth rate of \(k = 0.5\).</p>
+<p>$$ 1 - 1 / (1 + exp(log(x)-log(1.5e5))) = 1 - 150,000 / (x + 150,000) $$</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other <code>metric_score.*</code> functions: 
@@ -204,7 +197,7 @@ log(1,000)\), and logistic growth rate of \(k = 0.5\).</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by R Validation Hub, Doug Kelkhoff, Yilong Zhang, Kevin K.</p>
+  <p>Developed by R Validation Hub, Doug Kelkhoff, Marly Gotti, Eli Miller, Kevin K, Yilong Zhang, Eric Milliman, Juliane Manitz.</p>
 </div>
 
 <div class="pkgdown">
