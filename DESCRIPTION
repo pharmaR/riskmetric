@@ -5,8 +5,8 @@ Description: Facilities for assessing R packages against a number of metrics to
     help quantify their robustness.
 Version: 0.1.0
 Authors@R: c(
-    person("R Validation Hub", role = c("aut", "cre"), email = "psi.aims.r.validation@gmail.com"),
-    person("Doug", "Kelkhoff", role = c("aut")),
+    person("R Validation Hub", role = c("aut"), email = "psi.aims.r.validation@gmail.com"),
+    person("Doug", "Kelkhoff", role = c("aut", "cre"), email = "doug.kelkhoff@gmail.com")),
     person("Marly", "Gotti", role = c("aut")), 
     person("Eli", "Miller", role = c("aut")), 
     person("Kevin", "K", role = c("aut")), 
