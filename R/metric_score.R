@@ -8,7 +8,7 @@
 #' @export
 #'
 metric_score <- function(x, ...) {
-  if (inherits(x, "pkg_metric_condition")) 
+  if (inherits(x, "pkg_metric_condition"))
     return(metric_score_condition(x, ...))
   UseMethod("metric_score")
 }
@@ -60,7 +60,6 @@ metric_score_condition.pkg_metric_todo <- function(x, ...) {
 #' @inheritParams metric_score
 #'
 #' @export
-#' @family \code{score_error_*} functions
 score_error_default <- metric_score.default
 
 
@@ -70,7 +69,6 @@ score_error_default <- metric_score.default
 #' @inheritParams metric_score
 #'
 #' @export
-#' @family \code{score_error_*} functions
 score_error_zero <- function(...) 0
 
 
@@ -80,6 +78,5 @@ score_error_zero <- function(...) 0
 #' @inheritParams metric_score
 #'
 #' @export
-#' @family \code{score_error_*} functions
 score_error_NA <- function(...) NA_real_
 

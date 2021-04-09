@@ -28,7 +28,6 @@
 #' pkg_score(pkg_assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
 #' }
 #'
-#' @family \code{score.*} functions
 #' @seealso score_error_default score_error_zero score_error_NA
 #'
 #' @export
@@ -119,6 +118,5 @@ roxygen_score_family <- function(name, dontrun = FALSE) {
 
   c(sprintf("@param x a \\code{pkg_metric_%s} packge metric object", name),
     "@param ... additional arguments unused",
-    "@family \\code{metric_score.*} functions",
     sprintf(example_template, assess_func, packageName()))
 }

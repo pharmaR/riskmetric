@@ -48,7 +48,6 @@ roxygen_assess_family <- function(name,
   c("@param x a \\code{pkg_ref} package reference object",
     "@param ... additional arguments passed on to S3 methods, rarely used",
     sprintf("@return a \\code{pkg_metric} containing %s", return_type),
-    "@family \\code{assess_*} functions",
     sprintf("@seealso \\code{\\link{%s}}", score_func),
     sprintf(example_template, name, packageName()))
 }
@@ -145,7 +144,6 @@ use_assessments_column_names <- function(x) {
 #'
 #' @eval roxygen_assess_family_catalog()
 #'
-#' @family \code{assess_*} functions
 #'
 #' @importFrom tibble as_tibble
 #' @importFrom vctrs new_list_of
