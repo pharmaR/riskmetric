@@ -19,7 +19,6 @@ URL: https://pharmar.github.io/riskmetric/, https://github.com/pharmaR/riskmetri
 BugReports: https://github.com/pharmaR/riskmetric/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Imports:
     backports,
     utils,
