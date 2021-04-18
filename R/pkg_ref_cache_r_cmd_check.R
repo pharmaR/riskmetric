@@ -15,6 +15,7 @@ pkg_ref_cache.r_cmd_check.default <- function (x, ...) {
 
 #' Run R CMD check and capture the results
 #'
+#' @inheritParams pkg_ref_cache
 #' @importFrom devtools check
 #' @return a \code{pkg_ref} object
 pkg_ref_cache.r_cmd_check.pkg_source <- function(x, ...){

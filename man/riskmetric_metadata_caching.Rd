@@ -76,7 +76,7 @@ Reactively retrieve and cache `pkg_ref` metadata
   }
 
   x <- pkg_ref("riskmetric")
-  #x$first_letter
+  x$first_letter
 
 
 
