@@ -17,6 +17,8 @@ pkg_ref_cache(x, name, ..., .class = as.character(name))
 a character value}
 }
 \value{
+a \code{pkg_ref} field
+
 a value to assign to the new field in the package reference object
   environment
 }
@@ -74,7 +76,7 @@ Reactively retrieve and cache `pkg_ref` metadata
   }
 
   x <- pkg_ref("riskmetric")
-  x$first_letter
+  #x$first_letter
 
 
 

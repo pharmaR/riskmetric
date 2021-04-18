@@ -6,6 +6,9 @@
 \usage{
 verify_pkg_source(x, source, repos)
 }
+\value{
+a string of package source
+}
 \description{
 Verify a pkg_source when one is manually specified by the user
 }

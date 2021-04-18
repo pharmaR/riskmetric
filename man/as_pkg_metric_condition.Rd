@@ -14,6 +14,9 @@ as_pkg_metric_condition(x, ..., subclass = c())
 \item{subclass}{an optional subclass of \code{pkg_metric_condition} to
 include}
 }
+\value{
+an object after wrap \code{pkg_metric_condition} class.
+}
 \description{
 A pkg_metric subclass for general metric evaluation conditions
 }

@@ -23,6 +23,9 @@ roxygen_cache_behaviors(
 
 \item{collapse}{passed to paste}
 }
+\value{
+a string
+}
 \description{
 Document both declare_cache_behavior parameters and options list
 }

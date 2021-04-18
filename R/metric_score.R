@@ -5,6 +5,7 @@
 #' @param x A \code{pkg_metric_*} class object to score
 #' @param ... Additional arguments unused
 #'
+#' @return score of a package risk metric
 #' @export
 #'
 metric_score <- function(x, ...) {
@@ -58,7 +59,7 @@ metric_score_condition.pkg_metric_todo <- function(x, ...) {
 #' Default score error handling, emitting a warning and returning 0
 #'
 #' @inheritParams metric_score
-#'
+#' @return a value of package score
 #' @export
 score_error_default <- metric_score.default
 
@@ -68,6 +69,7 @@ score_error_default <- metric_score.default
 #'
 #' @inheritParams metric_score
 #'
+#' @return a value of package score
 #' @export
 score_error_zero <- function(...) 0
 
@@ -76,7 +78,7 @@ score_error_zero <- function(...) 0
 #' Score error handler to silently return NA
 #'
 #' @inheritParams metric_score
-#'
+#' @return a value of package score
 #' @export
 score_error_NA <- function(...) NA_real_
 

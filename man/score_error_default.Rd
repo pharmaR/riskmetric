@@ -11,12 +11,9 @@ score_error_default(x, ...)
 
 \item{...}{Additional arguments unused}
 }
+\value{
+a value of package score
+}
 \description{
 Default score error handling, emitting a warning and returning 0
 }
-\seealso{
-Other \code{score_error_*} functions: 
-\code{\link{score_error_NA}()},
-\code{\link{score_error_zero}()}
-}
-\concept{\code{score_error_*} functions}

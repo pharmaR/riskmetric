@@ -13,6 +13,9 @@ pkg_ref_cache.news(x, name, ...)
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Cache a list of NEWS files from a package reference
 }

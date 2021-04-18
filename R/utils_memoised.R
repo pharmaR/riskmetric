@@ -8,6 +8,7 @@
 #'
 #' @importFrom curl nslookup
 #' @importFrom memoise memoise
+#' @return a data frame with mirror information
 #' @keywords internal
 memoise_cran_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
@@ -49,6 +50,7 @@ memoise_bioc_available <- memoise::memoise({
 #'
 #' @importFrom curl nslookup
 #' @importFrom memoise memoise
+#' @return a data frame with mirror information
 #' @keywords internal
 memoise_bioc_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes

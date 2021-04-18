@@ -11,6 +11,9 @@ pkg_ref_cache.r_cmd_check(x, ...)
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Run R CMD check and capture the results
 }

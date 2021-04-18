@@ -23,6 +23,9 @@
 
 \item{...}{arguments to be passed to (future) methods.}
 }
+\value{
+the value of the evaluated expr.
+}
 \description{
 \code{pkg_ref} objects are environments and can be passed to \code{with}
 in much the same way. This specialized function makes sure that any fields

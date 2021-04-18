@@ -11,6 +11,9 @@ pkg_ref_cache.covr_coverage(x, ...)
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Retrieve output of covr::package_coverage
 }

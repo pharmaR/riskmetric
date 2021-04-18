@@ -42,6 +42,7 @@
 #'   ever be calculated once and preserved for downstream use.
 #' }
 #'
+#' @return a \code{pkg_ref} field
 #' @examples
 #' # implementing a new field called "first_letter" that is consistently derived
 #' # across all pkg_ref objects:

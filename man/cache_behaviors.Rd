@@ -11,6 +11,9 @@ An object of class \code{list} of length 1.
 \usage{
 cache_behaviors
 }
+\value{
+a list contain cache behaviros information
+}
 \description{
 List of available caching behaviors with metadata, including default and
 annotations for building documentation

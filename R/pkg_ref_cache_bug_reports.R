@@ -2,6 +2,7 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
+#' @return a \code{pkg_ref} object
 #' @keywords internal
 pkg_ref_cache.bug_reports <- function(x, ...) {
   UseMethod("pkg_ref_cache.bug_reports")
@@ -21,6 +22,7 @@ pkg_ref_cache.bug_reports.default <- function(x, ...) {
 #'   return object from making a request to a repository's issues API
 #' @param x a \code{pkg_ref} object where a \code{bug_reports_host} field can be
 #'   found
+#' @return a \code{bug_reports_host} field
 #' @keywords internal
 bug_report_metadata <- function(bug_reports_data, x) {
   structure(bug_reports_data,

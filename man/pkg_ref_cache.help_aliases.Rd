@@ -13,6 +13,9 @@ pkg_ref_cache.help_aliases(x, name, ...)
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Cache a character vector mapping exported values to documentation filenames
 }

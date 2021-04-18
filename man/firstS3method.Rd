@@ -16,6 +16,9 @@ appropriate S3 method}
 \item{envir}{the \code{\link{environment}} in which the method and its
     generic are searched first.}
 }
+\value{
+a S3 method
+}
 \description{
 Find the S3 method that will be evaluated when an S3 generic is called by
 an object of class \code{classes}

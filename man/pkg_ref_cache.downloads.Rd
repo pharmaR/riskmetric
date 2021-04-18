@@ -11,6 +11,9 @@
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Cache a list of available help files as LaTeX objects
 }

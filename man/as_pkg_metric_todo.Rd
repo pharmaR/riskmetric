@@ -13,6 +13,9 @@ subclass}
 \item{message}{an optional message directing users and potential contributors
 toward any ongoing work or first steps toward development.}
 }
+\value{
+a \code{pkg_metric} object after wrap in a \code{pkg_metric_todo}
+}
 \description{
 A pkg_metric subclass for when pkg_metrics have not yet been implemented
 }

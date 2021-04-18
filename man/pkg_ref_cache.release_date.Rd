@@ -13,6 +13,9 @@ pkg_ref_cache.release_date(x, name, ...)
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Cache a List of Package Release Date from a Package Reference
 }

@@ -11,6 +11,9 @@ as_pkg_metric(x, class = c())
 
 \item{class}{a subclass to differentiate the \code{pkg_metric} object}
 }
+\value{
+a \code{pkg_metric} object
+}
 \description{
 Convert an object to a \code{pkg_metric}
 }

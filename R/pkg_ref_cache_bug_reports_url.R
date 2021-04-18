@@ -2,14 +2,17 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
+#' @return a \code{pkg_ref} object
 #' @keywords internal
 pkg_ref_cache.bug_reports_url <- function(x, ...) {
   UseMethod("pkg_ref_cache.bug_reports_url")
 }
 
 
-
+#' Get the BugReports url
+#'
 #' @importFrom utils packageDescription
+#' @return a \code{pkg_ref} object
 #' @keywords internal
 pkg_ref_cache.bug_reports_url.pkg_source <- function(x, ...) {
   # fake a library location given the package source code path where the

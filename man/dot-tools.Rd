@@ -6,6 +6,9 @@
 \usage{
 .tools()
 }
+\value{
+tools namespace
+}
 \description{
 used internally for
   - tools:::.news_reader_default

@@ -13,6 +13,9 @@
 
 \item{...}{additional arguments used to extract from internal environment}
 }
+\value{
+a pkg_ref object
+}
 \description{
 If errors are thrown upon instantiation, they are saved and rethrown any time
 the value is attempted to be accessed. These then propegate through

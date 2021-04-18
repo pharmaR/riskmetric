@@ -13,6 +13,9 @@ pkg_ref_cache.repo_base_url(x, name, ...)
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Cache value of a package's source repo's URL
 }

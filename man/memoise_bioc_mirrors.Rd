@@ -6,6 +6,9 @@
 \usage{
 memoise_bioc_mirrors()
 }
+\value{
+a data frame with mirror information
+}
 \description{
 taken from utils::chooseBioCmirror
 }

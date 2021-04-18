@@ -6,6 +6,7 @@
 #' A shorthand for a common comparison
 #'
 #' @name if_not_null_else
+#' @return an object same as \code{lhs} or \code{rhs}
 #' @keywords internal
 `%||%` <- function(lhs, rhs) if (!length(lhs) || is.null(lhs)) rhs else lhs
 
@@ -15,6 +16,7 @@
 #'
 #' used internally for
 #'   - tools:::.news_reader_default
+#' @return tools namespace
 #' @keywords internal
 .tools <- memoise::memoise(function() {
   getNamespace("tools")
@@ -68,6 +70,7 @@ with_unclassed_to <- function(x, .class = 1:length(class(x)), expr,
 #' appropriate S3 method
 #'
 #' @importFrom utils getS3method
+#' @return a S3 method
 #' @keywords internal
 firstS3method <- function(f, classes, envir = parent.frame()) {
   s3methods <- lapply(
@@ -107,9 +110,10 @@ firstS3method <- function(f, classes, envir = parent.frame()) {
 #'   return(3L)
 #' }
 #'
-#' console_output <- riskmetric:::capture_expr_output(fn())
+#' capture_expr_output <- utils::getFromNamespace("capture_expr_output", "riskmetric")
+#' console_output <- capture_expr_output(fn())
 #'
-#' console_output
+#' # console_output
 #' # > fn()
 #' # [1] "a, b, c"
 #' # Warning in fn(): easy as
@@ -119,6 +123,7 @@ firstS3method <- function(f, classes, envir = parent.frame()) {
 #' # [1] 3
 #'
 #' @importFrom utils head tail
+#' @return an with_eval_recording object
 #' @keywords internal
 capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
     quoted = FALSE) {
@@ -228,7 +233,7 @@ is_error <- function(expr_output) {
 #'   would like to watch it play out as it was formatted.
 #'
 #' @export
-#'
+#' @return a print message
 #' @keywords internal
 print.with_eval_recording <- function(x, playback = FALSE, cr = TRUE, ...,
     sleep = 0) {
@@ -311,6 +316,7 @@ print.with_eval_recording <- function(x, playback = FALSE, cr = TRUE, ...,
 #'   message = "\\d",
 #'   custom_warning = "as$",
 #'   warning = "\\w{2}\\s")
+#' @return a message printed on console
 #' @keywords internal
 suppressMatchingConditions <- function(expr, ..., .opts = list(),
     .envir = parent.frame()) {
@@ -339,7 +345,7 @@ suppressMatchingConditions <- function(expr, ..., .opts = list(),
 #' to execute the expression.
 #'
 #' @inheritParams base::with
-#'
+#' @return the value of the evaluated expr.
 #' @export
 #' @keywords internal
 with.pkg_ref <- function(data, expr, ...) {
