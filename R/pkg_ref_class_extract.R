@@ -22,6 +22,7 @@
 #' @param name name of metadata field to extract
 #' @param ... additional arguments used to extract from internal environment
 #'
+#' @return a pkg_ref object
 #' @export
 #' @keywords internal
 `[[.pkg_ref` <- function(x, name, ...) {
@@ -132,6 +133,7 @@ allow_mutation <- function(x, expr, envir = parent.frame()) {
 #' increment the number of allowed mutations
 #'
 #' @param x pkg_ref object to increment mutation counter for
+#' @return a pkg_ref object
 #' @keywords internal
 inc_mutations_count <- function(x) {
   if (is.null(attr(x, "allowed_mutations"))) attr(x, "allowed_mutations") <- 0
@@ -143,6 +145,7 @@ inc_mutations_count <- function(x) {
 #' decrement the number of allowed mutations
 #'
 #' @param x pkg_ref object to decrement mutation counter for
+#' @return pkg_ref object
 #' @keywords internal
 dec_mutations_count <- function(x) {
   attr(x, "allowed_mutations") <- attr(x, "allowed_mutations") - 1

@@ -2,6 +2,7 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
+#' @return a \code{pkg_ref} object
 #' @keywords internal
 pkg_ref_cache.remote_checks <- function (x, ...)
 {

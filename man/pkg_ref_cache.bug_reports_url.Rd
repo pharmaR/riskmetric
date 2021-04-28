@@ -11,6 +11,9 @@ pkg_ref_cache.bug_reports_url(x, ...)
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Get the BugReports url
 }

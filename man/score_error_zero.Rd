@@ -9,12 +9,9 @@ score_error_zero(...)
 \arguments{
 \item{...}{Additional arguments unused}
 }
+\value{
+a value of package score
+}
 \description{
 Score error handler to silently return 0
 }
-\seealso{
-Other \code{score_error_*} functions: 
-\code{\link{score_error_NA}()},
-\code{\link{score_error_default}()}
-}
-\concept{\code{score_error_*} functions}

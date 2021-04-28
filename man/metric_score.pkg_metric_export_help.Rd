@@ -20,20 +20,3 @@ Coerce a logical vector indicating availability of export documentation
 \examples{
 metric_score(assess_export_help(pkg_ref("riskmetric")))
 }
-\seealso{
-Other \code{metric_score.*} functions: 
-\code{\link{metric_score.pkg_metric_covr_coverage}()},
-\code{\link{metric_score.pkg_metric_downloads_1yr}()},
-\code{\link{metric_score.pkg_metric_has_bug_reports_url}()},
-\code{\link{metric_score.pkg_metric_has_maintainer}()},
-\code{\link{metric_score.pkg_metric_has_news}()},
-\code{\link{metric_score.pkg_metric_has_source_control}()},
-\code{\link{metric_score.pkg_metric_has_vignettes}()},
-\code{\link{metric_score.pkg_metric_has_website}()},
-\code{\link{metric_score.pkg_metric_last_30_bugs_status}()},
-\code{\link{metric_score.pkg_metric_license}()},
-\code{\link{metric_score.pkg_metric_news_current}()},
-\code{\link{metric_score.pkg_metric_r_cmd_check}()},
-\code{\link{metric_score.pkg_metric_remote_checks}()}
-}
-\concept{\code{metric_score.*} functions}

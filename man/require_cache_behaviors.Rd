@@ -11,6 +11,9 @@ require_cache_behaviors(behaviors)
 requirements for metadata caching. values must have an entry found in
 riskmetric:::cache_behaviors list}
 }
+\value{
+a boolean value
+}
 \description{
 Stop if a function requires disabled behaviors
 }

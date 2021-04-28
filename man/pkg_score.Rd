@@ -43,4 +43,3 @@ pkg_score(pkg_assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
 \seealso{
 score_error_default score_error_zero score_error_NA
 }
-\concept{\code{score.*} functions}

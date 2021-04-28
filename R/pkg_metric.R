@@ -18,6 +18,7 @@ pkg_metric <- function(x = NA, ..., class = c()) {
 #' Convert an object to a \code{pkg_metric}
 #'
 #' @inheritParams pkg_metric
+#' @return a \code{pkg_metric} object
 #' @export
 as_pkg_metric <- function(x, class = c()) {
   UseMethod("as_pkg_metric")

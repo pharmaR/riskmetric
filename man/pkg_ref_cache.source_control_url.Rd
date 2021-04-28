@@ -13,6 +13,9 @@
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Cache package's Source Control URL
 }

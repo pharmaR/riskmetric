@@ -13,6 +13,9 @@ pkg_ref_cache.web_url(x, name, ...)
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Cache package's remote web URL
 }

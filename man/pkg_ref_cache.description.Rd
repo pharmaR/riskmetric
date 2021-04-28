@@ -13,6 +13,9 @@ pkg_ref_cache.description(x, name, ...)
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Cache the DESCRIPTION file contents for a package reference
 }

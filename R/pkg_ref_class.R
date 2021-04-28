@@ -260,6 +260,7 @@ determine_pkg_source <- function(x, source, repos) {
 }
 
 #' Verify a pkg_source when one is manually specified by the user
+#' @return a string of package source
 #' @keywords internal
 verify_pkg_source <- function(x, source, repos) {
 

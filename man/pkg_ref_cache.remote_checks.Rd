@@ -11,6 +11,9 @@ pkg_ref_cache.remote_checks(x, ...)
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Retrieve a CRAN or Bioc checks or run R CMD check
 }

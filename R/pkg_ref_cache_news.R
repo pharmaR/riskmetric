@@ -2,14 +2,17 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
+#' @return a \code{pkg_ref} object
 #' @keywords internal
 pkg_ref_cache.news <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.news")
 }
 
 
-
+#' Cache a list of NEWS files from a package reference
+#'
 #' @importFrom httr content GET
+#' @return a \code{pkg_ref} object
 #' @keywords internal
 pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
   # default encoding messages suppressed
