@@ -31,7 +31,6 @@ Imports:
     BiocManager,
     cranlogs,
     covr,
-    jsonlite,
     vctrs,
     pillar,
     tibble,
@@ -42,7 +41,8 @@ Suggests:
     dplyr,
     magrittr,
     testthat, 
-    webmockr
+    webmockr,
+    jsonlite
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Config/testthat/edition: 3
