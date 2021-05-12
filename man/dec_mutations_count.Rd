@@ -9,6 +9,10 @@ dec_mutations_count(x)
 \arguments{
 \item{x}{pkg_ref object to decrement mutation counter for}
 }
+\value{
+pkg_ref object
+}
 \description{
 decrement the number of allowed mutations
 }
+\keyword{internal}

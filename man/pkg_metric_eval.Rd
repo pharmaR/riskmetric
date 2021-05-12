@@ -20,6 +20,7 @@ pkg_metric_eval(expr, ..., class = c(), env = parent.frame())
 a \code{pkg_metric} object containing the result of \code{expr}
 }
 \description{
-Evalute code relevant to a metric, capturing the evaluated code as well as 
+Evalute code relevant to a metric, capturing the evaluated code as well as
 any messages, warnings or errors that are thrown in the process.
 }
+\keyword{internal}

@@ -23,7 +23,7 @@ assess_license(pkg_ref("riskmetric"))
 \seealso{
 \code{\link{metric_score.pkg_metric_license}}
 
-Other \code{assess_*} functions: 
+Other \code{assess_*} functions:
 \code{\link{assess_covr_coverage}()},
 \code{\link{assess_downloads_1yr}()},
 \code{\link{assess_export_help}()},
@@ -39,4 +39,3 @@ Other \code{assess_*} functions:
 \code{\link{assess_remote_checks}()},
 \code{\link{pkg_assess}()}
 }
-\concept{\code{assess_*} functions}

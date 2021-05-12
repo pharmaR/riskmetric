@@ -17,6 +17,7 @@
 #' #'   "an integer value indicating the number of discovered NEWS files")
 #' }
 #'
+#' @keywords internal
 roxygen_assess_family <- function(name,
     return_type = "an atomic assessment result",
     dontrun = FALSE) {
@@ -47,7 +48,6 @@ roxygen_assess_family <- function(name,
   c("@param x a \\code{pkg_ref} package reference object",
     "@param ... additional arguments passed on to S3 methods, rarely used",
     sprintf("@return a \\code{pkg_metric} containing %s", return_type),
-    "@family \\code{assess_*} functions",
     sprintf("@seealso \\code{\\link{%s}}", score_func),
     sprintf(example_template, name, packageName()))
 }
@@ -62,7 +62,7 @@ roxygen_assess_family <- function(name,
 #' \dontrun{
 #'   #' @eval assess_family_catalog_roxygen()
 #' }
-#'
+#' @keywords internal
 roxygen_assess_family_catalog <- function() {
   assessments <- all_assessments()
   info <- lapply(assessments, attr, "label")
@@ -97,7 +97,7 @@ all_assessments <- function() {
 #' @param tbl a \code{\link[tibble]{tibble}} to select columns among
 #'
 #' @return a logical vector of \code{pkg_metric} column indices
-#'
+#' @keywords internal
 get_assessment_columns <- function(tbl) {
   vapply(tbl, inherits, logical(1L), "list_of_pkg_metric")
 }
@@ -110,7 +110,7 @@ get_assessment_columns <- function(tbl) {
 #'   attributes
 #'
 #' @return a vector of friendly column names if available
-#'
+#' @keywords internal
 use_assessments_column_names <- function(x) {
   column_names <- lapply(x, attr, "column_name")
   colname_null <- vapply(column_names, is.null, logical(1L))
@@ -144,7 +144,6 @@ use_assessments_column_names <- function(x) {
 #'
 #' @eval roxygen_assess_family_catalog()
 #'
-#' @family \code{assess_*} functions
 #'
 #' @importFrom tibble as_tibble
 #' @importFrom vctrs new_list_of

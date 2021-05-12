@@ -42,6 +42,7 @@
 #'   ever be calculated once and preserved for downstream use.
 #' }
 #'
+#' @return a \code{pkg_ref} field
 #' @examples
 #' # implementing a new field called "first_letter" that is consistently derived
 #' # across all pkg_ref objects:
@@ -85,6 +86,7 @@ NULL
 #' @return a list of available fields implemented with a pkg_ref_cache method
 #'
 #' @importFrom utils .S3methods
+#' @keywords internal
 available_pkg_ref_fields <- function(x) {
   fs <- c(names(getNamespace(packageName())), utils::.S3methods("pkg_ref_cache"))
 
@@ -118,7 +120,7 @@ available_pkg_ref_fields <- function(x) {
 #' @family package reference cache
 #'
 #' @rdname riskmetric_metadata_caching
-#'
+#' @keywords internal
 pkg_ref_cache <- function(x, name, ..., .class = as.character(name)) {
   UseMethod("pkg_ref_cache", structure(list(), class = .class))
 }

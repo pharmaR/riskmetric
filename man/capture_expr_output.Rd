@@ -20,6 +20,9 @@ defaulting to the calling environment.}
 as is, or whether the expression should be captured from the function call.
 Defaults to \code{FALSE}, capturing the passed expression.}
 }
+\value{
+an with_eval_recording object
+}
 \description{
 All messaging condition side effects are captured in the order that they
 are issued.
@@ -34,9 +37,10 @@ fn <- function() {
   return(3L)
 }
 
-console_output <- riskmetric:::capture_expr_output(fn())
+capture_expr_output <- utils::getFromNamespace("capture_expr_output", "riskmetric")
+console_output <- capture_expr_output(fn())
 
-console_output
+# console_output
 # > fn()
 # [1] "a, b, c"
 # Warning in fn(): easy as
@@ -46,3 +50,4 @@ console_output
 # [1] 3
 
 }
+\keyword{internal}

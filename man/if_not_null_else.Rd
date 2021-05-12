@@ -14,6 +14,10 @@ lhs \%||\% rhs
 
 A shorthand for a common comparison}
 }
+\value{
+an object same as \code{lhs} or \code{rhs}
+}
 \description{
 If not NULL else
 }
+\keyword{internal}

@@ -22,7 +22,7 @@ The scoring function is the number of OS flavors that passed with OK or NOTES + 
 }
 }
 \seealso{
-Other \code{metric_score.*} functions: 
+Other \code{metric_score.*} functions:
 \code{\link{metric_score.pkg_metric_covr_coverage}()},
 \code{\link{metric_score.pkg_metric_downloads_1yr}()},
 \code{\link{metric_score.pkg_metric_export_help}()},

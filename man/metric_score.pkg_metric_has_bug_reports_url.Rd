@@ -22,7 +22,7 @@ Score a package for the presence of a bug report url
 metric_score(assess_has_bug_reports_url(pkg_ref("riskmetric")))
 }
 \seealso{
-Other \code{metric_score.*} functions: 
+Other \code{metric_score.*} functions:
 \code{\link{metric_score.pkg_metric_covr_coverage}()},
 \code{\link{metric_score.pkg_metric_downloads_1yr}()},
 \code{\link{metric_score.pkg_metric_export_help}()},

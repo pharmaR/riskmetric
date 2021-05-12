@@ -18,6 +18,9 @@ condition.}
 
 \item{.envir}{The environment in which \code{expr} is to be evaluated}
 }
+\value{
+a message printed on console
+}
 \description{
 Suppress messages and warnings based on one or more regex matches
 }
@@ -34,5 +37,5 @@ riskmetric:::suppressMatchingConditions({
   message = "\\\\d",
   custom_warning = "as$",
   warning = "\\\\w{2}\\\\s")
-
 }
+\keyword{internal}

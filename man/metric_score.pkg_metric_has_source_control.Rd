@@ -21,8 +21,9 @@ the number of listed urls is greater than 0.
 \examples{
 metric_score(assess_has_source_control(pkg_ref("riskmetric")))
 }
+
 \seealso{
-Other \code{metric_score.*} functions: 
+Other \code{metric_score.*} functions:
 \code{\link{metric_score.pkg_metric_covr_coverage}()},
 \code{\link{metric_score.pkg_metric_downloads_1yr}()},
 \code{\link{metric_score.pkg_metric_export_help}()},

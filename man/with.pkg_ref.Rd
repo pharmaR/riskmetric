@@ -23,9 +23,13 @@
 
 \item{...}{arguments to be passed to (future) methods.}
 }
+\value{
+the value of the evaluated expr.
+}
 \description{
 \code{pkg_ref} objects are environments and can be passed to \code{with}
 in much the same way. This specialized function makes sure that any fields
 within the \code{pkg_ref} have been appropriately evaluated before trying
 to execute the expression.
 }
+\keyword{internal}

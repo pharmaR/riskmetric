@@ -11,6 +11,9 @@ pkg_ref_cache.r_cmd_check(x, ...)
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Run R CMD check and capture the results
 }
@@ -24,7 +27,6 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.description}()},
 \code{\link{pkg_ref_cache.downloads}()},
 \code{\link{pkg_ref_cache.expression_coverage}()},
-\code{\link{pkg_ref_cache.function_coverage}()},
 \code{\link{pkg_ref_cache.help_aliases}()},
 \code{\link{pkg_ref_cache.help}()},
 \code{\link{pkg_ref_cache.license}()},
@@ -43,3 +45,4 @@ Other package reference cache:
 \code{\link{pkg_ref_cache}()}
 }
 \concept{package reference cache}
+\keyword{internal}

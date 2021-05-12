@@ -18,3 +18,4 @@ a \code{simplError} with subclasses \code{pkg_ref_mutability_error},
 pretty printing for a pkg_ref mutability error caused by trying to do
 assignment within the pkg_ref without permission
 }
+\keyword{internal}

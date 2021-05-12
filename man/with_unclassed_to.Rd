@@ -21,3 +21,4 @@ the result of \code{expr}
 \description{
 Evaluate an expression after first removing a range of S3 classes
 }
+\keyword{internal}

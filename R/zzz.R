@@ -1,4 +1,5 @@
 #' @importFrom backports import
+#' @keywords internal
 .onLoad <- function(libname, pkgname) {
   backports::import(pkgname, "isFALSE")
 

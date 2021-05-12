@@ -17,3 +17,4 @@ a list of available fields implemented with a pkg_ref_cache method
 A helper function for retrieving a list of available fields, identified based
 on implementation of a pkg_ref_cache method for a given class.
 }
+\keyword{internal}

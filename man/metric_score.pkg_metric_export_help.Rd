@@ -20,8 +20,9 @@ Coerce a logical vector indicating availability of export documentation
 \examples{
 metric_score(assess_export_help(pkg_ref("riskmetric")))
 }
+
 \seealso{
-Other \code{metric_score.*} functions: 
+Other \code{metric_score.*} functions:
 \code{\link{metric_score.pkg_metric_covr_coverage}()},
 \code{\link{metric_score.pkg_metric_downloads_1yr}()},
 \code{\link{metric_score.pkg_metric_has_bug_reports_url}()},

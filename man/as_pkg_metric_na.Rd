@@ -11,7 +11,13 @@ as_pkg_metric_na(x, message = NULL)
 subclass}
 
 \item{message}{an optional message explaining why a metric is not applicable.}
+
+\item{a}{\code{pkg_metric} object after wrap in a \code{pkg_metric_na}}
+}
+\value{
+a \code{pkg_metric} object after wrap in a \code{pkg_metric_na}
 }
 \description{
 A pkg_metric subclass for when metrics are explicitly not applicable
 }
+\keyword{internal}

@@ -1,0 +1,32 @@
+destination: docs
+reference:
+  - title: "Package Reference"
+    desc: "Create Package Reference for Each Package Risk Metric and Cache Metadata"
+    contents:
+      - starts_with("pkg_ref")
+  - title: "Package Assessment"
+    desc: "Assess Package Metadata against a risk criterion"
+    contents:
+      - starts_with("pkg_assess")
+      - all_assessments
+      - starts_with("assess")
+  - title: "Package Risk Score"
+    desc: "Provide Risk Score based on Risk Metrics"
+    contents:
+      - pkg_score
+      - starts_with("pkg_metric")
+      - starts_with("metric_score")
+  - title: "Package Risk Summary"
+    desc: "Summarizing across metric scores"
+    contents:
+      - summarize_scores
+  - title: "Metric Error Handler"
+    desc: "Error handler functions"
+    contents:
+      - starts_with("assessment_error")
+      - starts_with("score_error")
+  - title: "Utilities"
+    desc: "Utility functions"
+    contents:
+      - as_pkg_metric
+      - as_pkg_ref

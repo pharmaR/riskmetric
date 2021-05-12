@@ -2,7 +2,8 @@
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#'
+#' @return a \code{pkg_ref} object
+#' @keywords internal
 pkg_ref_cache.tarball_url <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.tarball_url")
 }

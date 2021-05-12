@@ -1,4 +1,4 @@
-# MIT License
+pkg# MIT License
 
 Copyright (c) 2019 PSI special interest group Application and Implementation of Methodologies in Statistics
 

@@ -15,3 +15,4 @@ a vector of parsed Vignettes files
 \description{
 Build a List of Vignettes Files Discovered Within a Given Directory
 }
+\keyword{internal}

@@ -59,7 +59,7 @@ assessment applied.
 }
 
 \seealso{
-Other \code{assess_*} functions: 
+Other \code{assess_*} functions:
 \code{\link{assess_covr_coverage}()},
 \code{\link{assess_downloads_1yr}()},
 \code{\link{assess_export_help}()},

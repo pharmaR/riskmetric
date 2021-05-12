@@ -8,7 +8,8 @@
 #'
 #' @importFrom curl nslookup
 #' @importFrom memoise memoise
-#'
+#' @return a data frame with mirror information
+#' @keywords internal
 memoise_cran_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
   # NOTE: might need to implement actual caching to avoid inconsistent behavior
@@ -32,6 +33,7 @@ memoise_cran_mirrors <- memoise::memoise({
 
 #' @importFrom BiocManager available
 #' @importFrom memoise memoise
+#' @keywords internal
 memoise_bioc_available <- memoise::memoise({
   function() {
     con <- url("https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES")
@@ -48,7 +50,8 @@ memoise_bioc_available <- memoise::memoise({
 #'
 #' @importFrom curl nslookup
 #' @importFrom memoise memoise
-#'
+#' @return a data frame with mirror information
+#' @keywords internal
 memoise_bioc_mirrors <- memoise::memoise({
   # add parameter such that memoised results rerun if internet availability changes
   # NOTE: might need to implement actual caching to avoid inconsistent behavior

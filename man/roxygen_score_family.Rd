@@ -24,5 +24,5 @@ Helper for creating a roxygen header from template for score.* functions
 \dontrun{
 #' @eval roxygen_score_family("has_news")
 }
-
 }
+\keyword{internal}

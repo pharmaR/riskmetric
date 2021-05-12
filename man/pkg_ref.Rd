@@ -27,17 +27,23 @@ in which package metadata will be collected as risk assessments are
 performed. Depending on where the package was found - whether it is found as
 source code, in a local library or from a remote host - an S3 subclass is
 given to allow for source-specific collection of metadata. See 'Details' for
-a breakdown of subclasses.
+a breakdown of subclasses. Different sources can be specified by passing a
+subclass as an arguemnt named 'source', see details.
 }
 \details{
 Package reference objects are used to collect metadata pertaining to a given
 package. As data is needed for assessing a package's risk, this metadata
 populates fields within the package reference object.
 
-The \code{pkg_ref} S3 subclasses are used extensively for divergent metdata
+The \code{pkg_ref} S3 subclasses are used extensively for divergent metadata
 collection behaviors dependent on where the package was discovered. Because
 of this, there is a rich hierarchy of subclasses to articulate the different
 ways package information can be found.
+
+A source argument can be passed using the `source` argument. This will
+override the logic that riskmetric does when determining a package source.
+This can be useful when you are scoring the most recent version present on a
+repository, or testing a specific library.
 
 \itemize{
 \item{\strong{\code{pkg_ref}}}{ A default class for general metadata
@@ -45,7 +51,8 @@ collection.
   \itemize{
   \item{\strong{\code{pkg_source}}}{ A reference to a source code directory.}
   \item{\strong{\code{pkg_install}}}{ A reference to a package installation
-  location in a package library.}
+  location in a package library. A specific library can be passed by passing
+  the path to the library as the parameter `lib.loc`}
   \item{\strong{\code{pkg_remote}}}{ A reference to package metadata on a
   remote server.
     \itemize{
@@ -60,6 +67,19 @@ collection.
   }
 }
 }
+}
+\examples{
+
+# riskmetric will check for installed packages by default
+ref_1 <- pkg_ref("utils")
+ref_1$source # returns 'pkg_install'
+
+# You can also override this behavior with a source argument
+ref_2 <- pkg_ref("utils", source = "pkg_cran_remote")
+ref_2$source # returns 'pkg_cran_remote'
+
+# lib.loc can be used to specify a library for pkg_install
+ref_3 <- pkg_ref("utils", source = "pkg_install", lib.loc = .libPaths()[1])
 }
 \seealso{
 Other pkg_ref: 

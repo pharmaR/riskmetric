@@ -15,6 +15,10 @@ memoise_cran_mirrors(all = TRUE, ..., .local = getOption("riskmetric.tests"))
 from, defaulting to \code{getOption("riskmetric.tests")}, used
 for isolating repository requests during testing.}
 }
+\value{
+a data frame with mirror information
+}
 \description{
 Fetch CRAN Mirrors Info
 }
+\keyword{internal}

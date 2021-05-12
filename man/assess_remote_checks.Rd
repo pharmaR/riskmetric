@@ -25,7 +25,7 @@ assess_remote_checks(pkg_ref("riskmetric"))
 \seealso{
 \code{\link{metric_score.pkg_metric_remote_checks}}
 
-Other \code{assess_*} functions: 
+Other \code{assess_*} functions:
 \code{\link{assess_covr_coverage}()},
 \code{\link{assess_downloads_1yr}()},
 \code{\link{assess_export_help}()},
@@ -40,5 +40,5 @@ Other \code{assess_*} functions:
 \code{\link{assess_news_current}()},
 \code{\link{assess_r_cmd_check}()},
 \code{\link{pkg_assess}()}
+
 }
-\concept{\code{assess_*} functions}

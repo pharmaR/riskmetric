@@ -57,11 +57,8 @@ pkg_ref(c("riskmetric", "utils", "tools")) %>%
 We have a bi-weekly sprint meeting for developers to discuss the progress.
 
 * Contact `yilong.zhang@merck.com` to be added to the meeting.
-* Date: 1st and 3rd Wednesday of the month.
-* Meeting Time: 12:00PM - 12:30PM EST
 * [Project Planning Meeting Structure](https://github.com/pharmaR/riskmetric/issues/57) 
 * [Milestone](https://github.com/pharmaR/riskmetric/milestones)
-* [Meeting Room](https://merck.webex.com/join/zhanyilo)
 
 `riskmetric` is centrally a community project. Comfort with a quantification of
 risk comes via consensus, and for that this project is dependent on close

@@ -23,6 +23,10 @@ each line to console. This can be helpful if the original output overwrites
 valuable information in the log that is eventually overwritten and you
 would like to watch it play out as it was formatted.}
 }
+\value{
+a print message
+}
 \description{
 Handle pretty printing of expression output
 }
+\keyword{internal}

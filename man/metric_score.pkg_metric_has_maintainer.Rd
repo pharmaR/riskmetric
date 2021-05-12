@@ -22,7 +22,7 @@ number of listed maintainers is greater than 0.
 metric_score(assess_has_maintainer(pkg_ref("riskmetric")))
 }
 \seealso{
-Other \code{metric_score.*} functions: 
+Other \code{metric_score.*} functions:
 \code{\link{metric_score.pkg_metric_covr_coverage}()},
 \code{\link{metric_score.pkg_metric_downloads_1yr}()},
 \code{\link{metric_score.pkg_metric_export_help}()},

@@ -20,8 +20,9 @@ Returns the overall test coverage from a covr coverage report
 \examples{
 metric_score(assess_covr_coverage(pkg_ref("riskmetric")))
 }
+
 \seealso{
-Other \code{metric_score.*} functions: 
+Other \code{metric_score.*} functions:
 \code{\link{metric_score.pkg_metric_downloads_1yr}()},
 \code{\link{metric_score.pkg_metric_export_help}()},
 \code{\link{metric_score.pkg_metric_has_bug_reports_url}()},

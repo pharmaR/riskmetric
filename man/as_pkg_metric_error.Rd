@@ -9,6 +9,10 @@ as_pkg_metric_error(error)
 \arguments{
 \item{error}{an error condition object to capture}
 }
+\value{
+an error condition object after wrap \code{pkg_metric_error} class.
+}
 \description{
 A subclass wrapping an error with an additional parent class
 }
+\keyword{internal}

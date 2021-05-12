@@ -7,6 +7,7 @@
 #'
 #' @docType package
 #' @name riskmetric
+#' @keywords internal
 NULL
 
 
