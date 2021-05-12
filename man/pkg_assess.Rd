@@ -42,12 +42,10 @@ assessment applied.
 \item{\code{\link{assess_remote_checks}}}{Number of OS flavors that passed/warned/errored on R CMD check}
 \item{\code{\link{assess_has_news}}}{number of discovered NEWS files}
 \item{\code{\link{assess_last_30_bugs_status}}}{vector indicating whether BugReports status is closed}
-\item{\code{\link{assess_new_dependencies}}}{assess_new_dependencies}
 \item{\code{\link{assess_export_help}}}{exported objects have documentation}
 \item{\code{\link{assess_downloads_1yr}}}{number of downloads in the past year}
 \item{\code{\link{assess_has_website}}}{a vector of associated website urls}
 \item{\code{\link{assess_has_source_control}}}{a vector of associated source control urls}
-\item{\code{\link{assess_total_dependencies}}}{assess_total_dependencies}
 \item{\code{\link{assess_license}}}{software is released with an acceptable license}
 \item{\code{\link{assess_news_current}}}{NEWS file contains entry for current version number}
 \item{\code{\link{assess_covr_coverage}}}{Package unit test coverage}
