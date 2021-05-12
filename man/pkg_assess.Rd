@@ -55,7 +55,6 @@ assessment applied.
 \item{\code{\link{assess_has_maintainer}}}{a vector of associated maintainers}
 \item{\code{\link{assess_has_vignettes}}}{number of discovered vignettes files}
 \item{\code{\link{assess_has_bug_reports_url}}}{presence of a bug reports url in repository}
-\item{\code{\link{assess_reverse_dependencies}}}{assess_reverse_dependencies}
 }
 }
 

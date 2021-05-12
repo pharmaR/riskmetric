@@ -1,8 +1,3 @@
-assess_reverse_dependencies <- function(x, ...){
-  return(nrow(x$revdeps))
-
-}
-
 assess_total_dependencies <- function(x, ...){
   return(table(x$deps$type[!grepl("^R ", x$deps$package)]))
 }
