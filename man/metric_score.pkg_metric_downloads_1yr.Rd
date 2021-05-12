@@ -2,11 +2,7 @@
 % Please edit documentation in R/assess_downloads.R
 \name{metric_score.pkg_metric_downloads_1yr}
 \alias{metric_score.pkg_metric_downloads_1yr}
-\title{Defining an Assessment Scoring Function
-Score a package for the number of downloads in the past year
-regularized
-Convert the number of downloads \code{x} in the past year into a validation
-score [0,1] \deqn{ 1 - 150,000 / (x + 150,000) }}
+\title{Defining an Assessment Scoring Function}
 \usage{
 \method{metric_score}{pkg_metric_downloads_1yr}(x, ...)
 }
@@ -20,31 +16,18 @@ numeric value between \code{0} (low) and \code{1} (high download
   volume) converting the number of downloads.
 }
 \description{
+Score a package for the number of downloads in the past year regularized
+Convert the number of downloads \code{x} in the past year into a validation
+score [0,1] \deqn{ 1 - 150,000 / (x + 150,000) }
+}
+\details{
 The scoring function is a simplification of the classic logistic curve \deqn{
 1 / (1 + exp(-k(x-x[0])) } with a log scale for the number of downloads
 \eqn{x = log(x)}, sigmoid midpoint is 1000 downloads, ie. \eqn{x[0] =
 log(1,000)}, and logistic growth rate of \eqn{k = 0.5}.
-}
-\details{
+
 \deqn{ 1 - 1 / (1 + exp(log(x)-log(1.5e5))) = 1 - 150,000 / (x + 150,000) }
 }
 \examples{
 metric_score(assess_downloads_1yr(pkg_ref("riskmetric")))
 }
-\seealso{
-Other \code{metric_score.*} functions: 
-\code{\link{metric_score.pkg_metric_covr_coverage}()},
-\code{\link{metric_score.pkg_metric_export_help}()},
-\code{\link{metric_score.pkg_metric_has_bug_reports_url}()},
-\code{\link{metric_score.pkg_metric_has_maintainer}()},
-\code{\link{metric_score.pkg_metric_has_news}()},
-\code{\link{metric_score.pkg_metric_has_source_control}()},
-\code{\link{metric_score.pkg_metric_has_vignettes}()},
-\code{\link{metric_score.pkg_metric_has_website}()},
-\code{\link{metric_score.pkg_metric_last_30_bugs_status}()},
-\code{\link{metric_score.pkg_metric_license}()},
-\code{\link{metric_score.pkg_metric_news_current}()},
-\code{\link{metric_score.pkg_metric_r_cmd_check}()},
-\code{\link{metric_score.pkg_metric_remote_checks}()}
-}
-\concept{\code{metric_score.*} functions}

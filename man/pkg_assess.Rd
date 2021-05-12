@@ -57,21 +57,3 @@ assessment applied.
 }
 }
 
-\seealso{
-Other \code{assess_*} functions: 
-\code{\link{assess_covr_coverage}()},
-\code{\link{assess_downloads_1yr}()},
-\code{\link{assess_export_help}()},
-\code{\link{assess_has_bug_reports_url}()},
-\code{\link{assess_has_maintainer}()},
-\code{\link{assess_has_news}()},
-\code{\link{assess_has_source_control}()},
-\code{\link{assess_has_vignettes}()},
-\code{\link{assess_has_website}()},
-\code{\link{assess_last_30_bugs_status}()},
-\code{\link{assess_license}()},
-\code{\link{assess_news_current}()},
-\code{\link{assess_r_cmd_check}()},
-\code{\link{assess_remote_checks}()}
-}
-\concept{\code{assess_*} functions}

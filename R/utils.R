@@ -6,6 +6,8 @@
 #' A shorthand for a common comparison
 #'
 #' @name if_not_null_else
+#' @return an object same as \code{lhs} or \code{rhs}
+#' @keywords internal
 `%||%` <- function(lhs, rhs) if (!length(lhs) || is.null(lhs)) rhs else lhs
 
 
@@ -14,6 +16,8 @@
 #'
 #' used internally for
 #'   - tools:::.news_reader_default
+#' @return tools namespace
+#' @keywords internal
 .tools <- memoise::memoise(function() {
   getNamespace("tools")
 })
@@ -27,7 +31,7 @@
 #'
 #' @return logical vector indicating which base urls have a sub url of
 #'   \code{url}
-#'
+#' @keywords internal
 is_url_subpath_of <- function(url, urls) {
   grepl(paste0("(", paste0(gsub("/$", "", urls), collapse = "|"), ")"), url)
 }
@@ -42,7 +46,7 @@ is_url_subpath_of <- function(url, urls) {
 #' @param envir an environment in which the expression is to be evaluated
 #'
 #' @return the result of \code{expr}
-#'
+#' @keywords internal
 with_unclassed_to <- function(x, .class = 1:length(class(x)), expr,
     envir = parent.frame()) {
 
@@ -58,26 +62,27 @@ with_unclassed_to <- function(x, .class = 1:length(class(x)), expr,
 
 
 
-#' Find the S3 method that will be evaluated when an S3 generic is called by 
+#' Find the S3 method that will be evaluated when an S3 generic is called by
 #' an object of class \code{classes}
 #'
 #' @inheritParams utils::getS3method
 #' @param classes a character vector of classes used to search for the
 #' appropriate S3 method
-#' 
+#'
 #' @importFrom utils getS3method
-#' 
+#' @return a S3 method
+#' @keywords internal
 firstS3method <- function(f, classes, envir = parent.frame()) {
   s3methods <- lapply(
-    classes, 
-    utils::getS3method, 
-    f = f, 
-    envir = envir, 
+    classes,
+    utils::getS3method,
+    f = f,
+    envir = envir,
     optional = TRUE)
 
-  # [1][[1]] hacky way of getting first elem while coercing empty list to NULL 
+  # [1][[1]] hacky way of getting first elem while coercing empty list to NULL
   Filter(Negate(is.null), s3methods)[1][[1]]
-} 
+}
 
 
 
@@ -105,9 +110,10 @@ firstS3method <- function(f, classes, envir = parent.frame()) {
 #'   return(3L)
 #' }
 #'
-#' console_output <- riskmetric:::capture_expr_output(fn())
+#' capture_expr_output <- utils::getFromNamespace("capture_expr_output", "riskmetric")
+#' console_output <- capture_expr_output(fn())
 #'
-#' console_output
+#' # console_output
 #' # > fn()
 #' # [1] "a, b, c"
 #' # Warning in fn(): easy as
@@ -117,7 +123,8 @@ firstS3method <- function(f, classes, envir = parent.frame()) {
 #' # [1] 3
 #'
 #' @importFrom utils head tail
-#'
+#' @return an with_eval_recording object
+#' @keywords internal
 capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
     quoted = FALSE) {
 
@@ -156,7 +163,7 @@ capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
       } else {
         append_cnd(cnd, fn_env)
       }
-    }), 
+    }),
     error = function(e) {
       e
     }))
@@ -196,7 +203,7 @@ capture_expr_output <- function(expr, split = FALSE, env = parent.frame(),
     res$value,
     .recording = list(
       expr = if (!quoted) expr_quote else expr,
-      attributes = attributes(res$value), 
+      attributes = attributes(res$value),
       visible = res$visible,
       traceback = cnds_err_traceback,
       output = outputs[nzchar(outputs)]),
@@ -226,9 +233,9 @@ is_error <- function(expr_output) {
 #'   would like to watch it play out as it was formatted.
 #'
 #' @export
-#'
-#'
-print.with_eval_recording <- function(x, playback = FALSE, cr = TRUE, ..., 
+#' @return a print message
+#' @keywords internal
+print.with_eval_recording <- function(x, playback = FALSE, cr = TRUE, ...,
     sleep = 0) {
 
   # extract expr execution recording
@@ -278,9 +285,9 @@ print.with_eval_recording <- function(x, playback = FALSE, cr = TRUE, ...,
     }
     if (sleep > 0L) Sys.sleep(sleep)
   }
-  if (!is.null(rec$traceback) && length(rec$traceback)) 
+  if (!is.null(rec$traceback) && length(rec$traceback))
     cat(str_traceback, "\n", sep = "")
-  else if (rec$visible) 
+  else if (rec$visible)
     val
 }
 
@@ -309,8 +316,9 @@ print.with_eval_recording <- function(x, playback = FALSE, cr = TRUE, ...,
 #'   message = "\\d",
 #'   custom_warning = "as$",
 #'   warning = "\\w{2}\\s")
-#'
-suppressMatchingConditions <- function(expr, ..., .opts = list(), 
+#' @return a message printed on console
+#' @keywords internal
+suppressMatchingConditions <- function(expr, ..., .opts = list(),
     .envir = parent.frame()) {
 
   optioned_grepl <- function(pattern, x)
@@ -323,25 +331,26 @@ suppressMatchingConditions <- function(expr, ..., .opts = list(),
     }
   }
 
-  do.call(withCallingHandlers, 
+  do.call(withCallingHandlers,
     append(list(expr), lapply(list(...), generate_cond_handler)))
 }
 
 
 
 #' Evaluate an expression in the context of a pkg_ref
-#' 
+#'
 #' \code{pkg_ref} objects are environments and can be passed to \code{with}
 #' in much the same way. This specialized function makes sure that any fields
 #' within the \code{pkg_ref} have been appropriately evaluated before trying
 #' to execute the expression.
-#' 
-#' @inheritParams base::with
 #'
+#' @inheritParams base::with
+#' @return the value of the evaluated expr.
 #' @export
+#' @keywords internal
 with.pkg_ref <- function(data, expr, ...) {
   expr <- substitute(expr)
-  for (n in intersect(names(data), all.names(expr))) data[[n]] 
+  for (n in intersect(names(data), all.names(expr))) data[[n]]
   eval(expr, as.list(data), enclos = parent.frame())
 }
 

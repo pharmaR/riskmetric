@@ -11,6 +11,9 @@ metric_score(x, ...)
 
 \item{...}{Additional arguments unused}
 }
+\value{
+score of a package risk metric
+}
 \description{
 Convert a package metric into a numeric value between 0 to 1
 }

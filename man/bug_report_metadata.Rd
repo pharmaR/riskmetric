@@ -13,6 +13,10 @@ return object from making a request to a repository's issues API}
 \item{x}{a \code{pkg_ref} object where a \code{bug_reports_host} field can be
 found}
 }
+\value{
+a \code{bug_reports_host} field
+}
 \description{
 Helper for structuring bug reports
 }
+\keyword{internal}

@@ -22,3 +22,4 @@ the result of \code{expr}
 evaluate an expression with a  pkg_ref object reclassed as a bare environment
 object, used to sidestep pkg_ref assignment guardrails
 }
+\keyword{internal}

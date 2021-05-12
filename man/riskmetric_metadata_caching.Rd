@@ -17,6 +17,8 @@ pkg_ref_cache(x, name, ..., .class = as.character(name))
 a character value}
 }
 \value{
+a \code{pkg_ref} field
+
 a value to assign to the new field in the package reference object
   environment
 }
@@ -106,7 +108,6 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.description}()},
 \code{\link{pkg_ref_cache.downloads}()},
 \code{\link{pkg_ref_cache.expression_coverage}()},
-\code{\link{pkg_ref_cache.function_coverage}()},
 \code{\link{pkg_ref_cache.help_aliases}()},
 \code{\link{pkg_ref_cache.help}()},
 \code{\link{pkg_ref_cache.license}()},
@@ -126,3 +127,4 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.website_urls}()}
 }
 \concept{package reference cache}
+\keyword{internal}

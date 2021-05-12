@@ -11,6 +11,9 @@
 
 \item{...}{additional arguments used for computing cached values}
 }
+\value{
+a \code{pkg_ref} object
+}
 \description{
 Cache a list of available help files as LaTeX objects
 }
@@ -23,7 +26,6 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.covr_coverage}()},
 \code{\link{pkg_ref_cache.description}()},
 \code{\link{pkg_ref_cache.expression_coverage}()},
-\code{\link{pkg_ref_cache.function_coverage}()},
 \code{\link{pkg_ref_cache.help_aliases}()},
 \code{\link{pkg_ref_cache.help}()},
 \code{\link{pkg_ref_cache.license}()},
@@ -44,3 +46,4 @@ Other package reference cache:
 \code{\link{pkg_ref_cache}()}
 }
 \concept{package reference cache}
+\keyword{internal}

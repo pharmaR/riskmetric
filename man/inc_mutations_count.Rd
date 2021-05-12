@@ -9,6 +9,10 @@ inc_mutations_count(x)
 \arguments{
 \item{x}{pkg_ref object to increment mutation counter for}
 }
+\value{
+a pkg_ref object
+}
 \description{
 increment the number of allowed mutations
 }
+\keyword{internal}

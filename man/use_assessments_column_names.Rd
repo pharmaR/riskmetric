@@ -16,3 +16,4 @@ a vector of friendly column names if available
 \description{
 reassign assignment list names with column_name attribute if available
 }
+\keyword{internal}

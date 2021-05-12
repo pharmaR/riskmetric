@@ -5,6 +5,8 @@
 #' @param subclass an optional subclass of \code{pkg_metric_condition} to
 #'   include
 #'
+#' @return an object after wrap \code{pkg_metric_condition} class.
+#' @keywords internal
 as_pkg_metric_condition <- function(x, ..., subclass = c()) {
   dots <- list(...)
   if (length(names(dots)) != length(dots))

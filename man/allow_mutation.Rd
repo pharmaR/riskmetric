@@ -21,3 +21,4 @@ the result of \code{expr}
 a wrapper to assert that a pkg_ref has been permitted to do an additional
 mutation, used to handle recursive initialization of cached fields
 }
+\keyword{internal}

@@ -23,11 +23,12 @@ attributes(assess_license)$label <-
 #'
 #' @eval roxygen_score_family("license")
 #'
+#' @return score of metric license
 #' @export
 metric_score.pkg_metric_license <- function(x, ...) {
   # defering scoring of licenses until we have a bit more consensus or guidance
   NA_real_
 }
 
-attributes(metric_score.pkg_metric_license)$label <- 
+attributes(metric_score.pkg_metric_license)$label <-
   "A binary indicator of whether the package ships with an acceptable license."

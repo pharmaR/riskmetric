@@ -35,3 +35,4 @@ Helper for creating a roxygen header from template for assess_* functions
 }
 
 }
+\keyword{internal}
