@@ -45,11 +45,15 @@
 #' }
 #' }
 #'
-#' @inherit as_pkg_ref params return
+#' @section Package Cohorts:
+#'
+#' *Experimental!*
+#' Package cohorts are structures to determine the risk of a set of packages.
+#' `pkg_library()` can be called to create a object containing the pkg_ref
+#' objects of all packages in a system library.
 #'
 #'
-#'
-#' @family pkg_ref
+#' @rdname pkg_ref
 #' @export
 #'
 #' @examples
@@ -95,6 +99,71 @@ new_pkg_ref <- function(name, version = NA_character_, source, ...) {
 }
 
 
+#' @rdname pkg_ref
+#'
+#' @param lib.loc The path to the R library directory of the installed package.
+pkg_install <- function(x, lib.loc = NULL) {
+  if(verify_pkg_source(x, "pkg_install") == "pkg_missing") return(pkg_missing(x))
+
+  path <- find.package(x, lib.loc = lib.loc)
+  version <- utils::packageVersion(x, lib.loc = dirname(path))
+
+  new_pkg_ref(x,
+              version = version,
+              path = path,
+              source = "pkg_install")
+}
+
+#' @rdname pkg_ref
+pkg_source <- function(x) {
+  desc <- read.dcf(file.path(x, "DESCRIPTION"))
+  name <- unname(desc[,"Package"])
+
+  new_pkg_ref(name,
+              version = package_version(desc[,"Version"][[1]]),
+              path = normalizePath(x),
+              source = "pkg_source")
+}
+
+#' @rdname pkg_ref
+#'
+#' @param repos URL of CRAN repository to pull package metadata.
+pkg_cran <- function(x, repos = getOption("repos", "https://cran.rstudio.com")) {
+  ap <- memoise_available_packages(repos = repos)
+  info <- ap[ap[,"Package"] == x,,drop = FALSE]
+
+  new_pkg_ref(x,
+              version = info[,"Version"],
+              repo = info[,"Repository"],
+              source = c("pkg_cran_remote"))
+}
+
+#' @rdname pkg_ref
+pkg_bioc <- function(x) {
+  bp <- memoise_bioc_available()
+  info <- bp[bp[,"Package"] == x,,drop = FALSE]
+
+  new_pkg_ref(x,
+              version = info[,"Version"],
+              repo = "https://bioconductor.org/packages/release/bioc",
+              source = c("pkg_bioc_remote"))
+}
+
+#' @rdname pkg_ref
+pkg_missing <- function(x) {
+  new_pkg_ref(x,
+              source = c("pkg_missing"))
+}
+
+#' @rdname pkg_ref
+pkg_library <- function(lib.loc) {
+  # Create pkg_cohort object
+  cohort <- pkg_cohort()
+  for(pkg in list.files(lib.loc, recursive = FALSE, full.names = FALSE)) {
+    cohort[[length(cohort)+1]] <- pkg_install(pkg, lib.loc = lib.loc)
+  }
+  cohort
+}
 
 #' Convert into a package object
 #'
@@ -110,7 +179,7 @@ new_pkg_ref <- function(name, version = NA_character_, source, ...) {
 #'   considered analogous to a \code{list}. See 'Details' for further
 #'   information about \code{pkg_ref} subclasses.
 #'
-#' @family pkg_ref
+#' @rdname pkg_ref
 #'
 #' @importFrom vctrs new_list_of
 #' @export
@@ -172,69 +241,7 @@ as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rst
          pkg_cran_remote = pkg_cran(x, repos = repos),
          pkg_bioc_remote = pkg_bioc(x),
          pkg_missing = pkg_missing(x)
-         )
-}
-
-#' @family pkg_ref
-pkg_install <- function(x, lib.loc = NULL) {
-  if(verify_pkg_source(x, "pkg_install") == "pkg_missing") return(pkg_missing(x))
-
-  path <- find.package(x, lib.loc = lib.loc)
-  version <- utils::packageVersion(x, lib.loc = dirname(path))
-
-  new_pkg_ref(x,
-              version = version,
-              path = path,
-              source = "pkg_install")
-}
-
-#' @family pkg_ref
-pkg_source <- function(x) {
-  desc <- read.dcf(file.path(x, "DESCRIPTION"))
-  name <- unname(desc[,"Package"])
-
-  new_pkg_ref(name,
-              version = package_version(desc[,"Version"][[1]]),
-              path = normalizePath(x),
-              source = "pkg_source")
-}
-
-#' @family pkg_ref
-pkg_cran <- function(x, repos = getOption("repos", "https://cran.rstudio.com")) {
-  ap <- memoise_available_packages(repos = repos)
-  info <- ap[ap[,"Package"] == x,,drop = FALSE]
-
-  new_pkg_ref(x,
-              version = info[,"Version"],
-              repo = info[,"Repository"],
-              source = c("pkg_cran_remote"))
-}
-
-#' @family pkg_ref
-pkg_bioc <- function(x) {
-  bp <- memoise_bioc_available()
-  info <- bp[bp[,"Package"] == x,,drop = FALSE]
-
-  new_pkg_ref(x,
-              version = info[,"Version"],
-              repo = "https://bioconductor.org/packages/release/bioc",
-              source = c("pkg_bioc_remote"))
-}
-
-#' @family pkg_ref
-pkg_missing <- function(x) {
-  new_pkg_ref(x,
-              source = c("pkg_missing"))
-}
-
-#' @family pkg_ref
-pkg_library <- function(lib.loc) {
-  # Create pkg_cohort object
-  cohort <- pkg_cohort()
-  for(pkg in list.files(lib.loc, recursive = FALSE, full.names = FALSE)) {
-    cohort[length(cohort)+1] <- pkg_install(dir, lib.loc = lib.loc)
-  }
-  cohort
+  )
 }
 
 #' Determine the intended source of a new package
