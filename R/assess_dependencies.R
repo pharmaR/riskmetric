@@ -3,39 +3,52 @@
 #' Only Depends, Imports and LinkingTo dependencies are assessed because
 #' they are required
 #'
-#' @param x pkg_ref object
+#' @details The more packages a package relies on the more chances for errors exist.
+#'
+#' @eval roxygen_assess_family(
+#'   "dependencies",
+#'   "a dataframe of package names and they type of dependency the package being assess has to them")
+#'
 #'
 #' @export
-
 assess_dependencies <- function(x, ...){
   UseMethod("assess_dependencies")
 }
 
-attributes(assess_covr_coverage)$column_name <- "dependencies"
-attributes(assess_covr_coverage)$label <- "Package dependency footprint"
+attributes(assess_dependencies)$column_name <- "dependencies"
+attributes(assess_dependencies)$label <- "Package dependency footprint"
 
+#' @export
+assess_dependencies.default <- function(x, ...){
+  as_pkg_metric_na(pkg_metric(class = "pkg_metric_dependencies"))
+}
 
+#' @export
 assess_dependencies.pkg_source <- function(x, ...){
   pkg_metric_eval(class = "pkg_metric_dependencies", {
     parse_dcf_dependencies(x$path)
     })
 }
 
+#' @export
 assess_dependencies.pkg_install <- function(x, ...){
   pkg_metric_eval(class = "pkg_metric_dependencies", {
     parse_dcf_dependencies(x$path)
   })
 }
 
+#' @export
 assess_dependencies.pkg_cran_remote <- function(x, ...){
   pkg_metric_eval(class = "pkg_metric_dependencies", {
-      get_package_dependencies(x$name, x$repo)
+      get_package_dependencies(x$name, repo = getOption("repos")[["CRAN"]])
   })
 }
 
+#' @importFrom BiocManager repositories
+#' @export
 assess_dependencies.pkg_bioc_remote <- function(x, ...){
   pkg_metric_eval(class = "pkg_metric_dependencies", {
-    get_package_dependencies(x$name, x$repo)
+    get_package_dependencies(x$name, BiocManager::repositories()[1])
   })
 }
 
@@ -51,7 +64,7 @@ metric_score.pkg_metric_dependencies <- function(x, ...) {
   NROW(x)
 }
 
-attributes(metric_score.pkg_metric_covr_coverage)$label <-
+attributes(metric_score.pkg_metric_dependencies)$label <-
   "The number of package dependencies"
 
 #Helper functions to get extract dependencies
@@ -65,7 +78,7 @@ attributes(metric_score.pkg_metric_covr_coverage)$label <-
 #' @return Returns a data frame with two columns 1) Package names, 2) type of dependency (LinkingTo, Imports, Depends)
 #'
 get_package_dependencies <- function(name, repo){
-  ap <- available.packages(contriburl = repo)
+  ap <- available.packages(repo = repo)
   deps <- ap[rownames(ap)==name, c("LinkingTo","Imports","Depends")]
   deps <- deps[!is.na(deps)]
   deps <- sapply(strsplit(deps, ","), trimws)
@@ -82,7 +95,7 @@ get_package_dependencies <- function(name, repo){
 #'
 parse_dcf_dependencies <- function(path){
   dcf <- read.dcf(file.path(path, "DESCRIPTION"), all=TRUE)
-  dcf <- as.data.frame(dcf[, colnames(dcf) %in% c("LinkingTo","Imports","Depends")])
+  dcf <- dcf[colnames(dcf) %in% c("LinkingTo","Imports", "Depends")]
   dcf <- sapply(dcf, strsplit, strsplit, split=",")
   dcf <- lapply(dcf, trimws)
   deps <- data.frame(package=unlist(dcf),
