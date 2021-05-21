@@ -1,8 +1,8 @@
 #' Assess a package's results from running R CMD check
 #'
 #' @eval roxygen_assess_family(
-#'   "r_cmd_check",
-#'   "Tally of errors, warnings and notes from running R CMD check locally",
+#'   "exported_namespace",
+#'   "List of functions and objects exported by a package, excluding S3methods",
 #'   dontrun = TRUE)
 #'
 #' @importFrom pkgload parse_ns_file
@@ -18,20 +18,22 @@ attributes(assess_exported_namespace)$label <- "Objects exported by package"
 assess_exported_namespace.default <- function(x, ...) {
   as_pkg_metric_na(
     pkg_metric(class = "pkg_metric_export_help"),
-    message = "Cannot export namesapce from a ")
+    message = sprintf("Cannot export namesapce from a %s", x$source))
 }
 
+#' @export
 assess_exported_namespace.pkg_install <- function(x, ...) {
   pkg_metric_eval(class = "pkg_metric_exported_namespace", {
     # ignore S3-dispatched methods
-    return(getNamespaceExports(x))
+    return(getNamespaceExports(x$name))
   })
 }
 
+#' @export
 assess_exported_namespace.pkg_source <- function(x, ...) {
   pkg_metric_eval(class = "pkg_metric_exported_namespace", {
     # ignore S3-dispatched methods
-    return(pkgload::parse_ns_file()$exports)
+    return(pkgload::parse_ns_file(x$path)$exports)
   })
 }
 

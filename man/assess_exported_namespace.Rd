@@ -12,16 +12,16 @@ assess_exported_namespace(x, ...)
 \item{...}{additional arguments passed on to S3 methods, rarely used}
 }
 \value{
-a \code{pkg_metric} containing Tally of errors, warnings and notes from running R CMD check locally
+a \code{pkg_metric} containing List of functions and objects exported by a package, excluding S3methods
 }
 \description{
 Assess a package's results from running R CMD check
 }
 \examples{
 \dontrun{
-assess_r_cmd_check(pkg_ref("riskmetric"))
+assess_exported_namespace(pkg_ref("riskmetric"))
 }
 }
 \seealso{
-\code{\link{metric_score.pkg_metric_r_cmd_check}}
+\code{\link{metric_score.pkg_metric_exported_namespace}}
 }

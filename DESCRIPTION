@@ -35,6 +35,7 @@ Imports:
     vctrs,
     pillar,
     tibble,
+    pkgload,
     devtools
 Suggests:
     knitr,
