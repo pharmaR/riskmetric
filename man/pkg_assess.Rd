@@ -41,6 +41,7 @@ assessment applied.
 \describe{
 \item{\code{\link{assess_dependencies}}}{Package dependency footprint}
 \item{\code{\link{assess_remote_checks}}}{Number of OS flavors that passed/warned/errored on R CMD check}
+\item{\code{\link{assess_remote_checks}}}{List of reverse dependencies a package has}
 \item{\code{\link{assess_has_news}}}{number of discovered NEWS files}
 \item{\code{\link{assess_last_30_bugs_status}}}{vector indicating whether BugReports status is closed}
 \item{\code{\link{assess_export_help}}}{exported objects have documentation}
