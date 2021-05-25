@@ -51,6 +51,7 @@ assessment applied.
 \item{\code{\link{assess_news_current}}}{NEWS file contains entry for current version number}
 \item{\code{\link{assess_covr_coverage}}}{Package unit test coverage}
 \item{\code{\link{assess_r_cmd_check}}}{Package check results}
+\item{\code{\link{assess_exported_namespace}}}{Objects exported by package}
 \item{\code{\link{assess_has_maintainer}}}{a vector of associated maintainers}
 \item{\code{\link{assess_has_vignettes}}}{number of discovered vignettes files}
 \item{\code{\link{assess_has_bug_reports_url}}}{presence of a bug reports url in repository}
