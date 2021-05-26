@@ -88,7 +88,7 @@
       <h1 data-toc-skip>Extending riskmetric</h1>
                         <h4 class="author">R Validation Hub</h4>
             
-            <h4 class="date">2021-04-28</h4>
+            <h4 class="date">2021-05-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaR/riskmetric/blob/master/vignettes/extending-riskmetric.Rmd"><code>vignettes/extending-riskmetric.Rmd</code></a></small>
       <div class="hidden name"><code>extending-riskmetric.Rmd</code></div>
@@ -173,7 +173,7 @@
 <span class="va">package</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="st">"riskmetric"</span><span class="op">)</span></code></pre></div>
 <pre><code>#&gt; &lt;pkg_install, pkg_ref&gt; riskmetric v0.1.0
 #&gt; $path
-#&gt;   [1] "/home/user/username/R/4.0/Resources/library/riskmetric"
+#&gt;   [1] "/home/user/username/R/4.1/Resources/library/riskmetric"
 #&gt; $source
 #&gt;   [1] "pkg_install"
 #&gt; $version
@@ -245,8 +245,8 @@
 <span class="co">#&gt;   package    version pkg_ref             news_current       has_vignettes     </span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;     &lt;list&lt;pkg_metric&gt;&gt; &lt;list&lt;pkg_metric&gt;&gt;</span>
 <span class="co">#&gt; 1 riskmetric 0.1.0   riskmetric&lt;install&gt; TRUE               0                 </span>
-<span class="co">#&gt; 2 utils      4.0.5   utils&lt;install&gt;      &lt;lgl [0]&gt;          1                 </span>
-<span class="co">#&gt; 3 tools      4.0.5   tools&lt;install&gt;      &lt;lgl [0]&gt;          0                 </span>
+<span class="co">#&gt; 2 utils      4.1.0   utils&lt;install&gt;      &lt;lgl [0]&gt;          1                 </span>
+<span class="co">#&gt; 3 tools      4.1.0   tools&lt;install&gt;      &lt;lgl [0]&gt;          0                 </span>
 <span class="co">#&gt; # … with 13 more variables: has_bug_reports_url &lt;list&lt;pkg_metric&gt;&gt;,</span>
 <span class="co">#&gt; #   bugs_status &lt;list&lt;pkg_metric&gt;&gt;, license &lt;list&lt;pkg_metric&gt;&gt;,</span>
 <span class="co">#&gt; #   export_help &lt;list&lt;pkg_metric&gt;&gt;, downloads_1yr &lt;list&lt;pkg_metric&gt;&gt;,</span>
@@ -262,15 +262,16 @@
   <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 19</span>
 <span class="co">#&gt;   package    version pkg_ref             pkg_score news_current has_vignettes</span>
-<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 riskmetric 0.1.0   riskmetric&lt;install&gt;     0.467            1             0</span>
-<span class="co">#&gt; 2 utils      4.0.5   utils&lt;install&gt;          0.800            0             1</span>
-<span class="co">#&gt; 3 tools      4.0.5   tools&lt;install&gt;          0.867            0             0</span>
-<span class="co">#&gt; # … with 13 more variables: has_bug_reports_url &lt;dbl&gt;, bugs_status &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   license &lt;dbl&gt;, export_help &lt;dbl&gt;, downloads_1yr &lt;dbl&gt;, has_website &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   r_cmd_check &lt;dbl&gt;, remote_checks &lt;dbl&gt;, has_maintainer &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   has_news &lt;dbl&gt;, has_source_control &lt;dbl&gt;, covr_coverage &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   name_first_letter &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
+<span class="co">#&gt; 1 riskmetric 0.1.0   riskmetric&lt;install&gt;     0.427 1            0            </span>
+<span class="co">#&gt; 2 utils      4.1.0   utils&lt;install&gt;          0.800 0            1            </span>
+<span class="co">#&gt; 3 tools      4.1.0   tools&lt;install&gt;          0.867 0            0            </span>
+<span class="co">#&gt; # … with 13 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   bugs_status &lt;pkg_scor&gt;, license &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;, r_cmd_check &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   remote_checks &lt;pkg_scor&gt;, has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   name_first_letter &lt;pkg_scor&gt;</span></code></pre></div>
 <p>and we can define our own summarizing weights by passing a named list to <code>pkg_score</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -279,15 +280,16 @@
   <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span>weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>has_news <span class="op">=</span> <span class="fl">1</span>, name_first_letter <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 19</span>
 <span class="co">#&gt;   package    version pkg_ref             pkg_score news_current has_vignettes</span>
-<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 riskmetric 0.1.0   riskmetric&lt;install&gt;         0            1             0</span>
-<span class="co">#&gt; 2 utils      4.0.5   utils&lt;install&gt;              1            0             1</span>
-<span class="co">#&gt; 3 tools      4.0.5   tools&lt;install&gt;              1            0             0</span>
-<span class="co">#&gt; # … with 13 more variables: has_bug_reports_url &lt;dbl&gt;, bugs_status &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   license &lt;dbl&gt;, export_help &lt;dbl&gt;, downloads_1yr &lt;dbl&gt;, has_website &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   r_cmd_check &lt;dbl&gt;, remote_checks &lt;dbl&gt;, has_maintainer &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   has_news &lt;dbl&gt;, has_source_control &lt;dbl&gt;, covr_coverage &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   name_first_letter &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;list&lt;pkg_ref&gt;&gt;         &lt;dbl&gt; &lt;pkg_scor&gt;   &lt;pkg_scor&gt;   </span>
+<span class="co">#&gt; 1 riskmetric 0.1.0   riskmetric&lt;install&gt;         0 1            0            </span>
+<span class="co">#&gt; 2 utils      4.1.0   utils&lt;install&gt;              1 0            1            </span>
+<span class="co">#&gt; 3 tools      4.1.0   tools&lt;install&gt;              1 0            0            </span>
+<span class="co">#&gt; # … with 13 more variables: has_bug_reports_url &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   bugs_status &lt;pkg_scor&gt;, license &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   downloads_1yr &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;, r_cmd_check &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   remote_checks &lt;pkg_scor&gt;, has_maintainer &lt;pkg_scor&gt;, has_news &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   has_source_control &lt;pkg_scor&gt;, covr_coverage &lt;pkg_scor&gt;,</span>
+<span class="co">#&gt; #   name_first_letter &lt;pkg_scor&gt;</span></code></pre></div>
 <p>Of course you can do any downstream processing of the resulting <code>tibble</code> if you’d like to further fine-tune your summarization using a nonlinear function.</p>
 </div>
 <div id="how-you-can-help" class="section level1">
