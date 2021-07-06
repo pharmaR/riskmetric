@@ -15,14 +15,14 @@ withr::with_libpaths(templib, {
     quiet = TRUE,
     reload = FALSE
   )
-})
 
-# a representative "good" quality package from an installed package
-pkg_ref_install_good <- pkg_ref("pkgsourcegood", lib.loc = templib)
-assess_install_good <- pkg_assess(pkg_ref_install_good)
-score_install_good <- pkg_score(
-  assess_install_good,
-  error_handler = score_error_zero)
+  # a representative "good" quality package from an installed package
+  pkg_ref_install_good <- pkg_ref("pkgsourcegood")
+  assess_install_good <- pkg_assess(pkg_ref_install_good)
+  score_install_good <- pkg_score(
+    assess_install_good,
+    error_handler = score_error_zero)
+})
 
 # a representative "good" quality package from source code
 pkg_ref_source_good <- pkg_ref(file.path(test_path(), "test_packages", "pkgsourcegood"))

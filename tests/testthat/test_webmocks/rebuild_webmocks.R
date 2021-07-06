@@ -16,6 +16,10 @@ download.file(
   "./tests/testthat/test_webmocks/data/cran_package.html")
 
 download.file(
+  sprintf("%s/web/checks/check_results_glmnet.html", repo),
+  "./tests/testthat/test_webmocks/data/cran_package_checks.html")
+
+download.file(
   sprintf("%s/web/packages/glmnet/news/news.html", repo),
   "./tests/testthat/test_webmocks/data/cran_news.html")
 
