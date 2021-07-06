@@ -84,18 +84,62 @@ new_pkg_ref <- function(name, version = NA_character_, source, ...) {
 
   source <- match.arg(
     source,
-    c("pkg_bioc_remote", "pkg_cran_remote", "pkg_remote", "pkg_install", "pkg_source", "pkg_missing"),
+    c("pkg_git_remote", "pkg_bioc_remote", "pkg_cran_remote", "pkg_remote", "pkg_install", "pkg_source", "pkg_missing"),
     several.ok = TRUE)
+
+  source <- get_pkg_ref_classes(source)
 
   pkg_data <- as.environment(append(list(
     name = name,
     version = version,
-    source = source
+    source = source[[1L]]
   ), dots))
 
   structure(
     pkg_data,
-    class = c(source, "pkg_ref", class(pkg_data)))
+    class = c(source, class(pkg_data)))
+}
+
+
+#' The `pkg_ref` subclass hierarchy, used for pkg_ref object creation with a
+#' specified subclass
+#'
+pkg_ref_class_hierarchy <- list(
+  "pkg_ref" = list(
+    "pkg_missing",
+    "pkg_source",
+    "pkg_install",
+    "pkg_remote" = list(
+      "pkg_cran_remote",
+      "pkg_bioc_remote",
+      "pkg_git_remote"
+    )
+  )
+)
+
+
+#' Walk the pkg_ref class hierarchy to match a single subclass to a class path
+#'
+#' @param x (`character(1L)`) A subclass, among those known in pkg_ref subclasses
+#' @param classes (`list`) A class hierarchy, described using a named list.
+#'   Defaults to `pkg_ref_class_hierarchy`.
+#'
+#' @return A `character(n)` class path from `pkg_ref` down to the specified
+#'   subclass, or `FALSE` if no path is found.
+#'
+get_pkg_ref_classes <- function(x, classes = pkg_ref_class_hierarchy) {
+  if (x %in% names(classes) || x %in% classes) 
+    return(x)
+
+  if (!is.list(classes))
+    return(FALSE)
+
+  for (i in seq_along(classes)) {
+    subclasses <- get_pkg_ref_classes(x, classes[[i]])
+    if (is.character(subclasses)) return(c(subclasses, names(classes[i])))
+  }
+
+  FALSE  
 }
 
 

@@ -5,15 +5,35 @@
 # and explicitly return zeros whenever errors are captured throughout the
 # evaluation process. Errors are better tested in metric-specific unit tests.
 
+# create a temporary library for installed test packages
+templib <- tempfile("riskmetric_test_lib_")
+dir.create(templib)
+withr::defer(unlink(templib, recursive = TRUE), teardown_env())
+
+withr::with_libpaths(templib, {
+  devtools::install(
+    file.path(test_path(), "test_packages", "pkgsourcegood"),
+    quiet = TRUE,
+    reload = FALSE
+  )
+})
+
+# a representative "good" quality package from an installed package
+pkg_ref_install_good <- pkg_ref("pkgsourcegood", lib.loc = templib)
+assess_install_good <- pkg_assess(pkg_ref_install_good)
+score_install_good <- pkg_score(
+  assess_install_good,
+  error_handler = score_error_zero)
+
 # a representative "good" quality package from source code
-pkg_ref_source_good <- pkg_ref("./test_packages/pkgsourcegood")
+pkg_ref_source_good <- pkg_ref(file.path(test_path(), "test_packages", "pkgsourcegood"))
 assess_source_good <- pkg_assess(pkg_ref_source_good)
 score_source_good <- pkg_score(
   assess_source_good,
   error_handler = score_error_zero)
 
 # a representative "bad" quality package from source code
-pkg_ref_source_bad <- pkg_ref("./test_packages/pkgsourcebad")
+pkg_ref_source_bad <- pkg_ref(file.path(test_path(), "test_packages", "pkgsourcebad"))
 assess_source_bad <- pkg_assess(pkg_ref_source_bad)
 score_source_bad <- pkg_score(
   assess_source_bad,
