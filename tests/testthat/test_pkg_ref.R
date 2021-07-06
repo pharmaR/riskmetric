@@ -16,7 +16,7 @@ test_that("pkg_ref infers source when not explicitly provided", {
   expect_equal(ref4$source, "pkg_source")
 
   # pkg_install
-  ref1 <- pkg_ref("testthat")
+  ref1 <- pkg_ref_install_good
   expect_s3_class(ref1, c("pkg_install", "pkg_ref", "environment"), exact = TRUE)
   expect_equal(ref1$source, "pkg_install")
 
@@ -49,11 +49,6 @@ test_that("pkg_ref can accept an argument of 'source'", {
   expect_s3_class(ref7[[1L]], c("pkg_install", "pkg_ref", "environment"), exact = TRUE)
   expect_s3_class(ref7[[2L]], c("pkg_cran_remote", "pkg_remote", "pkg_ref", "environment"), exact = TRUE)
   expect_equal(sapply(ref7, `[[`, "source"), c("pkg_install", "pkg_cran_remote"))
-
-  # pkg_install
-  ref8 <- pkg_ref_install_good
-  expect_s3_class(ref8, c("pkg_install", "pkg_ref", "environment"), exact = TRUE)
-  expect_equal(ref8$source, "pkg_install")
 })
 
 test_that("pkg_ref throws nice warnings when you give bad 'source' arguments",{
