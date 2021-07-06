@@ -8,7 +8,6 @@
 # create a temporary library for installed test packages
 templib <- tempfile("riskmetric_test_lib_")
 dir.create(templib)
-withr::defer(unlink(templib, recursive = TRUE), teardown_env())
 
 withr::with_libpaths(templib, {
   devtools::install(
@@ -73,4 +72,6 @@ assess_pkg_missing <- pkg_assess(pkg_ref_missing)
 score_pkg_missing <- pkg_score(
   assess_pkg_missing,
   error_handler = score_error_zero)
+
+withr::defer(unlink(templib, recursive = TRUE), teardown_env())
 

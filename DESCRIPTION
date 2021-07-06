@@ -39,8 +39,9 @@ Imports:
 Suggests:
     knitr,
     rmarkdown,
-    dplyr,
+    withr,
     magrittr,
+    dplyr,
     testthat, 
     webmockr
 RoxygenNote: 7.1.1
