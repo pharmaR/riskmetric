@@ -1,3 +1,14 @@
+test_that("get_pkg_ref_classes appropriately captures full class chain", {
+  abstract_hierarchy <- list("a" = list("b", "c" = list("d")))
+  expect_equal(get_pkg_ref_classes("b", abstract_hierarchy), c("b", "a"))
+  expect_equal(get_pkg_ref_classes("d", abstract_hierarchy), c("d", "c", "a"))
+
+  expect_equal(
+    get_pkg_ref_classes("pkg_cran_remote"), 
+    c("pkg_cran_remote", "pkg_remote", "pkg_ref")
+  )
+})
+
 test_that("pkg_ref infers source when not explicitly provided", {
   # pkg_source
   ref4 <- pkg_ref_source_bad
