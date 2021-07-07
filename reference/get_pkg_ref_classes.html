@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cache appropriate urls for NEWS files — pkg_ref_cache.news_urls • riskmetric</title>
+<title>Walk the pkg_ref class hierarchy to match a single subclass to a class path — get_pkg_ref_classes • riskmetric</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Cache appropriate urls for NEWS files — pkg_ref_cache.news_urls" />
-<meta property="og:description" content="Cache appropriate urls for NEWS files" />
+<meta property="og:title" content="Walk the pkg_ref class hierarchy to match a single subclass to a class path — get_pkg_ref_classes" />
+<meta property="og:description" content="Walk the pkg_ref class hierarchy to match a single subclass to a class path" />
 
 
 
@@ -126,64 +126,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cache appropriate urls for NEWS files</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_ref_cache_NEWS_urls.R'><code>R/pkg_ref_cache_NEWS_urls.R</code></a></small>
-    <div class="hidden name"><code>pkg_ref_cache.news_urls.Rd</code></div>
+    <h1>Walk the pkg_ref class hierarchy to match a single subclass to a class path</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_ref_class.R'><code>R/pkg_ref_class.R</code></a></small>
+    <div class="hidden name"><code>get_pkg_ref_classes.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Cache appropriate urls for NEWS files</p>
+    <p>Walk the pkg_ref class hierarchy to match a single subclass to a class path</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pkg_ref_cache.news_urls</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>name</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_pkg_ref_classes</span><span class='op'>(</span><span class='va'>x</span>, classes <span class='op'>=</span> <span class='va'>pkg_ref_class_hierarchy</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a package reference object</p></td>
+      <td><p>(`character(1L)`) A subclass, among those known in pkg_ref subclasses</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>the name of the field that needs to be cached</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional arguments used for computing cached values</p></td>
+      <th>classes</th>
+      <td><p>(`list`) A class hierarchy, described using a named list.
+Defaults to `pkg_ref_class_hierarchy`.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a <code>pkg_ref</code> object</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other package reference cache: 
-<code><a href='pkg_ref_cache.archive_release_dates.html'>pkg_ref_cache.archive_release_dates</a>()</code>,
-<code><a href='pkg_ref_cache.bug_reports_host.html'>pkg_ref_cache.bug_reports_host</a>()</code>,
-<code><a href='pkg_ref_cache.bug_reports_url.html'>pkg_ref_cache.bug_reports_url</a>()</code>,
-<code><a href='pkg_ref_cache.bug_reports.html'>pkg_ref_cache.bug_reports</a>()</code>,
-<code><a href='pkg_ref_cache.covr_coverage.html'>pkg_ref_cache.covr_coverage</a>()</code>,
-<code><a href='pkg_ref_cache.description.html'>pkg_ref_cache.description</a>()</code>,
-<code><a href='pkg_ref_cache.downloads.html'>pkg_ref_cache.downloads</a>()</code>,
-<code><a href='pkg_ref_cache.expression_coverage.html'>pkg_ref_cache.expression_coverage</a>()</code>,
-<code><a href='pkg_ref_cache.help_aliases.html'>pkg_ref_cache.help_aliases</a>()</code>,
-<code><a href='pkg_ref_cache.help.html'>pkg_ref_cache.help</a>()</code>,
-<code><a href='pkg_ref_cache.license.html'>pkg_ref_cache.license</a>()</code>,
-<code><a href='pkg_ref_cache.maintainer.html'>pkg_ref_cache.maintainer</a>()</code>,
-<code><a href='pkg_ref_cache.news.html'>pkg_ref_cache.news</a>()</code>,
-<code><a href='pkg_ref_cache.r_cmd_check.html'>pkg_ref_cache.r_cmd_check</a>()</code>,
-<code><a href='pkg_ref_cache.release_date.html'>pkg_ref_cache.release_date</a>()</code>,
-<code><a href='pkg_ref_cache.remote_checks.html'>pkg_ref_cache.remote_checks</a>()</code>,
-<code><a href='pkg_ref_cache.repo_base_url.html'>pkg_ref_cache.repo_base_url</a>()</code>,
-<code><a href='pkg_ref_cache.source_control_url.html'>pkg_ref_cache.source_control_url</a>()</code>,
-<code><a href='pkg_ref_cache.tarball_url.html'>pkg_ref_cache.tarball_url</a>()</code>,
-<code><a href='pkg_ref_cache.vignettes.html'>pkg_ref_cache.vignettes</a>()</code>,
-<code><a href='pkg_ref_cache.web_html.html'>pkg_ref_cache.web_html</a>()</code>,
-<code><a href='pkg_ref_cache.web_url.html'>pkg_ref_cache.web_url</a>()</code>,
-<code><a href='pkg_ref_cache.website_urls.html'>pkg_ref_cache.website_urls</a>()</code>,
-<code><a href='pkg_ref_cache.html'>pkg_ref_cache</a>()</code></p></div>
+    <p>A `character(n)` class path from `pkg_ref` down to the specified
+  subclass, or `FALSE` if no path is found.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
