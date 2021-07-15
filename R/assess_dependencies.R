@@ -81,7 +81,7 @@ get_package_dependencies <- function(name, repo){
   ap <- available.packages(repo = repo)
   deps <- ap[rownames(ap)==name, c("LinkingTo","Imports","Depends")]
   deps <- deps[!is.na(deps)]
-  deps <- sapply(strsplit(deps, ","), trimws)
+  deps <- lapply(strsplit(deps, ","), trimws)
   deps <- data.frame(package=unlist(deps),
                      type=rep(names(deps), sapply(deps, length)),
                      stringsAsFactors = FALSE,
