@@ -267,7 +267,7 @@ verify_pkg_source <- function(x, source, repos) {
   switch(source,
          pkg_install = "pkg_install",
          pkg_source = {
-           ## Check source pakcage is present if source is "pkg_source"
+           ## Check source package is present if source is "pkg_source"
            if(source == "pkg_source" && !dir.exists(x)){
              warning(paste0(c("Package source: `", x, "` does not exist, source is now 'pkg_missing'")))
              return("pkg_missing")
