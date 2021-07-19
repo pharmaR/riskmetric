@@ -1,7 +1,7 @@
 #' Cohort ref class
 #'
 #' This is a class to hold a list of pkg_refs along with extra
-#' information regarding the environment a set of pkg_refs is to be installed into.
+#' information about the environment the packages are to be used/installed in.
 #'
 #' @export
 #' @family cohort_ref
