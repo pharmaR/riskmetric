@@ -1,7 +1,7 @@
 library(webmockr)
 library(httr)
 
-options(riskmetric.tests = getwd())
+options(riskmetric.tests = test_path())
 httr_mock()
 
 # helper function for generating cran-log style API results
@@ -23,7 +23,16 @@ build_downloads <- function(downloads = NULL, pkg_name = "temp") {
   # TODO: separate out good and bad examples
   stub_request("get", uri_regex = ".+/web/packages/[^/]*") %>%
     to_return(
-      body = file("./test_webmocks/data/cran_package.html"),
+      body = paste(collapse = "\n", readLines(file.path(test_path(), "test_webmocks", "data", "cran_package.html"))),
+      headers = list(
+        "Content-Type" = "text/html; charset=utf-8",
+        "Content-Encoding" = "UTF-8"))
+
+## CRAN (or mirror) package checks page
+  # TODO: separate out good and bad examples
+  stub_request("get", uri_regex = ".+/web/checks/[^/]*") %>%
+    to_return(
+      body = paste(collapse = "\n", readLines(file.path(test_path(), "test_webmocks", "data", "cran_package_checks.html"))),
       headers = list(
         "Content-Type" = "text/html; charset=utf-8",
         "Content-Encoding" = "UTF-8"))
@@ -32,7 +41,7 @@ build_downloads <- function(downloads = NULL, pkg_name = "temp") {
   # TODO: separate out good and bad examples
   stub_request("get", uri_regex = ".+/web/packages/[^/]*/news/news.html") %>%
     to_return(
-      body = file("./test_webmocks/data/cran_news.html"),
+      body = paste(collapse = "\n", readLines(file.path(test_path(), "test_webmocks", "data", "cran_news.html"))),
       headers = list(
         "Content-Type" = "text/html; charset=utf-8",
         "Content-Encoding" = "UTF-8"))
@@ -41,7 +50,7 @@ build_downloads <- function(downloads = NULL, pkg_name = "temp") {
   # TODO: serpate out good and bad examples
   stub_request("get", uri_regex = ".+/src/contrib/Archive/[^/]*") %>%
     to_return(
-      body = file("./test_webmocks/data/cran_package_archive.html"),
+      body = paste(collapse = "\n", readLines(file.path(test_path(), "test_webmocks", "data", "cran_package_archive.html"))),
       headers = list(
         "Content-Type" = "text/html; charset=utf-8",
         "Content-Encoding" = "UTF-8"))
@@ -79,5 +88,5 @@ build_downloads <- function(downloads = NULL, pkg_name = "temp") {
 stub_request("get", uri_regex = "api\\.github\\.com/repos/[^/]+/[^/]+/issues") %>%
   wi_th(query = list(state = "all", per_page = "30")) %>%
   to_return(
-    body = file("./test_webmocks/data/github_repo_issues_api_response.json"),
+    body = paste(collapse = "\n", readLines(file.path(test_path(), "test_webmocks", "data", "github_repo_issues_api_response.json"))),
     headers = list("Content-Type" = "application/json"))
