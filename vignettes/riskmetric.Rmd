@@ -20,7 +20,8 @@ options(repos = "https://cran.rstudio.com")
 
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.path = "man/figures/"
 )
 ```
 
@@ -100,9 +101,7 @@ favorable, whereas high risk scores are unfavorable.
 These five steps are broken down into just a handful of primary functions. 
 
 ```{r, echo = FALSE}
-knitr::include_graphics(system.file(
-  file.path("assets", "core-workflow.svg"), 
-  package = "riskmetric"))
+knitr::include_graphics("../man/figures/core-workflow.svg")
 ```
 
 ## Creating a package reference object
