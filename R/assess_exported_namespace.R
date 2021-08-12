@@ -17,8 +17,8 @@ attributes(assess_exported_namespace)$label <- "Objects exported by package"
 #' @export
 assess_exported_namespace.default <- function(x, ...) {
   as_pkg_metric_na(
-    pkg_metric(class = "pkg_metric_export_help"),
-    message = sprintf("Cannot export namesapce from a %s", x$source))
+    pkg_metric(class = "pkg_metric_exported_namespace"),
+    message = sprintf("Cannot export namespace from a %s", x$source))
 }
 
 #' @export
@@ -36,6 +36,12 @@ assess_exported_namespace.pkg_source <- function(x, ...) {
     return(pkgload::parse_ns_file(x$path)$exports)
   })
 }
+
+#' @export
+assess_exported_namespace.cohort_ref <- function(x, ...) {
+
+}
+
 
 #' Score a package for the number of exported objects
 #'
