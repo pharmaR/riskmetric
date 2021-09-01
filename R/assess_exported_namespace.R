@@ -1,4 +1,4 @@
-#' Assess a package's results from running R CMD check
+#' Assess a package's exported namespace
 #'
 #' @eval roxygen_assess_family(
 #'   "exported_namespace",
