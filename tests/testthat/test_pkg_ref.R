@@ -4,7 +4,7 @@ test_that("get_pkg_ref_classes appropriately captures full class chain", {
   expect_equal(get_pkg_ref_classes("d", abstract_hierarchy), c("d", "c", "a"))
 
   expect_equal(
-    get_pkg_ref_classes("pkg_cran_remote"), 
+    get_pkg_ref_classes("pkg_cran_remote"),
     c("pkg_cran_remote", "pkg_remote", "pkg_ref")
   )
 })
@@ -21,13 +21,13 @@ test_that("pkg_ref infers source when not explicitly provided", {
   expect_equal(ref1$source, "pkg_install")
 
   # pkg_cran_remote
-  ref2 <- pkg_ref("pkgcranremotegood")
+  ref2 <- pkg_cran("pkgcranremotegood")
   expect_s3_class(ref2, c("pkg_cran_remote", "pkg_remote", "pkg_ref", "environment"), exact = TRUE)
   expect_equal(ref2$source, "pkg_cran_remote")
 
   # pkg_bioc_remote
   # TODO: add bioconductor available packages mock and replace with a stub package
-  ref3 <- pkg_ref("GenomicFeatures")
+  ref3 <- pkg_bioc("GenomicFeatures")
   expect_s3_class(ref3, c("pkg_bioc_remote", "pkg_remote", "pkg_ref", "environment"), exact = TRUE)
   expect_equal(ref3$source, "pkg_bioc_remote")
 })

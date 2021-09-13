@@ -1,4 +1,4 @@
-# create a series of reliably evaluated pkg reference objects that can be 
+# create a series of reliably evaluated pkg reference objects that can be
 # reused throughout testthat unit tests
 
 # NOTE: score_error_zero is used for all scoring functions to suppress warnings
@@ -17,7 +17,7 @@ withr::with_libpaths(templib, {
   )
 
   # a representative "good" quality package from an installed package
-  pkg_ref_install_good <- pkg_ref("pkgsourcegood")
+  pkg_ref_install_good <- pkg_install("pkgsourcegood")
   assess_install_good <- pkg_assess(pkg_ref_install_good)
   score_install_good <- pkg_score(
     assess_install_good,
@@ -25,49 +25,49 @@ withr::with_libpaths(templib, {
 })
 
 # a representative "good" quality package from source code
-pkg_ref_source_good <- pkg_ref(file.path(test_path(), "test_packages", "pkgsourcegood"))
+pkg_ref_source_good <- pkg_source(file.path(test_path(), "test_packages", "pkgsourcegood"))
 assess_source_good <- pkg_assess(pkg_ref_source_good)
 score_source_good <- pkg_score(
   assess_source_good,
   error_handler = score_error_zero)
 
-# a representative "bad" quality package from source code
-pkg_ref_source_bad <- pkg_ref(file.path(test_path(), "test_packages", "pkgsourcebad"))
+# a representative "bad" pkg_source package from source code
+pkg_ref_source_bad <- pkg_source(file.path(test_path(), "test_packages", "pkgsourcebad"))
 assess_source_bad <- pkg_assess(pkg_ref_source_bad)
 score_source_bad <- pkg_score(
   assess_source_bad,
   error_handler = score_error_zero)
 
-# a representative package from an installed library 
-pkg_ref_stdlib_install <- pkg_ref("utils")
+# a representative package from an installed library
+pkg_ref_stdlib_install <- pkg_install("utils")
 assess_stdlib_install <- pkg_assess(pkg_ref_stdlib_install)
 score_stdlib_install <- pkg_score(
   assess_stdlib_install,
   error_handler = score_error_zero)
 
-# a representative cohort of packages from an installed library 
-pkg_ref_stdlibs_install <- pkg_ref(c("utils", "tools"))
+# a representative cohort of packages from an installed library
+pkg_ref_stdlibs_install <- pkg_install(c("utils", "tools"))
 assess_stdlibs_install <- pkg_assess(pkg_ref_stdlibs_install)
 score_stdlibs_install <- pkg_score(
   assess_stdlibs_install,
   error_handler = score_error_zero)
 
 # a representative "good" quality package available on CRAN, but not installed
-pkg_ref_cran_remote_good <- pkg_ref("pkgcranremotegood")
+pkg_ref_cran_remote_good <- pkg_cran("pkgcranremotegood")
 assess_cran_remote_good <- pkg_assess(pkg_ref_cran_remote_good)
 score_cran_remote_good <- pkg_score(
-  assess_cran_remote_good, 
+  assess_cran_remote_good,
   error_handler = score_error_zero)
 
 # a representative "bad" quality package available on CRAN, but not installed
-pkg_ref_cran_remote_bad  <- pkg_ref("pkgcranremotebad")
+pkg_ref_cran_remote_bad  <- pkg_cran("pkgcranremotebad")
 assess_cran_remote_bad <- pkg_assess(pkg_ref_cran_remote_bad)
 score_cran_remote_bad <- pkg_score(
   assess_cran_remote_bad,
   error_handler = score_error_zero)
 
 # a representative package without a discoverable reference
-pkg_ref_missing <- pkg_ref("pkgmissing")
+pkg_ref_missing <- pkg_missing("pkgmissing")
 assess_pkg_missing <- pkg_assess(pkg_ref_missing)
 score_pkg_missing <- pkg_score(
   assess_pkg_missing,
