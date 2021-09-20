@@ -46,7 +46,7 @@ score_stdlib_install <- pkg_score(
   error_handler = score_error_zero)
 
 # a representative cohort of packages from an installed library
-pkg_ref_stdlibs_install <- pkg_install(c("utils", "tools"))
+pkg_ref_stdlibs_install <- pkg_ref(c("utils", "tools"), source = "pkg_install")
 assess_stdlibs_install <- pkg_assess(pkg_ref_stdlibs_install)
 score_stdlibs_install <- pkg_score(
   assess_stdlibs_install,
