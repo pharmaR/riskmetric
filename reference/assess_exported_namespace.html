@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Apply assess_* family of functions to a package reference — pkg_assess • riskmetric</title>
+<title>Assess a package's results from running R CMD check — assess_exported_namespace • riskmetric</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,8 @@
 
 
 
-<meta property="og:title" content="Apply assess_* family of functions to a package reference — pkg_assess" />
-<meta property="og:description" content="By default, use all assess_* funtions in the riskmetric
-namespace and produce a tibble with one column per
-assessment applied." />
+<meta property="og:title" content="Assess a package's results from running R CMD check — assess_exported_namespace" />
+<meta property="og:description" content="Assess a package's results from running R CMD check" />
 
 
 
@@ -128,80 +126,42 @@ assessment applied." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Apply assess_* family of functions to a package reference</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/pkg_assess.R'><code>R/pkg_assess.R</code></a></small>
-    <div class="hidden name"><code>pkg_assess.Rd</code></div>
+    <h1>Assess a package's results from running R CMD check</h1>
+    <small class="dont-index">Source: <a href='https://github.com/pharmaR/riskmetric/blob/master/R/assess_exported_namespace.R'><code>R/assess_exported_namespace.R</code></a></small>
+    <div class="hidden name"><code>assess_exported_namespace.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>By default, use all <code>assess_*</code> funtions in the <code>riskmetric</code>
-namespace and produce a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> with one column per
-assessment applied.</p>
+    <p>Assess a package's results from running R CMD check</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pkg_assess</span><span class='op'>(</span>
-  <span class='va'>x</span>,
-  assessments <span class='op'>=</span> <span class='fu'><a href='all_assessments.html'>all_assessments</a></span><span class='op'>(</span><span class='op'>)</span>,
-  <span class='va'>...</span>,
-  error_handler <span class='op'>=</span> <span class='va'>assessment_error_empty</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>assess_exported_namespace</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A single <code><a href='pkg_ref.html'>pkg_ref</a></code> object or
-<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> of package references to assess</p></td>
-    </tr>
-    <tr>
-      <th>assessments</th>
-      <td><p>A list of assessment functions to apply to each package
-reference. By default, a list of all exported assess_* functions from the
-riskmetric package.</p></td>
+      <td><p>a <code>pkg_ref</code> package reference object</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional arguments unused</p></td>
-    </tr>
-    <tr>
-      <th>error_handler</th>
-      <td><p>A function, which accepts a single parameter expecting
-the raised error, which will be called if any errors occur when attempting
-to apply an assessment function.</p></td>
+      <td><p>additional arguments passed on to S3 methods, rarely used</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> with one row per package reference and
-  a new column per assessment function, with cells of that column as package
-  metric objects returned when the assessment was called with the associated
-  pacakge reference.</p>
-    <h2 class="hasAnchor" id="assessment-function-catalog"><a class="anchor" href="#assessment-function-catalog"></a>Assessment function catalog</h2>
+    <p>a <code>pkg_metric</code> containing List of functions and objects exported by a package, excluding S3methods</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    
+    <div class='dont-index'><p><code><a href='metric_score.pkg_metric_exported_namespace.html'>metric_score.pkg_metric_exported_namespace</a></code></p></div>
 
-<dl>
-<dt><code><a href='assess_remote_checks.html'>assess_remote_checks</a></code></dt><dd><p>Number of OS flavors that passed/warned/errored on R CMD check</p></dd>
-<dt><code><a href='assess_has_news.html'>assess_has_news</a></code></dt><dd><p>number of discovered NEWS files</p></dd>
-<dt><code><a href='assess_last_30_bugs_status.html'>assess_last_30_bugs_status</a></code></dt><dd><p>vector indicating whether BugReports status is closed</p></dd>
-<dt><code><a href='assess_export_help.html'>assess_export_help</a></code></dt><dd><p>exported objects have documentation</p></dd>
-<dt><code><a href='assess_downloads_1yr.html'>assess_downloads_1yr</a></code></dt><dd><p>number of downloads in the past year</p></dd>
-<dt><code><a href='assess_has_website.html'>assess_has_website</a></code></dt><dd><p>a vector of associated website urls</p></dd>
-<dt><code><a href='assess_has_source_control.html'>assess_has_source_control</a></code></dt><dd><p>a vector of associated source control urls</p></dd>
-<dt><code><a href='assess_license.html'>assess_license</a></code></dt><dd><p>software is released with an acceptable license</p></dd>
-<dt><code><a href='assess_news_current.html'>assess_news_current</a></code></dt><dd><p>NEWS file contains entry for current version number</p></dd>
-<dt><code><a href='assess_covr_coverage.html'>assess_covr_coverage</a></code></dt><dd><p>Package unit test coverage</p></dd>
-<dt><code><a href='assess_r_cmd_check.html'>assess_r_cmd_check</a></code></dt><dd><p>Package check results</p></dd>
-<dt><code><a href='assess_exported_namespace.html'>assess_exported_namespace</a></code></dt><dd><p>Objects exported by package</p></dd>
-<dt><code><a href='assess_has_maintainer.html'>assess_has_maintainer</a></code></dt><dd><p>a vector of associated maintainers</p></dd>
-<dt><code><a href='assess_has_vignettes.html'>assess_has_vignettes</a></code></dt><dd><p>number of discovered vignettes files</p></dd>
-<dt><code><a href='assess_has_bug_reports_url.html'>assess_has_bug_reports_url</a></code></dt><dd><p>presence of a bug reports url in repository</p></dd>
-
-</dl>
-
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>assess_exported_namespace</span><span class='op'>(</span><span class='fu'><a href='pkg_ref.html'>pkg_ref</a></span><span class='op'>(</span><span class='st'>"riskmetric"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
