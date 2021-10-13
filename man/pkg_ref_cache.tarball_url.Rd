@@ -39,7 +39,6 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.release_date}()},
 \code{\link{pkg_ref_cache.remote_checks}()},
 \code{\link{pkg_ref_cache.repo_base_url}()},
-\code{\link{pkg_ref_cache.rev_dependencies}()},
 \code{\link{pkg_ref_cache.source_control_url}()},
 \code{\link{pkg_ref_cache.vignettes}()},
 \code{\link{pkg_ref_cache.web_html}()},
