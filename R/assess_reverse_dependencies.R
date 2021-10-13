@@ -12,9 +12,6 @@ assess_reverse_dependencies <- function(x, ...){
   UseMethod("assess_reverse_dependencies")
 }
 
-attr(assess_remote_checks, "column_name") <- "reverse_dependencies"
-attributes(assess_remote_checks)$label <- "List of reverse dependencies a package has"
-
 #' @importFrom devtools revdep
 #' @export
 assess_reverse_dependencies.default <- function(x, ...){
@@ -22,6 +19,9 @@ assess_reverse_dependencies.default <- function(x, ...){
                   devtools::revdep(x$name, bioconductor = TRUE)
   )
 }
+
+attr(assess_reverse_dependencies, "column_name") <- "reverse_dependencies"
+attr(assess_reverse_dependencies, "label") <- "List of reverse dependencies a package has"
 
 #' Scoring method for number of reverse dependencies a package has
 #'
@@ -32,3 +32,7 @@ assess_reverse_dependencies.default <- function(x, ...){
 metric_score.pkg_metric_reverse_dependencies <- function(x,...){
   length(x)
 }
+
+attributes(metric_score.pkg_metric_reverse_dependencies)$label <-
+  "The number of packages that depend on this package."
+
