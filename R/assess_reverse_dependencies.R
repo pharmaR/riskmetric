@@ -30,9 +30,9 @@ attr(assess_reverse_dependencies, "label") <- "List of reverse dependencies a pa
 #'
 #' @export
 metric_score.pkg_metric_reverse_dependencies <- function(x,...){
-  length(x)
+  log10(length(x)+0.1)
 }
 
 attributes(metric_score.pkg_metric_reverse_dependencies)$label <-
-  "The number of packages that depend on this package."
+  "The (log10) number of packages that depend on this package."
 
