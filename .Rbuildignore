@@ -4,10 +4,9 @@
 ^\.github
 ^.*\.Rproj$
 ^\.Rproj\.user$
-LICENSE.md
-_pkgdown.yml
-docs
+^LICENSE\.md$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
 ^cran-comments\.md$
+^\.github$
