@@ -4,7 +4,9 @@
 #'
 #' @eval roxygen_assess_family(
 #'   "downloads_1yr",
-#'   "a numeric value between [0,1] indicating the volume of downloads")
+#'   "a numeric value between [0,1] indicating the volume of downloads",
+#'   dontrun = TRUE
+#' )
 #'
 #' @export
 assess_downloads_1yr <- function(x, ...){
