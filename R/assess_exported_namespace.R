@@ -18,7 +18,7 @@ attributes(assess_exported_namespace)$label <- "Objects exported by package"
 assess_exported_namespace.default <- function(x, ...) {
   as_pkg_metric_na(
     pkg_metric(class = "pkg_metric_export_help"),
-    message = sprintf("Cannot export namesapce from a %s", x$source))
+    message = sprintf("Cannot export namespace from a %s", x$source))
 }
 
 #' @export
