@@ -5,7 +5,9 @@
 #'   paste0("a list containing fields 'filecoverage' and 'totalcoverage' ",
 #'     "containing a named numeric vector of file unit test coverage and a ",
 #'     "singular numeric value representing overall test coverage ",
-#'     "respectively."))
+#'     "respectively."),
+#'   dontrun = TRUE  # execution time can exceed CRAN limits
+#' )
 #'
 #' @export
 assess_covr_coverage <- function(x, ...) {

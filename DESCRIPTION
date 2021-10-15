@@ -45,6 +45,6 @@ Suggests:
     testthat,
     webmockr,
     jsonlite
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 Config/testthat/edition: 3
