@@ -19,5 +19,6 @@ Coerce a list of website urls into a numeric value indicating whether the
 number of listed urls is greater than 0.
 }
 \examples{
-metric_score(assess_has_website(pkg_ref("riskmetric")))
+\dontrun{metric_score(assess_has_website(pkg_ref("riskmetric")))
+}
 }
