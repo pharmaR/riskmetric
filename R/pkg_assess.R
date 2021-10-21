@@ -20,7 +20,7 @@
 #' @keywords internal
 roxygen_assess_family <- function(name,
     return_type = "an atomic assessment result",
-    dontrun = FALSE) {
+    dontrun = TRUE) {
 
   assess_func <- sprintf("assess_%s", name)
   score_func <- sprintf("metric_score.pkg_metric_%s", name)
