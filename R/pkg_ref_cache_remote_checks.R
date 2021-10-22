@@ -4,8 +4,7 @@
 #' @family package reference cache
 #' @return a \code{pkg_ref} object
 #' @keywords internal
-pkg_ref_cache.remote_checks <- function (x, ...)
-{
+pkg_ref_cache.remote_checks <- function (x, ...) {
    UseMethod("pkg_ref_cache.remote_checks")
 }
 
@@ -13,12 +12,11 @@ pkg_ref_cache.remote_checks.default <- function (x, ...) {
   return(NA)
 }
 
-#' @importFrom xml2 read_html xml_find_all xml_text
+#' @importFrom httr content GET
+#' @importFrom xml2 xml_find_all xml_text
 pkg_ref_cache.remote_checks.pkg_cran_remote <- function(x, ...) {
-  URLbase <- "https://cran.r-project.org/web/checks/check_results_"
-  webURL <- paste0(URLbase, x$name, ".html")
-
-  page <- read_html(webURL)
+  webURL <- sprintf("%s/web/checks/check_results_%s.html", x$repo_base_url, x$name)
+  page <- httr::content(httr::GET(webURL))
   tables <- xml2::xml_find_all(page, ".//table")
   table_cran <- xml2::xml_find_all(tables[[1]], "//tr")
   fields <- lapply(table_cran, xml2::xml_find_all, ".//td|.//th")
@@ -28,12 +26,17 @@ pkg_ref_cache.remote_checks.pkg_cran_remote <- function(x, ...) {
   return(rst)
 }
 
-#' @importFrom xml2 read_html xml_find_all xml_text
+#' @importFrom httr content GET
+#' @importFrom xml2 xml_find_all xml_text
 pkg_ref_cache.remote_checks.pkg_bioc_remote <- function(x, ...) {
-  URLbase <- "http://bioconductor.org/checkResults/release/bioc-LATEST/"
-  webURL <- paste0(URLbase, x$name)
+  webURL <- sprintf("%s/%s", x$repo_base_url, x$name)
 
-  page <- read_html(webURL)
+  # TODO: 
+  # refine x$repo_base_url for BioConductor packages so that we don't need to do
+  # nasty substitutions like this
+  webURL <- sub("packages/release/bioc[^/]*", "checkResults/release/bioc-LATEST", webURL)
+
+  page <- httr::content(httr::GET(webURL))
   tables <- xml2::xml_find_all(page, ".//table")
   rows <- xml2::xml_find_all(tables[[3]], "//tr")
   rows <- rows[grepl("odd", xml2::xml_attr(rows, "class"))]

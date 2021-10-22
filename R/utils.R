@@ -354,3 +354,18 @@ with.pkg_ref <- function(data, expr, ...) {
   eval(expr, as.list(data), enclos = parent.frame())
 }
 
+
+is_available_cran <- function(x, repos, p) {
+  x %in% memoise_available_packages(repos = repos)[,"Package"] ||
+    (!is.null(memoise_cran_mirrors()) &&
+       # isTRUE added to catch any issues where the cran mirror isn't available
+       isTRUE(is_url_subpath_of(
+         p$repo_base_url,
+         c(memoise_cran_mirrors()$URL, "https://cran.rstudio.com/"))))
+}
+
+is_available_bioc <- function(x, p){
+  x %in% memoise_bioc_available()[,"Package"] ||
+    (!is.null(memoise_bioc_mirrors()) &&
+       isTRUE(is_url_subpath_of(p$repo_base_url, memoise_bioc_mirrors()$URL)))
+}

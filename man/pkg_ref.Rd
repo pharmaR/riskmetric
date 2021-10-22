@@ -2,9 +2,30 @@
 % Please edit documentation in R/pkg_ref_class.R
 \name{pkg_ref}
 \alias{pkg_ref}
+\alias{pkg_install}
+\alias{pkg_source}
+\alias{pkg_cran}
+\alias{pkg_bioc}
+\alias{pkg_missing}
+\alias{pkg_library}
+\alias{as_pkg_ref}
 \title{Create a package reference}
 \usage{
 pkg_ref(x, ...)
+
+pkg_install(x, lib.loc = NULL)
+
+pkg_source(x)
+
+pkg_cran(x, repos = getOption("repos", "https://cran.rstudio.com"))
+
+pkg_bioc(x)
+
+pkg_missing(x)
+
+pkg_library(lib.loc)
+
+as_pkg_ref(x, ...)
 }
 \arguments{
 \item{x}{A singular \code{character} value, \code{character vector} or
@@ -12,6 +33,10 @@ pkg_ref(x, ...)
 directory paths.}
 
 \item{...}{Additional arguments passed to methods.}
+
+\item{lib.loc}{The path to the R library directory of the installed package.}
+
+\item{repos}{URL of CRAN repository to pull package metadata.}
 }
 \value{
 When a single value is provided, a single \code{pkg_ref} object is
@@ -68,6 +93,15 @@ collection.
 }
 }
 }
+\section{Package Cohorts}{
+
+
+*Experimental!*
+Package cohorts are structures to determine the risk of a set of packages.
+`pkg_library()` can be called to create a object containing the pkg_ref
+objects of all packages in a system library.
+}
+
 \examples{
 
 # riskmetric will check for installed packages by default
@@ -81,8 +115,3 @@ ref_2$source # returns 'pkg_cran_remote'
 # lib.loc can be used to specify a library for pkg_install
 ref_3 <- pkg_ref("utils", source = "pkg_install", lib.loc = .libPaths()[1])
 }
-\seealso{
-Other pkg_ref: 
-\code{\link{as_pkg_ref}()}
-}
-\concept{pkg_ref}
