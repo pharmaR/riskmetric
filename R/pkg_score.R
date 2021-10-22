@@ -19,13 +19,15 @@
 #'   returned as numeric values when a \code{\link[tibble]{tibble}} is provided.
 #'
 #' @examples
+#' \dontrun{
+#'
 #' # scoring a single assessment
 #' metric_score(assess_has_news(pkg_ref("riskmetric")))
 #'
 #' # scoring many assessments as a tibble
-#' \dontrun{
 #' library(dplyr)
 #' pkg_score(pkg_assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
+#'
 #' }
 #'
 #' @seealso score_error_default score_error_zero score_error_NA
