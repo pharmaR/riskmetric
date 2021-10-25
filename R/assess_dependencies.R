@@ -78,7 +78,7 @@ attributes(metric_score.pkg_metric_dependencies)$label <-
 #' @return Returns a data frame with two columns 1) Package names, 2) type of dependency (LinkingTo, Imports, Depends)
 #'
 get_package_dependencies <- function(name, repo){
-  ap <- available.packages(repo = repo)
+  ap <- available.packages(repos = repo)
   deps <- ap[rownames(ap)==name, c("LinkingTo","Imports","Depends")]
   deps <- deps[!is.na(deps)]
   deps <- sapply(strsplit(deps, ","), trimws)
