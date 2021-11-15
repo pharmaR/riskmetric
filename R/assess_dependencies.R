@@ -86,6 +86,7 @@ get_package_dependencies <- function(name, repo){
                      type=rep(names(deps), sapply(deps, length)),
                      stringsAsFactors = FALSE,
                      row.names = NULL)
+  deps <- remove_base_packages(deps)
   return(deps)
 }
 
@@ -102,6 +103,19 @@ parse_dcf_dependencies <- function(path){
                      type=rep(names(dcf), sapply(dcf, length)),
                      stringsAsFactors = FALSE,
                      row.names = NULL)
+  deps <- remove_base_packages(deps)
   return(deps)
 }
 
+#' Helper function to remove base and recommended packages
+#'
+#' @param df Data frame of dependencies of a package.
+#'
+remove_base_packages <- function(df){
+  deps <- df[!grepl("^R\\s\\(.+\\)", df$package) | df$package %in% c('base','compiler','datasets',
+                                                                           'graphics','grDevices','grid',
+                                                                           'methods','parallel','splines',
+                                                                           'stats','stats4','tcltk','tools',
+                                                                           'utils'), ] ##Remove base R dependencies and in the future recommended pacakges
+  return(deps)
+}
