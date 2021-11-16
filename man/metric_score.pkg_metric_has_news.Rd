@@ -18,6 +18,5 @@
 Coerce the number of news files to binary indication of valid NEWS files
 }
 \examples{
-\dontrun{metric_score(assess_has_news(pkg_ref("riskmetric")))
-}
+metric_score(assess_has_news(pkg_ref("riskmetric")))
 }

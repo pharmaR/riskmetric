@@ -18,6 +18,5 @@ numeric value
 Count the number of exported objects (excluding S3Methods) and divide by 100
 }
 \examples{
-\dontrun{metric_score(assess_exported_namespace(pkg_ref("riskmetric")))
-}
+metric_score(assess_exported_namespace(pkg_ref("riskmetric")))
 }

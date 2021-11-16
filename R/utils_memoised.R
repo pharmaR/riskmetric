@@ -76,6 +76,8 @@ memoise_installed_packages <- memoise::memoise({
 
 #' @importFrom memoise memoise
 memoise_available_packages <- memoise::memoise({
+  Sys.sleep(20)
+
   function(..., repos = getOption("repos"), .local = getOption("riskmetric.tests")) {
     if (!is.null(.local)) {
       db <- read.csv(

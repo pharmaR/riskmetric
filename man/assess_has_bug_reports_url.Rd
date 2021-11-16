@@ -18,9 +18,7 @@ a \code{pkg_metric} containing a character value containing the BugReports field
 Assess a package for the presence of a url field where bugs can be reported.
 }
 \examples{
-\dontrun{
 assess_has_bug_reports_url(pkg_ref("riskmetric"))
-}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_has_bug_reports_url}}

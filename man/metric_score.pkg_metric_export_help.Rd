@@ -18,6 +18,5 @@
 Coerce a logical vector indicating availability of export documentation
 }
 \examples{
-\dontrun{metric_score(assess_export_help(pkg_ref("riskmetric")))
-}
+metric_score(assess_export_help(pkg_ref("riskmetric")))
 }

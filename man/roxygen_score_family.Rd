@@ -4,7 +4,7 @@
 \alias{roxygen_score_family}
 \title{Helper for creating a roxygen header from template for score.* functions}
 \usage{
-roxygen_score_family(name, dontrun = TRUE)
+roxygen_score_family(name, dontrun = FALSE)
 }
 \arguments{
 \item{name}{the name of the scoring function, assuming naming conventions are

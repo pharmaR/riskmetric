@@ -54,4 +54,3 @@ metric_score.pkg_metric_downloads_1yr <- function(x, ...) {
 attributes(metric_score.pkg_metric_downloads_1yr)$label <- paste0(
   "A logistic rating of the number of package downloads in the past year. ",
   "For more details, see ?riskmetric::metric_score.pkg_metric_downloads_1yr")
-

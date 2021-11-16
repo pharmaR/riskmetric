@@ -18,6 +18,5 @@ score of metric license
 Maps a license string to a score
 }
 \examples{
-\dontrun{metric_score(assess_license(pkg_ref("riskmetric")))
-}
+metric_score(assess_license(pkg_ref("riskmetric")))
 }

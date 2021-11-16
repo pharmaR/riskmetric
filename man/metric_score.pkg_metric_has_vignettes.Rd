@@ -18,6 +18,5 @@
 Coerce the number of vignettes files to binary indication of valid Vignettes
 }
 \examples{
-\dontrun{metric_score(assess_has_vignettes(pkg_ref("riskmetric")))
-}
+metric_score(assess_has_vignettes(pkg_ref("riskmetric")))
 }

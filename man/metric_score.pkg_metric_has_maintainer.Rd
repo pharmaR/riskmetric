@@ -19,6 +19,5 @@ Coerce a list of maintainers into a numeric value indicating whether the
 number of listed maintainers is greater than 0.
 }
 \examples{
-\dontrun{metric_score(assess_has_maintainer(pkg_ref("riskmetric")))
-}
+metric_score(assess_has_maintainer(pkg_ref("riskmetric")))
 }

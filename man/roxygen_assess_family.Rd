@@ -7,7 +7,7 @@
 roxygen_assess_family(
   name,
   return_type = "an atomic assessment result",
-  dontrun = TRUE
+  dontrun = FALSE
 )
 }
 \arguments{

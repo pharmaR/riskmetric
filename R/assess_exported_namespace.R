@@ -3,7 +3,7 @@
 #' @eval roxygen_assess_family(
 #'   "exported_namespace",
 #'   "List of functions and objects exported by a package, excluding S3methods",
-#'   dontrun = TRUE)
+#' )
 #'
 #' @importFrom pkgload parse_ns_file
 #' @export
@@ -51,5 +51,3 @@ metric_score.pkg_metric_exported_namespace <- function(x, ...) {
 
 attributes(metric_score.pkg_metric_exported_namespace)$label <-
   "The number of exported objects in a package"
-
-

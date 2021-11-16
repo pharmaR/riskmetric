@@ -18,9 +18,7 @@ a \code{pkg_metric} containing a character vector of website urls associated wit
 Assess a package for an associated website url
 }
 \examples{
-\dontrun{
 assess_has_website(pkg_ref("riskmetric"))
-}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_has_website}}

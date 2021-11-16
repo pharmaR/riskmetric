@@ -18,9 +18,7 @@ a \code{pkg_metric} containing a logical vector indicating existence of document
 Assess a package for availability of documentation for exported values
 }
 \examples{
-\dontrun{
 assess_export_help(pkg_ref("riskmetric"))
-}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_export_help}}

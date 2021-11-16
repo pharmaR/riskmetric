@@ -18,6 +18,5 @@
 Coerce a logical vector of discovered up-to-date NEWS to a metric score
 }
 \examples{
-\dontrun{metric_score(assess_news_current(pkg_ref("riskmetric")))
-}
+metric_score(assess_news_current(pkg_ref("riskmetric")))
 }
