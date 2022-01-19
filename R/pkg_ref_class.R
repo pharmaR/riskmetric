@@ -57,7 +57,7 @@
 #' @export
 #'
 #' @examples
-#'
+#' \dontrun{
 #' # riskmetric will check for installed packages by default
 #' ref_1 <- pkg_ref("utils")
 #' ref_1$source # returns 'pkg_install'
@@ -65,7 +65,6 @@
 #' # lib.loc can be used to specify a library for pkg_install
 #' ref_3 <- pkg_ref("utils", source = "pkg_install", lib.loc = .libPaths()[1])
 #'
-#' \dontrun{
 #' # You can also override this behavior with a source argument
 #' ref_2 <- pkg_ref("utils", source = "pkg_cran_remote")
 #' ref_2$source  # returns 'pkg_cran_remote'

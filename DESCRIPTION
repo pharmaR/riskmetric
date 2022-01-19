@@ -6,9 +6,9 @@ Description: Facilities for assessing R packages against a number of metrics to
 Version: 0.1.2
 Authors@R: c(
     person("R Validation Hub", role = c("aut"), email = "psi.aims.r.validation@gmail.com"),
-    person("Doug", "Kelkhoff", role = c("aut", "cre"), email = "doug.kelkhoff@gmail.com"),
+    person("Doug", "Kelkhoff", role = c("aut"), email = "doug.kelkhoff@gmail.com"),
     person("Marly", "Gotti", role = c("aut")), 
-    person("Eli", "Miller", role = c("aut")), 
+    person("Eli", "Miller", role = c("cre", "aut"), email = "eli.miller@atorusresearch.com"), 
     person("Kevin", "K", role = c("aut")), 
     person("Yilong", "Zhang", role = c("aut")),
     person("Eric", "Milliman", role = c("aut")),

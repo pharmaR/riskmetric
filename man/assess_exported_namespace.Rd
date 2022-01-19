@@ -18,7 +18,9 @@ a \code{pkg_metric} containing List of functions and objects exported by a packa
 Assess a package's results from running R CMD check
 }
 \examples{
+\dontrun{
 assess_exported_namespace(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_exported_namespace}}

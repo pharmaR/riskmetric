@@ -96,7 +96,7 @@ pkg_score.list_of_pkg_metric <- function(x, ...,
 #' #' @eval roxygen_score_family("has_news")
 #' }
 #' @keywords internal
-roxygen_score_family <- function(name, dontrun = FALSE) {
+roxygen_score_family <- function(name, dontrun = TRUE) {
 
   assess_func <- sprintf("assess_%s", name)
   score_func <- sprintf("metric_score.pkg_metric_%s", name)
