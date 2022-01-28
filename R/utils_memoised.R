@@ -68,13 +68,6 @@ memoise_bioc_mirrors <- memoise::memoise({
 
 
 #' @importFrom memoise memoise
-memoise_installed_packages <- memoise::memoise({
-  function(...) utils::installed.packages(...)
-})
-
-
-
-#' @importFrom memoise memoise
 memoise_available_packages <- memoise::memoise({
   Sys.sleep(20)
 

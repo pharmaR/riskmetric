@@ -266,7 +266,7 @@ as_pkg_ref.pkg_ref <- function(x, ...) {
 }
 
 
-#' @importFrom utils installed.packages available.packages packageVersion
+#' @importFrom utils available.packages packageVersion
 #' @export
 as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rstudio.com"),
                                  source = NULL, lib.loc = NULL, ...) {
@@ -302,9 +302,8 @@ determine_pkg_source <- function(x, source, repos) {
 
   # non-source package
   } else if (grepl("^[[:alpha:]][[:alnum:].]*[[:alnum:]]$", x)) {
-    ip <- memoise_installed_packages()
 
-    if (x %in% ip[, "Package"]) {
+    if (length(find.package(x, quiet = TRUE)) != 0) {
       return("pkg_install")
 
     # if its not installed, pull the package to check it

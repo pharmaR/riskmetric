@@ -100,27 +100,6 @@ firstS3method <- function(f, classes, envir = parent.frame()) {
 #'   Defaults to \code{FALSE}, capturing the passed expression.
 #' @inheritParams base::sink
 #'
-#' @examples
-#' fn <- function() {
-#'   print(paste(letters[1:3], collapse = ", "))
-#'   warning("easy as")
-#'   message(paste(1:3, collapse = ", "))
-#'   message("simple as")
-#'   warning("do re mi")
-#'   return(3L)
-#' }
-#'
-#' capture_expr_output <- utils::getFromNamespace("capture_expr_output", "riskmetric")
-#' console_output <- capture_expr_output(fn())
-#'
-#' # console_output
-#' # > fn()
-#' # [1] "a, b, c"
-#' # Warning in fn(): easy as
-#' # 1, 2, 3
-#' # simple as
-#' # Warning in fn(): do re mi
-#' # [1] 3
 #'
 #' @importFrom utils head tail
 #' @return an with_eval_recording object
@@ -303,19 +282,6 @@ print.with_eval_recording <- function(x, playback = FALSE, cr = TRUE, ...,
 #'   condition.
 #' @param .opts A named list of arguments to pass to \code{grepl}
 #' @param .envir The environment in which \code{expr} is to be evaluated
-#' @examples
-#' riskmetric:::suppressMatchingConditions({
-#'     print(paste(letters[1:3], collapse = ", "))
-#'     warning(structure(
-#'       list(message = "easy as", call = NULL),
-#'       class = c("custom_warning", "warning", "condition")))
-#'     message(paste(1:3, collapse = ", "))
-#'     message("simple as")
-#'     warning("do re mi")
-#'   },
-#'   message = "\\d",
-#'   custom_warning = "as$",
-#'   warning = "\\w{2}\\s")
 #' @return a message printed on console
 #' @keywords internal
 suppressMatchingConditions <- function(expr, ..., .opts = list(),

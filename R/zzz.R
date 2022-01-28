@@ -18,6 +18,5 @@
   # if non-interactive, cache package sources on load
   if (!interactive()) {
     memoise_available_packages()
-    memoise_installed_packages()
   }
 }

@@ -1,3 +1,7 @@
+## Submission 2
+
+Per comments from Gregor Seyer, the use of installed.packages was replaced with find.package. Examples for unexported functions were also removed.
+
 ## Test environments
 * local R installation, R 3.6.2
 * local R installation, R 3.6.2
