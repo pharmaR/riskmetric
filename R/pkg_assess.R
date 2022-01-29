@@ -20,7 +20,7 @@
 #' @keywords internal
 roxygen_assess_family <- function(name,
     return_type = "an atomic assessment result",
-    dontrun = FALSE) {
+    dontrun = TRUE) {
 
   assess_func <- sprintf("assess_%s", name)
   score_func <- sprintf("metric_score.pkg_metric_%s", name)
@@ -137,10 +137,14 @@ use_assessments_column_names <- function(x) {
 #'   the raised error, which will be called if any errors occur when attempting
 #'   to apply an assessment function.
 #'
-#' @return A \code{\link[tibble]{tibble}} with one row per package reference and
-#'   a new column per assessment function, with cells of that column as package
-#'   metric objects returned when the assessment was called with the associated
-#'   pacakge reference.
+#' @return Either a \code{list_of_pkg_metric} object when a single
+#'   \code{pkg_ref} object is passed as \code{x}, or a
+#'   \code{\link[tibble]{tibble}} of metrics when a \code{list_of_pkg_ref} or
+#'   \code{tibble} is passed as \code{x}. When a \code{\link[tibble]{tibble}}
+#'   is returned, it has one row per package reference and a new column per
+#'   assessment function, with cells of that column as package metric objects
+#'   returned when the assessment was called with the associated pacakge
+#'   reference.
 #'
 #' @eval roxygen_assess_family_catalog()
 #'

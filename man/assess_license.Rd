@@ -18,7 +18,9 @@ a \code{pkg_metric} containing a string indicating the license under which the p
 Assess a package for an acceptable license
 }
 \examples{
+\dontrun{
 assess_license(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_license}}

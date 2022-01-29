@@ -15,10 +15,7 @@
 #' \dontrun{
 #' library(dplyr)
 #' summarize_scores(pkg_score(pkg_assess(as_tibble(pkg_ref("riskmetric")))))
-#' }
 #'
-#' # or, using the cleaner dplyr syntax
-#' \dontrun{
 #' library(dplyr)
 #' pkg_ref("riskmetric") %>%
 #'   pkg_assess() %>%
@@ -33,8 +30,8 @@ summarize_scores <- function(data, weights = NULL) {
 
 #' @export
 summarize_scores.data.frame <- function(data, weights = NULL) {
-
-  if (missing(weights)) weights <- add_default_weights(data)
+  if (missing(weights))
+    weights <- add_default_weights(data)
 
   # perform checks and standardize weights
   weights <- standardize_weights(data, weights)
@@ -48,12 +45,11 @@ summarize_scores.data.frame <- function(data, weights = NULL) {
 
 #' @export
 summarize_scores.list <- function(data, weights = NULL) {
-
-  if (missing(weights)) weights <- add_default_weights(data)
+  if (missing(weights))
+    weights <- add_default_weights(data)
 
   # perform checks and standardize weights
   weights <- standardize_weights(data, weights)
-
   1 - sum(as.numeric(data[names(weights)]) * weights, na.rm = TRUE)
 }
 
@@ -72,17 +68,16 @@ add_default_weights <- function(data) {
 }
 
 # Check that the provided weights are numeric and non-negative.
-check_weights <- function(weights){
-
-  if(!is.numeric(weights))
+check_weights <- function(weights) {
+  if (!is.numeric(weights))
     stop("The weights must be a numeric vector.")
 
-  if(!all(weights >= 0))
+  if (!all(weights >= 0))
     stop("The weights must contain non-negative values only.")
 }
 
 # Check weights values and standardize them.
-standardize_weights <- function(data, weights){
+standardize_weights <- function(data, weights) {
 
   # check that the weights vector is numeric and non-negative
   check_weights(weights)

@@ -27,27 +27,4 @@ an with_eval_recording object
 All messaging condition side effects are captured in the order that they
 are issued.
 }
-\examples{
-fn <- function() {
-  print(paste(letters[1:3], collapse = ", "))
-  warning("easy as")
-  message(paste(1:3, collapse = ", "))
-  message("simple as")
-  warning("do re mi")
-  return(3L)
-}
-
-capture_expr_output <- utils::getFromNamespace("capture_expr_output", "riskmetric")
-console_output <- capture_expr_output(fn())
-
-# console_output
-# > fn()
-# [1] "a, b, c"
-# Warning in fn(): easy as
-# 1, 2, 3
-# simple as
-# Warning in fn(): do re mi
-# [1] 3
-
-}
 \keyword{internal}

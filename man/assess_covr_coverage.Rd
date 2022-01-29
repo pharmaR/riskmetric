@@ -18,7 +18,9 @@ a \code{pkg_metric} containing a list containing fields 'filecoverage' and 'tota
 Assess a package code coverage using the `covr` package
 }
 \examples{
+\dontrun{
 assess_covr_coverage(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_covr_coverage}}
