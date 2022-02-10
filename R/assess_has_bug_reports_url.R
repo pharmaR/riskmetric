@@ -18,7 +18,7 @@ attr(assess_has_bug_reports_url,"label") <- "presence of a bug reports url in re
 
 
 #' @export
-assess_has_has_bug_reports_url.pkg_ref <- function(x, ...) {
+assess_has_bug_reports_url.pkg_ref <- function(x, ...) {
   pkg_metric(class = "pkg_metric_has_bug_reports_url", {
     length(x$bug_reports_url)
   })
