@@ -6,6 +6,9 @@
 \usage{
 get_assessments(fxn_string = "")
 }
+\arguments{
+\item{fxn_string}{vector of assess functions}
+}
 \value{
 a list of specific assess_* functions exported from riskmetric
 }
