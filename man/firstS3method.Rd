@@ -8,7 +8,7 @@ an object of class \code{classes}}
 firstS3method(f, classes, envir = parent.frame())
 }
 \arguments{
-\item{f}{character: name of the generic.}
+\item{f}{a character string giving the name of the generic.}
 
 \item{classes}{a character vector of classes used to search for the
 appropriate S3 method}

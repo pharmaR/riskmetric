@@ -14,4 +14,9 @@
   names(opts) <- sprintf("riskmetric.%s", names(opts))
   opts <- opts[!names(opts) %in% names(options())]
   do.call(options, as.list(opts))
+
+  # if non-interactive, cache package sources on load
+  if (!interactive()) {
+    memoise_available_packages()
+  }
 }

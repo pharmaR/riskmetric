@@ -22,7 +22,9 @@ they are required
 The more packages a package relies on the more chances for errors exist.
 }
 \examples{
+\dontrun{
 assess_dependencies(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_dependencies}}

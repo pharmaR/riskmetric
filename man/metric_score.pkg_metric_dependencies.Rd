@@ -18,5 +18,6 @@ A \code{numeric}
 Returns the total number dependencies
 }
 \examples{
-metric_score(assess_dependencies(pkg_ref("riskmetric")))
+\dontrun{metric_score(assess_dependencies(pkg_ref("riskmetric")))
+}
 }

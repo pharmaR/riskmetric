@@ -29,5 +29,6 @@ log(1,000)}, and logistic growth rate of \eqn{k = 0.5}.
 \deqn{ 1 - 1 / (1 + exp(log(x)-log(1.5e5))) = 1 - 150,000 / (x + 150,000) }
 }
 \examples{
-metric_score(assess_downloads_1yr(pkg_ref("riskmetric")))
+\dontrun{metric_score(assess_downloads_1yr(pkg_ref("riskmetric")))
+}
 }

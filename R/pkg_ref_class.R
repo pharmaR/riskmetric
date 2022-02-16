@@ -57,17 +57,18 @@
 #' @export
 #'
 #' @examples
-#'
+#' \dontrun{
 #' # riskmetric will check for installed packages by default
 #' ref_1 <- pkg_ref("utils")
 #' ref_1$source # returns 'pkg_install'
 #'
-#' # You can also override this behavior with a source argument
-#' ref_2 <- pkg_ref("utils", source = "pkg_cran_remote")
-#' ref_2$source # returns 'pkg_cran_remote'
-#'
 #' # lib.loc can be used to specify a library for pkg_install
 #' ref_3 <- pkg_ref("utils", source = "pkg_install", lib.loc = .libPaths()[1])
+#'
+#' # You can also override this behavior with a source argument
+#' ref_2 <- pkg_ref("utils", source = "pkg_cran_remote")
+#' ref_2$source  # returns 'pkg_cran_remote'
+#' }
 pkg_ref <- function(x, ...) {
   if (missing(x)) return(structure(logical(0L), class = "pkg_ref"))
   as_pkg_ref(x, ...)
@@ -128,7 +129,7 @@ pkg_ref_class_hierarchy <- list(
 #'   subclass, or `FALSE` if no path is found.
 #'
 get_pkg_ref_classes <- function(x, classes = pkg_ref_class_hierarchy) {
-  if (x %in% names(classes) || x %in% classes) 
+  if (x %in% names(classes) || x %in% classes)
     return(x)
 
   if (!is.list(classes))
@@ -139,7 +140,7 @@ get_pkg_ref_classes <- function(x, classes = pkg_ref_class_hierarchy) {
     if (is.character(subclasses)) return(c(subclasses, names(classes[i])))
   }
 
-  FALSE  
+  FALSE
 }
 
 
@@ -265,7 +266,7 @@ as_pkg_ref.pkg_ref <- function(x, ...) {
 }
 
 
-#' @importFrom utils installed.packages available.packages packageVersion
+#' @importFrom utils available.packages packageVersion
 #' @export
 as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rstudio.com"),
                                  source = NULL, lib.loc = NULL, ...) {
@@ -296,37 +297,31 @@ as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rst
 #'   'pkg_bioc_remote', 'pkg_missing')
 #' @keywords internal
 determine_pkg_source <- function(x, source, repos) {
-
   if (dir.exists(x) && file.exists(file.path(x, "DESCRIPTION"))) {
     "pkg_source"
 
-
-    ## Non-source package
+  # non-source package
   } else if (grepl("^[[:alpha:]][[:alnum:].]*[[:alnum:]]$", x)) {
 
-    ip <- memoise_installed_packages()
-
-    if (x %in% ip[,"Package"]) {
+    if (length(find.package(x, quiet = TRUE)) != 0) {
       return("pkg_install")
 
-      # If its not installed. Pull the package to check it
+    # if its not installed, pull the package to check it
     } else {
       ap <- memoise_available_packages(repos = repos)
-      info <- ap[ap[,"Package"] == x,,drop = FALSE]
+      info <- ap[ap[, "Package"] == x, , drop = FALSE]
 
       p <- new_pkg_ref(x,
-                       version = info[,"Version"],
-                       repo = info[,"Repository"],
-                       source = c("pkg_remote"))
+        version = info[, "Version"],
+        repo = info[, "Repository"],
+        source = c("pkg_remote")
+      )
     }
 
-    if(is_available_cran(x, repos, p)){
+    if (is_available_cran(x, repos, p)) {
       "pkg_cran_remote"
-
-
-    } else if(is_available_bioc(x, p)) {
+    } else if (is_available_bioc(x, p)) {
       "pkg_bioc_remote"
-
     } else {
       "pkg_missing"
     }
@@ -340,46 +335,42 @@ determine_pkg_source <- function(x, source, repos) {
 #' @return a string of package source
 #' @keywords internal
 verify_pkg_source <- function(x, source, repos) {
-
   switch(source,
-         pkg_install = "pkg_install",
-         pkg_source = {
-           ## Check source pakcage is present if source is "pkg_source"
-           if(source == "pkg_source" && !dir.exists(x)){
-             warning(paste0(c("Package source: `", x, "` does not exist, source is now 'pkg_missing'")))
-             return("pkg_missing")
-           }
-         },
-         pkg_cran_remote = {
-
-           ap <- memoise_available_packages(repos = repos)
-           info <- ap[ap[,"Package"] == x,,drop = FALSE]
-           p <- new_pkg_ref(x,
-                            version = info[,"Version"],
-                            repo = info[,"Repository"],
-                            source = c("pkg_remote"))
-
-           if(!is_available_cran(x, repos, p)) {
-             warning(paste0(c("Package: `", x, "` not found on CRAN, source is now 'pkg_missing'")))
-             return("pkg_missing")
-           }
-
-         },
-         pkg_bioc_remote = {
-
-           ap <- memoise_available_packages(repos = repos)
-           info <- ap[ap[,"Package"] == x,,drop = FALSE]
-           p <- new_pkg_ref(x,
-                            version = info[,"Version"],
-                            repo = info[,"Repository"],
-                            source = c("pkg_remote"))
-
-           if(!is_available_bioc(x, p)){
-             warning(paste0(c("Package: `", x, "` not found on bioconductor, source is now 'pkg_missing'")))
-             return("pkg_missing")
-           }
-         },
-         source)
+    pkg_install = "pkg_install",
+    pkg_source = {
+      # check source pakcage is present if source is "pkg_source"
+      if (source == "pkg_source" && !dir.exists(x)) {
+        warning(paste0(c("Package source: `", x, "` does not exist, source is now 'pkg_missing'")))
+        return("pkg_missing")
+      }
+    },
+    pkg_cran_remote = {
+      ap <- memoise_available_packages(repos = repos)
+      info <- ap[ap[, "Package"] == x, , drop = FALSE]
+      p <- new_pkg_ref(x,
+        version = info[, "Version"],
+        repo = info[, "Repository"],
+        source = c("pkg_remote")
+      )
+      if(!is_available_cran(x, repos, p)) {
+        warning(paste0(c("Package: `", x, "` not found on CRAN, source is now 'pkg_missing'")))
+        return("pkg_missing")
+      }
+    },
+    pkg_bioc_remote = {
+      ap <- memoise_available_packages(repos = repos)
+      info <- ap[ap[, "Package"] == x, , drop = FALSE]
+      p <- new_pkg_ref(x,
+        version = info[, "Version"],
+        repo = info[, "Repository"],
+        source = c("pkg_remote")
+      )
+      if (!is_available_bioc(x, p)) {
+        warning(paste0(c("Package: `", x, "` not found on bioconductor, source is now 'pkg_missing'")))
+        return("pkg_missing")
+      }
+    },
+    source)
 
   source
 }

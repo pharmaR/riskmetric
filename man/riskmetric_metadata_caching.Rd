@@ -68,6 +68,7 @@ Reactively retrieve and cache `pkg_ref` metadata
 }
 
 \examples{
+\dontrun{
 # implementing a new field called "first_letter" that is consistently derived
 # across all pkg_ref objects:
 
@@ -96,6 +97,7 @@ Reactively retrieve and cache `pkg_ref` metadata
   }
 
   x$subclass_enum
+}
 
 }
 \seealso{
