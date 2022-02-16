@@ -125,7 +125,7 @@ parse_dcf_dependencies <- function(path){
 #' @param df Data frame of dependencies of a package.
 #'
 remove_base_packages <- function(df){
-  inst <- memoise_installed_packages()
+  inst <- memoise_available_packages()
   inst_priority <- inst[,"Priority"]
   inst_is_base_rec <- !is.na(inst_priority) & inst_priority %in% c("base", "recommended")
   base_rec_pkgs <- inst[inst_is_base_rec, "Package"]
