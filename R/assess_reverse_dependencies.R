@@ -34,7 +34,7 @@ attr(assess_reverse_dependencies, "label") <- "List of reverse dependencies a pa
 #' \eqn{x = sqrt(length(x))}, sigmoid midpoint is 5 reverse dependencies, ie. \eqn{x[0] =
 #' sqrt(5)}, and logistic growth rate of \eqn{k = 0.5}.
 #'
-#' \deqn{ 1 / (1 + exp(sqrt(length(x))-sqrt(5))) }
+#' \deqn{ 1 / (1 + -0.5 * exp(sqrt(length(x)) - sqrt(5))) }
 
 #' @eval roxygen_score_family("reverse_dependencies", dontrun = TRUE)
 #' @return numeric value between \code{1} (high number of reverse dependencies) and
