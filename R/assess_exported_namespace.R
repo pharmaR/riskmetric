@@ -39,14 +39,24 @@ assess_exported_namespace.pkg_source <- function(x, ...) {
 
 #' Score a package for the number of exported objects
 #'
-#' Count the number of exported objects (excluding S3Methods) and divide by 100
+#' Score a package for the number of exported objects it has; regularized
+#' Convert the number of exported objects \code{length(x)} into a validation
+#' score [0,1] \deqn{ 1 / (1 + exp(-0.5 * (sqrt(length(x)) + sqrt(5)))) }
+#'
+#' The scoring function is the classic logistic curve \deqn{
+#' 1 / (1 + exp(-k(x-x[0])) } with a square root scale for the number of exported objects
+#' \eqn{x = sqrt(length(x))}, sigmoid midpoint is 25 exported objects, ie. \eqn{x[0] =
+#' sqrt(5)}, and logistic growth rate of \eqn{k = 0.25}.
+#'
+#' \deqn{ 1 / (1 + exp(-0.25 * sqrt(length(x))-sqrt(25))) }
 #'
 #' @eval roxygen_score_family("exported_namespace")
-#' @return numeric value
+#' @return numeric value between \code{0} (high number of exported objects) and
+#'   \code{1} (low number of exported objects)
 #'
 #' @export
 metric_score.pkg_metric_exported_namespace <- function(x, ...) {
-  length(x)
+  1 - 1 / (1 + exp(-0.25 * (sqrt(length(x)) - sqrt(25))))
 }
 
 attributes(metric_score.pkg_metric_exported_namespace)$label <-
