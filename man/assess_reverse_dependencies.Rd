@@ -22,7 +22,9 @@ The more packages that depend on a package the more chance
 for errors/bugs to be found
 }
 \examples{
+\dontrun{
 assess_reverse_dependencies(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_reverse_dependencies}}

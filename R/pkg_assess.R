@@ -90,6 +90,19 @@ all_assessments <- function() {
   Map(getExportedValue, fs, ns = list(utils::packageName()))
 }
 
+#' Get a specific set of assess_* functions for pkg_assess
+#'
+#' @param fxn_string vector of assess functions
+#' @return a list of specific assess_* functions exported from riskmetric
+#'
+#' @importFrom utils packageName
+#' @export
+get_assessments <- function(fxn_string=""){
+  Map(getExportedValue,
+      fxn_string,
+      ns = list(utils::packageName()))
+}
+
 
 
 #' Helper for retrieving a list of columns which contain pkg_metric objects
