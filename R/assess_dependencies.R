@@ -39,9 +39,23 @@ assess_dependencies.pkg_install <- function(x, ...){
 
 #' @export
 assess_dependencies.pkg_cran_remote <- function(x, ...){
-  pkg_metric_eval(class = "pkg_metric_dependencies", {
-      get_package_dependencies(x$name, repo = getOption("repos")[["CRAN"]])
-  })
+  #Attempt to find CRAN URL by matching all urls returned by getOptions("repos") to memoise_cran_mirrors table
+  repos <- getOption("repos")[which(getOption("repos") %in% memoise_cran_mirrors()$URL)]
+
+  if(length(repos)==0){
+    repos <- grep("[\\.|//]cran\\.", getOption("repos"), ignore.case = T, value = T)
+  }
+  if(length(repos)==0){
+    repos <- getOption("repos")[["CRAN"]]
+  }
+
+  if(length(repos)==0){
+    as_pkg_metric_error(error = 'Could not determine which CRAN mirror you are using.')
+  } else{
+    pkg_metric_eval(class = "pkg_metric_dependencies", {
+        get_package_dependencies(x$name, repo = repos[1]) ##Will use the first CRAN mirror found in the users environment
+    })
+  }
 }
 
 #' @importFrom BiocManager repositories
@@ -63,7 +77,6 @@ assess_dependencies.pkg_bioc_remote <- function(x, ...){
 metric_score.pkg_metric_dependencies <- function(x, ...) {
   NROW(x)
 }
-
 attributes(metric_score.pkg_metric_dependencies)$label <-
   "The number of package dependencies"
 
@@ -112,10 +125,11 @@ parse_dcf_dependencies <- function(path){
 #' @param df Data frame of dependencies of a package.
 #'
 remove_base_packages <- function(df){
-  deps <- df[!grepl("^R\\s\\(.+\\)", df$package) | df$package %in% c('base','compiler','datasets',
-                                                                           'graphics','grDevices','grid',
-                                                                           'methods','parallel','splines',
-                                                                           'stats','stats4','tcltk','tools',
-                                                                           'utils'), ] ##Remove base R dependencies and in the future recommended pacakges
+  inst <- memoise_installed_packages()
+  inst_priority <- inst[,"Priority"]
+  inst_is_base_rec <- !is.na(inst_priority) & inst_priority %in% c("base", "recommended")
+  base_rec_pkgs <- inst[inst_is_base_rec, "Package"]
+
+  deps <- df[!grepl("^R\\s\\(.+\\)", df$package) | df$package %in% base_rec_pkgs, ] ##Remove "R" dependencies as well as base and recomended
   return(deps)
 }
