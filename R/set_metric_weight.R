@@ -11,7 +11,13 @@
 #'
 #' @export
 set_metric_weight <- function(data, weight){
+
   default_weights <- add_default_weights(data)
+  if(any(!names(weight) %in% names(default_weights))){
+    warning("One or more of the weights you specified do not have a corresponding metric function and will be ignored")
+    weight <- weight[names(weight) %in% names(default_weights)]
+  }
+
   default_weights[names(weight)] <- weight
   return(default_weights)
 }
