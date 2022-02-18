@@ -92,18 +92,38 @@ all_assessments <- function() {
 
 #' Get a specific set of assess_* functions for pkg_assess
 #'
-#' @param fxn_string vector of assess functions
+#' @param fxn_string vector of assess functionsto search for, can be a partial string
+#' @param invert logical. If TRUE then the assessment function(s) NOT in fxn_string will be returned, similar to grep -v
 #' @return a list of specific assess_* functions exported from riskmetric
 #'
 #' @importFrom utils packageName
 #' @export
-get_assessments <- function(fxn_string=""){
+get_assessments <- function(fxn_string="", invert=FALSE){
+  fs <- grep("^assess_[^.]*$",
+             getNamespaceExports(utils::packageName()),
+             value = TRUE)
+  fxn_string <- lapply(fxn_string, grep, x=fs, value=T)
+
+  if(length(fxn_string)==0 | all(sapply(fxn_string, length)==0)){
+    warning("Did not find any assessments that matched your query. Returning all assessments")
+    return(all_assessments())
+  } else if(any(sapply(fxn_string, length)==0)){
+    warning("Did not find any assessments that matched one or more of your queries")
+  }
+
+  fxn_string <- unique(unlist(fxn_string))
+
+  if(invert){
+    fxn_string <- fs[!fs %in% fxn_string]
+  }
+
+  Map(getExportedValue,
+      fxn_string,
+      ns = list("riskmetric"))
   Map(getExportedValue,
       fxn_string,
       ns = list(utils::packageName()))
 }
-
-
 
 #' Helper for retrieving a list of columns which contain pkg_metric objects
 #'
