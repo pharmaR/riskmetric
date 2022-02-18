@@ -4,10 +4,12 @@
 \alias{get_assessments}
 \title{Get a specific set of assess_* functions for pkg_assess}
 \usage{
-get_assessments(fxn_string = "")
+get_assessments(fxn_string = "", invert = FALSE)
 }
 \arguments{
-\item{fxn_string}{vector of assess functions}
+\item{fxn_string}{vector of assess functionsto search for, can be a partial string}
+
+\item{invert}{logical. If TRUE then the assessment function(s) NOT in fxn_string will be returned, similar to grep -v}
 }
 \value{
 a list of specific assess_* functions exported from riskmetric
