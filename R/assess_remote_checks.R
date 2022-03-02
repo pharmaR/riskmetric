@@ -4,7 +4,7 @@
 #'   "remote_checks",
 #'   "Tally of R CMD check results run on differnt OS flavors by BioC or CRAN",
 #'   dontrun = TRUE)
-#'   
+#'
 #' @export
 assess_remote_checks <- function(x, ...) {
   UseMethod("assess_remote_checks")
@@ -14,8 +14,8 @@ attributes(assess_remote_checks)$label <- "Number of OS flavors that passed/warn
 
 #' @export
 assess_remote_checks.default <- function(x, ...) {
-  as_pkg_metric_na(pkg_metric(class="pkg_metric_remote_checks", 
-                              message="Package is not a CRAN or BioC reference so there 
+  as_pkg_metric_na(pkg_metric(class="pkg_metric_remote_checks",
+                              message="Package is not a CRAN or BioC reference so there
                               are no CRAN/BioC checks to assess"))
 }
 
@@ -23,7 +23,7 @@ assess_remote_checks.default <- function(x, ...) {
 assess_remote_checks.pkg_cran_remote <- function(x, ...) {
   pkg_metric_eval(class = "pkg_metric_remote_checks",{
     table(factor(x$remote_checks[["Status"]],
-                 levels = c("OK","WARN","ERROR", "NOTE", "FAIL"))) 
+                 levels = c("OK","WARN","ERROR", "NOTE", "FAIL")))
              })
 }
 
@@ -43,7 +43,7 @@ assess_remote_checks.pkg_bioc_remote <- function(x, ...) {
 #'
 #' @export
 metric_score.pkg_metric_remote_checks <- function(x, ...) {
-  unname((x["OK"] + (x[grepl("WARN", names(x))] *0.5))/sum(x))
+  unname((x["OK"] + (x[grepl("NOTE", names(x))] *0.75) + (x[grepl("WARN", names(x))] *0.5))/sum(x))
 }
 attributes(metric_score.pkg_metric_remote_checks)$label <-
   "Weighted sum of OS flavor R CMD check results"

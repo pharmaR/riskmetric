@@ -68,14 +68,23 @@ assess_dependencies.pkg_bioc_remote <- function(x, ...){
 
 #' Score a package for dependencies
 #'
-#' Returns the total number dependencies
+#' Calculates a regularized score based on the number of dependencies a package has.
+#' Convert the number of dependencies \code{NROW(x)} into a validation
+#' score [0,1] \deqn{ 1 - 1 / (1 + exp(-0.5 * (NROW(x) + 4))) }
+#'
+#' The scoring function is the classic logistic curve \deqn{ / (1 + exp(-k(x-x[0])) }
+#' \eqn{x = NROW(x)}, sigmoid midpoint is 5 reverse dependencies, ie. \eqn{x[0] = 4},
+#' and logistic growth rate of \eqn{k = 0.5}.
+#'
+#' \deqn{ 1 - 1 / (1 + exp(NROW(x)-4)) }
 #'
 #' @eval roxygen_score_family("dependencies")
-#' @return A \code{numeric}
+#' @return numeric value between \code{0} (high number of  dependencies) and
+#'   \code{1} (low number of dependencies)
 #'
 #' @export
 metric_score.pkg_metric_dependencies <- function(x, ...) {
-  NROW(x)
+  1 - 1/(1 + exp(-0.5 * (NROW(x) - 4)))
 }
 attributes(metric_score.pkg_metric_dependencies)$label <-
   "The number of package dependencies"
