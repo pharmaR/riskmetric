@@ -49,6 +49,9 @@ metric_score_condition.pkg_metric_na <- function(x, ...) {
   structure(NA_real_, class = c("pkg_score_na", "numeric"))
 }
 
+metric_score_condition.pkg_metric_error <- function(x, ...) {
+  structure(NA_real_, class = c("pkg_score_error", "numeric"))
+}
 
 metric_score_condition.pkg_metric_todo <- function(x, ...) {
   structure(NA_real_, class = c("pkg_score_todo", "numeric"))
