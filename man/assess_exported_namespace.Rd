@@ -2,7 +2,7 @@
 % Please edit documentation in R/assess_exported_namespace.R
 \name{assess_exported_namespace}
 \alias{assess_exported_namespace}
-\title{Assess a package's results from running R CMD check}
+\title{Assess a package's exported namespace}
 \usage{
 assess_exported_namespace(x, ...)
 }
@@ -15,7 +15,7 @@ assess_exported_namespace(x, ...)
 a \code{pkg_metric} containing List of functions and objects exported by a package, excluding S3methods
 }
 \description{
-Assess a package's results from running R CMD check
+Assess a package's exported namespace
 }
 \examples{
 \dontrun{

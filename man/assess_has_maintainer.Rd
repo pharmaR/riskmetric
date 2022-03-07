@@ -18,7 +18,9 @@ a \code{pkg_metric} containing a character vector of maintainers associated with
 Assess a package for an associated maintainer
 }
 \examples{
+\dontrun{
 assess_has_maintainer(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_has_maintainer}}

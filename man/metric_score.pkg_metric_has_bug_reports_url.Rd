@@ -19,5 +19,6 @@ A logical value indicating whether the package has a BugReports field
 Score a package for the presence of a bug report url
 }
 \examples{
-metric_score(assess_has_bug_reports_url(pkg_ref("riskmetric")))
+\dontrun{metric_score(assess_has_bug_reports_url(pkg_ref("riskmetric")))
+}
 }

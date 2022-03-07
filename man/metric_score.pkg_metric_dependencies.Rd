@@ -5,6 +5,8 @@
 \title{Score a package for dependencies}
 \usage{
 \method{metric_score}{pkg_metric_dependencies}(x, ...)
+
+\method{metric_score}{pkg_metric_dependencies}(x, ...)
 }
 \arguments{
 \item{x}{a \code{pkg_metric_dependencies} packge metric object}
@@ -12,11 +14,28 @@
 \item{...}{additional arguments unused}
 }
 \value{
+numeric value between \code{0} (high number of  dependencies) and
+  \code{1} (low number of dependencies)
+
 A \code{numeric}
 }
 \description{
+Calculates a regularized score based on the number of dependencies a package has.
+Convert the number of dependencies \code{NROW(x)} into a validation
+score [0,1] \deqn{ 1 - 1 / (1 + exp(-0.5 * (NROW(x) + 4))) }
+
 Returns the total number dependencies
 }
+\details{
+The scoring function is the classic logistic curve \deqn{ / (1 + exp(-k(x-x[0])) }
+\eqn{x = NROW(x)}, sigmoid midpoint is 5 reverse dependencies, ie. \eqn{x[0] = 4},
+and logistic growth rate of \eqn{k = 0.5}.
+
+\deqn{ 1 - 1 / (1 + exp(NROW(x)-4)) }
+}
 \examples{
-metric_score(assess_dependencies(pkg_ref("riskmetric")))
+\dontrun{metric_score(assess_dependencies(pkg_ref("riskmetric")))
+}
+\dontrun{metric_score(assess_dependencies(pkg_ref("riskmetric")))
+}
 }

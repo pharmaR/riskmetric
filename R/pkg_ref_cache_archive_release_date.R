@@ -12,7 +12,7 @@ pkg_ref_cache.archive_release_dates.pkg_cran_remote <- function(x, name, ...) {
 
   url <- sprintf("%s/src/contrib/Archive/%s", x$repo_base_url, x$name)
 
-  html <- xml2::read_html(url)
+  html <- httr::content(httr::GET(url))
   node <- xml2::xml_find_first(html, "//pre")
 
   text <- unlist(strsplit(xml2::xml_text(node), "\n"))

@@ -26,10 +26,14 @@ the raised error, which will be called if any errors occur when attempting
 to apply an assessment function.}
 }
 \value{
-A \code{\link[tibble]{tibble}} with one row per package reference and
-  a new column per assessment function, with cells of that column as package
-  metric objects returned when the assessment was called with the associated
-  pacakge reference.
+Either a \code{list_of_pkg_metric} object when a single
+  \code{pkg_ref} object is passed as \code{x}, or a
+  \code{\link[tibble]{tibble}} of metrics when a \code{list_of_pkg_ref} or
+  \code{tibble} is passed as \code{x}. When a \code{\link[tibble]{tibble}}
+  is returned, it has one row per package reference and a new column per
+  assessment function, with cells of that column as package metric objects
+  returned when the assessment was called with the associated pacakge
+  reference.
 }
 \description{
 By default, use all \code{assess_*} funtions in the \code{riskmetric}
@@ -41,7 +45,6 @@ assessment applied.
 \describe{
 \item{\code{\link{assess_dependencies}}}{Package dependency footprint}
 \item{\code{\link{assess_remote_checks}}}{Number of OS flavors that passed/warned/errored on R CMD check}
-\item{\code{\link{assess_remote_checks}}}{List of reverse dependencies a package has}
 \item{\code{\link{assess_has_news}}}{number of discovered NEWS files}
 \item{\code{\link{assess_last_30_bugs_status}}}{vector indicating whether BugReports status is closed}
 \item{\code{\link{assess_export_help}}}{exported objects have documentation}
@@ -56,6 +59,7 @@ assessment applied.
 \item{\code{\link{assess_has_maintainer}}}{a vector of associated maintainers}
 \item{\code{\link{assess_has_vignettes}}}{number of discovered vignettes files}
 \item{\code{\link{assess_has_bug_reports_url}}}{presence of a bug reports url in repository}
+\item{\code{\link{assess_reverse_dependencies}}}{List of reverse dependencies a package has}
 }
 }
 

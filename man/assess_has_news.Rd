@@ -18,7 +18,9 @@ a \code{pkg_metric} containing an integer value indicating the number of discove
 Assess a package for the presence of a NEWS file
 }
 \examples{
+\dontrun{
 assess_has_news(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_has_news}}

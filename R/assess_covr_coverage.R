@@ -5,7 +5,9 @@
 #'   paste0("a list containing fields 'filecoverage' and 'totalcoverage' ",
 #'     "containing a named numeric vector of file unit test coverage and a ",
 #'     "singular numeric value representing overall test coverage ",
-#'     "respectively."))
+#'     "respectively."),
+#'   dontrun = TRUE
+#' )
 #'
 #' @export
 assess_covr_coverage <- function(x, ...) {
@@ -38,7 +40,7 @@ assess_covr_coverage.pkg_source <- function(x, ...) {
 #'
 #' Returns the overall test coverage from a covr coverage report
 #'
-#' @eval roxygen_score_family("covr_coverage")
+#' @eval roxygen_score_family("covr_coverage", dontrun = TRUE)
 #' @return A \code{numeric}
 #'
 #' @export
