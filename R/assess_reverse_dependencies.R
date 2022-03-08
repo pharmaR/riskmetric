@@ -25,7 +25,11 @@ assess_reverse_dependencies.default <- function(x, ...){
 assess_reverse_dependencies.cohort_ref <- function(x, ...){
   #cohort_rev_deps <- devtools::revdep(x$cohort$name, bioconductor = TRUE)
   cohort_rev_deps <- lapply(x$cohort, assess_reverse_dependencies)
-  lib_pkgs <- sapply(x$library, function(x) x$name)
+
+  if(length(x$library){
+    lib_pkgs <- sapply(x$library, function(x) x$name)
+  }
+
   return(lapply(cohort_rev_deps, function(x){
     pkg_metric_eval(class = "cohort_metric_reverse_dependencies",
                   x[x %in% lib_pkgs]
