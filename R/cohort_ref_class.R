@@ -16,13 +16,17 @@ new_cohort_ref <- function(x, library, ...){
   dots <- list(...)
   if (length(dots) && is.null(names(dots)) || any(names(dots) == ""))
     stop("cohort_ref ellipses arguments must be named")
+
   if(is.character(x) | all(sapply(x, class) != "pkg_ref")){
     x <- lapply(x, pkg_cran, repos = "https://cran.rstudio.com")
   }
-  if(is.character(library) | all(sapply(library, class) != "pkg_ref")){
+
+  if(!missing(library) &&
+     (is.character(library) | all(sapply(library, class) != "pkg_ref"))){
     library <- pkg_ref(library)
+    cohort_data <- list(cohort = x, library=library, dots)
   }
-  cohort_data <- list(cohort = x, library=library, dots)
+  cohort_data <- list(cohort = x, library=logical(0L), dots)
   structure(cohort_data, class = "cohort_ref")
 }
 

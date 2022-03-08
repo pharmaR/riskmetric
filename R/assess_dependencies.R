@@ -66,6 +66,19 @@ assess_dependencies.pkg_bioc_remote <- function(x, ...){
   })
 }
 
+assess_dependencies.cohort_ref <- function(x, ...){
+  dep <- lapply(x$cohort, assess_dependencies)
+  nm <- sapply(x$cohort, function(x) x$name)
+  dep <- data.frame(ref=rep(nm, sapply(dep, nrow)), bind_rows(dep))
+  dep$version <- str_extract(dep$package, "(?<=\\().+(?=\\))")
+  dep$version<- str_extract(dep$version, "\\d+\\.\\d+(\\.\\d+)*")
+  dep$package <- trimws(gsub("\\(.+\\)", "", dep$package))
+  dep2 <- list(minVer = tapply(dep$version, dep$package, function(x) sort(x, decreasing = T)[1]),
+               minDep = tapply(dep$type, dep$package, function(x) sort(x)[1]))
+  dep2 <- merge(as.data.frame(dep2$minVer), as.data.frame(dep2$minDep), by="row.names")
+  return(dep2)
+}
+
 #' Score a package for dependencies
 #'
 #' Calculates a regularized score based on the number of dependencies a package has.
@@ -141,21 +154,6 @@ remove_base_packages <- function(df){
   deps <- df[!grepl("^R\\s\\(.+\\)", df$package) | df$package %in% base_rec_pkgs, ] ##Remove "R" dependencies as well as base and recomended
   return(deps)
 }
-
-#' Score a package for dependencies
-#'
-#' Returns the total number dependencies
-#'
-#' @eval roxygen_score_family("dependencies")
-#' @return A \code{numeric}
-#'
-#' @export
-metric_score.pkg_metric_dependencies <- function(x, ...) {
-  NROW(x)
-}
-
-attributes(metric_score.pkg_metric_dependencies)$label <-
-  "The number of package dependencies"
 
 #Helper functions to get extract dependencies
 
