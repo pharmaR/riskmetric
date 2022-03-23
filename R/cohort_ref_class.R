@@ -6,48 +6,69 @@
 #' @export
 #' @family cohort_ref
 #'
-cohort_ref <- function(x, library, includeDependencies = TRUE, ...){
-  if (missing(x)) return(structure(list(pkg_ref_list = list(logical(0L)),
-                              library = logical(0L)), class = "cohort_ref"))
-  new_cohort_ref(x, library, ...)
+cohort_ref <- function(x, library = c("base", "recommended","installed"), lib.loc="", includeDependencies = TRUE, ...){
+  if (missing(x) & missing(library) & missing(lib.loc)) {
+    # return(vctrs::new_list_of(cohort=list_of_pkg_ref(),
+    #                           library=list_of_pkg_ref(),
+    #                           ptype = list_of_pkg_ref(),
+    #                           class = "cohort_ref"))
+    stop("No packages defined for cohort ref")
+  }
+
+  new_cohort_ref(x, ...)
 }
 
-new_cohort_ref <- function(x, library, includeDependencies = includeDependencies...){
+new_cohort_ref <- function(x, library="recommended", lib.loc, ...){
   dots <- list(...)
 
-  if (length(dots) && is.null(names(dots)) || any(names(dots) == ""))
+  if (length(dots) && is.null(names(dots)) || any(names(dots) == "")){
     stop("cohort_ref ellipses arguments must be named")
+    }
 
-  is_a_path <- all(is_path(library))
-  if((is.character(x) & length(x)>1) | all(sapply(x, function(y) !"pkg_ref" %in% class(y)))){
-    x <- lapply(x, pkg_cran, repos = "https://cran.rstudio.com")
-  } else if (class(x) == "list_of_pkg_ref" || all(sapply(x, function(y) "pkg_ref" %in% class(y))) )
-
-  if(!missing(library) &&
-     (is.character(library) | all(sapply(library, class) != "pkg_ref"))){
-    library <-
-    cohort_data <- list(cohort = x, library=library, dots)
+  if(is.atomic(x) & length(x)>1){
+    x <- as_list_of_pkg_ref(lapply(x, pkg_cran, repos = getOption("repos")))
+  } else if (class(x) != "list_of_pkg_ref" &&
+             all(sapply(x, function(y) "pkg_ref" %in% class(y)))){
+    x <- as_list_of_pkg_ref(x)
   }
 
-  cohort_data <- list(cohort = x, library=logical(0L), dots)
-  structure(cohort_data, class = "cohort_ref")
-}
+  ip <- as.data.frame(installed.packages())
+  if(library=="base"){
+    libref <- as_list_of_pkg_ref(lapply(ip$Package[ip$Priority=="base"], pkg_install))
+  } else if(library=="recommended"){
+    libref <- as_list_of_pkg_ref(lapply(ip$Package[ip$Priority %in% c("base", "recommended")], pkg_install))
+  } else if(library=="installed"){
+    if(!missing(lib.loc)){
+      libref <- as_list_of_pkg_ref(lapply(ip$Package, pkg_install))
+    } else{
+      ip <- as.data.frame(installed.packages(lib.loc))
+      libref <- as_list_of_pkg_ref(lapply(ip$Package, pkg_install))
+    }
 
-make_library <- function(x){
-  if(x=="install"){
-    return(install.packages())
-  } else if(grepl("/.+/.+/", x)){
-
-  } else if(length(x) > 1 & is.character(x)){
-
-  } else{
-    return(available.packages())
   }
-
+  return(structure(list(cohort=x,
+                        library=libref,
+                        dots), class = "cohort_ref"))
 }
 
 is_path <- function(x){
   if(is.character(x)){
     return(dir.exists(x))
   }
+}
+
+
+#' @importFrom tibble tibble
+#' @importFrom dplyr bind_rows
+#' @method as_tibble cohort_ref
+#' @export
+as_tibble.cohort_ref <- function(x, ...) {
+  dplyr::bind_rows(as_tibble(x$cohort),
+            as_tibble(x$library))
+}
+
+
+print.cohort_ref <- function(x){
+  list(as_tibble(x$cohort),
+       as_tibble(x$library))
 }
