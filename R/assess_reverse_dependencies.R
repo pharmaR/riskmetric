@@ -26,7 +26,7 @@ assess_reverse_dependencies.cohort_ref <- function(x, ...){
   #cohort_rev_deps <- devtools::revdep(x$cohort$name, bioconductor = TRUE)
   cohort_rev_deps <- lapply(x$cohort, assess_reverse_dependencies)
 
-  if(length(x$library){
+  if(length(x$library)){
     lib_pkgs <- sapply(x$library, function(x) x$name)
   }
 
