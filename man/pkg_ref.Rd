@@ -7,7 +7,7 @@
 \alias{pkg_cran}
 \alias{pkg_bioc}
 \alias{pkg_missing}
-\alias{pkg_library}
+\alias{library_ref}
 \alias{as_pkg_ref}
 \title{Create a package reference}
 \usage{
@@ -23,7 +23,7 @@ pkg_bioc(x)
 
 pkg_missing(x)
 
-pkg_library(lib.loc)
+library_ref(lib.loc)
 
 as_pkg_ref(x, ...)
 }
@@ -98,8 +98,8 @@ collection.
 
 *Experimental!*
 Package cohorts are structures to determine the risk of a set of packages.
-`pkg_library()` can be called to create a object containing the pkg_ref
-objects of all packages in a system library.
+`library_ref()` can be called to create a object containing the pkg_ref
+objects of all packages in a library.
 }
 
 \examples{

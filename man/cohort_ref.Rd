@@ -4,7 +4,13 @@
 \alias{cohort_ref}
 \title{Cohort ref class}
 \usage{
-cohort_ref(x, library, ...)
+cohort_ref(
+  x,
+  library = c("base", "recommended", "installed"),
+  lib.loc = "",
+  includeDependencies = TRUE,
+  ...
+)
 }
 \description{
 This is a class to hold a list of pkg_refs along with extra
