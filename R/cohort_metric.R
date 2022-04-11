@@ -15,13 +15,12 @@ cohort_metric <- function(x = NA, ..., class = c()) {
 
 #' Convert an object to a \code{cohort_metric}
 #'
-#' @inheritParams pkg_metric
+#' @inheritParams cohort_metric
 #' @return a \code{cohort_metric} object
 #' @export
 as_cohort_metric <- function(x, class = c()) {
   UseMethod("as_cohort_metric")
 }
-
 
 
 #' @export
@@ -53,8 +52,8 @@ as_cohort_metric.expr_output <- function(x, class = c()) {
 #' @keywords internal
 cohort_metric_eval <- function(expr, ..., class = c(), env = parent.frame()) {
   out <- capture_expr_output(substitute(expr), env = env, quoted = TRUE)
-  out_metric <- as_pkg_metric(out, class = class)
-  if (inherits(out, "error")) out_metric <- as_pkg_metric_error(out_metric)
+  out_metric <- as_cohort_metric(out, class = class)
+  if (inherits(out, "error")) out_metric <- as_cohort_metric(out_metric)
   out_metric
 }
 
@@ -77,20 +76,20 @@ format.cohort_metric <- function(x, ...) {
 #'
 #' @param error an error condition object to capture
 #'
-#' @return an error condition object after wrap \code{pkg_metric_error} class.
+#' @return an error condition object after wrap \code{cohort_metric_error} class.
 #' @keywords internal
 as_cohort_metric_error <- function(error) {
   as_cohort_metric_condition(error, subclass = "cohort_metric_error")
 }
 
-#' A pkg_metric subclass for general metric evaluation conditions
+#' A cohort_metric subclass for general metric evaluation conditions
 #'
-#' @param x an object to wrap in a \code{pkg_metric_condition} class
+#' @param x an object to wrap in a \code{cohort_metric_condition} class
 #' @param ... additional arguments added as attributes to object \code{x}
-#' @param subclass an optional subclass of \code{pkg_metric_condition} to
+#' @param subclass an optional subclass of \code{cohort_metric_condition} to
 #'   include
 #'
-#' @return an object after wrap \code{pkg_metric_condition} class.
+#' @return an object after wrap \code{cohort_metric_condition} class.
 #' @keywords internal
 as_cohort_metric_condition <- function(x, ..., subclass = c()) {
   dots <- list(...)
