@@ -39,7 +39,7 @@ assess_exported_namespace.pkg_source <- function(x, ...) {
 
 #' @export
 assess_exported_namespace.cohort_ref <- function(x, ...) {
-  ns <- lapply(x$cohort, assess_exported_namespace)
+  ns <- unlist(lapply(x$cohort, assess_exported_namespace))
 
 }
 
