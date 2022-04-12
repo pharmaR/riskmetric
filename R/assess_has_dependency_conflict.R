@@ -37,5 +37,18 @@ assess_has_dependency_conflict.cohort_ref <- function(x, ...){
           }
     })
   colnames(dep3) <- c("Pkg_dependency", "MinimumVersion","Type", "CurrentVersion", "IsConflict")
-  return(dep3[dep3$IsConflict, ])
+  cohort_metric_eval(class= "cohort_metric_dependency_conflict",
+                     dep3[dep3$IsConflict, ])
 }
+
+#' Score a package for presence of dependency conflicts
+#'
+#' @return \code{1} if any dependencies are missing or conflicting, otherwise \code{0}
+#'
+#' @export
+cohort_metric.cohort_metric_dependency_conflict <- function(x, ...) {
+  as.numeric(NROW(x) > 0)
+}
+
+attributes(cohort_metric.cohort_metric_dependency_conflict)$label <-
+  "A binary indicator of whether the cohort has missing or conflicting dependencies."
