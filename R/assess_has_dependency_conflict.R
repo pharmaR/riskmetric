@@ -46,9 +46,9 @@ assess_has_dependency_conflict.cohort_ref <- function(x, ...){
 #' @return \code{1} if any dependencies are missing or conflicting, otherwise \code{0}
 #'
 #' @export
-cohort_metric.cohort_metric_dependency_conflict <- function(x, ...) {
+metric_score.cohort_metric_dependency_conflict <- function(x, ...) {
   as.numeric(NROW(x) > 0)
 }
 
-attributes(cohort_metric.cohort_metric_dependency_conflict)$label <-
+attributes(metric_score.cohort_metric_dependency_conflict)$label <-
   "A binary indicator of whether the cohort has missing or conflicting dependencies."
