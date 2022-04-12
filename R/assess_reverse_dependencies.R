@@ -73,9 +73,9 @@ attributes(metric_score.pkg_metric_reverse_dependencies)$label <-
 #'
 #' @importFrom igraph fit_power_law
 #' @export
-cohort_metric.cohort_metric_reverse_dependencies <- function(x, ...){
-  igraph::fit_power_law(tapply(cohort_rev_deps$revdep,cohort_rev_deps$pkg, length))$KS.p
+metric_score.cohort_metric_reverse_dependencies <- function(x, ...){
+  igraph::fit_power_law(tapply(x$revdep, x$pkg, length))$KS.p
 }
-attributes(cohort_metric.cohort_metric_reverse_dependencies)$label <-
+attributes(metric_score.cohort_metric_reverse_dependencies)$label <-
   "p-value of power law distribution fit"
 
