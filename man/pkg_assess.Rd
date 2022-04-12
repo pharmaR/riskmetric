@@ -51,7 +51,7 @@ assessment applied.
 \item{\code{\link{assess_has_website}}}{a vector of associated website urls}
 \item{\code{\link{assess_news_current}}}{NEWS file contains entry for current version number}
 \item{\code{\link{assess_export_help}}}{exported objects have documentation}
-\item{\code{\link{assess_reverse_dependencies}}}{List of reverse dependencies a package has}
+\item{\code{\link{assess_reverse_dependencies}}}{Table of reverse dependencies for each package.}
 \item{\code{\link{assess_has_bug_reports_url}}}{presence of a bug reports url in repository}
 \item{\code{\link{assess_has_source_control}}}{a vector of associated source control urls}
 \item{\code{\link{assess_dependencies}}}{Package dependency conflicts}
