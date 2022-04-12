@@ -23,23 +23,24 @@ assess_reverse_dependencies.default <- function(x, ...){
 #' @importFrom devtools revdep
 #' @export
 assess_reverse_dependencies.cohort_ref <- function(x, ...){
-  #cohort_rev_deps <- devtools::revdep(x$cohort$name, bioconductor = TRUE)
   cohort_rev_deps <- lapply(x$cohort, assess_reverse_dependencies)
+  cohort_nm <- sapply(x$cohort, "[[", "name")
+
+  cohort_rev_deps <- data.frame(pkg=rep(cohort_nm, sapply(cohort_rev_deps, length)),
+                                revdep=unlist(cohort_rev_deps))
 
   if(length(x$library)){
     lib_pkgs <- sapply(x$library, function(x) x$name)
   }
 
-  return(lapply(cohort_rev_deps, function(x){
-    pkg_metric_eval(class = "cohort_metric_reverse_dependencies",
-                  x[x %in% lib_pkgs]
+  return(cohort_metric_eval(class = "cohort_metric_reverse_dependencies",
+                  cohort_rev_deps[cohort_rev_deps$revdep %in% c(lib_pkgs, cohort_nm), ]
     )
-  })
   )
 }
 
 attr(assess_reverse_dependencies, "column_name") <- "reverse_dependencies"
-attr(assess_reverse_dependencies, "label") <- "List of reverse dependencies a package has"
+attr(assess_reverse_dependencies, "label") <- "Table of reverse dependencies for each package."
 
 
 #' Scoring method for number of reverse dependencies a package has
@@ -66,4 +67,15 @@ metric_score.pkg_metric_reverse_dependencies <- function(x,...){
 
 attributes(metric_score.pkg_metric_reverse_dependencies)$label <-
   "The (log10) number of packages that depend on this package."
+
+
+#' Metric for the assessment of reverse dependencies of a cohort.
+#'
+#' @importFrom igraph fit_power_law
+#' @export
+cohort_metric.cohort_metric_reverse_dependencies <- function(x, ...){
+  igraph::fit_power_law(tapply(cohort_rev_deps$revdep,cohort_rev_deps$pkg, length))$KS.p
+}
+attributes(cohort_metric.cohort_metric_reverse_dependencies)$label <-
+  "p-value of power law distribution fit"
 
