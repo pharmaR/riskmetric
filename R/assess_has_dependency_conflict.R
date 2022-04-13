@@ -5,8 +5,8 @@
 assess_has_dependency_conflict <- function(x, ...){
   UseMethod("assess_has_dependency_conflict")
 }
-attributes(assess_dependencies)$column_name <- "dependency_conflict"
-attributes(assess_dependencies)$label <- "Package dependency conflicts"
+attributes(assess_has_dependency_conflict)$column_name <- "dependency_conflict"
+attributes(assess_has_dependency_conflict)$label <- "Cohort dependency conflicts"
 
 #' @export
 assess_has_dependency_conflict.cohort_ref <- function(x, ...){
