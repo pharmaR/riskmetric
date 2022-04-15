@@ -43,7 +43,6 @@ Suggests:
     rmarkdown,
     withr,
     magrittr,
-    dplyr,
     testthat,
     webmockr,
     jsonlite
