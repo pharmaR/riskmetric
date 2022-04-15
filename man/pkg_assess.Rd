@@ -46,7 +46,7 @@ assessment applied.
 \item{\code{\link{assess_last_30_bugs_status}}}{vector indicating whether BugReports status is closed}
 \item{\code{\link{assess_license}}}{software is released with an acceptable license}
 \item{\code{\link{assess_downloads_1yr}}}{number of downloads in the past year}
-\item{\code{\link{assess_has_dependency_conflict}}}{assess_has_dependency_conflict}
+\item{\code{\link{assess_has_dependency_conflict}}}{Cohort dependency conflicts}
 \item{\code{\link{assess_exported_namespace}}}{Objects exported by package}
 \item{\code{\link{assess_has_website}}}{a vector of associated website urls}
 \item{\code{\link{assess_news_current}}}{NEWS file contains entry for current version number}
@@ -54,7 +54,7 @@ assessment applied.
 \item{\code{\link{assess_reverse_dependencies}}}{Table of reverse dependencies for each package.}
 \item{\code{\link{assess_has_bug_reports_url}}}{presence of a bug reports url in repository}
 \item{\code{\link{assess_has_source_control}}}{a vector of associated source control urls}
-\item{\code{\link{assess_dependencies}}}{Package dependency conflicts}
+\item{\code{\link{assess_dependencies}}}{Package dependency footprint}
 \item{\code{\link{assess_has_vignettes}}}{number of discovered vignettes files}
 \item{\code{\link{assess_has_maintainer}}}{a vector of associated maintainers}
 \item{\code{\link{assess_r_cmd_check}}}{Package check results}

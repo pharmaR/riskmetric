@@ -14,7 +14,6 @@ pkg_metric <- function(x = NA, ..., class = c()) {
 }
 
 
-
 #' Convert an object to a \code{pkg_metric}
 #'
 #' @inheritParams pkg_metric
