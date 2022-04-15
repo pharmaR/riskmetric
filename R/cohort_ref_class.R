@@ -70,7 +70,7 @@ as_tibble.cohort_ref <- function(x, ...) {
 #' @importFrom tibble tibble
 #' @method print cohort_ref
 #' @export
-print.cohort_ref <- function(x){
+print.cohort_ref <- function(x, ...){
   list(as_tibble(x$cohort),
        as_tibble(x$library))
 }
