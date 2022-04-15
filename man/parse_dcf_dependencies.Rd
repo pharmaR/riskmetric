@@ -5,14 +5,10 @@
 \title{Parse DCF of description file}
 \usage{
 parse_dcf_dependencies(path)
-
-parse_dcf_dependencies(path)
 }
 \arguments{
 \item{path}{pkg_ref path}
 }
 \description{
-Parse DCF of description file
-
 Parse DCF of description file
 }

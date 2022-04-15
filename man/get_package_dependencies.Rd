@@ -6,8 +6,6 @@
 package of interest}
 \usage{
 get_package_dependencies(name, repo)
-
-get_package_dependencies(name, repo)
 }
 \arguments{
 \item{name}{package name}
@@ -16,13 +14,8 @@ get_package_dependencies(name, repo)
 }
 \value{
 Returns a data frame with two columns 1) Package names, 2) type of dependency (LinkingTo, Imports, Depends)
-
-Returns a data frame with two columns 1) Package names, 2) type of dependency (LinkingTo, Imports, Depends)
 }
 \description{
-Gets available packages from necessary repository and filters for
-package of interest
-
 Gets available packages from necessary repository and filters for
 package of interest
 }

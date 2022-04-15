@@ -6,7 +6,7 @@
 \usage{
 cohort_assess(
   x,
-  assessments = cohort_assessments(),
+  assessments = all_cohort_assessments(),
   ...,
   error_handler = assessment_error_empty
 )
