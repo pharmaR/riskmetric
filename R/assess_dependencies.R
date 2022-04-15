@@ -39,26 +39,18 @@ assess_dependencies.pkg_install <- function(x, ...){
 
 #' @export
 assess_dependencies.pkg_cran_remote <- function(x, ...){
-  if(is.na(x$dependencies)){
-    as_pkg_metric_error(error = 'Could not determine which CRAN mirror you are using.')
-  } else{
     pkg_metric_eval(class = "pkg_metric_dependencies", {
         NROW(x$dependencies)
     })
-  }
 }
 
 #' @importFrom BiocManager repositories
 #' @export
 assess_dependencies.pkg_bioc_remote <- function(x, ...){
-  if(is.na(x$dependencies)){
-    as_pkg_metric_error(error = 'Could not determine which BioC mirror you are using.')
-  } else{
     pkg_metric_eval(class = "pkg_metric_dependencies", {
       NROW(x$dependencies)
     })
   }
-}
 
 #' Score a package for dependencies
 #'
