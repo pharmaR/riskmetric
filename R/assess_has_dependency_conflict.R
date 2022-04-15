@@ -16,6 +16,8 @@ assess_has_dependency_conflict.pkg_ref <- function(x, ...){
 attributes(assess_has_dependency_conflict)$column_name <- "dependency_conflict"
 attributes(assess_has_dependency_conflict)$label <- "Cohort dependency conflicts"
 
+#' @importFrom stringr str_extract
+#' @importFrom utils compareVersion
 #' @export
 assess_has_dependency_conflict.cohort_ref <- function(x, ...){
   dep <- lapply(x$cohort, "[[", "dependencies")
