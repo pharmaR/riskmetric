@@ -8,6 +8,14 @@ assess_has_dependency_conflict <- function(x, ...){
 attributes(assess_has_dependency_conflict)$column_name <- "dependency_conflict"
 attributes(assess_has_dependency_conflict)$label <- "Cohort dependency conflicts"
 
+assess_has_dependency_conflict.pkg_ref <- function(x, ...){
+  as_pkg_metric_na(
+    pkg_metric(class = "pkg_metric_dependency_conflict"),
+    message = "Dependency conflicts not relevant for an individual package.")
+}
+attributes(assess_has_dependency_conflict)$column_name <- "dependency_conflict"
+attributes(assess_has_dependency_conflict)$label <- "Cohort dependency conflicts"
+
 #' @export
 assess_has_dependency_conflict.cohort_ref <- function(x, ...){
   dep <- lapply(x$cohort, "[[", "dependencies")
@@ -50,5 +58,4 @@ metric_score.cohort_metric_dependency_conflict <- function(x, ...) {
   as.numeric(NROW(x) > 0)
 }
 
-attributes(metric_score.cohort_metric_dependency_conflict)$label <-
-  "A binary indicator of whether the cohort has missing or conflicting dependencies."
+attributes(metric_score.cohort_metric_dependency_conflict)$label <- "Binary indicator of the presence of a dependency conflict"
