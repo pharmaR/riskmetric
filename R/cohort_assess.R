@@ -21,7 +21,7 @@
 #' @importFrom tibble as_tibble
 #' @importFrom vctrs new_list_of
 #' @export
-cohort_assess <- function(x, assessments = cohort_assessments(), ...,
+cohort_assess <- function(x, assessments = all_cohort_assessments(), ...,
                        error_handler = assessment_error_empty) {
   UseMethod("cohort_assess")
 }
