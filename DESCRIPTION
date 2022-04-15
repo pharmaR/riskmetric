@@ -37,7 +37,8 @@ Imports:
     pkgload,
     devtools,
     igraph,
-    dplyr
+    dplyr,
+    stringr
 Suggests:
     knitr,
     rmarkdown,
