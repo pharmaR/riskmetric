@@ -32,6 +32,7 @@ metric_score.default <- function(x, ...) {
 
   0L
 }
+attributes(metric_score.default)$label <- "No method available to score assessment, or an error occured"
 
 metric_score_condition <- function(x, ...) {
   UseMethod("metric_score_condition")
@@ -41,12 +42,14 @@ metric_score_condition.pkg_metric_error <- function(x, ...,
     error_handler = score_error_default) {
   error_handler(x, ...)
 }
-
+attributes(metric_score_condition.pkg_metric_error)$label <- "No method available to score assessment, an error occured"
 
 metric_score_condition.pkg_metric_na <- function(x, ...) {
   structure(NA_real_, class = c("pkg_score_na", "numeric"),
   label="No scoring method for metric" )
 }
+attributes(metric_score_condition.pkg_metric_na)$label <- "No method available to score an assessment that returns  NA"
+
 
 metric_score_condition.pkg_metric_error <- function(x, ...) {
   structure(NA_real_, class = c("pkg_score_error", "numeric"),
@@ -57,7 +60,7 @@ metric_score_condition.pkg_metric_todo <- function(x, ...) {
   structure(NA_real_, class = c("pkg_score_todo", "numeric"),
             label="A scoring method for this assessment will be implemented in the future" )
 }
-
+attributes(metric_score_condition.pkg_metric_todo)$label <- "No scoring method available because the assessment has yet to be implemented."
 
 
 #' Default score error handling, emitting a warning and returning 0
