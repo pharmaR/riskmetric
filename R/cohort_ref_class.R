@@ -5,6 +5,7 @@
 #'
 #' @export
 #' @family cohort_ref
+#' @importFrom utils installed.packages
 #'
 cohort_ref <- function(x, library = c("base", "recommended","installed"), lib.loc="", includeDependencies = TRUE, ...){
   if (missing(x) & missing(library) & missing(lib.loc)) {
