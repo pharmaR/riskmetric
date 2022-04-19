@@ -4,6 +4,6 @@ test_that("assess_dependencies returns the correct number of dependencies", {
     c("pkg_metric_dependencies", "pkg_metric", "data.frame"))
 
   expect_equal(
-    assess_source_good$dependencies, 1, ignore_attr=TRUE)
+    assess_source_good$dependencies, 0, ignore_attr=TRUE)
 })
 
