@@ -6,6 +6,9 @@
 \usage{
 new_list_of_pkg_ref(x)
 }
+\arguments{
+\item{x}{list of pkg_refs}
+}
 \description{
 Create a list_list_of_pkg_ref from list of pkg_refs
 }

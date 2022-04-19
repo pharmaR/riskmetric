@@ -6,6 +6,11 @@
 \usage{
 \method{metric_score}{cohort_metric_dependency_conflict}(x, ...)
 }
+\arguments{
+\item{x}{cohort assessment}
+
+\item{...}{named list of arguments to adjust metric scoring. currently ignored.}
+}
 \value{
 \code{1} if any dependencies are missing or conflicting, otherwise \code{0}
 }

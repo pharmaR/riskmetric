@@ -6,6 +6,11 @@
 \usage{
 \method{metric_score}{cohort_metric_reverse_dependencies}(x, ...)
 }
+\arguments{
+\item{x}{cohort assessment}
+
+\item{...}{named list of arguments that are currently ignored}
+}
 \description{
 Metric for the assessment of reverse dependencies of a cohort.
 }

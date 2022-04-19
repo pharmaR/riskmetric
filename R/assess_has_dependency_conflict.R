@@ -1,5 +1,7 @@
 #' Assess a cohort for the presence of dependency conflicts
 #'
+#' @param x cohort_ref
+#' @param ... currently ignored
 #' @export
 #'
 assess_has_dependency_conflict <- function(x, ...){
@@ -53,6 +55,8 @@ assess_has_dependency_conflict.cohort_ref <- function(x, ...){
 
 #' Score a package for presence of dependency conflicts
 #'
+#' @param x cohort assessment
+#' @param ... named list of arguments to adjust metric scoring. currently ignored.
 #' @return \code{1} if any dependencies are missing or conflicting, otherwise \code{0}
 #'
 #' @export

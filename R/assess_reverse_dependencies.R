@@ -71,6 +71,8 @@ attributes(metric_score.pkg_metric_reverse_dependencies)$label <-
 
 #' Metric for the assessment of reverse dependencies of a cohort.
 #'
+#' @param x cohort assessment
+#' @param ... named list of arguments that are currently ignored
 #' @importFrom igraph fit_power_law
 #' @export
 metric_score.cohort_metric_reverse_dependencies <- function(x, ...){

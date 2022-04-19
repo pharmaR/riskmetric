@@ -377,6 +377,8 @@ verify_pkg_source <- function(x, source, repos) {
 
 #' Coerce a list or pkg_ref to a list_list_of_pkg_ref
 #'
+#' @param x list of pkg_refs to be coerced to a `list_of_pkg_ref`
+#'
 #' @importFrom vctrs new_list_of
 #' @export
 as_list_of_pkg_ref <- function(x){
@@ -385,6 +387,7 @@ as_list_of_pkg_ref <- function(x){
 
 #' Create a list_list_of_pkg_ref from list of pkg_refs
 #'
+#' @param x list of pkg_refs
 #' @importFrom vctrs new_list_of
 #' @export
 new_list_of_pkg_ref <- function(x){

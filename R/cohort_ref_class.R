@@ -3,6 +3,12 @@
 #' This is a class to hold a list of pkg_refs along with extra
 #' information about the environment the packages are to be used/installed in.
 #'
+#' @param x either a list of `pkg_ref`s or a `list_of_pkg_ref`
+#' @param library one of "base", "recommended" or "installed" to use as an environment for testing cohorts
+#' @param includeDependencies logical. whether or not to added add all pkg dependencies when creating a cohort [default: TRUE]
+#' @param lib.loc path to R library
+#' @param ... named vector or list of paramters to be included in cohort ref creation
+#'
 #' @export
 #' @family cohort_ref
 #' @importFrom utils installed.packages

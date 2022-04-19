@@ -2,6 +2,10 @@
 #' cohort_score() calculates the risk involved with using a cohort of packages. Risk ranges
 #' from 0 (low-risk) to 1 (high-risk).
 #'
+#' @param x cohort assessment
+#' @param ... named list of arguments to be used when scoring a cohort
+#' @param error_handler error handling function
+#'
 #' @export
 cohort_score <- function(x, ..., error_handler = score_error_default) {
   UseMethod("cohort_score")

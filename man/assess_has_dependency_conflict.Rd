@@ -6,6 +6,11 @@
 \usage{
 assess_has_dependency_conflict(x, ...)
 }
+\arguments{
+\item{x}{cohort_ref}
+
+\item{...}{currently ignored}
+}
 \description{
 Assess a cohort for the presence of dependency conflicts
 }

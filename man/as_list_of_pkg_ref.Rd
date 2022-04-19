@@ -6,6 +6,9 @@
 \usage{
 as_list_of_pkg_ref(x)
 }
+\arguments{
+\item{x}{list of pkg_refs to be coerced to a `list_of_pkg_ref`}
+}
 \description{
 Coerce a list or pkg_ref to a list_list_of_pkg_ref
 }
