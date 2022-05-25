@@ -117,9 +117,9 @@ get_assessments <- function(fxn_string="", invert=FALSE){
     fxn_string <- fs[!fs %in% fxn_string]
   }
 
-  Map(getExportedValue,
-      fxn_string,
-      ns = list("riskmetric"))
+  # Map(getExportedValue,
+  #     fxn_string,
+  #     ns = list("riskmetric"))
   Map(getExportedValue,
       fxn_string,
       ns = list(utils::packageName()))
