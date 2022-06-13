@@ -17,11 +17,11 @@ assess_size_codebase.pkg_install <- function(x, ...) {
   pkg_metric_eval(class = "pkg_metric_size_codebase", {
     # create character vector of exported function
     exports <- paste0(x$name,"::", getNamespaceExports(x$name))
-    # count number of lines in each function through capture.output function
-    exports %>%
-      sapply(function(x) x %>% capture.output(eval(str2lang(x))) %>% length()) %>%
-      # each function has 3 extra lines in the displayed codes (header, bytecode, environment)
-      sum() - 3*length(exports)
 
+    # count number of lines in each function through capture.output function
+    nloc <- sapply(exports, function(x){length(capture.output(eval(str2lang(x))))})
+
+    # sum the number of lines and extract the 2 extra lines (bytecode, environment)
+    sum(nloc) - 2*length(nloc)
   })
 }
