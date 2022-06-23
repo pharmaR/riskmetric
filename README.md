@@ -30,7 +30,13 @@ overall risk score for each package as shown in the example below.
 
 ## Installation
 
-`riskmetric` is not yet on CRAN. Until it is, install it using `devtools`.
+You can install `riskmetric`  from CRAN with:
+
+```r
+install.packages("riskmetric")
+```
+
+Or from GitHub using `devtools` with:
 
 ```r
 devtools::install_github("pharmaR/riskmetric")
