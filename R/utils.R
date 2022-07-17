@@ -80,8 +80,13 @@ firstS3method <- function(f, classes, envir = parent.frame()) {
     envir = envir,
     optional = TRUE)
 
-  # [1][[1]] hacky way of getting first elem while coercing empty list to NULL
-  Filter(Negate(is.null), s3methods)[1][[1]]
+  # [1][[1]] hacky way of getting first element while coercing empty list to NULL
+  mthd <- Filter(Negate(is.null), s3methods)[1][[1]]
+  if(is.null(mthd)){
+    return(utils::getS3method(f=f, class = "default", envir = envir))
+  } else{
+    return(mthd)
+  }
 }
 
 

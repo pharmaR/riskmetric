@@ -6,9 +6,7 @@
 #'
 #' @export
 assess_has_bug_reports_url <- function(x, ...) {
-  pkg_metric_eval(class = "pkg_metric_has_bug_reports_url", {
-    as.character(x$bug_reports_url)
-  })
+  UseMethod("assess_has_bug_reports_url")
 }
 
 # assign a friendly name for assess column
@@ -20,7 +18,7 @@ attr(assess_has_bug_reports_url,"label") <- "presence of a bug reports url in re
 #' @export
 assess_has_bug_reports_url.pkg_ref <- function(x, ...) {
   pkg_metric(class = "pkg_metric_has_bug_reports_url", {
-    length(x$bug_reports_url)
+    as.character(x$bug_reports_url)
   })
 }
 

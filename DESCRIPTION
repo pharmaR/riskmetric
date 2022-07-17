@@ -35,13 +35,15 @@ Imports:
     pillar,
     tibble,
     pkgload,
-    devtools
+    devtools,
+    igraph,
+    dplyr,
+    stringr
 Suggests:
     knitr,
     rmarkdown,
     withr,
     magrittr,
-    dplyr,
     testthat,
     webmockr,
     jsonlite

@@ -49,8 +49,8 @@
 #'
 #' *Experimental!*
 #' Package cohorts are structures to determine the risk of a set of packages.
-#' `pkg_library()` can be called to create a object containing the pkg_ref
-#' objects of all packages in a system library.
+#' `library_ref()` can be called to create a object containing the pkg_ref
+#' objects of all packages in a library.
 #'
 #'
 #' @rdname pkg_ref
@@ -201,13 +201,13 @@ pkg_missing <- function(x) {
 }
 
 #' @rdname pkg_ref
-pkg_library <- function(lib.loc) {
+library_ref <- function(lib.loc) {
   # Create pkg_cohort object
-  cohort <- pkg_cohort()
+  cohort <- cohort_ref()
   for(pkg in list.files(lib.loc, recursive = FALSE, full.names = FALSE)) {
     cohort[[length(cohort)+1]] <- pkg_install(pkg, lib.loc = lib.loc)
   }
-  cohort
+  as_list_of_pkg_ref(cohort)
 }
 
 #' Convert into a package object
@@ -373,4 +373,23 @@ verify_pkg_source <- function(x, source, repos) {
     source)
 
   source
+}
+
+#' Coerce a list or pkg_ref to a list_list_of_pkg_ref
+#'
+#' @param x list of pkg_refs to be coerced to a `list_of_pkg_ref`
+#'
+#' @importFrom vctrs new_list_of
+#' @export
+as_list_of_pkg_ref <- function(x){
+  return(vctrs::new_list_of(x, ptype = pkg_ref(), class = "list_of_pkg_ref"))
+}
+
+#' Create a list_list_of_pkg_ref from list of pkg_refs
+#'
+#' @param x list of pkg_refs
+#' @importFrom vctrs new_list_of
+#' @export
+new_list_of_pkg_ref <- function(x){
+  return(vctrs::new_list_of(x, ptype = pkg_ref(), class = "list_of_pkg_ref"))
 }

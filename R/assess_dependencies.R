@@ -26,45 +26,31 @@ assess_dependencies.default <- function(x, ...){
 #' @export
 assess_dependencies.pkg_source <- function(x, ...){
   pkg_metric_eval(class = "pkg_metric_dependencies", {
-    parse_dcf_dependencies(x$path)
+    NROW(x$dependencies)
     })
 }
 
 #' @export
 assess_dependencies.pkg_install <- function(x, ...){
   pkg_metric_eval(class = "pkg_metric_dependencies", {
-    parse_dcf_dependencies(x$path)
+    NROW(x$dependencies)
   })
 }
 
 #' @export
 assess_dependencies.pkg_cran_remote <- function(x, ...){
-  #Attempt to find CRAN URL by matching all urls returned by getOptions("repos") to memoise_cran_mirrors table
-  repos <- getOption("repos")[which(getOption("repos") %in% memoise_cran_mirrors()$URL)]
-
-  if(length(repos)==0){
-    repos <- grep("[\\.|//]cran\\.", getOption("repos"), ignore.case = T, value = T)
-  }
-  if(length(repos)==0){
-    repos <- getOption("repos")[["CRAN"]]
-  }
-
-  if(length(repos)==0){
-    as_pkg_metric_error(error = 'Could not determine which CRAN mirror you are using.')
-  } else{
     pkg_metric_eval(class = "pkg_metric_dependencies", {
-        get_package_dependencies(x$name, repo = repos[1]) ##Will use the first CRAN mirror found in the users environment
+        NROW(x$dependencies)
     })
-  }
 }
 
 #' @importFrom BiocManager repositories
 #' @export
 assess_dependencies.pkg_bioc_remote <- function(x, ...){
-  pkg_metric_eval(class = "pkg_metric_dependencies", {
-    get_package_dependencies(x$name, BiocManager::repositories()[1])
-  })
-}
+    pkg_metric_eval(class = "pkg_metric_dependencies", {
+      NROW(x$dependencies)
+    })
+  }
 
 #' Score a package for dependencies
 #'
@@ -84,7 +70,7 @@ assess_dependencies.pkg_bioc_remote <- function(x, ...){
 #'
 #' @export
 metric_score.pkg_metric_dependencies <- function(x, ...) {
-  1 - 1/(1 + exp(-0.5 * (NROW(x) - 4)))
+  1 - 1/(1 + exp(-0.5 * (x - 4)))
 }
 attributes(metric_score.pkg_metric_dependencies)$label <-
   "The number of package dependencies"
@@ -138,7 +124,6 @@ remove_base_packages <- function(df){
   inst_priority <- inst[,"Priority"]
   inst_is_base_rec <- !is.na(inst_priority) & inst_priority %in% c("base", "recommended")
   base_rec_pkgs <- inst[inst_is_base_rec, "Package"]
-
   deps <- df[!grepl("^R\\s\\(.+\\)", df$package) | df$package %in% base_rec_pkgs, ] ##Remove "R" dependencies as well as base and recomended
   return(deps)
 }
