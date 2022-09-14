@@ -24,18 +24,4 @@ a message printed on console
 \description{
 Suppress messages and warnings based on one or more regex matches
 }
-\examples{
-riskmetric:::suppressMatchingConditions({
-    print(paste(letters[1:3], collapse = ", "))
-    warning(structure(
-      list(message = "easy as", call = NULL),
-      class = c("custom_warning", "warning", "condition")))
-    message(paste(1:3, collapse = ", "))
-    message("simple as")
-    warning("do re mi")
-  },
-  message = "\\\\d",
-  custom_warning = "as$",
-  warning = "\\\\w{2}\\\\s")
-}
 \keyword{internal}

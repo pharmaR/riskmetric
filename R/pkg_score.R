@@ -19,13 +19,15 @@
 #'   returned as numeric values when a \code{\link[tibble]{tibble}} is provided.
 #'
 #' @examples
+#' \dontrun{
+#'
 #' # scoring a single assessment
 #' metric_score(assess_has_news(pkg_ref("riskmetric")))
 #'
 #' # scoring many assessments as a tibble
-#' \dontrun{
 #' library(dplyr)
 #' pkg_score(pkg_assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
+#'
 #' }
 #'
 #' @seealso score_error_default score_error_zero score_error_NA
@@ -94,7 +96,7 @@ pkg_score.list_of_pkg_metric <- function(x, ...,
 #' #' @eval roxygen_score_family("has_news")
 #' }
 #' @keywords internal
-roxygen_score_family <- function(name, dontrun = FALSE) {
+roxygen_score_family <- function(name, dontrun = TRUE) {
 
   assess_func <- sprintf("assess_%s", name)
   score_func <- sprintf("metric_score.pkg_metric_%s", name)

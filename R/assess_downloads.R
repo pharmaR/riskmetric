@@ -4,7 +4,9 @@
 #'
 #' @eval roxygen_assess_family(
 #'   "downloads_1yr",
-#'   "a numeric value between [0,1] indicating the volume of downloads")
+#'   "a numeric value between [0,1] indicating the volume of downloads",
+#'   dontrun = TRUE
+#' )
 #'
 #' @export
 assess_downloads_1yr <- function(x, ...){
@@ -52,4 +54,3 @@ metric_score.pkg_metric_downloads_1yr <- function(x, ...) {
 attributes(metric_score.pkg_metric_downloads_1yr)$label <- paste0(
   "A logistic rating of the number of package downloads in the past year. ",
   "For more details, see ?riskmetric::metric_score.pkg_metric_downloads_1yr")
-

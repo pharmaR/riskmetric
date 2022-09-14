@@ -78,7 +78,7 @@ embeds a means of converting from the datatype of the metric to a numeric value
 on a fixed scale from 0 (worst) to 1 (best). 
 
 Given our maintainer metric example, we might rate a package as `1` (great)
-if no maintainer is identified or `0` (poor) if a maintainer is found.
+if a maintainer is identified or `0` (poor) if no maintainer is found.
 
 > Learn more: `?pkg_score`
 
