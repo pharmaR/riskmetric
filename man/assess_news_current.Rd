@@ -18,7 +18,9 @@ a \code{pkg_metric} containing a logical vector indicating whether each discover
 Assess a package for an up-to-date NEWS file
 }
 \examples{
+\dontrun{
 assess_news_current(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_news_current}}

@@ -44,6 +44,7 @@
 #'
 #' @return a \code{pkg_ref} field
 #' @examples
+#' \dontrun{
 #' # implementing a new field called "first_letter" that is consistently derived
 #' # across all pkg_ref objects:
 #'
@@ -72,6 +73,7 @@
 #'   }
 #'
 #'   x$subclass_enum
+#' }
 #'
 #' @rdname riskmetric_metadata_caching
 #' @name pkg_ref_cache

@@ -1,4 +1,6 @@
 test_that("get_pkg_ref_classes appropriately captures full class chain", {
+  skip_on_cran()
+
   abstract_hierarchy <- list("a" = list("b", "c" = list("d")))
   expect_equal(get_pkg_ref_classes("b", abstract_hierarchy), c("b", "a"))
   expect_equal(get_pkg_ref_classes("d", abstract_hierarchy), c("d", "c", "a"))
@@ -10,6 +12,7 @@ test_that("get_pkg_ref_classes appropriately captures full class chain", {
 })
 
 test_that("pkg_ref infers source when not explicitly provided", {
+  skip_on_cran()
   # pkg_source
   ref4 <- pkg_ref_source_bad
   expect_s3_class(ref4, c("pkg_source", "pkg_ref", "environment"), exact = TRUE)
@@ -33,6 +36,7 @@ test_that("pkg_ref infers source when not explicitly provided", {
 })
 
 test_that("pkg_ref can accept an argument of 'source'", {
+  skip_on_cran()
   # argument pkg_cran_remote
   ref5 <- pkg_ref("pkgcranremotegood", source = "pkg_cran_remote")
   expect_s3_class(ref5, c("pkg_cran_remote", "pkg_remote", "pkg_ref", "environment"), exact = TRUE)
@@ -52,6 +56,7 @@ test_that("pkg_ref can accept an argument of 'source'", {
 })
 
 test_that("pkg_ref throws nice warnings when you give bad 'source' arguments",{
+  skip_on_cran()
   expect_warning(
     p1 <- pkg_ref("UnknownCRANPkg", source = "pkg_cran_remote"),
     "Package: `UnknownCRANPkg` not found on CRAN, source is now 'pkg_missing'"
@@ -73,6 +78,7 @@ test_that("pkg_ref throws nice warnings when you give bad 'source' arguments",{
 })
 
 test_that("pkg_ref throws errors as expected", {
+  skip_on_cran()
 
   expect_error(
     new_pkg_ref("dplyr",
@@ -89,6 +95,7 @@ test_that("pkg_ref throws errors as expected", {
 })
 
 test_that("pkg_ref will return the same object if passed an object of class pkg_ref", {
+  skip_on_cran()
 
   ref1 <- pkg_ref("tools")
 
@@ -97,6 +104,7 @@ test_that("pkg_ref will return the same object if passed an object of class pkg_
 })
 
 test_that("determine_pkg_source returns the expected values", {
+  skip_on_cran()
   ## pkg_source
   expect_equal(
     determine_pkg_source(file.path(test_path(), "test_packages", "pkgsourcegood"),
