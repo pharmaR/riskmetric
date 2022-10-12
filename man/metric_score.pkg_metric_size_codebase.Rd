@@ -18,5 +18,6 @@ numeric value between \code{0} (low) and \code{1} (large number of lines of code
 Scores packages based on its codebase size, as determined by number of lines of code.
 }
 \examples{
-metric_score(assess_size_codebase(pkg_ref("riskmetric")))
+\dontrun{metric_score(assess_size_codebase(pkg_ref("riskmetric")))
+}
 }

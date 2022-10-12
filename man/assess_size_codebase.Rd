@@ -18,7 +18,9 @@ a \code{pkg_metric} containing a numeric value for number of lines of code base 
 Assess a package for size of code base
 }
 \examples{
+\dontrun{
 assess_size_codebase(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_size_codebase}}
