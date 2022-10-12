@@ -21,7 +21,9 @@ Assess a package for the number of downloads in the past year
 The more times a package has been downloaded the more extensive the user testing and the greater chance there is of someone finding a bug and logging it.
 }
 \examples{
+\dontrun{
 assess_downloads_1yr(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_downloads_1yr}}

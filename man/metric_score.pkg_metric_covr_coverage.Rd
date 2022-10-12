@@ -18,5 +18,6 @@ A \code{numeric}
 Returns the overall test coverage from a covr coverage report
 }
 \examples{
-metric_score(assess_covr_coverage(pkg_ref("riskmetric")))
+\dontrun{metric_score(assess_covr_coverage(pkg_ref("riskmetric")))
+}
 }

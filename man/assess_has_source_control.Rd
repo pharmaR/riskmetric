@@ -18,7 +18,9 @@ a \code{pkg_metric} containing a character vector of source control urls associa
 Assess a package for an associated source control url
 }
 \examples{
+\dontrun{
 assess_has_source_control(pkg_ref("riskmetric"))
+}
 }
 \seealso{
 \code{\link{metric_score.pkg_metric_has_source_control}}
