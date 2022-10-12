@@ -81,7 +81,7 @@ assess_size_codebase.pkg_source <- function(x, ...) {
 #' @return numeric value between \code{0} (low) and \code{1} (large number of lines of code) converting the number of downloads.
 #' @export
 metric_score.pkg_metric_size_codebase <- function(x, ...) {
-  1.5 / (x / 1e2 + 1.5) - 1
+  1.5 / (x / 1e2 + 1.5)
 }
 
 attributes(metric_score.pkg_metric_size_codebase)$label <-
