@@ -17,9 +17,6 @@ pkg_ref_cache.bug_reports_url <- function(x, ...) {
 pkg_ref_cache.bug_reports_url.pkg_source <- function(x, ...) {
   # fake a library location given the package source code path where the
   # description can be found, revert on exit when no longer needed
-  # old_lib_paths <- .libPaths()
-  # on.exit(.libPaths(old_lib_paths))
-  # .libPaths(dirname(x$path))
 
   packageDescription(x$name, dirname(x$path))$BugReports
 }
