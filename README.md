@@ -62,7 +62,7 @@ pkg_ref(c("riskmetric", "utils", "tools")) %>%
 
 We have a bi-weekly sprint meeting for developers to discuss the progress.
 
-* Contact `yilong.zhang@merck.com` to be added to the meeting.
+* Contact `eric.milliman@biogen.com` to be added to the meeting.
 * [Project Planning Meeting Structure](https://github.com/pharmaR/riskmetric/issues/57) 
 * [Milestone](https://github.com/pharmaR/riskmetric/milestones)
 
