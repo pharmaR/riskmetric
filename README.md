@@ -1,4 +1,4 @@
-# riskmetric
+# riskmetric <a href='https://pharmar.github.io/riskmetric/'><img src="man/figures/hex-riskmetric-aspconfig.png" align="right" height="172" style="float:right; height:172px;"/></a>
 
 [![R build status](https://github.com/pharmaR/riskmetric/workflows/R-CMD-check/badge.svg)](https://github.com/pharmaR/riskmetric/actions?workflow=R-CMD-check)
 [![Coverage status](https://codecov.io/gh/pharmaR/riskmetric/branch/master/graph/badge.svg)](https://codecov.io/github/pharmaR/riskmetric?branch=master)
@@ -57,6 +57,23 @@ pkg_ref(c("riskmetric", "utils", "tools")) %>%
   pkg_assess() %>%
   pkg_score()
 ```
+
+## The `{riskassessment}` application <a href='https://pharmar.github.io/riskassessment/'><img src="man/figures/hex-riskassessment-aspconfig.png" align="right" height="172" style="float:right; height:172px;"/></a>
+
+`riskassessment` is a full-fledged R package containing a shiny front-end that
+augments the utility of `riskmetric`. The application's goal is to provide a 
+central hub for an organization to review and assess the risk of R packages,
+providing handy tools and guide rails along the way. The app uses a local
+database to store & display:
+
+* all `riskmetric` metrics, including package risk scores over time
+* organization-wide metric weighting, plus rules to automate org decisions
+(whether to endorse/ prohibit the pkg)
+* package-level user dialogue on the perceived risk, to facilitate communication
+& notes
+
+To learn more about `riskassessment`, please browse the [user guide](https://pharmar.github.io/riskassessment/) or consider
+taking the [demo app](https://rinpharma.shinyapps.io/risk_assessment) for a spin.
 
 ## Get Involved
 
