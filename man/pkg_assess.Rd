@@ -58,6 +58,7 @@ assessment applied.
 \item{\code{\link{assess_exported_namespace}}}{Objects exported by package}
 \item{\code{\link{assess_has_maintainer}}}{a vector of associated maintainers}
 \item{\code{\link{assess_has_vignettes}}}{number of discovered vignettes files}
+\item{\code{\link{assess_size_codebase}}}{number of lines of code base}
 \item{\code{\link{assess_has_bug_reports_url}}}{presence of a bug reports url in repository}
 \item{\code{\link{assess_reverse_dependencies}}}{List of reverse dependencies a package has}
 }
