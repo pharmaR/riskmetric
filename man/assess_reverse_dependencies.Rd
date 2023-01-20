@@ -6,26 +6,10 @@
 \usage{
 assess_reverse_dependencies(x, ...)
 }
-\arguments{
-\item{x}{a \code{pkg_ref} package reference object}
-
-\item{...}{additional arguments passed on to S3 methods, rarely used}
-}
-\value{
-a \code{pkg_metric} containing A character vector of reverse dependencies
-}
 \description{
 Generate list of Reverse Dependencies for a package
 }
 \details{
 The more packages that depend on a package the more chance
 for errors/bugs to be found
-}
-\examples{
-\dontrun{
-assess_reverse_dependencies(pkg_ref("riskmetric"))
-}
-}
-\seealso{
-\code{\link{metric_score.pkg_metric_reverse_dependencies}}
 }

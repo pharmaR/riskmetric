@@ -6,22 +6,6 @@
 \usage{
 assess_has_maintainer(x, ...)
 }
-\arguments{
-\item{x}{a \code{pkg_ref} package reference object}
-
-\item{...}{additional arguments passed on to S3 methods, rarely used}
-}
-\value{
-a \code{pkg_metric} containing a character vector of maintainers associated with the package
-}
 \description{
 Assess a package for an associated maintainer
-}
-\examples{
-\dontrun{
-assess_has_maintainer(pkg_ref("riskmetric"))
-}
-}
-\seealso{
-\code{\link{metric_score.pkg_metric_has_maintainer}}
 }

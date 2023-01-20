@@ -6,22 +6,6 @@
 \usage{
 assess_last_30_bugs_status(x, ...)
 }
-\arguments{
-\item{x}{a \code{pkg_ref} package reference object}
-
-\item{...}{additional arguments passed on to S3 methods, rarely used}
-}
-\value{
-a \code{pkg_metric} containing a logical vector indicating whether a recent BugReport was closed
-}
 \description{
 Assess how many recent BugReports have been closed
-}
-\examples{
-\dontrun{
-assess_last_30_bugs_status(pkg_ref("riskmetric"))
-}
-}
-\seealso{
-\code{\link{metric_score.pkg_metric_last_30_bugs_status}}
 }
