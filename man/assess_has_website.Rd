@@ -6,6 +6,22 @@
 \usage{
 assess_has_website(x, ...)
 }
+\arguments{
+\item{x}{a \code{pkg_ref} package reference object}
+
+\item{...}{additional arguments passed on to S3 methods, rarely used}
+}
+\value{
+a \code{pkg_metric} containing a character vector of website urls associated with the package
+}
 \description{
 Assess a package for an associated website url
+}
+\examples{
+\dontrun{
+assess_has_website(pkg_ref("riskmetric"))
+}
+}
+\seealso{
+\code{\link{metric_score.pkg_metric_has_website}}
 }
