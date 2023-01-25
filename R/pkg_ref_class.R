@@ -127,6 +127,7 @@ pkg_ref_class_hierarchy <- list(
 #'
 #' @return A `character(n)` class path from `pkg_ref` down to the specified
 #'   subclass, or `FALSE` if no path is found.
+#' @keywords internal
 #'
 get_pkg_ref_classes <- function(x, classes = pkg_ref_class_hierarchy) {
   if (x %in% names(classes) || x %in% classes)

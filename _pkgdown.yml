@@ -9,6 +9,7 @@ reference:
     contents:
       - starts_with("pkg_assess")
       - all_assessments
+      - get_assessments
       - starts_with("assess")
   - title: "Package Risk Score"
     desc: "Provide Risk Score based on Risk Metrics"

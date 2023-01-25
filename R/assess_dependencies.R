@@ -98,6 +98,7 @@ attributes(metric_score.pkg_metric_dependencies)$label <-
 #' @param repo package repository (e.g. CRAN or Bioconductor)
 #'
 #' @return Returns a data frame with two columns 1) Package names, 2) type of dependency (LinkingTo, Imports, Depends)
+#' @keywords internal
 #'
 get_package_dependencies <- function(name, repo){
   ap <- available.packages(repos = repo)
@@ -115,6 +116,7 @@ get_package_dependencies <- function(name, repo){
 #' Parse DCF of description file
 #'
 #' @param path pkg_ref path
+#' @keywords internal
 #'
 parse_dcf_dependencies <- function(path){
   dcf <- read.dcf(file.path(path, "DESCRIPTION"), all=TRUE)
@@ -132,6 +134,7 @@ parse_dcf_dependencies <- function(path){
 #' Helper function to remove base and recommended packages
 #'
 #' @param df Data frame of dependencies of a package.
+#' @keywords internal
 #'
 remove_base_packages <- function(df){
   inst <- memoise_available_packages()
