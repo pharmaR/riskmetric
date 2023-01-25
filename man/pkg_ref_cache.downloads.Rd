@@ -4,10 +4,12 @@
 \alias{pkg_ref_cache.downloads}
 \title{Cache a list of available help files as LaTeX objects}
 \usage{
-\method{pkg_ref_cache}{downloads}(x, ...)
+\method{pkg_ref_cache}{downloads}(x, n = 365, ...)
 }
 \arguments{
 \item{x}{a package reference object}
+
+\item{n}{Number of days to look back with default value of 365 days}
 
 \item{...}{additional arguments used for computing cached values}
 }
