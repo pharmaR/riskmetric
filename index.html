@@ -20,6 +20,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -32,18 +34,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">riskmetric</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/riskmetric.html">Get started</a>
 </li>
@@ -51,7 +47,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -68,7 +64,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/pharmaR/riskmetric/">
+  <a href="https://github.com/pharmaR/riskmetric/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,18 +81,19 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="riskmetric" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#riskmetric" class="anchor"></a>riskmetric</h1></div>
-
+<div class="section level1">
+<div class="page-header"><h1 id="riskmetric-">riskmetric <a href="https://pharmar.github.io/riskmetric/" class="external-link"><img src="reference/figures/hex-riskmetric-aspconfig.png" align="right" height="172" style="float:right; height:172px;"></a>
+<a class="anchor" aria-label="anchor" href="#riskmetric-"></a>
+</h1></div>
+<p><a href="https://github.com/pharmaR/riskmetric/actions?workflow=R-CMD-check" class="external-link"><img src="https://github.com/pharmaR/riskmetric/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <a href="https://codecov.io/github/pharmaR/riskmetric?branch=master" class="external-link"><img src="https://codecov.io/gh/pharmaR/riskmetric/branch/master/graph/badge.svg" alt="Coverage status"></a></p>
 <p><code>riskmetric</code> is a collection of risk metrics to evaluate the quality of R packages.</p>
 <p><em>This package is in experimentation. Final considerations about design are being considered, but core concepts are considered final.</em></p>
-<div id="background" class="section level2">
-<h2 class="hasAnchor">
-<a href="#background" class="anchor"></a>Background</h2>
+<div class="section level2">
+<h2 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
+</h2>
 <p>The risk of using an R package is evaluated based on a number of metrics meant to evaluate development best practices, code documentation, community engagement and development sustainability. We hope to provide a framework to quantify risk by assessing these metrics. This package serves as a starting point for exploring the heterogeneity of code quality, and begin a broader conversation about the validation of R packages. Primarily, this effort aims to provide some context for validation within regulated industries.</p>
 <p>We separate three steps in the workflow to assess the risk of an R package using <code>riskmetric</code>:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>
 <strong>Finding a source for package information (installed package or CRAN/git source)</strong> <code><a href="reference/pkg_ref.html">pkg_ref()</a></code>
 </li>
@@ -109,39 +106,54 @@
 </ol>
 <p>The results will be assembled in a dataset of validation criteria containing an overall risk score for each package as shown in the example below.</p>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p><code>riskmetric</code> is not yet on CRAN. Until it is, install it using <code>devtools</code>.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install <code>riskmetric</code> from CRAN with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"pharmaR/riskmetric"</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>Scrape metadata locally or remotely, then assess that metadata and score it to estimate risk. For each package, derive a composite measure of risk, or a collection of individual scores which can be easily used to generate validation reports.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"riskmetric"</span><span class="op">)</span></span></code></pre></div>
+<p>Or from GitHub using <code>devtools</code> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pharmar.github.io/riskmetric/">riskmetric</a></span><span class="op">)</span>
-
-<span class="fu"><a href="reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"pharmaR/riskmetric"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="get-involved" class="section level2">
-<h2 class="hasAnchor">
-<a href="#get-involved" class="anchor"></a>Get Involved</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<p>Scrape metadata locally or remotely, then assess that metadata and score it to estimate risk. For each package, derive a composite measure of risk, or a collection of individual scores which can be easily used to generate validation reports.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pharmar.github.io/riskmetric/" class="external-link">riskmetric</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"riskmetric"</span>, <span class="st">"utils"</span>, <span class="st">"tools"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="the-riskassessment-application-">The <code>{riskassessment}</code> application <a href="https://pharmar.github.io/riskassessment/" class="external-link"><img src="reference/figures/hex-riskassessment-aspconfig.png" align="right" height="172" style="float:right; height:172px;"></a>
+<a class="anchor" aria-label="anchor" href="#the-riskassessment-application-"></a>
+</h2>
+<p><code>riskassessment</code> is a full-fledged R package containing a shiny front-end that augments the utility of <code>riskmetric</code>. The application’s goal is to provide a central hub for an organization to review and assess the risk of R packages, providing handy tools and guide rails along the way. The app uses a local database to store &amp; display:</p>
+<ul>
+<li>all <code>riskmetric</code> metrics, including package risk scores over time</li>
+<li>organization-wide metric weighting, plus rules to automate org decisions (whether to endorse/ prohibit the pkg)</li>
+<li>package-level user dialogue on the perceived risk, to facilitate communication &amp; notes</li>
+</ul>
+<p>To learn more about <code>riskassessment</code>, please browse the <a href="https://pharmar.github.io/riskassessment/" class="external-link">user guide</a> or consider taking the <a href="https://rinpharma.shinyapps.io/risk_assessment" class="external-link">demo app</a> for a spin.</p>
+</div>
+<div class="section level2">
+<h2 id="get-involved">Get Involved<a class="anchor" aria-label="anchor" href="#get-involved"></a>
+</h2>
 <p>We have a bi-weekly sprint meeting for developers to discuss the progress.</p>
 <ul>
-<li>Contact <code>yilong.zhang@merck.com</code> to be added to the meeting.</li>
-<li><a href="https://github.com/pharmaR/riskmetric/issues/57">Project Planning Meeting Structure</a></li>
-<li><a href="https://github.com/pharmaR/riskmetric/milestones">Milestone</a></li>
+<li>Contact <code>eric.milliman@biogen.com</code> to be added to the meeting.</li>
+<li><a href="https://github.com/pharmaR/riskmetric/issues/57" class="external-link">Project Planning Meeting Structure</a></li>
+<li><a href="https://github.com/pharmaR/riskmetric/milestones" class="external-link">Milestone</a></li>
 </ul>
 <p><code>riskmetric</code> is centrally a community project. Comfort with a quantification of risk comes via consensus, and for that this project is dependent on close community engagement. There are plenty of ways to help:</p>
 <ul>
 <li>Share the package</li>
-<li>File <a href="https://github.com/pharmaR/riskmetric/issues">issues</a> when you encounter bugs</li>
-<li>Weigh in on proposed metrics, or <a href="https://github.com/pharmaR/riskmetric/issues/new?labels=Metric%20Proposal">suggest a new one</a>
+<li>File <a href="https://github.com/pharmaR/riskmetric/issues" class="external-link">issues</a> when you encounter bugs</li>
+<li>Weigh in on proposed metrics, or <a href="https://github.com/pharmaR/riskmetric/issues/new?labels=Metric%20Proposal" class="external-link">suggest a new one</a>
 </li>
 <li>Help us devise the best way to summarize risk into a single score</li>
 <li>Help us keep documentation up to date</li>
@@ -153,55 +165,59 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=riskmetric">https://​cloud.r-project.org/​package=riskmetric</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/pharmaR/riskmetric/">https://​github.com/​pharmaR/​riskmetric/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/pharmaR/riskmetric/issues">https://​github.com/​pharmaR/​riskmetric/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=riskmetric" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/pharmaR/riskmetric/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/pharmaR/riskmetric/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing riskmetric</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>R Validation Hub <br><small class="roles"> Author </small>  </li>
-<li>Doug Kelkhoff <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Doug Kelkhoff <br><small class="roles"> Author </small>  </li>
 <li>Marly Gotti <br><small class="roles"> Author </small>  </li>
-<li>Eli Miller <br><small class="roles"> Author </small>  </li>
+<li>Eli Miller <br><small class="roles"> Maintainer, author </small>  </li>
 <li>Kevin K <br><small class="roles"> Author </small>  </li>
 <li>Yilong Zhang <br><small class="roles"> Author </small>  </li>
 <li>Eric Milliman <br><small class="roles"> Author </small>  </li>
 <li>Juliane Manitz <br><small class="roles"> Author </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/pharmaR/riskmetric/actions?workflow=R-CMD-check"><img src="https://github.com/pharmaR/riskmetric/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/github/pharmaR/riskmetric?branch=master"><img src="https://codecov.io/gh/pharmaR/riskmetric/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
-</ul>
-</div>
-</div>
+
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by R Validation Hub, Doug Kelkhoff, Marly Gotti, Eli Miller, Kevin K, Yilong Zhang, Eric Milliman, Juliane Manitz.</p>
+  <p></p>
+<p>Developed by R Validation Hub, Doug Kelkhoff, Marly Gotti, Eli Miller, Kevin K, Yilong Zhang, Eric Milliman, Juliane Manitz.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -209,6 +225,8 @@
 
   
 
+
+  
 
   </body>
 </html>
