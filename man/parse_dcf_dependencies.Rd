@@ -12,3 +12,4 @@ parse_dcf_dependencies(path)
 \description{
 Parse DCF of description file
 }
+\keyword{internal}

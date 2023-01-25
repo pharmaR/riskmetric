@@ -19,3 +19,4 @@ Returns a data frame with two columns 1) Package names, 2) type of dependency (L
 Gets available packages from necessary repository and filters for
 package of interest
 }
+\keyword{internal}

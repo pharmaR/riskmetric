@@ -12,3 +12,4 @@ remove_base_packages(df)
 \description{
 Helper function to remove base and recommended packages
 }
+\keyword{internal}

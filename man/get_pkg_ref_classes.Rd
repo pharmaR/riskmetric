@@ -19,3 +19,4 @@ A `character(n)` class path from `pkg_ref` down to the specified
 \description{
 Walk the pkg_ref class hierarchy to match a single subclass to a class path
 }
+\keyword{internal}
