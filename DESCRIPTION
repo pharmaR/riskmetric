@@ -45,7 +45,8 @@ Suggests:
     dplyr,
     testthat,
     webmockr,
-    jsonlite
+    jsonlite,
+    oysteR
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Config/testthat/edition: 3
