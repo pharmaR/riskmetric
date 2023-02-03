@@ -2,7 +2,8 @@
 % Please edit documentation in R/pkg_ref_cache_security.R
 \name{pkg_ref_cache.security.default}
 \alias{pkg_ref_cache.security.default}
-\title{Check OSS Index lists any vulnerabilities for the package}
+\title{Check OSS Index lists any vulnerabilities for the package and it's
+dependencies}
 \usage{
 \method{pkg_ref_cache}{security.default}(x, ...)
 }
@@ -15,5 +16,6 @@
 a \code{pkg_ref} object
 }
 \description{
-Check OSS Index lists any vulnerabilities for the package
+Check OSS Index lists any vulnerabilities for the package and it's
+dependencies
 }
