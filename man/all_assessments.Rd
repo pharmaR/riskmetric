@@ -4,7 +4,12 @@
 \alias{all_assessments}
 \title{A default list of assessments to perform for each package}
 \usage{
-all_assessments()
+all_assessments(include_suggests = FALSE)
+}
+\arguments{
+\item{include_suggests}{Logical indicating if assessments requiring
+dependency packages listed in \code{Suggests} be included in the list of
+assessments?}
 }
 \value{
 a list of assess_* functions exported from riskmetric
