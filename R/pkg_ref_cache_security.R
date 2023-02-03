@@ -12,7 +12,6 @@ pkg_ref_cache.security <- function(x, ...) {
 #' dependencies
 #'
 #' @inheritParams pkg_ref_cache
-#' @importFrom oysteR audit
 #' @return a \code{pkg_ref} object
 pkg_ref_cache.security.default <- function(x, ...) {
 

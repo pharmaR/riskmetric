@@ -4,13 +4,13 @@
 #'   "security",
 #'   "Assess for any known security vulnerabilities in the OSS Index via oysteR",
 #'   dontrun = TRUE)
-
+#' @importFrom utils install.packages menu
 #' @export
 assess_security <- function(x, ...) {
   # TODO: discuss preferred approach for handling packages within Suggests
   if (!requireNamespace("oysteR", quietly = TRUE)) {
     if (interactive()) {
-      inst_yn <- menu(
+      inst_yn <- utils::menu(
         choices = c("Yes", "No"),
         title = paste(
           "Assessing security requires installation of the oyster package.",
@@ -19,7 +19,7 @@ assess_security <- function(x, ...) {
       )
 
       if (inst_yn == "1") {
-        install.packages("oysteR")
+        utils::install.packages("oysteR")
       } else {
         stop(
           paste(
