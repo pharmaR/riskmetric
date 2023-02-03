@@ -37,13 +37,9 @@ assess_security <- function(x, ...) {
 attributes(assess_security)$column_name <- "security"
 attributes(assess_security)$label <- "OSS Scan Results"
 
-#' @export
-assess_security.default <- function(x, ...) {
-  as_pkg_metric_na(pkg_metric(class = "pkg_metric_security"))
-}
 
 #' @export
-assess_security.pkg_source <- function(x, ...) {
+assess_security.default <- function(x, ...) {
   pkg_metric_eval(class = "pkg_metric_security", {
     x$security
   })

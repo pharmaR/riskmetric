@@ -4,27 +4,35 @@
 #' @family package reference cache
 #' @return a \code{pkg_ref} object
 #' @keywords internal
-pkg_ref_cache.security <- function (x, ...)
-{
+pkg_ref_cache.security <- function(x, ...) {
   UseMethod("pkg_ref_cache.security")
 }
 
-#' Check OSS Index lists any vulnerabilities for the package
+#' Check OSS Index lists any vulnerabilities for the package and it's
+#' dependencies
 #'
 #' @inheritParams pkg_ref_cache
 #' @importFrom oysteR audit
 #' @return a \code{pkg_ref} object
-pkg_ref_cache.security.default <- function(x, ...){
+pkg_ref_cache.security.default <- function(x, ...) {
 
-  # TODO: confirm this just be default as oysteR now works on name + version and
-  #       those are present for all pkg_ref instances?
+  # TODO: is this the right way to invoke the functionality to get this info?
+  deps <- assess_dependencies(x)
+
+  # when will this break? is as_pkg_metric_na?
+  dep_names <- sapply(strsplit(deps[["package"]], " "), "[[", 1)
+
+  # is this the best way to get relevant versions?
+  bundle_ref <- pkg_ref(c(x$name, dep_names), source = x$source)
+  bundle_names <- sapply(bundle_ref, "[[", "name")
+  bundle_versions <- sapply(bundle_ref, function(r) as.character(r[["version"]]))
 
   scan_results <- oysteR::audit(
-    pkg = x$name,
-    version = x$version, # will this need to be pkg_ref class specific?
-    type = "cran", # will this need to be pkg_ref class specific?
+    pkg = bundle_names,
+    version = bundle_versions,
+    type = "cran",
     verbose = FALSE
-    )
+  )
 
-  return(scan_results[["no_of_vulnerabilities"]] )
+  return(sum(scan_results[["no_of_vulnerabilities"]]))
 }
