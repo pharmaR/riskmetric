@@ -36,7 +36,7 @@ assess_security <- function(x, ...) {
 
 attributes(assess_security)$column_name <- "security"
 attributes(assess_security)$label <- "OSS Scan Results"
-
+attributes(assess_security)$suggests <- TRUE
 
 #' @export
 assess_security.default <- function(x, ...) {

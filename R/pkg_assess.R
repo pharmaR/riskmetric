@@ -75,19 +75,34 @@ roxygen_assess_family_catalog <- function() {
     "}")
 }
 
-
+#' Helper to determine if assessment depends on package in Suggests
+#'
+#' @param assess_obj An assessment function object
+#' @returns \code{TRUE} if the object does not have an attribute named
+#'   \code{"suggests"} and the negated attribute value if present
+not_suggests <- function(assess_obj) {
+  sg <- attr(assess_obj, "suggests")
+  ifelse(is.null(sg), yes = TRUE, no = !sg)
+}
 
 #' A default list of assessments to perform for each package
 #'
+#' @param include_suggests Logical indicating if assessments requiring
+#'    dependency packages listed in \code{Suggests} be included in the list of
+#'    assessments?
 #' @return a list of assess_* functions exported from riskmetric
 #'
 #' @importFrom utils packageName
 #' @export
-all_assessments <- function() {
+all_assessments <- function(include_suggests = FALSE) {
   fs <- grep("^assess_[^.]*$",
     getNamespaceExports(utils::packageName()),
     value = TRUE)
-  Map(getExportedValue, fs, ns = list(utils::packageName()))
+  fn_objs <- Map(getExportedValue, fs, ns = list(utils::packageName()))
+  if (!include_suggests) {
+    fn_objs <- Filter(not_suggests, fn_objs)
+  }
+  fn_objs
 }
 
 #' Get a specific set of assess_* functions for pkg_assess
