@@ -6,6 +6,17 @@
 \usage{
 assess_security(x, ...)
 }
+\arguments{
+\item{x}{a \code{pkg_ref} package reference object}
+
+\item{...}{additional arguments passed on to S3 methods, rarely used}
+}
+\value{
+a \code{pkg_metric} containing Assess for any known security vulnerabilities in the OSS Index via oysteR
+}
 \description{
 Assess a package for known security vulnerabilities in the OSS Index
+}
+\seealso{
+\code{\link{metric_score.pkg_metric_security}}
 }

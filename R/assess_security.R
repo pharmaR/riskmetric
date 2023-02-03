@@ -1,9 +1,10 @@
 #' Assess a package for known security vulnerabilities in the OSS Index
 #'
-#' @eval roxygen_assess_family(
-#'   "security",
-#'   "Assess for any known security vulnerabilities in the OSS Index via oysteR",
-#'   dontrun = TRUE)
+#' @param x a \code{pkg_ref} package reference object
+#' @param ... additional arguments passed on to S3 methods, rarely used
+#' @return a \code{pkg_metric} containing Assess for any known security vulnerabilities in the OSS Index via oysteR
+#' @seealso \code{\link{metric_score.pkg_metric_security}}
+#'
 #' @importFrom utils install.packages menu
 #' @export
 assess_security <- function(x, ...) {
