@@ -51,11 +51,11 @@ assess_security.default <- function(x, ...) {
 #' Coerce the count of reported vulnerabilities to a binary indicator.
 #'
 #' @eval roxygen_score_family("security", dontrun = TRUE)
-#' @return A weighted sum of errors and warnings of all tests preformed
+#' @return \code{1} if no vulnerabilities are found, otherwise \code{0}
 #'
 #' @export
 metric_score.pkg_metric_security <- function(x, ...) {
-  as.numeric(x > 0)
+  as.numeric(x < 1)
 }
 attributes(metric_score.pkg_metric_security)$label <-
   "A binary indicator of whether a package has OSS Index listed vulnerabilities."
