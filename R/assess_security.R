@@ -13,7 +13,7 @@ assess_security <- function(x, ...) {
       inst_yn <- utils::menu(
         choices = c("Yes", "No"),
         title = paste(
-          "Assessing security requires installation of the oyster package.",
+          "Assessing security requires installation of the oysteR package.",
           "Would you like to install this now?"
         )
       )
