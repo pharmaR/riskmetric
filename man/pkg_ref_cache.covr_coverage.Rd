@@ -25,6 +25,7 @@ Other package reference cache:
 \code{\link{pkg_ref_cache.bug_reports}()},
 \code{\link{pkg_ref_cache.description}()},
 \code{\link{pkg_ref_cache.downloads}()},
+\code{\link{pkg_ref_cache.examples}()},
 \code{\link{pkg_ref_cache.expression_coverage}()},
 \code{\link{pkg_ref_cache.help_aliases}()},
 \code{\link{pkg_ref_cache.help}()},

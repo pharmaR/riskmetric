@@ -6,22 +6,6 @@
 \usage{
 assess_size_codebase(x, ...)
 }
-\arguments{
-\item{x}{a \code{pkg_ref} package reference object}
-
-\item{...}{additional arguments passed on to S3 methods, rarely used}
-}
-\value{
-a \code{pkg_metric} containing a numeric value for number of lines of code base for a package
-}
 \description{
 Assess a package for size of code base
-}
-\examples{
-\dontrun{
-assess_size_codebase(pkg_ref("riskmetric"))
-}
-}
-\seealso{
-\code{\link{metric_score.pkg_metric_size_codebase}}
 }

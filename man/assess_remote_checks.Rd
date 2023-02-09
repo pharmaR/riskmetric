@@ -6,22 +6,6 @@
 \usage{
 assess_remote_checks(x, ...)
 }
-\arguments{
-\item{x}{a \code{pkg_ref} package reference object}
-
-\item{...}{additional arguments passed on to S3 methods, rarely used}
-}
-\value{
-a \code{pkg_metric} containing Tally of R CMD check results run on differnt OS flavors by BioC or CRAN
-}
 \description{
 Assess package checks from CRAN/Bioc or R CMD check
-}
-\examples{
-\dontrun{
-assess_remote_checks(pkg_ref("riskmetric"))
-}
-}
-\seealso{
-\code{\link{metric_score.pkg_metric_remote_checks}}
 }

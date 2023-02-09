@@ -6,25 +6,9 @@
 \usage{
 assess_downloads_1yr(x, ...)
 }
-\arguments{
-\item{x}{a \code{pkg_ref} package reference object}
-
-\item{...}{additional arguments passed on to S3 methods, rarely used}
-}
-\value{
-a \code{pkg_metric} containing a numeric value between [0,1] indicating the volume of downloads
-}
 \description{
 Assess a package for the number of downloads in the past year
 }
 \details{
 The more times a package has been downloaded the more extensive the user testing and the greater chance there is of someone finding a bug and logging it.
-}
-\examples{
-\dontrun{
-assess_downloads_1yr(pkg_ref("riskmetric"))
-}
-}
-\seealso{
-\code{\link{metric_score.pkg_metric_downloads_1yr}}
 }
