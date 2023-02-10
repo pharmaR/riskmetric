@@ -9,21 +9,21 @@ pkg_ref_cache.examples <- function(x, name, ...) {
 }
 
 pkg_ref_cache.examples.pkg_install <- function(x, name, ...) {
-  examples_from_dir(x)
+  examples_from_dir(system.file(package = x$name))
 }
 
 pkg_ref_cache.examples.pkg_source <- function(x, name, ...) {
-  examples_from_dir(x)
+  examples_from_dir(x$path)
 }
 
-#' Build a List of Examples For Exported Objects Discovered Within a Given Directory
+#' Build a List of Files with Examples For Exported Objects Discovered Within a Given Directory
 #'
 #' @param path a package directory path expected to contain exported objects
 #'
-#' @return a vector of parsed examples
+#' @return a vector of parsed example file names
 #' @keywords internal
-examples_from_dir <- function(x) {
-  f <- list.files(file.path(x$path, "man"), full.names = TRUE)
+examples_from_dir <- function(path) {
+  f <- list.files(file.path(path, "man"), full.names = TRUE)
   f <- f[grep("\\.Rd$", f)]
   examples <- lapply(f, function(i) {
     rd <- readLines(i)
