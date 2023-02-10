@@ -1,8 +1,8 @@
-#' Assess a package for the presence of example or usage fields
+#' Assess a package for the presence of example or usage fields in function documentation
 #'
 #' @eval roxygen_assess_family(
 #'   "has_examples",
-#'   "an integer value indicating the number of discovered examples")
+#'   "an integer value indicating the number of discovered files with examples")
 #'
 #' @export
 assess_has_examples <- function(x, ...) {
@@ -11,7 +11,7 @@ assess_has_examples <- function(x, ...) {
 
 # assign a friendly name for examples column
 attributes(assess_has_examples)$column_name <- "has_examples"
-attributes(assess_has_examples)$label <- "number of discovered examples"
+attributes(assess_has_examples)$label <- "number of discovered function files with examples"
 
 #' @export
 assess_has_examples.pkg_ref <- function(x, ...) {
@@ -33,4 +33,4 @@ metric_score.pkg_metric_has_examples <- function(x, ...) {
 }
 
 attributes(metric_score.pkg_metric_has_examples)$label <-
-  "A binary indicator of whether a package has an associated example or usage fields"
+  "A binary indicator of whether a package has associated example or usage fields"
