@@ -2,17 +2,17 @@
 % Please edit documentation in R/pkg_ref_cache_examples.R
 \name{examples_from_dir}
 \alias{examples_from_dir}
-\title{Build a List of Examples For Exported Objects Discovered Within a Given Directory}
+\title{Build a List of Files with Examples For Exported Objects Discovered Within a Given Directory}
 \usage{
-examples_from_dir(x)
+examples_from_dir(path)
 }
 \arguments{
 \item{path}{a package directory path expected to contain exported objects}
 }
 \value{
-a vector of parsed examples
+a vector of parsed example file names
 }
 \description{
-Build a List of Examples For Exported Objects Discovered Within a Given Directory
+Build a List of Files with Examples For Exported Objects Discovered Within a Given Directory
 }
 \keyword{internal}

@@ -39,5 +39,5 @@ examples_from_dir <- function(path) {
     return(man_name)
   })
   # !duplicated because unique removes names
-  unlist(examples)[!duplicated(unlist(examples))]
+  list(unlist(examples)[!duplicated(unlist(examples))])
 }

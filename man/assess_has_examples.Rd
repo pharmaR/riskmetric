@@ -2,10 +2,10 @@
 % Please edit documentation in R/assess_has_examples.R
 \name{assess_has_examples}
 \alias{assess_has_examples}
-\title{Assess a package for the presence of example or usage fields}
+\title{Assess a package for the presence of example or usage fields in function documentation}
 \usage{
 assess_has_examples(x, ...)
 }
 \description{
-Assess a package for the presence of example or usage fields
+Assess a package for the presence of example or usage fields in function documentation
 }

@@ -15,7 +15,7 @@ attributes(assess_has_examples)$label <- "number of discovered function files wi
 
 #' @export
 assess_has_examples.pkg_ref <- function(x, ...) {
-  pkg_metric(class = "pkg_metric_has_examples", {
+  pkg_metric_eval(class = "pkg_metric_has_examples", {
     length(x$examples)
   })
 }
