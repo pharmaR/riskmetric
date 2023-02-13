@@ -2,7 +2,7 @@
 % Please edit documentation in R/pkg_ref_cache_examples.R
 \name{examples_from_dir}
 \alias{examples_from_dir}
-\title{Build a List of Files with Examples For Exported Objects Discovered Within a Given Directory}
+\title{Build logical vector for Rd objects with example or usage fields discovered in a given directory}
 \usage{
 examples_from_dir(path)
 }
@@ -10,9 +10,9 @@ examples_from_dir(path)
 \item{path}{a package directory path expected to contain exported objects}
 }
 \value{
-a vector of parsed example file names
+a numeric proportion of documentation files with examples
 }
 \description{
-Build a List of Files with Examples For Exported Objects Discovered Within a Given Directory
+Build logical vector for Rd objects with example or usage fields discovered in a given directory
 }
 \keyword{internal}

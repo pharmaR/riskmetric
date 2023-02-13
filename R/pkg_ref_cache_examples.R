@@ -9,35 +9,60 @@ pkg_ref_cache.examples <- function(x, name, ...) {
 }
 
 pkg_ref_cache.examples.pkg_install <- function(x, name, ...) {
-  examples_from_dir(system.file(package = x$name))
+  examples_from_pkg(x$name)
 }
 
 pkg_ref_cache.examples.pkg_source <- function(x, name, ...) {
   examples_from_dir(x$path)
 }
 
-#' Build a List of Files with Examples For Exported Objects Discovered Within a Given Directory
+#' Filter a simple database of Rd objects in a package for files with example fields
 #'
-#' @param path a package directory path expected to contain exported objects
+#' @param rddb a simple database of Rd object obtained via tools::Rd_db
 #'
-#' @return a vector of parsed example file names
+#' @return a vector of Rd file names that have example fields
 #' @keywords internal
-examples_from_dir <- function(path) {
-  f <- list.files(file.path(path, "man"), full.names = TRUE)
-  f <- f[grep("\\.Rd$", f)]
-  examples <- lapply(f, function(i) {
-    rd <- readLines(i)
+filter_rd_db <- function(rddb) {
+  n <- names(rddb)
+  examples <- lapply(n, function(i) {
+    rd <- rddb[[i]]
     a <- gsub("\\}", "",
               gsub("\\\\(examples|example|usage)\\{", "",
                    rd[grep("^\\\\(examples|example|usage)", rd)]
               )
     )
-    man_name <- strsplit(strsplit(i, "\\/man\\/")[[1]][2],
-                          "\\.Rd")[[1]]
+    man_name <- i
     man_name <- rep(man_name, length(a))
     names(man_name) <- a
     return(man_name)
   })
   # !duplicated because unique removes names
-  list(unlist(examples)[!duplicated(unlist(examples))])
+  e <- unlist(examples)[!duplicated(unlist(examples))]
+  e
+}
+
+#' Build logical vector for Rd objects with example or usage fields discovered in a given package
+#'
+#' @param pkg a package name expected to contain exported objects
+#'
+#' @return a numeric proportion of documentation files with examples
+#' @keywords internal
+examples_from_pkg <- function(pkg) {
+  f <- tools::Rd_db(package = pkg)
+  rd_all <- names(f)
+  e <- filter_rd_db(f)
+  rd_all %in% e
+}
+
+#' Build logical vector for Rd objects with example or usage fields discovered in a given directory
+#'
+#' @param path a package directory path expected to contain exported objects
+#'
+#' @return a numeric proportion of documentation files with examples
+#' @keywords internal
+examples_from_dir <- function(path) {
+  f <- tools::Rd_db(dir = path)
+  rd_all <- names(f)
+  e <- filter_rd_db(f)
+  rd_all %in% e
 }

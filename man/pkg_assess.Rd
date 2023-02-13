@@ -58,7 +58,7 @@ assessment applied.
 \item{\code{\link{assess_downloads_1yr}}}{number of downloads in the past year}
 \item{\code{\link{assess_has_news}}}{number of discovered NEWS files}
 \item{\code{\link{assess_has_vignettes}}}{number of discovered vignettes files}
-\item{\code{\link{assess_has_examples}}}{number of discovered function files with examples}
+\item{\code{\link{assess_has_examples}}}{proportion of discovered function files with examples}
 \item{\code{\link{assess_has_source_control}}}{a vector of associated source control urls}
 \item{\code{\link{assess_has_bug_reports_url}}}{presence of a bug reports url in repository}
 \item{\code{\link{assess_news_current}}}{NEWS file contains entry for current version number}

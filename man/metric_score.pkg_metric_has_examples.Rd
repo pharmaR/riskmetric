@@ -15,7 +15,7 @@
 \code{1} if any example or usage fields are found, otherwise \code{0}
 }
 \description{
-Coerce the number of example or usage fields to binary indication of examples
+Coerce a logical vector indicating availability of example or usage documentation
 }
 \examples{
 \dontrun{metric_score(assess_has_examples(pkg_ref("riskmetric")))
