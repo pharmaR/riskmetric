@@ -46,7 +46,7 @@ Suggests:
     testthat,
     webmockr,
     jsonlite,
-    oysteR
+    oysteR (>= 0.1.0)
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Config/testthat/edition: 3
