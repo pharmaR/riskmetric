@@ -19,7 +19,10 @@ assess_security <- function(x, ...) {
 
 attributes(assess_security)$column_name <- "security"
 attributes(assess_security)$label <- "OSS Scan Results"
-attributes(assess_security)$suggests <- TRUE
+
+# set as a "Suggests" package to be excluded from all_assessments if the package
+# is not installed
+attributes(assess_security)$suggests <- !requireNamespace("oysteR", quietly = TRUE)
 
 #' @export
 assess_security.default <- function(x, ...) {
