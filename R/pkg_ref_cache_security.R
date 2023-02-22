@@ -1,4 +1,4 @@
-#' Run R CMD check and capture the results
+#' Cache OSS Index results
 #'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache

@@ -18,7 +18,8 @@ assess_security <- function(x, ...) {
 }
 
 attributes(assess_security)$column_name <- "security"
-attributes(assess_security)$label <- "OSS Scan Results"
+attributes(assess_security)$label <-
+  "number of vulnerabilities detected in OSS Index"
 
 # set as a "Suggests" package to be excluded from all_assessments if the package
 # is not installed
@@ -81,7 +82,7 @@ oyster_install_helper <- function(is_upgrade = FALSE) {
     stxt <- "install"
   }
 
-  if (interactive()) {
+  if (interactive() & !getOption("riskmetric.skip_oyster_install")) {
     inst_yn <- utils::menu(
       choices = c("Yes", "No"),
       title = paste(
@@ -95,6 +96,9 @@ oyster_install_helper <- function(is_upgrade = FALSE) {
     if (inst_yn == "1") {
       utils::install.packages("oysteR")
     } else {
+      # if user skipped once, don't prompt again until session restarts
+      if (inst_yn == "2") options("riskmetric.skip_oyster_install" = TRUE)
+
       stop(paste(
         "asssess_security not run. Please",
         stxt,
