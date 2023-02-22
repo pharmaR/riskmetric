@@ -57,6 +57,7 @@ jobs:
           extra-packages: rcmdcheck
 
       - uses: r-lib/actions/setup-tinytex@v2
+        run: tlmgr install texinfo texlive-fonts-extra
 
       - uses: r-lib/actions/check-r-package@v2
         with:
