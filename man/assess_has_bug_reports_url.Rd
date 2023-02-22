@@ -6,22 +6,6 @@
 \usage{
 assess_has_bug_reports_url(x, ...)
 }
-\arguments{
-\item{x}{a \code{pkg_ref} package reference object}
-
-\item{...}{additional arguments passed on to S3 methods, rarely used}
-}
-\value{
-a \code{pkg_metric} containing a character value containing the BugReports field contents
-}
 \description{
 Assess a package for the presence of a url field where bugs can be reported.
-}
-\examples{
-\dontrun{
-assess_has_bug_reports_url(pkg_ref("riskmetric"))
-}
-}
-\seealso{
-\code{\link{metric_score.pkg_metric_has_bug_reports_url}}
 }

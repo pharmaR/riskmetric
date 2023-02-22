@@ -57,6 +57,8 @@ jobs:
           extra-packages: rcmdcheck
 
       - uses: r-lib/actions/check-r-package@v2
+        with:
+          args: 'c("--as-cran")'
 
       - name: Show testthat output
         if: always()

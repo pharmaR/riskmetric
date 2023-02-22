@@ -6,22 +6,6 @@
 \usage{
 assess_exported_namespace(x, ...)
 }
-\arguments{
-\item{x}{a \code{pkg_ref} package reference object}
-
-\item{...}{additional arguments passed on to S3 methods, rarely used}
-}
-\value{
-a \code{pkg_metric} containing List of functions and objects exported by a package, excluding S3methods
-}
 \description{
 Assess a package's results from running R CMD check
-}
-\examples{
-\dontrun{
-assess_exported_namespace(pkg_ref("riskmetric"))
-}
-}
-\seealso{
-\code{\link{metric_score.pkg_metric_exported_namespace}}
 }

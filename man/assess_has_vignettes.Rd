@@ -6,22 +6,6 @@
 \usage{
 assess_has_vignettes(x, ...)
 }
-\arguments{
-\item{x}{a \code{pkg_ref} package reference object}
-
-\item{...}{additional arguments passed on to S3 methods, rarely used}
-}
-\value{
-a \code{pkg_metric} containing an integer value indicating the number of discovered vignettes files
-}
 \description{
 Assess a package for the presence of Vignettes files
-}
-\examples{
-\dontrun{
-assess_has_vignettes(pkg_ref("riskmetric"))
-}
-}
-\seealso{
-\code{\link{metric_score.pkg_metric_has_vignettes}}
 }
