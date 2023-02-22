@@ -59,7 +59,7 @@ jobs:
       - uses: r-lib/actions/setup-tinytex@v2
       - name: Install needed tex packages
         run: |
-          tlmgr install texinfo
+          tlmgr install texinfo texlive
 
       - uses: r-lib/actions/check-r-package@v2
         with:
