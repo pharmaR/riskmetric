@@ -6,6 +6,22 @@
 \usage{
 assess_covr_coverage(x, ...)
 }
+\arguments{
+\item{x}{a \code{pkg_ref} package reference object}
+
+\item{...}{additional arguments passed on to S3 methods, rarely used}
+}
+\value{
+a \code{pkg_metric} containing a list containing fields 'filecoverage' and 'totalcoverage' containing a named numeric vector of file unit test coverage and a singular numeric value representing overall test coverage respectively.
+}
 \description{
 Assess a package code coverage using the `covr` package
+}
+\examples{
+\dontrun{
+assess_covr_coverage(pkg_ref("riskmetric"))
+}
+}
+\seealso{
+\code{\link{metric_score.pkg_metric_covr_coverage}}
 }
