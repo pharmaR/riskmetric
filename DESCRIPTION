@@ -35,7 +35,8 @@ Imports:
     pillar,
     tibble,
     pkgload,
-    devtools
+    devtools,
+    qpdf
 Suggests:
     knitr,
     rmarkdown,
