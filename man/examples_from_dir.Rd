@@ -4,7 +4,7 @@
 \alias{examples_from_dir}
 \title{Build logical vector for Rd objects with example or usage fields discovered in a given directory}
 \usage{
-examples_from_dir(path)
+examples_from_dir(path, pkg)
 }
 \arguments{
 \item{path}{a package directory path expected to contain exported objects}
