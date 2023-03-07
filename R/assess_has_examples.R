@@ -29,7 +29,11 @@ assess_has_examples.pkg_ref <- function(x, ...) {
 #'
 #' @export
 metric_score.pkg_metric_has_examples <- function(x, ...) {
-  sum(x, na.rm = TRUE) / length(x)
+  if (length(x) > 0) {
+    sum(x, na.rm = TRUE) / length(x)
+  } else {
+    NA
+  }
 }
 
 attributes(metric_score.pkg_metric_has_examples)$label <-

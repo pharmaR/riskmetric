@@ -13,7 +13,7 @@ pkg_ref_cache.examples.pkg_install <- function(x, name, ...) {
 }
 
 pkg_ref_cache.examples.pkg_source <- function(x, name, ...) {
-  examples_from_dir(x$path)
+  examples_from_dir(x$path, x$name)
 }
 
 #' Filter a simple database of Rd objects in a package for files with example fields
@@ -49,6 +49,10 @@ filter_rd_db <- function(rddb) {
 #' @keywords internal
 examples_from_pkg <- function(pkg) {
   f <- tools::Rd_db(package = pkg)
+
+  # omit whole package rd
+  f <- f[!names(f) %in% c(paste0(pkg, "-package.Rd"), paste0(pkg,".Rd"))]
+
   rd_all <- names(f)
   e <- filter_rd_db(f)
   rd_all %in% e
@@ -60,8 +64,12 @@ examples_from_pkg <- function(pkg) {
 #'
 #' @return a numeric proportion of documentation files with examples
 #' @keywords internal
-examples_from_dir <- function(path) {
+examples_from_dir <- function(path, pkg) {
   f <- tools::Rd_db(dir = path)
+
+  # omit whole package rd
+  f <- f[!names(f) %in% c(paste0(pkg, "-package.Rd"), paste0(pkg,".Rd"))]
+
   rd_all <- names(f)
   e <- filter_rd_db(f)
   rd_all %in% e
