@@ -6,6 +6,22 @@
 \usage{
 assess_has_examples(x, ...)
 }
+\arguments{
+\item{x}{a \code{pkg_ref} package reference object}
+
+\item{...}{additional arguments passed on to S3 methods, rarely used}
+}
+\value{
+a \code{pkg_metric} containing an integer value indicating the proportion of discovered files with examples
+}
 \description{
 Assess a package for the presence of example or usage fields in function documentation
+}
+\examples{
+\dontrun{
+assess_has_examples(pkg_ref("riskmetric"))
+}
+}
+\seealso{
+\code{\link{metric_score.pkg_metric_has_examples}}
 }
