@@ -87,7 +87,7 @@ format_assessment_message <- function(e, name, assessment) {
 #' @importFrom pillar pillar_shaft new_pillar_shaft_simple style_na
 #' @method pillar_shaft pkg_metric_error
 #' @export
-pillar_shaft.pkg_metric_error <- function(x) {
+pillar_shaft.pkg_metric_error <- function(x, ...) {
   pillar::new_pillar_shaft_simple(pillar::style_na(paste0(
     "<",
     gsub("pkg_metric_", "", class(x)[[1]]),

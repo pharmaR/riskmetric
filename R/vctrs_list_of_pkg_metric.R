@@ -22,7 +22,7 @@ pillar_shaft.list_of_pkg_metric <- function(x, ...) {
 #' @importFrom vctrs vec_cast.double
 #' @method vec_cast.double list_of_pkg_metric
 #' @export
-vec_cast.double.list_of_pkg_metric <- function(x, to) {
+vec_cast.double.list_of_pkg_metric <- function(x, to, ...) {
   out <- vector("numeric", length(x))
   is_error <- vapply(x, inherits, logical(1L), "pkg_metric_error")
   out[is_error] <- NA_real_
