@@ -1,3 +1,8 @@
+# riskmetric 0.2.1
+
+- Updates for S3 Method consistancy for `vec_cast` and `pillar_shift` per CRAN 
+comments.
+
 # riskmetric 0.2.0
 
 - We now have a Hex Logo! #233. Thanks to @AARON-CLARK.
