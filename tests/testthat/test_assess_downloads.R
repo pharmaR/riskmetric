@@ -4,6 +4,11 @@ test_that("assess_downloads returns expected result for source package", {
     c("pkg_metric_downloads_1yr", "pkg_metric", "integer"))
 
   expect_type(assess_source_good$downloads_1yr, "double")
-  expect_lte(assess_source_good$downloads_1yr, 1)
   expect_gte(assess_source_good$downloads_1yr, 0)
+
+  expect_type(score_source_good$downloads_1yr, "double")
+  expect_lte(score_source_good$downloads_1yr, 1)
+  expect_gte(score_source_good$downloads_1yr, 0)
 })
+
+
