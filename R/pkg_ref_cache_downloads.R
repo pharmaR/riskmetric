@@ -8,5 +8,8 @@
 #' @return a \code{pkg_ref} object
 #' @keywords internal
 pkg_ref_cache.downloads <- function(x, n=365, ...) {
-  cran_downloads(x$name, from=Sys.Date()-n, to=Sys.Date())
+  if (n == "" | is.na(n) | !is.numeric(n)) {
+    n <- 365
+  }
+  cran_downloads(x$name, from = Sys.Date() - n, to = Sys.Date())
 }
