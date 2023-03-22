@@ -4,7 +4,7 @@
 \alias{pkg_ref_cache.downloads}
 \title{Cache a list of available help files as LaTeX objects}
 \usage{
-\method{pkg_ref_cache}{downloads}(x, n = 365, ...)
+\method{pkg_ref_cache}{downloads}(x, n, ...)
 }
 \arguments{
 \item{x}{a package reference object}
