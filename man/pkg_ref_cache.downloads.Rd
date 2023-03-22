@@ -2,14 +2,12 @@
 % Please edit documentation in R/pkg_ref_cache_downloads.R
 \name{pkg_ref_cache.downloads}
 \alias{pkg_ref_cache.downloads}
-\title{Cache a list of available help files as LaTeX objects}
+\title{Cache a data frame of package downloads from the RStudio CRAN mirror}
 \usage{
-\method{pkg_ref_cache}{downloads}(x, n, ...)
+\method{pkg_ref_cache}{downloads}(x, ...)
 }
 \arguments{
 \item{x}{a package reference object}
-
-\item{n}{Number of days to look back with default value of 365 days}
 
 \item{...}{additional arguments used for computing cached values}
 }
@@ -17,7 +15,7 @@
 a \code{pkg_ref} object
 }
 \description{
-Cache a list of available help files as LaTeX objects
+Cache a data frame of package downloads from the RStudio CRAN mirror
 }
 \seealso{
 Other package reference cache: 
