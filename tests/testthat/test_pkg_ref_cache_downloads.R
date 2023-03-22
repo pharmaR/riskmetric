@@ -7,6 +7,6 @@ test_that("pkg_ref_cache_downloads returns expected result for source package", 
   )
   testthat::expect_true(
     as.character(sort(pkg_ref_source_good$downloads$date)[[1]]) %in%
-    c("2012-10-01", Sys.Date())
+    c("2012-10-01", as.character(Sys.Date()))
   )
 })
