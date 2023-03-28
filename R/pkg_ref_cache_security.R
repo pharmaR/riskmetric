@@ -5,6 +5,7 @@
 #' @return a \code{pkg_ref} object
 #' @keywords internal
 pkg_ref_cache.security <- function(x, ...) {
+  validate_oyster_install()
   UseMethod("pkg_ref_cache.security")
 }
 
