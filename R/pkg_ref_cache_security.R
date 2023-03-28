@@ -17,7 +17,7 @@ pkg_ref_cache.security <- function(x, ...) {
 pkg_ref_cache.security.default <- function(x, ...) {
   scan_results <- oysteR::audit(
     pkg = x$name,
-    version = x$version,
+    version = as.character(x$version),
     type = "cran",
     verbose = FALSE
   )
