@@ -4,7 +4,7 @@
 \alias{pkg_ref_cache.downloads}
 \title{Cache a data frame of package downloads from the RStudio CRAN mirror}
 \usage{
-\method{pkg_ref_cache}{downloads}(x, ...)
+pkg_ref_cache.downloads(x, ...)
 }
 \arguments{
 \item{x}{a package reference object}
