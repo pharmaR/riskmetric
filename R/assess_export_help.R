@@ -22,10 +22,16 @@ assess_export_help.pkg_remote <- function(x, ...) {
 }
 
 
-
+#' @importFrom pkgload parse_ns_file
 #' @export
 assess_export_help.pkg_source <- function(x, ...) {
-  as_pkg_metric_todo(pkg_metric(class = "pkg_metric_export_help"))
+  pkg_metric_eval(class = "pkg_metric_export_help", {
+    # ignore S3-dispatched methods
+    exports <- unname(unlist(pkgload::parse_ns_file(x$path)[c("exports","exportMethods")]))
+    out <- exports %in% names(x$help_aliases)
+    names(out) <- exports
+    out
+  })
 }
 
 
@@ -40,8 +46,6 @@ assess_export_help.pkg_install <- function(x, ...) {
     out
   })
 }
-
-
 
 #' Score a package for availability of documentation for exported values
 #'
