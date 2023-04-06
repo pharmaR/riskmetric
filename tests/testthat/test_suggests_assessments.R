@@ -1,7 +1,6 @@
 test_that("Assessments requiring dependencies listed in Suggests are implemented
           consistently", {
 
-  skip("skip")
   # get all assessment objects based on naming convention
   fs <- grep("^assess_[^.]*$",
     getNamespaceExports("riskmetric"),
@@ -17,8 +16,8 @@ test_that("Assessments requiring dependencies listed in Suggests are implemented
   #   - ~~test to confirm all functions for specific class have calls to
   #     `validate_suggests_install` as their first args~~
   #   - ~~can we find the matching `pkg_ref_cache` fn from the default method~~
-  #   - that function attributes and package options are set appropriately
-  #   - if you need a min version, you should specify it in the `DESCRIPTION`
+  #   - ~~that function attributes and package options are set appropriately~~
+  #   - ~~if you need a min version, you should specify it in the `DESCRIPTION`~~
   #   - packageDescription("oysteR")['Suggests']
   for (fn_name in names(sugg_fns)) {
 
@@ -38,6 +37,9 @@ test_that("Assessments requiring dependencies listed in Suggests are implemented
       ls(loadNamespace("riskmetric"))
     )
 
+    # TODO: can we use ^this logic to create a ref card of what metrics are
+    #       available for what pkg_source types?
+
     for (s in implemented_methods) {
       # get associated function object and parse all references to pkg_ref_cache
       # slots in the function body
@@ -47,8 +49,8 @@ test_that("Assessments requiring dependencies listed in Suggests are implemented
         fn_txt,
         perl = TRUE
       ))
-      # find default definitions for any implemented pkg_ref_cache functions and
-      # confirm they include calls to validate_suggests_install
+      # find the generic definitions for any implemented pkg_ref_cache functions
+      # and confirm they include calls to validate_suggests_install
       for (rcr in rc_refs) {
         rc_n <- sprintf("riskmetric:::pkg_ref_cache.%s", rcr)
         fn_obj <- eval(str2expression(rc_n))
