@@ -24,6 +24,8 @@ attributes(assess_security)$label <-
 # set as a "Suggests" package to be excluded from all_assessments if the package
 # is not installed
 attributes(assess_security)$suggests <- !requireNamespace("oysteR", quietly = TRUE)
+attributes(assess_security)$suggests_pkg <- "oysteR"
+
 
 #' @export
 assess_security.default <- function(x, ...) {
