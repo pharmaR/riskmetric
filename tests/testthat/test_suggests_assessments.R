@@ -12,13 +12,6 @@ test_that("Assessments requiring dependencies listed in Suggests are implemented
   sugg_ix <- sapply(fn_objs, function(fn) !is.null(attr(fn, "suggests")))
   sugg_fns <- fn_objs[sugg_ix]
 
-  # TODO:
-  #   - ~~test to confirm all functions for specific class have calls to
-  #     `validate_suggests_install` as their first args~~
-  #   - ~~can we find the matching `pkg_ref_cache` fn from the default method~~
-  #   - ~~that function attributes and package options are set appropriately~~
-  #   - ~~if you need a min version, you should specify it in the `DESCRIPTION`~~
-  #   - packageDescription("oysteR")['Suggests']
   for (fn_name in names(sugg_fns)) {
 
     # Check 1: confirm the first line of the function is a call to
@@ -65,8 +58,6 @@ test_that("Assessments requiring dependencies listed in Suggests are implemented
     expect_type(attr(sugg_fns[[fn_name]], "suggests_pkg"), "character")
     op_nm <- sprintf("riskmetric.skip_%s_install", attr(sugg_fns[[fn_name]], "suggests_pkg"))
     expect_type(getOption(op_nm), "logical")
-
-
 
   }
 })
