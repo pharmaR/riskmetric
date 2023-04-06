@@ -5,7 +5,10 @@
 #' @return a \code{pkg_ref} object
 #' @keywords internal
 pkg_ref_cache.security <- function(x, ...) {
-  validate_suggests_install(pkg_name = "oysteR")
+  validate_suggests_install(
+    pkg_name = "oysteR",
+    calling_fn = deparse(match.call()[[1]])
+  )
   UseMethod("pkg_ref_cache.security")
 }
 

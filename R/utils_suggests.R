@@ -2,7 +2,7 @@
 #'
 #' @keywords internal
 #'
-validate_suggests_install <- function(pkg_name, calling_fn = deparse(match.call()[[1]])) {
+validate_suggests_install <- function(pkg_name, calling_fn) {
   # check if package is installed
   if (!requireNamespace(pkg_name, quietly = TRUE)) {
     # if not, prompt for install

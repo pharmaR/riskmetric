@@ -12,7 +12,8 @@ assess_security <- function(x, ...) {
   # checks whether a compatible version of oysteR is installed. prompts user to
   # install or upgrade if needed when running interactively. an error is thrown
   # in the event a valid oysteR package is not installed.
-  validate_suggests_install(pkg_name = "oysteR")
+  cf <- deparse(match.call()[[1]])
+  validate_suggests_install(pkg_name = "oysteR", calling_fn = cf)
 
   UseMethod("assess_security")
 }
