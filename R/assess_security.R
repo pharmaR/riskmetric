@@ -12,7 +12,7 @@ assess_security <- function(x, ...) {
   # checks whether a compatible version of oysteR is installed. prompts user to
   # install or upgrade if needed when running interactively. an error is thrown
   # in the event a valid oysteR package is not installed.
-  validate_oyster_install()
+  validate_suggests_install(pkg_name = "oysteR")
 
   UseMethod("assess_security")
 }
@@ -49,61 +49,3 @@ attributes(metric_score.pkg_metric_security)$label <-
 
 
 
-#' Helper function to check if valid version of oysteR is installed.
-#'
-#' @keywords internal
-#'
-validate_oyster_install <- function() {
-  # check if oysteR package is installed
-  if (!requireNamespace("oysteR", quietly = TRUE)) {
-    # if not, prompt for install
-    oyster_install_helper()
-  } else {
-    # if it is installed, check version, and prompt for upgrade if less than 0.1.0
-    v <- packageVersion("oysteR")
-    is_old <- v$major == 0 && v$minor < 1
-    if (is_old) {
-      oyster_install_helper(is_upgrade = TRUE)
-    }
-  }
-}
-
-#' Helper function to guide user through install of oysteR
-#'
-#' @param is_upgrade Are you upgrading an older version of oysteR?
-#' @keywords internal
-#'
-oyster_install_helper <- function(is_upgrade = FALSE) {
-  if (is_upgrade) {
-    ptxt <- "an upgrade"
-    stxt <- "upgrade"
-  } else {
-    ptxt <- "installation"
-    stxt <- "install"
-  }
-
-  if (interactive() & !getOption("riskmetric.skip_oyster_install")) {
-    inst_yn <- utils::menu(
-      choices = c("Yes", "No"),
-      title = paste(
-        "Assessing security requires",
-        ptxt,
-        "of the oysteR package.",
-        "Would you like to install this now?"
-      )
-    )
-
-    if (inst_yn == "1") {
-      utils::install.packages("oysteR")
-    } else {
-      # if user skipped once, don't prompt again until session restarts
-      if (inst_yn == "2") options("riskmetric.skip_oyster_install" = TRUE)
-
-      stop(paste(
-        "asssess_security not run. Please",
-        stxt,
-        "the oysteR package if you wish to assess security."
-      ))
-    }
-  }
-}
