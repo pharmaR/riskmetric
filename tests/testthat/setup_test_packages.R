@@ -38,6 +38,13 @@ score_source_bad <- pkg_score(
   assess_source_bad,
   error_handler = score_error_zero)
 
+# another representative "bad" pkg_source package from source code
+pkg_ref_source_bad2 <- pkg_source(file.path(test_path(), "test_packages", "pkgsourcebad2"))
+assess_source_bad2 <- pkg_assess(pkg_ref_source_bad2)
+score_source_bad2 <- pkg_score(
+  assess_source_bad2,
+  error_handler = score_error_zero)
+
 # a representative package from an installed library
 pkg_ref_stdlib_install <- pkg_install("utils")
 assess_stdlib_install <- pkg_assess(pkg_ref_stdlib_install)
