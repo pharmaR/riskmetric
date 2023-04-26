@@ -8,7 +8,7 @@ test_that("assess_export_help returns expected result for source packages", {
 
   expect_true(assess_stdlibs_install$export_help[[1]][[1]])
 
-  expect_equal(score_install_good$export_help[[1]], 1), ignore_attr = TRUE
+  expect_equal(score_install_good$export_help[[1]], 1), ignore_attr = TRUE)
   expect_equal(score_source_bad$export_help[[1]], 0.5, ignore_attr = TRUE)
   expect_equal(score_source_good$export_help[[1]], 1, ignore_attr = TRUE)
 })
