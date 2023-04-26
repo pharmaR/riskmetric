@@ -67,6 +67,9 @@
     <loc>/reference/assess_has_bug_reports_url.html</loc>
   </url>
   <url>
+    <loc>/reference/assess_has_examples.html</loc>
+  </url>
+  <url>
     <loc>/reference/assess_has_maintainer.html</loc>
   </url>
   <url>
@@ -136,6 +139,15 @@
     <loc>/reference/dot-tools.html</loc>
   </url>
   <url>
+    <loc>/reference/examples_from_dir.html</loc>
+  </url>
+  <url>
+    <loc>/reference/examples_from_pkg.html</loc>
+  </url>
+  <url>
+    <loc>/reference/filter_rd_db.html</loc>
+  </url>
+  <url>
     <loc>/reference/firstS3method.html</loc>
   </url>
   <url>
@@ -191,6 +203,9 @@
   </url>
   <url>
     <loc>/reference/metric_score.pkg_metric_has_bug_reports_url.html</loc>
+  </url>
+  <url>
+    <loc>/reference/metric_score.pkg_metric_has_examples.html</loc>
   </url>
   <url>
     <loc>/reference/metric_score.pkg_metric_has_maintainer.html</loc>
@@ -275,6 +290,9 @@
   </url>
   <url>
     <loc>/reference/pkg_ref_cache.downloads.html</loc>
+  </url>
+  <url>
+    <loc>/reference/pkg_ref_cache.examples.html</loc>
   </url>
   <url>
     <loc>/reference/pkg_ref_cache.expression_coverage.html</loc>

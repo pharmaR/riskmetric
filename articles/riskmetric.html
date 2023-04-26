@@ -208,6 +208,7 @@ metadata as it’s collected in the various risk assessments.</p>
 <span><span class="co">#&gt; $bug_reports_url...</span></span>
 <span><span class="co">#&gt; $description...</span></span>
 <span><span class="co">#&gt; $downloads...</span></span>
+<span><span class="co">#&gt; $examples...</span></span>
 <span><span class="co">#&gt; $help...</span></span>
 <span><span class="co">#&gt; $help_aliases...</span></span>
 <span><span class="co">#&gt; $license...</span></span>
@@ -292,6 +293,7 @@ object.</p>
 <span><span class="co">#&gt; $bug_reports_url...</span></span>
 <span><span class="co">#&gt; $description...</span></span>
 <span><span class="co">#&gt; $downloads...</span></span>
+<span><span class="co">#&gt; $examples...</span></span>
 <span><span class="co">#&gt; $help...</span></span>
 <span><span class="co">#&gt; $license...</span></span>
 <span><span class="co">#&gt; $maintainer...</span></span>
@@ -332,7 +334,7 @@ to <code><a href="../reference/all_assessments.html">all_assessments()</a></code
 namespace.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; &lt;list_of_pkg_metric[18]&gt;</span></span>
+<pre><code><span><span class="co">#&gt; &lt;list_of_pkg_metric[19]&gt;</span></span>
 <span><span class="co">#&gt; $covr_coverage</span></span>
 <span><span class="co">#&gt; [1] NA</span></span>
 <span><span class="co">#&gt; attr(,"class")</span></span>
@@ -389,9 +391,10 @@ namespace.</p>
 <span><span class="co">#&gt; [23] "assess_size_codebase"        "all_assessments"            </span></span>
 <span><span class="co">#&gt; [25] "assess_has_source_control"   "assess_has_bug_reports_url" </span></span>
 <span><span class="co">#&gt; [27] "assess_downloads_1yr"        "assess_reverse_dependencies"</span></span>
-<span><span class="co">#&gt; [29] "get_assessments"             "summarize_scores"           </span></span>
-<span><span class="co">#&gt; [31] "pkg_ref"                     "assessment_error_empty"     </span></span>
-<span><span class="co">#&gt; [33] "assess_dependencies"         "assess_license"             </span></span>
+<span><span class="co">#&gt; [29] "get_assessments"             "assess_has_examples"        </span></span>
+<span><span class="co">#&gt; [31] "summarize_scores"            "pkg_ref"                    </span></span>
+<span><span class="co">#&gt; [33] "assessment_error_empty"      "assess_dependencies"        </span></span>
+<span><span class="co">#&gt; [35] "assess_license"             </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $has_vignettes</span></span>
 <span><span class="co">#&gt; [1] 0</span></span>
@@ -425,12 +428,14 @@ namespace.</p>
 <span><span class="co">#&gt;                        TRUE                        TRUE </span></span>
 <span><span class="co">#&gt;        assess_downloads_1yr assess_reverse_dependencies </span></span>
 <span><span class="co">#&gt;                        TRUE                        TRUE </span></span>
-<span><span class="co">#&gt;             get_assessments            summarize_scores </span></span>
+<span><span class="co">#&gt;             get_assessments         assess_has_examples </span></span>
 <span><span class="co">#&gt;                        TRUE                        TRUE </span></span>
-<span><span class="co">#&gt;                     pkg_ref      assessment_error_empty </span></span>
+<span><span class="co">#&gt;            summarize_scores                     pkg_ref </span></span>
 <span><span class="co">#&gt;                        TRUE                        TRUE </span></span>
-<span><span class="co">#&gt;         assess_dependencies              assess_license </span></span>
+<span><span class="co">#&gt;      assessment_error_empty         assess_dependencies </span></span>
 <span><span class="co">#&gt;                        TRUE                        TRUE </span></span>
+<span><span class="co">#&gt;              assess_license </span></span>
+<span><span class="co">#&gt;                        TRUE </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $has_website</span></span>
 <span><span class="co">#&gt; [1] "https://pharmar.github.io/riskmetric/"</span></span>
@@ -441,7 +446,7 @@ namespace.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $bugs_status</span></span>
 <span><span class="co">#&gt;  [1]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE</span></span>
-<span><span class="co">#&gt; [13] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE</span></span>
+<span><span class="co">#&gt; [13] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE</span></span>
 <span><span class="co">#&gt; [25] FALSE  TRUE  TRUE  TRUE FALSE FALSE</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $size_codebase</span></span>
@@ -463,6 +468,17 @@ namespace.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $reverse_dependencies</span></span>
 <span><span class="co">#&gt; character(0)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $has_examples</span></span>
+<span><span class="co">#&gt;   [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span>
+<span><span class="co">#&gt;  [16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span>
+<span><span class="co">#&gt;  [31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span>
+<span><span class="co">#&gt;  [46] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span>
+<span><span class="co">#&gt;  [61] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span>
+<span><span class="co">#&gt;  [76] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span>
+<span><span class="co">#&gt;  [91] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span>
+<span><span class="co">#&gt; [106] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span>
+<span><span class="co">#&gt; [121] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $dependencies</span></span>
 <span><span class="co">#&gt;        package    type</span></span>
@@ -490,17 +506,17 @@ on <code>tibble</code>s, returning a cleaner output that might be easier
 to sort through when assessing a package.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="va">riskmetric_pkg_ref</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 21</span></span></span>
+<pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 22</span></span></span>
 <span><span class="co">#&gt;   package    version pkg_ref             covr_coverage has_news   remote_checks</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>   </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.1   riskmetric<span style="color: #949494;">&lt;install&gt;</span> NA            1          NA           </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 15 more variables: news_current &lt;lst_f_p_&gt;, r_cmd_check &lt;lst_f_p_&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 16 more variables: news_current &lt;lst_f_p_&gt;, r_cmd_check &lt;lst_f_p_&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   exported_namespace &lt;lst_f_p_&gt;, has_vignettes &lt;lst_f_p_&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   export_help &lt;lst_f_p_&gt;, has_website &lt;lst_f_p_&gt;, has_maintainer &lt;lst_f_p_&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   bugs_status &lt;lst_f_p_&gt;, size_codebase &lt;lst_f_p_&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   has_source_control &lt;lst_f_p_&gt;, has_bug_reports_url &lt;lst_f_p_&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   downloads_1yr &lt;lst_f_p_&gt;, reverse_dependencies &lt;lst_f_p_&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   dependencies &lt;lst_f_p_&gt;, license &lt;lst_f_p_&gt;</span></span></span></code></pre>
+<span><span class="co">#&gt; <span style="color: #949494;">#   has_examples &lt;lst_f_p_&gt;, dependencies &lt;lst_f_p_&gt;, license &lt;lst_f_p_&gt;</span></span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="scoring-package-metrics">Scoring package metrics<a class="anchor" aria-label="anchor" href="#scoring-package-metrics"></a>
@@ -520,17 +536,17 @@ to a <code>pkg_ref</code> <code>tibble</code>, providing a new
 <code>tibble</code> with scored metrics.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="st">"riskmetric"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 22</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 23</span></span></span>
 <span><span class="co">#&gt;   package    version pkg_ref             pkg_score covr_coverage has_news  </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.1   riskmetric<span style="color: #949494;">&lt;install&gt;</span>     0.550 NA            1         </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 16 more variables: remote_checks &lt;pkg_scor&gt;, news_current &lt;pkg_scor&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.1   riskmetric<span style="color: #949494;">&lt;install&gt;</span>     0.520 NA            1         </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 17 more variables: remote_checks &lt;pkg_scor&gt;, news_current &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   r_cmd_check &lt;pkg_scor&gt;, exported_namespace &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   has_vignettes &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   has_maintainer &lt;pkg_scor&gt;, bugs_status &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   size_codebase &lt;pkg_scor&gt;, has_source_control &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   has_bug_reports_url &lt;pkg_scor&gt;, downloads_1yr &lt;pkg_scor&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   reverse_dependencies &lt;pkg_scor&gt;, dependencies &lt;pkg_scor&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   reverse_dependencies &lt;pkg_scor&gt;, has_examples &lt;pkg_scor&gt;, …</span></span></span></code></pre></div>
 <blockquote>
 <p>Note that <code>pkg_assess</code> and <code>pkg_score</code> accepts
 an <code>error_handler</code> argument which determines how errors are
@@ -572,19 +588,19 @@ cohort of packages at once.</p>
 <code class="sourceCode R"><span><span class="va">package_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 22</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 23</span></span></span>
 <span><span class="co">#&gt;   package    version pkg_ref             pkg_score covr_coverage has_news  </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.1   riskmetric<span style="color: #949494;">&lt;install&gt;</span>     0.550 NA            1         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> utils      4.3.0   utils<span style="color: #949494;">&lt;install&gt;</span>          0.725 NA            0         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> tools      4.3.0   tools<span style="color: #949494;">&lt;install&gt;</span>          0.774 NA            0         </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 16 more variables: remote_checks &lt;pkg_scor&gt;, news_current &lt;pkg_scor&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.1   riskmetric<span style="color: #949494;">&lt;install&gt;</span>     0.520 NA            1         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> utils      4.3.0   utils<span style="color: #949494;">&lt;install&gt;</span>          0.687 NA            0         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> tools      4.3.0   tools<span style="color: #949494;">&lt;install&gt;</span>          0.734 NA            0         </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 17 more variables: remote_checks &lt;pkg_scor&gt;, news_current &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   r_cmd_check &lt;pkg_scor&gt;, exported_namespace &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   has_vignettes &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   has_maintainer &lt;pkg_scor&gt;, bugs_status &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   size_codebase &lt;pkg_scor&gt;, has_source_control &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   has_bug_reports_url &lt;pkg_scor&gt;, downloads_1yr &lt;pkg_scor&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   reverse_dependencies &lt;pkg_scor&gt;, dependencies &lt;pkg_scor&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   reverse_dependencies &lt;pkg_scor&gt;, has_examples &lt;pkg_scor&gt;, …</span></span></span></code></pre></div>
 <p>Notice that a summary column, <code>pkg_score</code>, is included in
 addition to our metric scores. This value is a shorthand for aggregating
 a weighted average of risk scores across <code>tibble</code> columns
@@ -594,7 +610,7 @@ using <code>summarize_scores</code>.</p>
 <span>  <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/summarize_scores.html">summarize_scores</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.5501611 0.7248805 0.7742668</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.5197276 0.6870599 0.7343257</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
