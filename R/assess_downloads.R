@@ -22,7 +22,9 @@ attr(assess_downloads_1yr, "label") <- "number of downloads in the past year"
 #' @export
 assess_downloads_1yr.pkg_ref <- function(x, ...) {
   pkg_metric_eval(class = "pkg_metric_downloads_1yr", {
-    sum(x$downloads$count)
+    last_year_date <- Sys.Date() - 365
+    last_year_downloads <- subset(x$downloads, date >= last_year_date)
+    sum(last_year_downloads$count)
   })
 }
 
