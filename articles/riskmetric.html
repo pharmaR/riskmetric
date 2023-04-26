@@ -445,7 +445,7 @@ namespace.</p>
 <span><span class="co">#&gt; [1] "Eli Miller &lt;eli.miller@atorusresearch.com&gt;"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $bugs_status</span></span>
-<span><span class="co">#&gt;  [1]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE</span></span>
+<span><span class="co">#&gt;  [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE</span></span>
 <span><span class="co">#&gt; [13] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE</span></span>
 <span><span class="co">#&gt; [25] FALSE  TRUE  TRUE  TRUE FALSE FALSE</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -464,7 +464,7 @@ namespace.</p>
 <span><span class="co">#&gt; [1] "presence of a bug reports url in repository"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $downloads_1yr</span></span>
-<span><span class="co">#&gt; &lt;simpleError in unclass(as.Date(e1)) - e2: non-numeric argument to binary operator&gt;</span></span>
+<span><span class="co">#&gt; [1] 3498</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $reverse_dependencies</span></span>
 <span><span class="co">#&gt; character(0)</span></span>
@@ -539,7 +539,7 @@ to a <code>pkg_ref</code> <code>tibble</code>, providing a new
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 23</span></span></span>
 <span><span class="co">#&gt;   package    version pkg_ref             pkg_score covr_coverage has_news  </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.1   riskmetric<span style="color: #949494;">&lt;install&gt;</span>     0.520 NA            1         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.1   riskmetric<span style="color: #949494;">&lt;install&gt;</span>     0.515 NA            1         </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 17 more variables: remote_checks &lt;pkg_scor&gt;, news_current &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   r_cmd_check &lt;pkg_scor&gt;, exported_namespace &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   has_vignettes &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span></span></span>
@@ -591,7 +591,7 @@ cohort of packages at once.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 23</span></span></span>
 <span><span class="co">#&gt;   package    version pkg_ref             pkg_score covr_coverage has_news  </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.1   riskmetric<span style="color: #949494;">&lt;install&gt;</span>     0.520 NA            1         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.1   riskmetric<span style="color: #949494;">&lt;install&gt;</span>     0.515 NA            1         </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> utils      4.3.0   utils<span style="color: #949494;">&lt;install&gt;</span>          0.687 NA            0         </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> tools      4.3.0   tools<span style="color: #949494;">&lt;install&gt;</span>          0.734 NA            0         </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 17 more variables: remote_checks &lt;pkg_scor&gt;, news_current &lt;pkg_scor&gt;,</span></span></span>
@@ -610,7 +610,7 @@ using <code>summarize_scores</code>.</p>
 <span>  <span class="fu"><a href="../reference/pkg_assess.html">pkg_assess</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/pkg_score.html">pkg_score</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/summarize_scores.html">summarize_scores</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.5197276 0.6870599 0.7343257</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.5150194 0.6870599 0.7343257</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
