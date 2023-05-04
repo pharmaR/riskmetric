@@ -90,3 +90,24 @@ stub_request("get", uri_regex = "api\\.github\\.com/repos/[^/]+/[^/]+/issues") %
   to_return(
     body = paste(collapse = "\n", readLines(file.path(test_path(), "test_webmocks", "data", "github_repo_issues_api_response.json"))),
     headers = list("Content-Type" = "application/json"))
+
+# good pkgsource security API call from oysteR
+# You can stub this request with the following snippet:
+#
+# stub_request('post', uri = 'https://ossindex.sonatype.org/api/v3/component-report') %>%
+# wi_th(
+#   headers = list('Accept' = 'application/json, text/xml, application/xml, */*', 'Content-Type' = 'application/json'),
+#   body = list({"coordinates":["pkg:cran/pkgsourcegood@0.1.0"]})
+# )
+
+stub_request('post', uri = 'https://ossindex.sonatype.org/api/v3/component-report') %>%
+  wi_th(
+    headers = list('Accept' = 'application/json, text/xml, application/xml, */*', 'Content-Type' = 'application/json'),
+    body = list("coordinates" = "pkg:cran/pkgsourcegood@0.1.0")
+  ) %>%
+  to_return(
+    body = paste(collapse = "\n", readLines(file.path(test_path(), "test_webmocks", "data", "sonatype_response.json"))),
+    headers = list("Content-Type" = "application/json"))
+
+
+
