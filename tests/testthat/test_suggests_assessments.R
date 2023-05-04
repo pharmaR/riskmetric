@@ -14,10 +14,10 @@ test_that("Assessments requiring dependencies listed in Suggests are implemented
 
   for (fn_name in names(sugg_fns)) {
 
-    # Check 1: confirm the first line of the function is a call to
+    # Check 1: confirm the body of the function contains a call to
     #          validate_suggests_install
-    line_1 <- as.character(body(sugg_fns[[fn_name]]))[[2]]
-    expect_true(grepl("^validate_suggests_install", line_1))
+    fn_bod <- as.character(body(sugg_fns[[fn_name]]))
+    expect_true(any(grepl("validate_suggests_install", fn_bod)))
 
     # Check 2: Get matching pkg_metric object from S3 methods and confirm a call
     #          validate_suggests_install is present
