@@ -1,9 +1,11 @@
 #' Cache the DESCRIPTION file contents for a package reference
 #'
+#'
 #' @inheritParams pkg_ref_cache
 #' @family package reference cache
 #' @return a \code{pkg_ref} object
 #' @keywords internal
+#' @noRd
 pkg_ref_cache.description <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.description")
 }

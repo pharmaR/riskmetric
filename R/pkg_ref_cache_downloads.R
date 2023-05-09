@@ -7,6 +7,7 @@
 #' @importFrom cranlogs cran_downloads
 #' @return a \code{pkg_ref} object
 #' @keywords internal
+#' @noRd
 pkg_ref_cache.downloads <- function(x, ..., n=365) {
   cran_downloads(x$name, from=Sys.Date()-n, to=Sys.Date())
 }

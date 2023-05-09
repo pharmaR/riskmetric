@@ -4,6 +4,7 @@
 #' @family package reference cache
 #' @return a \code{pkg_ref} object
 #' @keywords internal
+#' @noRd
 pkg_ref_cache.license <- function(x, ...) {
   UseMethod("pkg_ref_cache.license")
 }

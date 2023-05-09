@@ -4,6 +4,7 @@
 #' @family package reference cache
 #' @return a \code{pkg_ref} object
 #' @keywords internal
+#' @noRd
 pkg_ref_cache.source_control_url <- function(x, name, ...) {
   grep(
     "(github\\.com|bitbucket\\.org|gitlab\\.com)",
