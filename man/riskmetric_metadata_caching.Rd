@@ -3,24 +3,8 @@
 \name{pkg_ref_cache}
 \alias{pkg_ref_cache}
 \title{S3 generic to calculate a `pkg_ref` field}
-\usage{
-pkg_ref_cache(x, name, ..., .class = as.character(name))
-}
-\arguments{
-\item{x}{a package reference object}
-
-\item{name}{the name of the field that needs to be cached}
-
-\item{...}{additional arguments used for computing cached values}
-
-\item{.class}{a class name to use for S3 dispatch, defaulting to the name as
-a character value}
-}
 \value{
 a \code{pkg_ref} field
-
-a value to assign to the new field in the package reference object
-  environment
 }
 \description{
 Reactively retrieve and cache `pkg_ref` metadata
@@ -100,4 +84,3 @@ Reactively retrieve and cache `pkg_ref` metadata
 }
 
 }
-\concept{package reference cache}

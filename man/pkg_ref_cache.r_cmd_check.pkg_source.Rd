@@ -6,11 +6,6 @@
 \usage{
 \method{pkg_ref_cache}{r_cmd_check.pkg_source}(x, ...)
 }
-\arguments{
-\item{x}{a package reference object}
-
-\item{...}{additional arguments used for computing cached values}
-}
 \value{
 a \code{pkg_ref} object
 }
