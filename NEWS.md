@@ -1,3 +1,7 @@
+# riskmetric 0.2.2
+
+- Fix bug with reporting number of downloads.
+
 # riskmetric 0.2.1
 
 - Updates for S3 Method consistancy for `vec_cast` and `pillar_shift` per CRAN 

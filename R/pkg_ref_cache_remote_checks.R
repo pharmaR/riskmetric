@@ -4,6 +4,7 @@
 #' @family package reference cache
 #' @return a \code{pkg_ref} object
 #' @keywords internal
+#' @noRd
 pkg_ref_cache.remote_checks <- function (x, ...) {
    UseMethod("pkg_ref_cache.remote_checks")
 }
@@ -31,7 +32,7 @@ pkg_ref_cache.remote_checks.pkg_cran_remote <- function(x, ...) {
 pkg_ref_cache.remote_checks.pkg_bioc_remote <- function(x, ...) {
   webURL <- sprintf("%s/%s", x$repo_base_url, x$name)
 
-  # TODO: 
+  # TODO:
   # refine x$repo_base_url for BioConductor packages so that we don't need to do
   # nasty substitutions like this
   webURL <- sub("packages/release/bioc[^/]*", "checkResults/release/bioc-LATEST", webURL)

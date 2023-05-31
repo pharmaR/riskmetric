@@ -3,24 +3,8 @@
 \name{pkg_ref_cache}
 \alias{pkg_ref_cache}
 \title{S3 generic to calculate a `pkg_ref` field}
-\usage{
-pkg_ref_cache(x, name, ..., .class = as.character(name))
-}
-\arguments{
-\item{x}{a package reference object}
-
-\item{name}{the name of the field that needs to be cached}
-
-\item{...}{additional arguments used for computing cached values}
-
-\item{.class}{a class name to use for S3 dispatch, defaulting to the name as
-a character value}
-}
 \value{
 a \code{pkg_ref} field
-
-a value to assign to the new field in the package reference object
-  environment
 }
 \description{
 Reactively retrieve and cache `pkg_ref` metadata
@@ -100,33 +84,3 @@ Reactively retrieve and cache `pkg_ref` metadata
 }
 
 }
-\seealso{
-Other package reference cache: 
-\code{\link{pkg_ref_cache.archive_release_dates}()},
-\code{\link{pkg_ref_cache.bug_reports_host}()},
-\code{\link{pkg_ref_cache.bug_reports_url}()},
-\code{\link{pkg_ref_cache.bug_reports}()},
-\code{\link{pkg_ref_cache.covr_coverage}()},
-\code{\link{pkg_ref_cache.description}()},
-\code{\link{pkg_ref_cache.downloads}()},
-\code{\link{pkg_ref_cache.examples}()},
-\code{\link{pkg_ref_cache.expression_coverage}()},
-\code{\link{pkg_ref_cache.help_aliases}()},
-\code{\link{pkg_ref_cache.help}()},
-\code{\link{pkg_ref_cache.license}()},
-\code{\link{pkg_ref_cache.maintainer}()},
-\code{\link{pkg_ref_cache.news_urls}()},
-\code{\link{pkg_ref_cache.news}()},
-\code{\link{pkg_ref_cache.r_cmd_check}()},
-\code{\link{pkg_ref_cache.release_date}()},
-\code{\link{pkg_ref_cache.remote_checks}()},
-\code{\link{pkg_ref_cache.repo_base_url}()},
-\code{\link{pkg_ref_cache.source_control_url}()},
-\code{\link{pkg_ref_cache.tarball_url}()},
-\code{\link{pkg_ref_cache.vignettes}()},
-\code{\link{pkg_ref_cache.web_html}()},
-\code{\link{pkg_ref_cache.web_url}()},
-\code{\link{pkg_ref_cache.website_urls}()}
-}
-\concept{package reference cache}
-\keyword{internal}
