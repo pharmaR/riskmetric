@@ -262,46 +262,16 @@
     <loc>/reference/pkg_ref.html</loc>
   </url>
   <url>
-    <loc>/reference/pkg_ref_cache.archive_release_dates.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.bug_reports.html</loc>
-  </url>
-  <url>
     <loc>/reference/pkg_ref_cache.bug_reports_host.default.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.bug_reports_host.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.bug_reports_url.html</loc>
   </url>
   <url>
     <loc>/reference/pkg_ref_cache.bug_reports_url.pkg_source.html</loc>
   </url>
   <url>
-    <loc>/reference/pkg_ref_cache.covr_coverage.html</loc>
-  </url>
-  <url>
     <loc>/reference/pkg_ref_cache.covr_coverage.pkg_source.html</loc>
   </url>
   <url>
-    <loc>/reference/pkg_ref_cache.description.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.downloads.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.examples.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.expression_coverage.html</loc>
-  </url>
-  <url>
     <loc>/reference/pkg_ref_cache.expression_coverage.pkg_source.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.help.html</loc>
   </url>
   <url>
     <loc>/reference/pkg_ref_cache.help.pkg_install.html</loc>
@@ -310,55 +280,7 @@
     <loc>/reference/pkg_ref_cache.help.pkg_source.html</loc>
   </url>
   <url>
-    <loc>/reference/pkg_ref_cache.help_aliases.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.license.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.maintainer.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.news.html</loc>
-  </url>
-  <url>
     <loc>/reference/pkg_ref_cache.news.pkg_remote.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.news_urls.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.r_cmd_check.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.r_cmd_check.pkg_source.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.release_date.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.remote_checks.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.repo_base_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.source_control_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.tarball_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.vignettes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.web_html.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.web_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.website_urls.html</loc>
   </url>
   <url>
     <loc>/reference/pkg_ref_class_hierarchy.html</loc>
