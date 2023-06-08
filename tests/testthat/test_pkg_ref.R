@@ -125,3 +125,11 @@ test_that("determine_pkg_source returns the expected values", {
   )
 
 })
+
+# test_that("archive_release_date does not return any NA versions", {
+#   ref2 <- pkg_cran("pkgcranremotegood")
+#
+#   expect_false(any(is.na(ref2$archive_release_dates)))
+#
+#
+# })

@@ -60,7 +60,7 @@ score_stdlibs_install <- pkg_score(
   error_handler = score_error_zero)
 
 # a representative "good" quality package available on CRAN, but not installed
-pkg_ref_cran_remote_good <- pkg_cran("pkgcranremotegood")
+pkg_ref_cran_remote_good <- pkg_cran("pkgcranremotegood", list(repo="https://cranrepo.org/"))
 assess_cran_remote_good <- pkg_assess(pkg_ref_cran_remote_good)
 score_cran_remote_good <- pkg_score(
   assess_cran_remote_good,

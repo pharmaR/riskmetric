@@ -17,7 +17,9 @@ pkg_ref_cache.archive_release_dates.pkg_cran_remote <- function(x, name, ...) {
 
   text <- unlist(strsplit(xml2::xml_text(node), "\n"))
   db   <- do.call(rbind, strsplit(text[-1], "\\s+"))
-  version <- package_version(gsub(paste0(x$name, "_(.*)\\.tar\\.gz"), "\\1", db[,2]))
+  #removes entries that are not package archives. offending packages: TSP, sdcTable, Rmosek, EbayesThresh, seqinr
+  db <- db[grepl(paste0("^",x$name, ".+\\.tar.gz"), db[,2]), ]
+  version <- package_version(gsub(paste0(x$name, "_[A-z]*(\\d.*)\\.tar\\.gz"), "\\1", db[,2]), strict = FALSE) #strict = FALSE prevents error when version is not strictly numeric e.g. dse, tframe
   version <- as.character(version)
   date  <- db[,3]
   cbind(name = x$name, version, date)
