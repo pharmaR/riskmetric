@@ -1,7 +1,7 @@
 test_that("pkg_assess on a single pkg_ref returns a vctrs_list_of with one element per assessment", {
   expect_s3_class(assess_source_good, "vctrs_list_of")
   expect_s3_class(assess_source_good, "list")
-  expect_length(assess_source_good, length(all_assessments()))
+  expect_length(assess_source_good, length(all_assessments(include_suggests = T)))
 })
 
 
