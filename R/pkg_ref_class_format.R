@@ -51,7 +51,7 @@ vec_ptype_abbr.pkg_ref <- function(x, ...) {
 #' @importFrom vctrs vec_cast.character
 #' @method vec_cast.character list_of_pkg_ref
 #' @export
-vec_cast.character.list_of_pkg_ref <- function(x, to) {
+vec_cast.character.list_of_pkg_ref <- function(x, to, ...) {
   vapply(x, "[[", character(1L), "name")
 }
 

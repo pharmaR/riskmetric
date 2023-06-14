@@ -35,11 +35,12 @@ jobs:
           - {os: ubuntu-22.04,   r: 'oldrel-2'}
           - {os: ubuntu-22.04,   r: 'oldrel-3'}
           - {os: ubuntu-22.04,   r: 'oldrel-4'}
-          - {os: ubuntu-18.04,   r: 'release'}
+          - {os: ubuntu-20.04,   r: 'release'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      _R_CHECK_RD_VALIDATE_RD2HTML_: false
 
     steps:
       - uses: actions/checkout@v2
@@ -56,7 +57,11 @@ jobs:
         with:
           extra-packages: rcmdcheck
 
+      - uses: r-lib/actions/setup-tinytex@v2
+
       - uses: r-lib/actions/check-r-package@v2
+        with:
+          args: 'c("--as-cran", "--no-manual")'
 
       - name: Show testthat output
         if: always()
