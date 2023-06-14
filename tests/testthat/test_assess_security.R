@@ -23,11 +23,12 @@ test_that("assess_security returns expected result for test packages", {
   expect_equal(metric_score(assess_source_good$security), NA)
 
 
-  # the mock for this call lives in:
+  # Case 2: Vulnerabilities detected by oysteR
   #
-  #     tests/testthat/test_webmocks/data/bad_sonatype_response.json
-  #
-  # it was produced by inspecting the JSON response for the following call:
+  # This covers scenarios where oysteR reports back any vulnerabilities. The
+  # mock for the test has been set up to return the response for a query on
+  # v0.1.1 of the haven package. It was produced by inspecting the JSON response
+  # for the following call:
   #
   #     oysteR::audit(pkg = "haven", version = "0.1.1", type = "cran")
   #

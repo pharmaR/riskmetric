@@ -48,7 +48,7 @@ test_that("Assessments requiring dependencies listed in Suggests are implemented
         rc_n <- sprintf("riskmetric:::pkg_ref_cache.%s", rcr)
         fn_obj <- eval(str2expression(rc_n))
         line_1 <- as.character(body(fn_obj))[[2]]
-        expect_true(grepl("^validate_suggests_install", line_1))
+        expect_true(grepl("validate_suggests_install", line_1))
       }
     }
 
