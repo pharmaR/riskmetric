@@ -40,9 +40,6 @@ writeLines(
 #     body = list({"coordinates":["pkg:cran/pkgsourcegood@0.1.0"]})
 #   )
 
-pkg = c("abind", "acepack")
-oysteR:::generate_purls("abind", "1.1", "cran")
-
-pkgload::load_all("../oysteR/")
-audit("pkgsourcegood", "0.1.0", "cran")
-writeLines(httr::content(r, "text"), "./tests/testthat/test_webmocks/data/sonatype_response.json")
+# pkgload::load_all("../oysteR/")
+# audit("pkgsourcegood", "0.1.0", "cran")
+# writeLines(httr::content(r, "text"), "./tests/testthat/test_webmocks/data/sonatype_response.json")

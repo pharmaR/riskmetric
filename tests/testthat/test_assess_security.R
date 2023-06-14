@@ -1,37 +1,42 @@
 test_that("assess_security returns expected result for test packages", {
 
-
-  # true positive case for one with vuln
-
-  # fake one returns NA
-
-  # true negative includes 0
-  # ── Vulnerability overview ──
+  # Case 1: No vulnerabilities detected by oysteR
   #
-  # ℹ 1 package was scanned
-  # ℹ 1 package was found in the Sonatype database
-  # ℹ 0 packages had known vulnerabilities
-  # ℹ A total of 0 known vulnerabilities were identified
-  # ℹ See https://github.com/sonatype-nexus-community/oysteR/ for details.
+  # This covers any scenario where oysteR does not report back a
+  # vulnerability. Note that it is not possible to distinguish between a
+  # "true negative" (e.g. where the package was scanned and nothing was found)
+  # and a package not found in the index that is being scanned by oysteR. A
+  # good discussion on this topic can be found here:
+  #
+  #     https://github.com/sonatype-nexus-community/oysteR/issues/62
+  #
+  # Given riskmetric's inability to distinguish between these two cases, the
+  # returned metric score is NA to make sure the end user does not get a false
+  # sense of security.
+
+  # the mock for this call lives in:
+  #
+  #     tests/testthat/test_webmocks/data/sonatype_response.json
+  #
+  # and contains no vulnerabilities
+  expect_equal(unclass(assess_source_good$security[[1]]), 0)
+  expect_equal(metric_score(assess_source_good$security), NA)
 
 
-  # txt <- capture.output({tmp <- oysteR::audit(c("widgetframe", "ggplot2"), c("0.3.1", "1.0.0"), "cran")}, type = "message")
-  # txt2 <- capture.output({tmp <- oysteR::audit("fakepackage", "cran")}, type = "message")
-
-
-  # cant "know" what is missing
-  # https://github.com/sonatype-nexus-community/oysteR/issues/62
-
-
-
-  # should we also cache what comes out of vulnerabilities
-
-
-  # expect_numeric(assess_source_good$security)
-  browser()
-  expect_equal(assess_source_good$security, 0)
-
-  # pkg_assess(assess_source_good, assessments = all_assessments(include_suggests = T))
+  # the mock for this call lives in:
+  #
+  #     tests/testthat/test_webmocks/data/bad_sonatype_response.json
+  #
+  # it was produced by inspecting the JSON response for the following call:
+  #
+  #     oysteR::audit(pkg = "haven", version = "0.1.1", type = "cran")
+  #
+  # which is known to return 3 vulnerabilities:
+  #
+  #     https://ossindex.sonatype.org/component/pkg:cran/haven@0.1.1
+  #
+  expect_equal(unclass(assess_source_bad$security[[1]]), 3)
+  expect_equal(metric_score(assess_source_bad$security), 0)
 
 })
 

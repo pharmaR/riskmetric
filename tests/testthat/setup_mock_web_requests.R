@@ -110,4 +110,18 @@ stub_request('post', uri = 'https://ossindex.sonatype.org/api/v3/component-repor
     headers = list("Content-Type" = "application/json"))
 
 
+# bad
+# https://ossindex.sonatype.org/component/pkg:cran/haven@0.1.1
+# oysteR::audit(pkg = "haven", version = "0.1.1", type = "cran")
+stub_request('post', uri = 'https://ossindex.sonatype.org/api/v3/component-report') %>%
+  wi_th(
+    headers = list('Accept' = 'application/json, text/xml, application/xml, */*', 'Content-Type' = 'application/json'),
+    body = list("coordinates" = "pkg:cran/pkgsourcebad@0.0.0.9000")
+  ) %>%
+  to_return(
+    body = paste(collapse = "\n", readLines(file.path(test_path(), "test_webmocks", "data", "bad_sonatype_response.json"))),
+    headers = list("Content-Type" = "application/json"))
+
+
+
 
