@@ -1,13 +1,11 @@
 .DS_Store
-
 vignettes
 !vignettes/*.Rmd
-
 inst/doc
 docs
-
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 .html
+riskmetric.Rproj

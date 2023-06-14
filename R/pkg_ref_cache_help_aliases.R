@@ -4,6 +4,7 @@
 #' @family package reference cache
 #' @return a \code{pkg_ref} object
 #' @keywords internal
+#' @noRd
 pkg_ref_cache.help_aliases <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.help_aliases")
 }
@@ -27,5 +28,5 @@ pkg_ref_cache.help_aliases.pkg_source <- function (x, name, ...) {
                       names (man_name) <- a
                       return (man_name)    })
   # !duplicated because unique removes names
-  unlist(aliases)[!duplicated(unlist(aliases))]
+  unlist(aliases)
 }

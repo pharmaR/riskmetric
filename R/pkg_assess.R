@@ -30,21 +30,6 @@ roxygen_assess_family <- function(name,
     "@examples assess_%s(pkg_ref(\"%s\"))"
   }
 
-
-  if (!assess_func %in% getNamespaceExports(utils::packageName()) ||
-      !score_func %in% getNamespaceExports(utils::packageName())) {
-    stop(sprintf(
-      paste0(
-        "All assess_* functions must have a corresponding score.* method ",
-        "implemented.\n\n",
-        "To remove build errors, ensure that the following functions are ",
-        "implemented:\n\n",
-        "  %s()\n",
-        "  %s()\n"),
-      assess_func,
-      score_func))
-  }
-
   c("@param x a \\code{pkg_ref} package reference object",
     "@param ... additional arguments passed on to S3 methods, rarely used",
     sprintf("@return a \\code{pkg_metric} containing %s", return_type),
