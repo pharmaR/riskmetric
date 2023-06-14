@@ -26,7 +26,7 @@ withr::with_libpaths(templib, {
 
 # a representative "good" quality package from source code
 pkg_ref_source_good <- pkg_source(file.path(test_path(), "test_packages", "pkgsourcegood"))
-assess_source_good <- pkg_assess(pkg_ref_source_good)
+assess_source_good <- pkg_assess(pkg_ref_source_good, assessments = all_assessments(include_suggests = TRUE))
 score_source_good <- pkg_score(
   assess_source_good,
   error_handler = score_error_zero)
