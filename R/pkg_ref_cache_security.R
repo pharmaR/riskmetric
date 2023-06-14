@@ -4,6 +4,7 @@
 #' @family package reference cache
 #' @return a \code{pkg_ref} object
 #' @keywords internal
+#' @noRd
 pkg_ref_cache.security <- function(x, ...) {
   validate_suggests_install(
     pkg_name = "oysteR",
@@ -12,11 +13,13 @@ pkg_ref_cache.security <- function(x, ...) {
   UseMethod("pkg_ref_cache.security")
 }
 
-#' Check OSS Index lists any vulnerabilities for the package and it's
-#' dependencies
+#' Check OSS Index lists any vulnerabilities for the package
 #'
 #' @inheritParams pkg_ref_cache
+#' @family package reference cache
 #' @return a \code{pkg_ref} object
+#' @keywords internal
+#' @noRd
 pkg_ref_cache.security.default <- function(x, ...) {
   scan_results <- oysteR::audit(
     pkg = x$name,
