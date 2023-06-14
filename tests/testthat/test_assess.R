@@ -42,11 +42,11 @@ test_that("assess returns the correct classes", {
     c("pkg_metric_news_current", "pkg_metric", "logical"))
 
   expect_s3_class(
-    assess_source_good$has_examples,
-    c("pkg_metric_security", "pkg_metric", "logical"))
+    assess_source_good$security,
+    c("pkg_metric_security", "pkg_metric", "integer"))
 
   expect_s3_class(
-    assess_source_good$security,
+    assess_source_good$has_examples,
     c("pkg_metric_has_examples", "pkg_metric", "integer"))
 })
 
