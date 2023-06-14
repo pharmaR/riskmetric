@@ -12,6 +12,7 @@ validate_suggests_install <- function(pkg_name, calling_fn) {
 
 #' Helper function to guide user through install of a package
 #'
+#' @importFrom stats setNames
 #' @keywords internal
 #'
 suggests_install_helper <- function(pkg_name, calling_fn) {
