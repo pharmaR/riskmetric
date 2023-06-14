@@ -1,7 +1,7 @@
 test_that("pkg_assess on a single pkg_ref returns a vctrs_list_of with one element per assessment", {
   expect_s3_class(assess_source_good, "vctrs_list_of")
   expect_s3_class(assess_source_good, "list")
-  expect_length(assess_source_good, length(all_assessments()))
+  expect_length(assess_source_good, length(all_assessments(include_suggests = T)))
 })
 
 
@@ -40,6 +40,10 @@ test_that("assess returns the correct classes", {
   expect_s3_class(
     assess_source_good$news_current,
     c("pkg_metric_news_current", "pkg_metric", "logical"))
+
+  expect_s3_class(
+    assess_source_good$security,
+    c("pkg_metric_security", "pkg_metric", "integer"))
 
   expect_s3_class(
     assess_source_good$has_examples,

@@ -3,7 +3,7 @@ Type: Package
 Title: Risk Metrics to Evaluating R Packages
 Description: Facilities for assessing R packages against a number of metrics to 
     help quantify their robustness.
-Version: 0.2.2
+Version: 0.2.2.9000
 Authors@R: c(
     person("R Validation Hub", role = c("aut"), email = "psi.aims.r.validation@gmail.com"),
     person("Doug", "Kelkhoff", role = c("aut"), email = "doug.kelkhoff@gmail.com"),
@@ -14,6 +14,7 @@ Authors@R: c(
     person("Eric", "Milliman", role = c("aut")),
     person("Juliane", "Manitz", role = c("aut")),
     person("Mark", "Padgham", role = c("ctb")),
+    person("Andrew", "Borgman", role = c("aut")),
     person("PSI special interest group Application and Implementation of Methodologies in Statistics", role = c("cph")))
 URL: https://pharmar.github.io/riskmetric/, https://github.com/pharmaR/riskmetric
 BugReports: https://github.com/pharmaR/riskmetric/issues
@@ -44,7 +45,8 @@ Suggests:
     dplyr,
     testthat,
     webmockr,
-    jsonlite
+    jsonlite,
+    oysteR (>= 0.1.0)
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Config/testthat/edition: 3

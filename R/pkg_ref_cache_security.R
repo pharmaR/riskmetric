@@ -1,0 +1,32 @@
+#' Cache OSS Index results
+#'
+#' @inheritParams pkg_ref_cache
+#' @family package reference cache
+#' @return a \code{pkg_ref} object
+#' @keywords internal
+#' @noRd
+pkg_ref_cache.security <- function(x, ...) {
+  validate_suggests_install(
+    pkg_name = "oysteR",
+    calling_fn = deparse(match.call()[[1]])
+  )
+  UseMethod("pkg_ref_cache.security")
+}
+
+#' Check OSS Index lists any vulnerabilities for the package
+#'
+#' @inheritParams pkg_ref_cache
+#' @family package reference cache
+#' @return a \code{pkg_ref} object
+#' @keywords internal
+#' @noRd
+pkg_ref_cache.security.default <- function(x, ...) {
+  scan_results <- oysteR::audit(
+    pkg = x$name,
+    version = as.character(x$version),
+    type = "cran",
+    verbose = FALSE
+  )
+
+  return(sum(scan_results[["no_of_vulnerabilities"]]))
+}
