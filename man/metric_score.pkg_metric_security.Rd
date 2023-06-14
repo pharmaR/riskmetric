@@ -12,7 +12,7 @@
 \item{...}{additional arguments unused}
 }
 \value{
-\code{1} if no vulnerabilities are found, otherwise \code{0}
+\code{NA} if no vulnerabilities are found, otherwise \code{0}
 }
 \description{
 Coerce the count of reported vulnerabilities to a binary indicator.

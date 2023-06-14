@@ -4,7 +4,7 @@
 \alias{validate_suggests_install}
 \title{Helper function to prompt to install a package if it is not present}
 \usage{
-validate_suggests_install(pkg_name, calling_fn = deparse(match.call()[[1]]))
+validate_suggests_install(pkg_name, calling_fn)
 }
 \description{
 Helper function to prompt to install a package if it is not present

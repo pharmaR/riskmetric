@@ -59,6 +59,7 @@ assessment applied.
 \item{\code{\link{assess_has_news}}}{number of discovered NEWS files}
 \item{\code{\link{assess_has_vignettes}}}{number of discovered vignettes files}
 \item{\code{\link{assess_has_examples}}}{proportion of discovered function files with examples}
+\item{\code{\link{assess_security}}}{number of vulnerabilities detected in OSS Index}
 \item{\code{\link{assess_has_source_control}}}{a vector of associated source control urls}
 \item{\code{\link{assess_has_bug_reports_url}}}{presence of a bug reports url in repository}
 \item{\code{\link{assess_news_current}}}{NEWS file contains entry for current version number}
