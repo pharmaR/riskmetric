@@ -70,13 +70,22 @@ pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
 pkg_score.list_of_pkg_metric <- function(x, ...,
     error_handler = score_error_default) {
 
-  lapply(x, function(xi) {
+  metrics <- lapply(x, function(xi) {
     s <- metric_score(xi, error_handler = error_handler)
     metric_score_s3_fun <- firstS3method("metric_score", class(xi))
     attr(s, "label") <- attr(metric_score_s3_fun, "label")
     class(s) <- c("pkg_score", class(s))
     s
   })
+
+  ignore_cols <- c("package", "version", "pkg_ref")
+  metrics[["pkg_score"]] <- summarize_scores(metrics[!names(metrics) %in% ignore_cols], ...)
+
+  # reorder columns so that metadata columns come first
+  pkg_cols <- intersect(names(metrics), c("package", "version", "pkg_ref", "pkg_score"))
+  metrics <- metrics[c(pkg_cols, setdiff(names(metrics), pkg_cols))]
+
+  return(metrics)
 }
 
 
