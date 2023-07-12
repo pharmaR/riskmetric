@@ -34,10 +34,10 @@ summarize_scores.data.frame <- function(data, weights = NULL) {
     weights <- add_default_weights(data)
 
   # perform checks and standardize weights
-  weights <- standardize_weights(data, weights)
+  #weights <- standardize_weights(data, weights)
 
   # calculate 'quality' and subtract from 1 to get 'risk'
-  qual <- colSums(apply(data[names(weights)], 1L, `*`, weights), na.rm = TRUE)
+  qual <- rowSums(data * t(apply(data, 1, standardize_weights, weights=weights)), na.rm = T)
   risk <- 1 - qual
 
   risk
@@ -83,8 +83,10 @@ standardize_weights <- function(data, weights) {
   check_weights(weights)
 
   # re-weight for fields that are in the dataset
+  weights[is.na(data)] <- 0
   weights <- weights[which(names(weights) %in% names(data))]
 
   # standardize weights from 0 to 1
   weights <- weights / sum(weights, na.rm = TRUE)
+  return(weights)
 }
