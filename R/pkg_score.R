@@ -65,7 +65,6 @@ pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
 }
 
 
-
 #' @export
 pkg_score.list_of_pkg_metric <- function(x, ...,
     error_handler = score_error_default) {

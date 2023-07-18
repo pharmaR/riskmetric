@@ -39,7 +39,7 @@ summarize_scores.data.frame <- function(data, weights = NULL) {
   # calculate 'quality' and subtract from 1 to get 'risk'
   qual <- rowSums(data * t(apply(data, 1, standardize_weights, weights=weights)), na.rm = T)
   risk <- 1 - qual
-
+  attr(risk,"label") <- "Summarized risk score from 0 (low) to 1 (high)."
   risk
 }
 
@@ -50,7 +50,9 @@ summarize_scores.list <- function(data, weights = NULL) {
 
   # perform checks and standardize weights
   weights <- standardize_weights(data, weights)
-  1 - sum(as.numeric(data[names(weights)]) * weights, na.rm = TRUE)
+  risk <- 1 - sum(as.numeric(data[names(weights)]) * weights, na.rm = TRUE)
+  attr(risk,"label") <- "Summarized risk score from 0 (low) to 1 (high)."
+  return(risk)
 }
 
 # Set the default weight of each metric to 1.
