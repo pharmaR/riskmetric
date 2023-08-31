@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">riskmetric</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.3</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
                         <h4 data-toc-skip class="author">R Validation
 Hub</h4>
             
-            <h4 data-toc-skip class="date">2023-05-31</h4>
+            <h4 data-toc-skip class="date">2023-08-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaR/riskmetric/blob/HEAD/vignettes/extending-riskmetric.Rmd" class="external-link"><code>vignettes/extending-riskmetric.Rmd</code></a></small>
       <div class="hidden name"><code>extending-riskmetric.Rmd</code></div>
@@ -223,13 +223,13 @@ stored for any downstream uses.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pharmar.github.io/riskmetric/" class="external-link">riskmetric</a></span><span class="op">)</span></span>
 <span><span class="va">package</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pkg_ref.html">pkg_ref</a></span><span class="op">(</span><span class="st">"riskmetric"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; &lt;pkg_install, pkg_ref&gt; riskmetric v0.2.2</span></span>
+<pre><code><span><span class="co">#&gt; &lt;pkg_install, pkg_ref&gt; riskmetric v0.2.3</span></span>
 <span><span class="co">#&gt; $path</span></span>
 <span><span class="co">#&gt;   [1] "/home/user/username/R/4.3/Resources/library/riskmetric"</span></span>
 <span><span class="co">#&gt; $source</span></span>
 <span><span class="co">#&gt;   [1] "pkg_install"</span></span>
 <span><span class="co">#&gt; $version</span></span>
-<span><span class="co">#&gt;   [1] '0.2.2'</span></span>
+<span><span class="co">#&gt;   [1] '0.2.3'</span></span>
 <span><span class="co">#&gt; $name</span></span>
 <span><span class="co">#&gt;   [1] "riskmetric"</span></span>
 <span><span class="co">#&gt; $bug_reports...</span></span>
@@ -320,9 +320,9 @@ assessment toolkit.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 23</span></span></span>
 <span><span class="co">#&gt;   package    version pkg_ref             covr_coverage has_news   remote_checks</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.2   riskmetric<span style="color: #949494;">&lt;install&gt;</span> NA            1          NA           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> utils      4.3.0   utils<span style="color: #949494;">&lt;install&gt;</span>      NA            0          NA           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> tools      4.3.0   tools<span style="color: #949494;">&lt;install&gt;</span>      NA            0          NA           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.3   riskmetric<span style="color: #949494;">&lt;install&gt;</span> NA            1          NA           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> utils      4.3.1   utils<span style="color: #949494;">&lt;install&gt;</span>      NA            0          NA           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> tools      4.3.1   tools<span style="color: #949494;">&lt;install&gt;</span>      NA            0          NA           </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 17 more variables: news_current &lt;lst_f_p_&gt;, r_cmd_check &lt;lst_f_p_&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   exported_namespace &lt;lst_f_p_&gt;, has_vignettes &lt;lst_f_p_&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   export_help &lt;lst_f_p_&gt;, has_website &lt;lst_f_p_&gt;, has_maintainer &lt;lst_f_p_&gt;,</span></span></span>
@@ -340,9 +340,9 @@ score method.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 24</span></span></span>
 <span><span class="co">#&gt;   package    version pkg_ref             pkg_score covr_coverage has_news  </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.2   riskmetric<span style="color: #949494;">&lt;install&gt;</span>     0.484 NA            1         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> utils      4.3.0   utils<span style="color: #949494;">&lt;install&gt;</span>          0.703 NA            0         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> tools      4.3.0   tools<span style="color: #949494;">&lt;install&gt;</span>          0.748 NA            0         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.3   riskmetric<span style="color: #949494;">&lt;install&gt;</span>     0.498 NA            1         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> utils      4.3.1   utils<span style="color: #949494;">&lt;install&gt;</span>          0.703 NA            0         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> tools      4.3.1   tools<span style="color: #949494;">&lt;install&gt;</span>          0.748 NA            0         </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 18 more variables: remote_checks &lt;pkg_scor&gt;, news_current &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   r_cmd_check &lt;pkg_scor&gt;, exported_namespace &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   has_vignettes &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span></span></span>
@@ -360,9 +360,9 @@ to <code>pkg_score</code>.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 24</span></span></span>
 <span><span class="co">#&gt;   package    version pkg_ref             pkg_score covr_coverage has_news  </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lst_f_p_&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;pkg_scor&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.2   riskmetric<span style="color: #949494;">&lt;install&gt;</span>         0 NA            1         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> utils      4.3.0   utils<span style="color: #949494;">&lt;install&gt;</span>              1 NA            0         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> tools      4.3.0   tools<span style="color: #949494;">&lt;install&gt;</span>              1 NA            0         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> riskmetric 0.2.3   riskmetric<span style="color: #949494;">&lt;install&gt;</span>         0 NA            1         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> utils      4.3.1   utils<span style="color: #949494;">&lt;install&gt;</span>              1 NA            0         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> tools      4.3.1   tools<span style="color: #949494;">&lt;install&gt;</span>              1 NA            0         </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 18 more variables: remote_checks &lt;pkg_scor&gt;, news_current &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   r_cmd_check &lt;pkg_scor&gt;, exported_namespace &lt;pkg_scor&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   has_vignettes &lt;pkg_scor&gt;, export_help &lt;pkg_scor&gt;, has_website &lt;pkg_scor&gt;,</span></span></span>
