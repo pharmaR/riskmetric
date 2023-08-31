@@ -1,3 +1,7 @@
+# riskmetric 0.2.3
+
+- Fix issue with CRAN package documentation flags. (#311)
+
 # riskmetric 0.2.2
 
 - Fix bug with reporting number of downloads.
