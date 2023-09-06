@@ -174,6 +174,7 @@ pkg_source <- function(x) {
 #' @rdname pkg_ref
 #'
 #' @param repos URL of CRAN repository to pull package metadata.
+#' @export
 pkg_cran <- function(x, repos = getOption("repos", "https://cran.rstudio.com")) {
   ap <- memoise_available_packages(repos = repos)
   info <- ap[ap[,"Package"] == x,,drop = FALSE]
