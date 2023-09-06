@@ -307,8 +307,7 @@ scores across `tibble` columns using `summarize_scores`.
 ```{r, warning = FALSE}
 package_tbl %>%
   pkg_assess() %>%
-  pkg_score() %>%
-  summarize_scores()
+  pkg_score()
 ```
 
 # How you can help...
