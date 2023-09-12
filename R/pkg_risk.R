@@ -20,10 +20,32 @@
 #' }
 #'
 #' @export
-pkg_risk <- function(x = NA, ...) {
-  if (is.null(x)) x <- list()
-  pkg_ref(x) %>%
-    tibble::as_tibble() %>%
-    pkg_assess() %>%
-    pkg_score()
+pkg_risk <- function(
+  x,
+  source = "pkg_install",
+  lib.loc = .libPaths(),
+  assessments = all_assessments(),
+  repos = getOption("repos", "https://cran.rstudio.com")
+  ) {
+  if(!is.character(x)){
+    stop("Input should be a character vector of package names.")
+  }
+  if(source == "pkg_install"){
+    message("Defaulting to pkg_install source.")
+  }
+  pkg_ref_obj <- pkg_ref(
+    x,
+    source = source,
+    lib.loc = lib.loc,
+    repos = repos
+    )
+
+  pkg_ref_tbl <- tibble::as_tibble(pkg_ref_obj)
+
+  pkg_assess_obj <- pkg_assess(
+    x = pkg_ref_tbl,
+    assessments = assessments
+    )
+
+  pkg_score(pkg_assess_obj)
 }
