@@ -42,6 +42,8 @@ Suggests:
     withr,
     magrittr,
     dplyr,
+    tidyr,
+    gt,
     testthat,
     webmockr,
     jsonlite
