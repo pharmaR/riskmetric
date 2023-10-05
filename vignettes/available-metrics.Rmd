@@ -1,5 +1,5 @@
 ---
-title: "available-metrics"
+title: "Available metrics"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{available-metrics}
@@ -14,36 +14,62 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, echo = FALSE}
+## Available metrics by source type table
+
+```{r libs, echo=FALSE, warning=FALSE, message=FALSE}
 library(riskmetric)
 library(dplyr)
 library(tibble)
 library(tidyr)
 library(gt)
+library(gtExtras)
 ```
 
-```{r warning = FALSE}
+riskmetric has a variety of metrics for many package sources. Each metric is not implemented for every package source. This vignettes shares the metrics the are currently implemented by source type. 
+
+```{r data, echo=FALSE, warning=FALSE, message=FALSE}
 ns <- getNamespaceExports("riskmetric")
-ns <- grep("^pkg_ref_cache|^assess", ns, value = T, ignore.case = T)
 
-ns_df <- tibble(export=ns) %>% 
-  separate(export, c("generic", "cache", "class"), sep = "\\.", remove = F)
-```
+ns <- grep("^pkg_ref_cache|^assess_", ns, value = T, 
+           ignore.case = T)
+ns <- sapply(ns, methods)
 
-```{r}
-ns_df %>% 
-  filter(grepl("assess", generic)) %>%
+ns_df <- tibble(export=unlist(ns)) %>%
+  bind_rows(tibble(export=names(ns)[sapply(ns, length)==0])) %>% 
+  separate(export, c("generic", "cache", "class"), 
+           sep = "\\.", remove = F)
+
+cross_tbl <- ns_df %>% filter(grepl("assess", generic)) %>%
   select(generic, class=cache) %>%
   mutate(value=1) %>%
-  pivot_wider(names_from = class, values_from = value) %>%
-  gt()
+  pivot_wider(names_from = class, values_from = value) %>% 
+  mutate(default = coalesce(default, `NA`)) %>% 
+  select(generic, default, everything(), -`NA`)
 ```
 
-```{r}
-ns_df %>% 
-  filter(grepl("^pkg", generic)) %>%
-  select(func=cache, class) %>%
-  mutate(value=1) %>%
-  pivot_wider(names_from = class, values_from = value) %>%
-  gt()
+```{r table, echo=FALSE, warning=FALSE, message=FALSE}
+cross_tbl %>% 
+  mutate(
+    across(c(everything(), -generic), 
+           function(x) ifelse(is.na(x), "square-xmark", "square-check"))
+  ) %>%
+  gt() %>%
+  gt_fa_column(
+    column = c(everything(), -generic),
+    palette = c(
+      "square-check" = "#009E73", 
+      "square-xmark" = "#D55E00"
+    )
+  )
+```
+
+### Table generation code
+
+```{r libs, eval = F}
+```
+
+```{r data, eval = F}
+```
+
+```{r table, eval = F}
 ```
