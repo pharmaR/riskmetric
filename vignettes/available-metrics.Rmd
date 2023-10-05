@@ -25,7 +25,7 @@ library(gt)
 library(gtExtras)
 ```
 
-riskmetric has a variety of metrics for many package sources. Each metric is not implemented for every package source. This vignettes shares the metrics the are currently implemented by source type. 
+riskmetric has a variety of metrics for many package sources. Each metric is not implemented for every package source. This table below shares the metrics that are currently implemented by source type. 
 
 ```{r data, echo=FALSE, warning=FALSE, message=FALSE}
 ns <- getNamespaceExports("riskmetric")
