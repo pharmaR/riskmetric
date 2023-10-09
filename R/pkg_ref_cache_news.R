@@ -64,7 +64,7 @@ news_from_dir <- function(path) {
         content[[i]] <- .tools()$.news_reader_default(f)
       } else if (tolower(tools::file_ext(f)) == "md") {
         # NOTE: should we do validation of markdown format?
-        content[[i]] <- readLines(f)
+        content[[i]] <- readLines(f, warn = FALSE)
       }
       valid[[i]] <- TRUE
     }, error = function(e) {
