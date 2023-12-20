@@ -1,7 +1,6 @@
-## riskmetric 0.2.2
+## riskmetric 0.2.4
 
-- Bug fixes
-- Fixes issue with S3 method consistency. 
+Resolved issues with CRAN checks.
 
 Tested on Ubuntu Jammy, GitHub Action, and RHub.
 

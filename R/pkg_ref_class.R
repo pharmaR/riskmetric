@@ -24,14 +24,14 @@
 #'
 #' \itemize{
 #' \item{\strong{\code{pkg_ref}}}{ A default class for general metadata
-#' collection.
+#' collection.}
 #'   \itemize{
 #'   \item{\strong{\code{pkg_source}}}{ A reference to a source code directory.}
 #'   \item{\strong{\code{pkg_install}}}{ A reference to a package installation
 #'   location in a package library. A specific library can be passed by passing
 #'   the path to the library as the parameter `lib.loc`}
 #'   \item{\strong{\code{pkg_remote}}}{ A reference to package metadata on a
-#'   remote server.
+#'   remote server.}
 #'     \itemize{
 #'     \item{\strong{\code{pkg_cran_remote}}}{ A reference to package
 #'     information pulled from the CRAN repository.}
@@ -42,8 +42,6 @@
 #'     }
 #'   }
 #'   }
-#' }
-#' }
 #'
 #' @section Package Cohorts:
 #'
