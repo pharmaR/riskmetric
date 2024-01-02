@@ -79,6 +79,6 @@ pkg_risk <- function(
 #'  info based on the riskmetric subclass hierarchy and availability on your
 #'  system.
 #' @param ... Additional arguments passed to `pkg_risk()`
-pkg_risk_cran <- pkg_risk(x, source = "pkg_cran_remote", ...){
+pkg_risk_cran <- function(x, source = "pkg_cran_remote", ...){
   pkg_risk(x, source = source, ...)
 }
