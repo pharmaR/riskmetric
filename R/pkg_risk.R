@@ -79,6 +79,14 @@ pkg_risk <- function(
 #'  info based on the riskmetric subclass hierarchy and availability on your
 #'  system.
 #' @param ... Additional arguments passed to `pkg_risk()`
+#'
+#' @examples
+#' \dontrun{
+#' # score packages from a specific package source
+#' pkg_risk_cran(c("riskmetric", "dplyr", "abc"))
+#' }
+#'
+#' @export
 pkg_risk_cran <- function(x, source = "pkg_cran_remote", ...){
   pkg_risk(x, source = source, ...)
 }
