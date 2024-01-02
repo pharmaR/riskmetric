@@ -46,8 +46,8 @@ pkg_risk <- function(
   if (!is.character(x)) {
     stop("Input should be a character vector of package names.")
   }
-  if (identical(source,"pkg_install")){
-    message("Defaulting to ", source, " source...")
+  if (!is.null(source)){
+    message("Finding package info on ", source, " source...")
   }
   if (is.null(source)) {
     message("Finding source(s) for package info based on riskmetric subclass hierarchy and availability...")
