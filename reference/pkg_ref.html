@@ -23,7 +23,7 @@ subclass as an arguemnt named 'source', see details."><!-- mathjax --><script sr
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">riskmetric</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.4</span>
       </span>
     </div>
 
@@ -140,14 +140,12 @@ override the logic that riskmetric does when determining a package source.
 This can be useful when you are scoring the most recent version present on a
 repository, or testing a specific library.</p>
 <ul><li><p><strong><code>pkg_ref</code></strong> A default class for general metadata
-collection.
-  </p><ul><li><p><strong><code>pkg_source</code></strong> A reference to a source code directory.</p></li>
+collection.</p><ul><li><p><strong><code>pkg_source</code></strong> A reference to a source code directory.</p></li>
 <li><p><strong><code>pkg_install</code></strong> A reference to a package installation
   location in a package library. A specific library can be passed by passing
   the path to the library as the parameter `lib.loc`</p></li>
 <li><p><strong><code>pkg_remote</code></strong> A reference to package metadata on a
-  remote server.
-    </p><ul><li><p><strong><code>pkg_cran_remote</code></strong> A reference to package
+  remote server.</p><ul><li><p><strong><code>pkg_cran_remote</code></strong> A reference to package
     information pulled from the CRAN repository.</p></li>
 <li><p><strong><code>pkg_bioc_remote</code></strong> A reference to package
     information pulled from the Bioconductor repository.</p></li>
