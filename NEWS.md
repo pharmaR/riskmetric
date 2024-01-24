@@ -1,3 +1,7 @@
+# riskmetric 0.2.4
+
+- Fix CRAN errors.
+
 # riskmetric 0.2.3
 
 - Fix issue with CRAN package documentation flags. (#311)

@@ -1,3 +1,5 @@
+options(repos = "fake-cran.fake-r-project.org")
+
 test_that("get_pkg_ref_classes appropriately captures full class chain", {
   skip_on_cran()
 

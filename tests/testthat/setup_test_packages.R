@@ -6,10 +6,12 @@
 # evaluation process. Errors are better tested in metric-specific unit tests.
 
 # create a temporary library for installed test packages
+options(repos = "fake-cran.fake-r-project.org")
 templib <- tempfile("riskmetric_test_lib_")
+oldLibs <- .libPaths()
 dir.create(templib)
 
-withr::with_libpaths(templib, {
+withr::with_libpaths(c(templib, oldLibs), {
   devtools::install(
     file.path(test_path(), "test_packages", "pkgsourcegood"),
     quiet = TRUE,
@@ -60,14 +62,14 @@ score_stdlibs_install <- pkg_score(
   error_handler = score_error_zero)
 
 # a representative "good" quality package available on CRAN, but not installed
-pkg_ref_cran_remote_good <- pkg_cran("pkgcranremotegood")
+pkg_ref_cran_remote_good <- pkg_cran("pkgcranremotegood", repos = "fake-cran.fake-r-project.org")
 assess_cran_remote_good <- pkg_assess(pkg_ref_cran_remote_good)
 score_cran_remote_good <- pkg_score(
   assess_cran_remote_good,
   error_handler = score_error_zero)
 
 # a representative "bad" quality package available on CRAN, but not installed
-pkg_ref_cran_remote_bad  <- pkg_cran("pkgcranremotebad")
+pkg_ref_cran_remote_bad  <- pkg_cran("pkgcranremotebad", repos = "fake-cran.fake-r-project.org")
 assess_cran_remote_bad <- pkg_assess(pkg_ref_cran_remote_bad)
 score_cran_remote_bad <- pkg_score(
   assess_cran_remote_bad,
