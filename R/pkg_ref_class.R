@@ -292,7 +292,7 @@ as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rst
 #'
 #' @param x Package name or path to package
 #' @param source type of source passed in `pkg_ref`
-#' @return one of c('pkg_install', 'pkg_install', 'pkg_cran_remote',
+#' @return one of c('pkg_source', 'pkg_install', 'pkg_cran_remote',
 #'   'pkg_bioc_remote', 'pkg_missing')
 #' @keywords internal
 determine_pkg_source <- function(x, source, repos) {
