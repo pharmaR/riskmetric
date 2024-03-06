@@ -1,8 +1,10 @@
-# riskmetric <a href='https://pharmar.github.io/riskmetric/'><img src="man/figures/hex-riskmetric-aspconfig.png" align="right" height="172" style="float:right; height:172px;"/></a>
+# riskmetric <a href='https://pharmar.github.io/riskmetric/'><img src="man/figures/logo.png" align="right" height="172" style="float:right; height:172px;"/></a>
 
+<!-- badges: start -->
 [![R build status](https://github.com/pharmaR/riskmetric/workflows/R-CMD-check/badge.svg)](https://github.com/pharmaR/riskmetric/actions?workflow=R-CMD-check)
-[![Coverage status](https://app.codecov.io/github/pharmaR/riskmetric?branch=master)
- 
+[![Coverage status](https://codecov.io/gh/pharmaR/riskmetric/branch/master/graph/badge.svg)](https://app.codecov.io/gh/pharmaR/riskmetric?branch=master)
+<!-- badges: end -->
+
 `riskmetric` is a collection of risk metrics to evaluate the quality of R
 packages.
 

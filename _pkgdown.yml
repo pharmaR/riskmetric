@@ -1,4 +1,6 @@
-destination: docs
+template:
+  bootstrap: 5
+
 reference:
   - title: "Package Reference"
     desc: "Create Package Reference for Each Package Risk Metric and Cache Metadata"
