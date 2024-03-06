@@ -12,7 +12,7 @@ determine_pkg_source(x, source, repos)
 \item{source}{type of source passed in `pkg_ref`}
 }
 \value{
-one of c('pkg_install', 'pkg_install', 'pkg_cran_remote',
+one of c('pkg_source', 'pkg_install', 'pkg_cran_remote',
   'pkg_bioc_remote', 'pkg_missing')
 }
 \description{
