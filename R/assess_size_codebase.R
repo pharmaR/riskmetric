@@ -78,7 +78,7 @@ assess_size_codebase.pkg_source <- function(x, ...) {
 #'
 #' @eval roxygen_score_family("size_codebase")
 #'
-#' @return numeric value between \code{0} (low) and \code{1} (large number of lines of code) converting the number of downloads.
+#' @return numeric value between \code{0} (for large codebase) and \code{1} (for small codebase)
 #' @export
 metric_score.pkg_metric_size_codebase <- function(x, ...) {
   1.5 / (x / 1e2 + 1.5)
