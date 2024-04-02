@@ -53,6 +53,14 @@ pkg_risk <- function(
     message("Finding source(s) for package info based on riskmetric subclass hierarchy and availability...")
   }
 
+  if(source == "pkg_install"){
+    ip <- installed.packages(lib.loc = lib.loc)[,"Package"]
+    ix_tf <- x %in% ip
+    ix <- x
+    x <- x[ix_tf]
+    missing_pkgs <- setdiff(ix, x)
+  }
+
   pkg_ref_obj <- pkg_ref(
     x,
     source = source,
@@ -66,6 +74,12 @@ pkg_risk <- function(
     x = pkg_ref_tbl,
     assessments = assessments
   )
+
+  if(source == "pkg_install" && nrow(pkg_assess_obj) < length(ix)){
+    missing_tbl <- tibble::tibble(package = missing_pkgs)
+    pkg_assess_obj <- dplyr::bind_rows(pkg_assess_obj, missing_tbl)
+    pkg_assess_obj <- dplyr::arrange(pkg_assess_obj, match(package, ix))
+  }
 
   pkg_score(pkg_assess_obj)
 }
