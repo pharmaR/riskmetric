@@ -82,19 +82,16 @@ pkg_risk <- function(
   )
 
   pkg_ref_tbl <- tibble::as_tibble(pkg_ref_obj)
+  if( (is.null(source) || source == "pkg_install") && nrow(pkg_ref_tbl) < length(ix)){
+    missing_tbl <- tibble::as_tibble(pkg_ref(missing_pkgs, source = "pkg_missing"))
+    pkg_ref_tbl <- dplyr::bind_rows(pkg_ref_tbl, missing_tbl)
+    pkg_ref_tbl <- dplyr::arrange(pkg_ref_tbl, match(package, ix))
+  }
 
   pkg_assess_obj <- pkg_assess(
     x = pkg_ref_tbl,
     assessments = assessments
   )
-
-  print(pkg_assess_obj)
-
-  if( (is.null(source) || source == "pkg_install") && nrow(pkg_assess_obj) < length(ix)){
-    missing_tbl <- tibble::tibble(package = missing_pkgs)
-    pkg_assess_obj <- dplyr::bind_rows(pkg_assess_obj, missing_tbl)
-    pkg_assess_obj <- dplyr::arrange(pkg_assess_obj, match(package, ix))
-  }
 
   pkg_score(pkg_assess_obj)
 }
