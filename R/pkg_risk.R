@@ -40,6 +40,17 @@ pkg_risk <- function(
   repos = getOption("repos", "https://cran.rstudio.com")
   ) {
 
+  fix_src_name <- function(source) {
+    if (!grepl("^pkg_", source)) {
+      source <- paste0("pkg_", source)
+    }
+    if (grepl("(cran|bioc|git)$", source) && !grepl("_remote", source)) {
+      source <- paste0(source, "_remote")
+    }
+    source
+  }
+  source <- fix_src_name(source)
+
   source <- match.arg(source)
   source <- switch(source, "NA" = NULL, source[[1]])
 
