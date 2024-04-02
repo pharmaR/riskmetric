@@ -12,10 +12,9 @@ test_that("pkg_risk() works", {
   expect_equal(one_missing_pkgs$pkg_ref[[2]]$source, "pkg_missing")
   expect_equal(nrow(one_missing_pkgs), 2)
 
-  # TODO - ensure this edge case works where no valid package(s) get passed
   all_missing_pkgs <- pkg_risk(c("doesntexist1", "doesntexist2"))
-  expect_equal(one_missing_pkgs$pkg_ref[[1]]$source, "pkg_missing")
-  expect_equal(one_missing_pkgs$pkg_ref[[2]]$source, "pkg_missing")
+  expect_equal(all_missing_pkgs$pkg_ref[[1]]$source, "pkg_missing")
+  expect_equal(all_missing_pkgs$pkg_ref[[2]]$source, "pkg_missing")
   expect_equal(nrow(all_missing_pkgs), 2)
 
   expect_error(pkg_risk(1))

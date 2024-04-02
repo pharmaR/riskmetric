@@ -74,12 +74,15 @@ pkg_risk <- function(
     missing_pkgs <- setdiff(ix, x)
   }
 
-  pkg_ref_obj <- pkg_ref(
-    x,
-    source = source,
-    lib.loc = lib.loc,
-    repos = repos
-  )
+  pkg_ref_obj <- NULL
+  if(length(x) > 0){
+    pkg_ref_obj <- pkg_ref(
+      x,
+      source = source,
+      lib.loc = lib.loc,
+      repos = repos
+    )
+  }
 
   pkg_ref_tbl <- tibble::as_tibble(pkg_ref_obj)
   if( (is.null(source) || source == "pkg_install") && nrow(pkg_ref_tbl) < length(ix)){
