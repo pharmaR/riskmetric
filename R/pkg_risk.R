@@ -90,7 +90,7 @@ pkg_risk <- function(
 
   print(pkg_assess_obj)
 
-  if( (is.null(source) | source == "pkg_install") && nrow(pkg_assess_obj) < length(ix)){
+  if( (is.null(source) || source == "pkg_install") && nrow(pkg_assess_obj) < length(ix)){
     missing_tbl <- tibble::tibble(package = missing_pkgs)
     pkg_assess_obj <- dplyr::bind_rows(pkg_assess_obj, missing_tbl)
     pkg_assess_obj <- dplyr::arrange(pkg_assess_obj, match(package, ix))
