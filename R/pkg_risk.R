@@ -1,0 +1,121 @@
+#' Calculate a set of package risk scores
+#'
+#' @param x A singular \code{character} value, \code{character vector} or
+#'   \code{list} of \code{character} values of package names or source code
+#'   directory paths.
+#' @param source Optional argument that will overright what riskmetric does when
+#'  determining a package source. By default it will find sources for package
+#'  info based on the riskmetric subclass hierarchy and availability on your
+#'  system.
+#' @param lib.loc The path to the R library directory of the installed package.
+#' @param assessments A list of assessment functions to apply to each package
+#'  reference. By default, a list of all exported assess_* functions from the
+#'  riskmetric package.
+#' @param repos URL of CRAN repository to pull package metadata. Defaults to
+#'  global option set on your system or the RStudio CRAN URL if not set.
+#'
+#' @return A numeric value if a single \code{pkg_metric} is provided, or a
+#'   \code{\link[tibble]{tibble}} with \code{pkg_metric} objects scored and
+#'   returned as numeric values when a \code{\link[tibble]{tibble}} is provided.
+#' @examples
+#' \dontrun{
+#'
+#' # scoring a single package
+#' pkg_risk("riskmetric")
+#'
+#' # scoring many package as a tibble
+#' pkg_risk(c("riskmetric", "dplyr", "abc"))
+#'
+#' # score packages from a specific package source
+#' pkg_risk(c("riskmetric", "dplyr", "abc"), source = "pkg_cran_remote")
+#'
+#' }
+#'
+#' @export
+pkg_risk <- function(
+  x,
+  source = c(NA, "pkg_install", "pkg_source", "pkg_missing", "pkg_cran_remote", "pkg_bioc_remote", "pkg_git_remote"),
+  lib.loc = .libPaths(),
+  assessments = all_assessments(),
+  repos = getOption("repos", "https://cran.rstudio.com")
+  ) {
+
+  fix_src_name <- function(source) {
+    if( is.null(source)){
+      return(source)
+    }
+    if (!grepl("^pkg_", source)) {
+      source <- paste0("pkg_", source)
+    }
+    if (grepl("(cran|bioc|git)$", source) && !grepl("_remote", source)) {
+      source <- paste0(source, "_remote")
+    }
+    return(source)
+  }
+
+  source <- match.arg(source)
+  source <- switch(source, "NA" = NULL, source[[1]])
+  source <- fix_src_name(source)
+
+  if (!is.character(x)) {
+    stop("Input should be a character vector of package names.")
+  }
+  if (!is.null(source)){
+    message("Finding package info on ", source, " source...")
+  }
+  if (is.null(source)) {
+    message("Finding source(s) for package info based on riskmetric subclass hierarchy and availability...")
+  }
+  if(is.null(source) || source == "pkg_install"){
+    ip <- installed.packages(lib.loc = lib.loc)[,"Package"]
+    ix_tf <- x %in% ip
+    ix <- x
+    x <- x[ix_tf]
+    missing_pkgs <- setdiff(ix, x)
+  }
+
+  pkg_ref_obj <- NULL
+  if(length(x) > 0){
+    pkg_ref_obj <- pkg_ref(
+      x,
+      source = source,
+      lib.loc = lib.loc,
+      repos = repos
+    )
+  }
+
+  pkg_ref_tbl <- tibble::as_tibble(pkg_ref_obj)
+  if( (is.null(source) || source == "pkg_install") && nrow(pkg_ref_tbl) < length(ix)){
+    missing_tbl <- tibble::as_tibble(pkg_ref(missing_pkgs, source = "pkg_missing"))
+    pkg_ref_tbl <- dplyr::bind_rows(pkg_ref_tbl, missing_tbl)
+    pkg_ref_tbl <- dplyr::arrange(pkg_ref_tbl, match(package, ix))
+  }
+
+  pkg_assess_obj <- pkg_assess(
+    x = pkg_ref_tbl,
+    assessments = assessments
+  )
+
+  pkg_score(pkg_assess_obj)
+}
+
+#' Calculate a set of package risk scores on CRAN
+#' @param x A singular \code{character} value, \code{character vector} or
+#'   \code{list} of \code{character} values of package names or source code
+#'   directory paths.
+#' @param source Optional argument that will overright what riskmetric does when
+#'  determining a package source. By default it will find sources for package
+#'  info based on the riskmetric subclass hierarchy and availability on your
+#'  system.
+#' @param ... Additional arguments passed to `pkg_risk()`
+#'
+#' @examples
+#' \dontrun{
+#' # score packages from a specific package source
+#' pkg_risk_cran(c("riskmetric", "dplyr", "abc"))
+#' }
+#'
+#' @export
+pkg_risk_cran <- function(x, source = "pkg_cran_remote", ...){
+  pkg_risk(x, source = source, ...)
+}
