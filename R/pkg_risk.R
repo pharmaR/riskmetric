@@ -41,18 +41,21 @@ pkg_risk <- function(
   ) {
 
   fix_src_name <- function(source) {
+    if( is.null(source)){
+      return(source)
+    }
     if (!grepl("^pkg_", source)) {
       source <- paste0("pkg_", source)
     }
     if (grepl("(cran|bioc|git)$", source) && !grepl("_remote", source)) {
       source <- paste0(source, "_remote")
     }
-    source
+    return(source)
   }
-  source <- fix_src_name(source)
 
   source <- match.arg(source)
   source <- switch(source, "NA" = NULL, source[[1]])
+  source <- fix_src_name(source)
 
   if (!is.character(x)) {
     stop("Input should be a character vector of package names.")
@@ -63,8 +66,7 @@ pkg_risk <- function(
   if (is.null(source)) {
     message("Finding source(s) for package info based on riskmetric subclass hierarchy and availability...")
   }
-
-  if(source == "pkg_install"){
+  if(is.null(source) || source == "pkg_install"){
     ip <- installed.packages(lib.loc = lib.loc)[,"Package"]
     ix_tf <- x %in% ip
     ix <- x
@@ -86,7 +88,9 @@ pkg_risk <- function(
     assessments = assessments
   )
 
-  if(source == "pkg_install" && nrow(pkg_assess_obj) < length(ix)){
+  print(pkg_assess_obj)
+
+  if( (is.null(source) | source == "pkg_install") && nrow(pkg_assess_obj) < length(ix)){
     missing_tbl <- tibble::tibble(package = missing_pkgs)
     pkg_assess_obj <- dplyr::bind_rows(pkg_assess_obj, missing_tbl)
     pkg_assess_obj <- dplyr::arrange(pkg_assess_obj, match(package, ix))
