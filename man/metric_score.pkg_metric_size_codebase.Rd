@@ -12,7 +12,7 @@
 \item{...}{additional arguments unused}
 }
 \value{
-numeric value between \code{0} (low) and \code{1} (large number of lines of code) converting the number of downloads.
+numeric value between \code{0} (for large codebase) and \code{1} (for small codebase)
 }
 \description{
 Scores packages based on its codebase size, as determined by number of lines of code.
