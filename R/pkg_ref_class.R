@@ -239,7 +239,7 @@ as_pkg_ref <- function(x, ...) {
         source <- ifelse(length(dots$source) > 1, dots$source[i], dots$source)
       else source <- NULL
 
-      pkg_ref_list[[i]] <- as_pkg_ref(x[i], source=source)
+      pkg_ref_list[[i]] <- as_pkg_ref(x[[i]], source=source)
     }
 
     return(vctrs::new_list_of(pkg_ref_list, ptype = pkg_ref(), class = "list_of_pkg_ref"))
