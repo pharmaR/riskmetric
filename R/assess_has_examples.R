@@ -11,7 +11,7 @@ assess_has_examples <- function(x, ...) {
 
 # assign a friendly name for examples column
 attributes(assess_has_examples)$column_name <- "has_examples"
-attributes(assess_has_examples)$label <- "proportion of discovered function files with examples"
+attributes(assess_has_examples)$label <- "logical vector of function files with examples"
 
 #' @export
 assess_has_examples.pkg_ref <- function(x, ...) {
@@ -22,10 +22,12 @@ assess_has_examples.pkg_ref <- function(x, ...) {
 
 #' Score a package for the presence of a example or usage fields
 #'
-#' Coerce a logical vector indicating availability of example or usage documentation
+#' Compute the proportion of function files with examples from the logical vector indicating availability of example or usage documentation
 #'
 #' @eval roxygen_score_family("has_examples")
 #' @return \code{1} if any example or usage fields are found, otherwise \code{0}
+#' @return numeric value between \code{1} (high proportion of functions with examples) and
+#'   \code{0} (no functions with examples)
 #'
 #' @export
 metric_score.pkg_metric_has_examples <- function(x, ...) {
