@@ -49,7 +49,7 @@ pkg_ref_cache.news.pkg_source <- function(x, name, ...) {
 #' @keywords internal
 news_from_dir <- function(path) {
   # accommodate news.Rd, news.md, etc
-  files <- list.files(path, pattern = "^NEWS\\.", full.names = TRUE)
+  files <- list.files(path, pattern = "^NEWS($|\\.)", full.names = TRUE)
   if (!length(files)) return(list())
 
   content <- rep(list(NULL), length(files))
@@ -62,7 +62,7 @@ news_from_dir <- function(path) {
     tryCatch({
       if (tolower(tools::file_ext(f)) == "rd") {
         content[[i]] <- .tools()$.news_reader_default(f)
-      } else if (tolower(tools::file_ext(f)) == "md") {
+      } else if (tolower(tools::file_ext(f)) == "md"||nchar(ext) == 0L) {
         # NOTE: should we do validation of markdown format?
         content[[i]] <- readLines(f, warn = FALSE)
       }
