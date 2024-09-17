@@ -1,357 +1,121 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/articles/extending-riskmetric.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/riskmetric.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/all_assessments.html</loc>
-  </url>
-  <url>
-    <loc>/reference/allow_mutation.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as_pkg_metric.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as_pkg_metric_condition.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as_pkg_metric_error.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as_pkg_metric_na.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as_pkg_metric_todo.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_covr_coverage.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_dependencies.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_downloads_1yr.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_export_help.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_exported_namespace.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_has_bug_reports_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_has_examples.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_has_maintainer.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_has_news.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_has_source_control.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_has_vignettes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_has_website.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_last_30_bugs_status.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_license.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_news_current.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_r_cmd_check.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_remote_checks.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_reverse_dependencies.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assess_size_codebase.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assessment_error_as_warning.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assessment_error_empty.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assessment_error_throw.html</loc>
-  </url>
-  <url>
-    <loc>/reference/available_pkg_ref_fields.html</loc>
-  </url>
-  <url>
-    <loc>/reference/bare_env.html</loc>
-  </url>
-  <url>
-    <loc>/reference/bug_report_metadata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cache_behaviors.html</loc>
-  </url>
-  <url>
-    <loc>/reference/capture_expr_output.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dec_mutations_count.html</loc>
-  </url>
-  <url>
-    <loc>/reference/determine_pkg_source.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dot-tools.html</loc>
-  </url>
-  <url>
-    <loc>/reference/examples_from_dir.html</loc>
-  </url>
-  <url>
-    <loc>/reference/examples_from_pkg.html</loc>
-  </url>
-  <url>
-    <loc>/reference/filter_rd_db.html</loc>
-  </url>
-  <url>
-    <loc>/reference/firstS3method.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_assessment_message.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_assessment_columns.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_assessments.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_package_dependencies.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_pkg_ref_classes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/if_not_null_else.html</loc>
-  </url>
-  <url>
-    <loc>/reference/inc_mutations_count.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/is_url_subpath_of.html</loc>
-  </url>
-  <url>
-    <loc>/reference/memoise_bioc_mirrors.html</loc>
-  </url>
-  <url>
-    <loc>/reference/memoise_cran_mirrors.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_covr_coverage.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_dependencies.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_downloads_1yr.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_export_help.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_exported_namespace.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_has_bug_reports_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_has_examples.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_has_maintainer.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_has_news.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_has_source_control.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_has_vignettes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_has_website.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_last_30_bugs_status.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_license.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_news_current.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_r_cmd_check.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_remote_checks.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_reverse_dependencies.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric_score.pkg_metric_size_codebase.html</loc>
-  </url>
-  <url>
-    <loc>/reference/news_from_dir.html</loc>
-  </url>
-  <url>
-    <loc>/reference/parse_dcf_dependencies.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_assess.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_metric.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_metric_eval.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.bug_reports_host.default.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.bug_reports_url.pkg_source.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.covr_coverage.pkg_source.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.expression_coverage.pkg_source.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.help.pkg_install.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.help.pkg_source.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_cache.news.pkg_remote.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_class_hierarchy.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_ref_mutability_error.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pkg_score.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.with_eval_recording.html</loc>
-  </url>
-  <url>
-    <loc>/reference/remove_base_packages.html</loc>
-  </url>
-  <url>
-    <loc>/reference/require_cache_behaviors.html</loc>
-  </url>
-  <url>
-    <loc>/reference/riskmetric.html</loc>
-  </url>
-  <url>
-    <loc>/reference/riskmetric_metadata_caching.html</loc>
-  </url>
-  <url>
-    <loc>/reference/roxygen_assess_family.html</loc>
-  </url>
-  <url>
-    <loc>/reference/roxygen_assess_family_catalog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/roxygen_cache_behaviors.html</loc>
-  </url>
-  <url>
-    <loc>/reference/roxygen_score_family.html</loc>
-  </url>
-  <url>
-    <loc>/reference/score_error_NA.html</loc>
-  </url>
-  <url>
-    <loc>/reference/score_error_default.html</loc>
-  </url>
-  <url>
-    <loc>/reference/score_error_zero.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sub-sub-.pkg_ref.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summarize_scores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/suppressMatchingConditions.html</loc>
-  </url>
-  <url>
-    <loc>/reference/use_assessments_column_names.html</loc>
-  </url>
-  <url>
-    <loc>/reference/verify_pkg_source.html</loc>
-  </url>
-  <url>
-    <loc>/reference/vignettes_from_dir.html</loc>
-  </url>
-  <url>
-    <loc>/reference/vignettes_from_html.html</loc>
-  </url>
-  <url>
-    <loc>/reference/with.pkg_ref.html</loc>
-  </url>
-  <url>
-    <loc>/reference/with_unclassed_to.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/articles/extending-riskmetric.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/riskmetric.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/all_assessments.html</loc></url>
+<url><loc>/reference/allow_mutation.html</loc></url>
+<url><loc>/reference/as_pkg_metric.html</loc></url>
+<url><loc>/reference/as_pkg_metric_condition.html</loc></url>
+<url><loc>/reference/as_pkg_metric_error.html</loc></url>
+<url><loc>/reference/as_pkg_metric_na.html</loc></url>
+<url><loc>/reference/as_pkg_metric_todo.html</loc></url>
+<url><loc>/reference/assess_covr_coverage.html</loc></url>
+<url><loc>/reference/assess_dependencies.html</loc></url>
+<url><loc>/reference/assess_downloads_1yr.html</loc></url>
+<url><loc>/reference/assess_export_help.html</loc></url>
+<url><loc>/reference/assess_exported_namespace.html</loc></url>
+<url><loc>/reference/assess_has_bug_reports_url.html</loc></url>
+<url><loc>/reference/assess_has_examples.html</loc></url>
+<url><loc>/reference/assess_has_maintainer.html</loc></url>
+<url><loc>/reference/assess_has_news.html</loc></url>
+<url><loc>/reference/assess_has_source_control.html</loc></url>
+<url><loc>/reference/assess_has_vignettes.html</loc></url>
+<url><loc>/reference/assess_has_website.html</loc></url>
+<url><loc>/reference/assess_last_30_bugs_status.html</loc></url>
+<url><loc>/reference/assess_license.html</loc></url>
+<url><loc>/reference/assess_news_current.html</loc></url>
+<url><loc>/reference/assess_r_cmd_check.html</loc></url>
+<url><loc>/reference/assess_remote_checks.html</loc></url>
+<url><loc>/reference/assess_reverse_dependencies.html</loc></url>
+<url><loc>/reference/assess_size_codebase.html</loc></url>
+<url><loc>/reference/assessment_error_as_warning.html</loc></url>
+<url><loc>/reference/assessment_error_empty.html</loc></url>
+<url><loc>/reference/assessment_error_throw.html</loc></url>
+<url><loc>/reference/available_pkg_ref_fields.html</loc></url>
+<url><loc>/reference/bare_env.html</loc></url>
+<url><loc>/reference/bug_report_metadata.html</loc></url>
+<url><loc>/reference/cache_behaviors.html</loc></url>
+<url><loc>/reference/capture_expr_output.html</loc></url>
+<url><loc>/reference/dec_mutations_count.html</loc></url>
+<url><loc>/reference/determine_pkg_source.html</loc></url>
+<url><loc>/reference/dot-tools.html</loc></url>
+<url><loc>/reference/examples_from_dir.html</loc></url>
+<url><loc>/reference/examples_from_pkg.html</loc></url>
+<url><loc>/reference/filter_rd_db.html</loc></url>
+<url><loc>/reference/firstS3method.html</loc></url>
+<url><loc>/reference/format_assessment_message.html</loc></url>
+<url><loc>/reference/get_assessment_columns.html</loc></url>
+<url><loc>/reference/get_assessments.html</loc></url>
+<url><loc>/reference/get_package_dependencies.html</loc></url>
+<url><loc>/reference/get_pkg_ref_classes.html</loc></url>
+<url><loc>/reference/if_not_null_else.html</loc></url>
+<url><loc>/reference/inc_mutations_count.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/is_url_subpath_of.html</loc></url>
+<url><loc>/reference/memoise_bioc_mirrors.html</loc></url>
+<url><loc>/reference/memoise_cran_mirrors.html</loc></url>
+<url><loc>/reference/metric_score.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_covr_coverage.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_dependencies.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_downloads_1yr.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_export_help.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_exported_namespace.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_has_bug_reports_url.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_has_examples.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_has_maintainer.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_has_news.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_has_source_control.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_has_vignettes.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_has_website.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_last_30_bugs_status.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_license.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_news_current.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_r_cmd_check.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_remote_checks.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_reverse_dependencies.html</loc></url>
+<url><loc>/reference/metric_score.pkg_metric_size_codebase.html</loc></url>
+<url><loc>/reference/news_from_dir.html</loc></url>
+<url><loc>/reference/parse_dcf_dependencies.html</loc></url>
+<url><loc>/reference/pkg_assess.html</loc></url>
+<url><loc>/reference/pkg_metric.html</loc></url>
+<url><loc>/reference/pkg_metric_eval.html</loc></url>
+<url><loc>/reference/pkg_ref.html</loc></url>
+<url><loc>/reference/pkg_ref_cache.bug_reports_host.default.html</loc></url>
+<url><loc>/reference/pkg_ref_cache.bug_reports_url.pkg_source.html</loc></url>
+<url><loc>/reference/pkg_ref_cache.covr_coverage.pkg_source.html</loc></url>
+<url><loc>/reference/pkg_ref_cache.expression_coverage.pkg_source.html</loc></url>
+<url><loc>/reference/pkg_ref_cache.help.pkg_install.html</loc></url>
+<url><loc>/reference/pkg_ref_cache.help.pkg_source.html</loc></url>
+<url><loc>/reference/pkg_ref_cache.news.pkg_remote.html</loc></url>
+<url><loc>/reference/pkg_ref_class_hierarchy.html</loc></url>
+<url><loc>/reference/pkg_ref_mutability_error.html</loc></url>
+<url><loc>/reference/pkg_score.html</loc></url>
+<url><loc>/reference/print.with_eval_recording.html</loc></url>
+<url><loc>/reference/remove_base_packages.html</loc></url>
+<url><loc>/reference/require_cache_behaviors.html</loc></url>
+<url><loc>/reference/riskmetric.html</loc></url>
+<url><loc>/reference/riskmetric_metadata_caching.html</loc></url>
+<url><loc>/reference/roxygen_assess_family.html</loc></url>
+<url><loc>/reference/roxygen_assess_family_catalog.html</loc></url>
+<url><loc>/reference/roxygen_cache_behaviors.html</loc></url>
+<url><loc>/reference/roxygen_score_family.html</loc></url>
+<url><loc>/reference/score_error_NA.html</loc></url>
+<url><loc>/reference/score_error_default.html</loc></url>
+<url><loc>/reference/score_error_zero.html</loc></url>
+<url><loc>/reference/sub-sub-.pkg_ref.html</loc></url>
+<url><loc>/reference/summarize_scores.html</loc></url>
+<url><loc>/reference/suppressMatchingConditions.html</loc></url>
+<url><loc>/reference/use_assessments_column_names.html</loc></url>
+<url><loc>/reference/verify_pkg_source.html</loc></url>
+<url><loc>/reference/vignettes_from_dir.html</loc></url>
+<url><loc>/reference/vignettes_from_html.html</loc></url>
+<url><loc>/reference/with.pkg_ref.html</loc></url>
+<url><loc>/reference/with_unclassed_to.html</loc></url>
 </urlset>
+
