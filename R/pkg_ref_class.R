@@ -6,7 +6,7 @@
 #' source code, in a local library or from a remote host - an S3 subclass is
 #' given to allow for source-specific collection of metadata. See 'Details' for
 #' a breakdown of subclasses. Different sources can be specified by passing a
-#' subclass as an arguemnt named 'source', see details.
+#' subclass as an argument named 'source', see details.
 #'
 #' Package reference objects are used to collect metadata pertaining to a given
 #' package. As data is needed for assessing a package's risk, this metadata
