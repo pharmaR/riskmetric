@@ -9,3 +9,6 @@ docs
 .Ruserdata
 .html
 riskmetric.Rproj
+riskmetric.Rcheck/
+riskmetric*.tar.gz
+riskmetric*.tgz
