@@ -11,6 +11,7 @@ pkg_ref_cache.downloads <- function(x, ..., n=365) {
 }
 
 #' @importFrom cranlogs cran_downloads
+#' @keywords internal
 pkg_ref_cache.downloads.pkg_ref <- function(x, ..., n=365) {
   downloads <- cran_downloads(x$name, from=Sys.Date()-n, to=Sys.Date())
   if (sum(downloads$count) == 0) {
@@ -20,23 +21,26 @@ pkg_ref_cache.downloads.pkg_ref <- function(x, ..., n=365) {
 }
 
 #' @importFrom cranlogs cran_downloads
+#' @keywords internal
 pkg_ref_cache.downloads.pkg_cran_remote <- function(x, ..., n=365) {
   cran_downloads(x$name, from=Sys.Date()-n, to=Sys.Date())
 }
 
+#' @keywords internal
 pkg_ref_cache.downloads.pkg_bioc_remote <- function(x, ..., n=365) {
   bioc_downloads(x$name, from=Sys.Date()-n)
 }
 
-#' @importFrom httr GET content
+#' Helper function for getting download metrics from BioConductor
+#'
+#' @param pkg_name Name of package for which to get download metrics
+#' @param from First date of interest, download metrics will be obtained from this date until the present
+#' @return data.frame containing package download metrics
+#' @keywords internal
+#' @noRd
 bioc_downloads <- function(pkg_name, from) {
-  get_start_info <- function(n) {
-    start_date <- from
-    list(year = as.integer(format(start_date, "%Y")), month = as.integer(format(start_date, "%m")))
-  }
-
   # Getting the start year and month
-  start_info <- get_start_info(n)
+  start_info <- list(year = as.integer(format(from, "%Y")), month = as.integer(format(from, "%m")))
   current_year <- as.integer(format(Sys.Date(), "%Y"))
 
   # Initialize results data frame
