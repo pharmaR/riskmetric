@@ -12,11 +12,11 @@ pkg_ref_cache.downloads <- function(x, ..., n=365) {
 
 #' @importFrom cranlogs cran_downloads
 pkg_ref_cache.downloads.pkg_ref <- function(x, ..., n=365) {
-  result <- cran_downloads(x$name, from=Sys.Date()-n, to=Sys.Date())
-  if (sum(result$count) == 0) {
-    result <- bioc_downloads(x$name, from=Sys.Date()-n)
+  downloads <- cran_downloads(x$name, from=Sys.Date()-n, to=Sys.Date())
+  if (sum(downloads$count) == 0) {
+    downloads <- bioc_downloads(x$name, from=Sys.Date()-n)
   }
-  return(result)
+  return(downloads)
 }
 
 #' @importFrom cranlogs cran_downloads
