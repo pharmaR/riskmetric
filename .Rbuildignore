@@ -10,6 +10,3 @@
 ^pkgdown$
 ^cran-comments\.md$
 ^\.github$
-^riskmetric\.Rcheck$
-^riskmetric.*\.tar\.gz$
-^riskmetric.*\.tgz$
