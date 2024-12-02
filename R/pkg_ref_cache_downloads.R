@@ -6,29 +6,29 @@
 #' @return a \code{pkg_ref} object
 #' @keywords internal
 #' @noRd
-pkg_ref_cache.downloads <- function(x, ..., n=365) {
+pkg_ref_cache.downloads <- function(x, ..., n = 365) {
   UseMethod("pkg_ref_cache.downloads")
 }
 
 #' @importFrom cranlogs cran_downloads
 #' @keywords internal
-pkg_ref_cache.downloads.pkg_ref <- function(x, ..., n=365) {
-  downloads <- cran_downloads(x$name, from=Sys.Date()-n, to=Sys.Date())
+pkg_ref_cache.downloads.pkg_ref <- function(x, ..., n = 365) {
+  downloads <- cran_downloads(x$name, from = Sys.Date() - n, to = Sys.Date())
   if (sum(downloads$count) == 0) {
-    downloads <- bioc_downloads(x$name, from=Sys.Date()-n)
+    downloads <- bioc_downloads(x$name, from = Sys.Date() - n)
   }
   return(downloads)
 }
 
 #' @importFrom cranlogs cran_downloads
 #' @keywords internal
-pkg_ref_cache.downloads.pkg_cran_remote <- function(x, ..., n=365) {
-  cran_downloads(x$name, from=Sys.Date()-n, to=Sys.Date())
+pkg_ref_cache.downloads.pkg_cran_remote <- function(x, ..., n = 365) {
+  cran_downloads(x$name, from = Sys.Date() - n, to = Sys.Date())
 }
 
 #' @keywords internal
-pkg_ref_cache.downloads.pkg_bioc_remote <- function(x, ..., n=365) {
-  bioc_downloads(x$name, from=Sys.Date()-n)
+pkg_ref_cache.downloads.pkg_bioc_remote <- function(x, ..., n = 365) {
+  bioc_downloads(x$name, from = Sys.Date() - n)
 }
 
 #' Helper function for getting download metrics from BioConductor
@@ -36,6 +36,7 @@ pkg_ref_cache.downloads.pkg_bioc_remote <- function(x, ..., n=365) {
 #' @param pkg_name Name of package for which to get download metrics
 #' @param from First date of interest, download metrics will be obtained from this date until the present
 #' @return data.frame containing package download metrics
+#' @importFrom httr GET content
 #' @keywords internal
 #' @noRd
 bioc_downloads <- function(pkg_name, from) {
