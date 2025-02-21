@@ -1,3 +1,7 @@
+# riskmetric (development version)
+
+- Fix bug with assessing source packages that have non-R files in the R directory ([#362](https://github.com/pharmaR/riskmetric/issues/362))
+
 # riskmetric 0.2.4
 
 - Fix CRAN errors.
