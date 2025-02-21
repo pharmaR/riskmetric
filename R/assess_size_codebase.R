@@ -41,7 +41,12 @@ assess_size_codebase.pkg_install <- function(x, ...) {
 assess_size_codebase.pkg_source <- function(x, ...) {
   pkg_metric_eval(class = "pkg_metric_size_codebase", {
     # create character vector of function files
-    files <- list.files(path = file.path(x$path, "R"), full.names = T)
+    files <- list.files(
+      path = file.path(x$path, "R"),
+      pattern = "\\.R$",
+      full.names = TRUE,
+      ignore.case = TRUE
+    )
 
     # define the function for counting code base
     count_lines <- function(x){
