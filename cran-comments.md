@@ -1,4 +1,4 @@
-## riskmetric 0.2.4
+## riskmetric 0.2.5
 
 Resolved issues with CRAN checks.
 
