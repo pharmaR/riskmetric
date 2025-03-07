@@ -3,7 +3,7 @@ Type: Package
 Title: Risk Metrics to Evaluating R Packages
 Description: Facilities for assessing R packages against a number of metrics to 
     help quantify their robustness.
-Version: 0.2.4.9001
+Version: 0.2.5
 Authors@R: c(
     person("R Validation Hub", role = c("aut"), email = "psi.aims.r.validation@gmail.com"),
     person("Doug", "Kelkhoff", role = c("aut"), email = "doug.kelkhoff@gmail.com"),
