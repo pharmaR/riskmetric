@@ -4,7 +4,7 @@
 \alias{pkg_ref_cache.news.pkg_remote}
 \title{Cache a list of NEWS files from a package reference}
 \usage{
-\method{pkg_ref_cache}{news.pkg_remote}(x, name, ...)
+\method{pkg_ref_cache.news}{pkg_remote}(x, name, ...)
 }
 \value{
 a \code{pkg_ref} object

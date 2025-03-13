@@ -43,25 +43,25 @@ assessment applied.
 \section{Assessment function catalog}{
 
 \describe{
-\item{\code{\link{assess_last_30_bugs_status}}}{vector indicating whether BugReports status is closed}
-\item{\code{\link{assess_covr_coverage}}}{Package unit test coverage}
-\item{\code{\link{assess_size_codebase}}}{number of lines of code base}
-\item{\code{\link{assess_export_help}}}{exported objects have documentation}
-\item{\code{\link{assess_r_cmd_check}}}{Package check results}
-\item{\code{\link{assess_dependencies}}}{Package dependency footprint}
 \item{\code{\link{assess_reverse_dependencies}}}{List of reverse dependencies a package has}
-\item{\code{\link{assess_license}}}{software is released with an acceptable license}
-\item{\code{\link{assess_has_maintainer}}}{a vector of associated maintainers}
-\item{\code{\link{assess_remote_checks}}}{Number of OS flavors that passed/warned/errored on R CMD check}
-\item{\code{\link{assess_exported_namespace}}}{Objects exported by package}
-\item{\code{\link{assess_has_website}}}{a vector of associated website urls}
-\item{\code{\link{assess_downloads_1yr}}}{number of downloads in the past year}
-\item{\code{\link{assess_has_news}}}{number of discovered NEWS files}
 \item{\code{\link{assess_has_vignettes}}}{number of discovered vignettes files}
-\item{\code{\link{assess_has_examples}}}{proportion of discovered function files with examples}
-\item{\code{\link{assess_has_source_control}}}{a vector of associated source control urls}
-\item{\code{\link{assess_has_bug_reports_url}}}{presence of a bug reports url in repository}
+\item{\code{\link{assess_last_30_bugs_status}}}{assess_last_30_bugs_status}
+\item{\code{\link{assess_size_codebase}}}{number of lines of code base}
 \item{\code{\link{assess_news_current}}}{NEWS file contains entry for current version number}
+\item{\code{\link{assess_has_maintainer}}}{assess_has_maintainer}
+\item{\code{\link{assess_has_website}}}{a vector of associated website urls}
+\item{\code{\link{assess_export_help}}}{assess_export_help}
+\item{\code{\link{assess_remote_checks}}}{Number of OS flavors that passed/warned/errored on R CMD check}
+\item{\code{\link{assess_has_news}}}{assess_has_news}
+\item{\code{\link{assess_has_source_control}}}{a vector of associated source control urls}
+\item{\code{\link{assess_covr_coverage}}}{assess_covr_coverage}
+\item{\code{\link{assess_has_bug_reports_url}}}{assess_has_bug_reports_url}
+\item{\code{\link{assess_dependencies}}}{Package dependency footprint}
+\item{\code{\link{assess_license}}}{software is released with an acceptable license}
+\item{\code{\link{assess_downloads_1yr}}}{number of downloads in the past year}
+\item{\code{\link{assess_r_cmd_check}}}{Package check results}
+\item{\code{\link{assess_has_examples}}}{assess_has_examples}
+\item{\code{\link{assess_exported_namespace}}}{assess_exported_namespace}
 }
 }
 

@@ -5,12 +5,14 @@
 #' @return a \code{pkg_ref} object
 #' @keywords internal
 #' @noRd
+#' @export
 pkg_ref_cache.tarball_url <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.tarball_url")
 }
 
 
-
+#' @export
+#' @method pkg_ref_cache.tarball_url pkg_remote
 pkg_ref_cache.tarball_url.pkg_remote <- function(x, name, ...) {
   sprintf("%s/%s_%s.tar.gz", x$repo, x$name, x$version)
 }

@@ -5,14 +5,19 @@
 #' @return a \code{pkg_ref} object
 #' @keywords internal
 #' @noRd
+#' @export
 pkg_ref_cache.examples <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.examples")
 }
 
+#' @export
+#' @method pkg_ref_cache.examples pkg_install
 pkg_ref_cache.examples.pkg_install <- function(x, name, ...) {
   examples_from_pkg(x$name)
 }
 
+#' @export
+#' @method pkg_ref_cache.examples pkg_source
 pkg_ref_cache.examples.pkg_source <- function(x, name, ...) {
   examples_from_dir(x$path, x$name)
 }

@@ -5,6 +5,7 @@
 #' @return a \code{pkg_ref} object
 #' @keywords internal
 #' @noRd
+#' @export
 pkg_ref_cache.news <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.news")
 }
@@ -15,6 +16,8 @@ pkg_ref_cache.news <- function(x, name, ...) {
 #' @importFrom httr content GET
 #' @return a \code{pkg_ref} object
 #' @keywords internal
+#' @export
+#' @method pkg_ref_cache.news pkg_remote
 pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
   # default encoding messages suppressed
   suppressMatchingConditions(
@@ -27,14 +30,14 @@ pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
     messages = "default")
 }
 
-
-
+#' @export
+#' @method pkg_ref_cache.news pkg_install
 pkg_ref_cache.news.pkg_install <- function(x, name, ...) {
   news_from_dir(system.file(package = x$name))
 }
 
-
-
+#' @export
+#' @method pkg_ref_cache.news pkg_source
 pkg_ref_cache.news.pkg_source <- function(x, name, ...) {
   news_from_dir(x$path)
 }

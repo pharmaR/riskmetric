@@ -10,15 +10,16 @@ pkg_ref_cache.maintainer <- function(x, name, ...) {
 }
 
 
-
+#' @export
+#' @method pkg_ref_cache.maintainer pkg_remote
 pkg_ref_cache.maintainer.pkg_remote <- function(x, name, ...) {
   maintainer_xpath <- "//td[.='Maintainer:']/following::td[1]"
   maintainer <- xml2::xml_text(xml2::xml_find_all(x$web_html, maintainer_xpath))
   maintainer
 }
 
-
-
+#' @export
+#' @method pkg_ref_cache.maintainer pkg_install
 pkg_ref_cache.maintainer.pkg_install <- function(x, name, ...) {
   if ("Maintainer" %in% colnames(x$description))
     return(x$description[,"Maintainer"])
@@ -39,5 +40,6 @@ pkg_ref_cache.maintainer.pkg_install <- function(x, name, ...) {
 }
 
 
-
+#' @export
+#' @method pkg_ref_cache.maintainer pkg_source
 pkg_ref_cache.maintainer.pkg_source <- pkg_ref_cache.maintainer.pkg_install

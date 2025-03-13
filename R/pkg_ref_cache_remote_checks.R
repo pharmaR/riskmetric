@@ -9,12 +9,16 @@ pkg_ref_cache.remote_checks <- function (x, ...) {
    UseMethod("pkg_ref_cache.remote_checks")
 }
 
+#' @export
+#' @method pkg_ref_cache.remote_checks default
 pkg_ref_cache.remote_checks.default <- function (x, ...) {
   return(NA)
 }
 
 #' @importFrom httr content GET
 #' @importFrom xml2 xml_find_all xml_text
+#' @export
+#' @method pkg_ref_cache.remote_checks pkg_cran_remote
 pkg_ref_cache.remote_checks.pkg_cran_remote <- function(x, ...) {
   webURL <- sprintf("%s/web/checks/check_results_%s.html", x$repo_base_url, x$name)
   page <- httr::content(httr::GET(webURL))
@@ -29,6 +33,8 @@ pkg_ref_cache.remote_checks.pkg_cran_remote <- function(x, ...) {
 
 #' @importFrom httr content GET
 #' @importFrom xml2 xml_find_all xml_text
+#' @export
+#' @method pkg_ref_cache.remote_checks pkg_bioc_remote
 pkg_ref_cache.remote_checks.pkg_bioc_remote <- function(x, ...) {
   webURL <- sprintf("%s/%s", x$repo_base_url, x$name)
 

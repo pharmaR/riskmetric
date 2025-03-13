@@ -5,23 +5,27 @@
 #' @return a \code{pkg_ref} object
 #' @keywords internal
 #' @noRd
+#' @export
 pkg_ref_cache.vignettes <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.vignettes")
 }
 
 
-
+#' @export
+#' @method pkg_ref_cache.vignettes pkg_remote
 pkg_ref_cache.vignettes.pkg_remote <- function(x, name, ...) {
   vignettes_from_html(x)
 }
 
-
+#' @export
+#' @method pkg_ref_cache.vignettes pkg_install
 pkg_ref_cache.vignettes.pkg_install <- function(x, name, ...) {
   vignettes_from_dir(system.file(package = x$name))
 }
 
 
-
+#' @export
+#' @method pkg_ref_cache.vignettes pkg_source
 pkg_ref_cache.vignettes.pkg_source <- function(x, name, ...) {
   vignettes_from_dir(x$path)
 }

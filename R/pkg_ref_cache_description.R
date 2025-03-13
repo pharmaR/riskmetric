@@ -11,13 +11,16 @@ pkg_ref_cache.description <- function(x, name, ...) {
 }
 
 
-
+#' @export
+#' @method pkg_ref_cache.description pkg_install
 pkg_ref_cache.description.pkg_install <- function(x, name, ...) {
   read.dcf(file.path(x$path, "DESCRIPTION"))
 }
 
 
 
+#' @export
+#' @method pkg_ref_cache.description pkg_source
 pkg_ref_cache.description.pkg_source <- function(x, name, ...) {
   read.dcf(file.path(x$path, "DESCRIPTION"))
 }

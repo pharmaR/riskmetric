@@ -37,9 +37,8 @@ pkg_score <- function(x, ..., error_handler = score_error_default) {
   UseMethod("pkg_score")
 }
 
-
-
 #' @export
+#' @method pkg_score tbl_df
 pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
   assessment_columns <- get_assessment_columns(x)
   for (coln in which(assessment_columns)) {
@@ -64,9 +63,8 @@ pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
   x
 }
 
-
-
 #' @export
+#' @method pkg_score list_of_pkg_metric
 pkg_score.list_of_pkg_metric <- function(x, ...,
     error_handler = score_error_default) {
 

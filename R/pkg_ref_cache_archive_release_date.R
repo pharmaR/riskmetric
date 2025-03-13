@@ -9,6 +9,8 @@ pkg_ref_cache.archive_release_dates <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.archive_release_dates")
 }
 
+#' @export
+#' @method pkg_ref_cache.archive_release_dates pkg_cran_remote
 pkg_ref_cache.archive_release_dates.pkg_cran_remote <- function(x, name, ...) {
 
   url <- sprintf("%s/src/contrib/Archive/%s", x$repo_base_url, x$name)
