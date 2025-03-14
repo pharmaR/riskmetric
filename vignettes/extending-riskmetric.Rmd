@@ -240,23 +240,23 @@ assessment toolkit.
 
 ```{r}
 library(dplyr)
-assesments <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
+assessments <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble() %>%
   pkg_assess(c(all_assessments(), assess_name_first_letter))
-assesments
+assessments
 ```
 
 Our scoring function will automatically get picked up and used by the score
 method.
 
 ```{r, warning = FALSE}
-pkg_score(assesments)
+pkg_score(assessments)
 ```
 
 and we can define our own summarizing weights by passing a named list to `pkg_score`.
 
 ```{r, warning = FALSE}
-pkg_score(assesments, weights = c(has_website = 1, name_first_letter = 1))
+pkg_score(assessments, weights = c(has_website = 1, name_first_letter = 1))
 ```
 
 Of course you can do any downstream processing of the resulting `tibble` if
