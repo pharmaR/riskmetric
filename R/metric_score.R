@@ -35,6 +35,12 @@ metric_score.default <- function(x, ...) {
 }
 
 
+#' Retrieve condition type raised when calculating a score
+#'
+#' @param x score of a package risk metric
+#' @param ... Additional arguments unused
+#' @return A classed `NA` value representing the score with condition type
+#'
 #' @export
 metric_score_condition <- function(x, ...) {
   UseMethod("metric_score_condition")

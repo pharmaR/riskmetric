@@ -17,6 +17,12 @@ attributes(assess_last_30_bugs_status)$label <- "vector indicating whether BugRe
 
 
 
+#' Retrieve statuses of bug reports
+#'
+#' @param x a \code{pkg_ref} package reference object
+#' @param ... additional arguments passed on to S3 methods, rarely used
+#' @return a logical vector indicating whether a bug report is closed
+#'
 #' @export
 bug_reports_status <- function(x, ...) {
   UseMethod("bug_reports_status", x$bug_reports)
