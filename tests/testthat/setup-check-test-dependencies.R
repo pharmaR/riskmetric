@@ -1,7 +1,7 @@
 desc <- file.path(testthat::test_path("."), "..", "..", "DESCRIPTION")
 
 desc_deps <- read.dcf(desc, fields = "Config/Needs/testing")[[1]]
-deps_strs <- trimws(strsplit(deps, ",")[[1]])
+deps_strs <- trimws(strsplit(desc_deps, ",")[[1]])
 deps_parts <- tools:::.split_dependencies(deps_strs)
 
 is_satisfied <- function(dep) {
