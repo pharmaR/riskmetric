@@ -1,17 +1,15 @@
-desc <- testthat::test_path(
-  "..",
-  "..",
-  if (testthat::is_checking()) packageName(),
-  "DESCRIPTION"
-)
+desc <- if (testthat::is_checking()) {
+  packageDescription(packageName())
+} else {
+  read.dcf(testthat::test_path("..", "..", "DESCRIPTION"))[1, ]
+}
 
-desc <- normalizePath(desc, mustWork = TRUE)
-desc_deps <- read.dcf(desc, fields = "Config/Needs/testing")[[1]]
+desc_deps <- desc[["Config/Needs/testing"]]
 deps_strs <- trimws(strsplit(desc_deps, ",")[[1]])
 deps_parts <- tools:::.split_dependencies(deps_strs)
 
 is_satisfied <- function(dep) {
-  # first check if package is installed at all
+  # first check if package is installed
   is_installed <- length(find.package(dep$name, quiet = TRUE)) > 0L
   if (!is_installed) return(FALSE)
 
