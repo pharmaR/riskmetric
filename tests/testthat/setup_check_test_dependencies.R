@@ -1,5 +1,11 @@
-desc <- normalizePath(testthat::test_path("..", "..", "DESCRIPTION"))
+desc <- testthat::test_path(
+  "..",
+  "..",
+  if (testthat::is_checking()) packageName(),
+  "DESCRIPTION"
+)
 
+desc <- normalizePath(desc, mustWork = TRUE)
 desc_deps <- read.dcf(desc, fields = "Config/Needs/testing")[[1]]
 deps_strs <- trimws(strsplit(desc_deps, ",")[[1]])
 deps_parts <- tools:::.split_dependencies(deps_strs)
