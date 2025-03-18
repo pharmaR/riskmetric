@@ -46,7 +46,7 @@ Suggests:
     webmockr,
     jsonlite
 Config/Needs/testing:
-    testthat (<= 1.2.3),
+    testthat,
     webmockr,
     jsonlite,
     magrittr,
