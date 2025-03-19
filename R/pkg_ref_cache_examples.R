@@ -1,28 +1,31 @@
+#' @describeIn riskmetric_metadata_caching
 #' Cache the examples available for exported objects for a package reference
 #'
-#' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-#' @noRd
+#'
+#' @usage NULL
 #' @export
 pkg_ref_cache.examples <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.examples")
 }
 
+#' @keywords internal
 #' @export
 #' @method pkg_ref_cache.examples pkg_install
 pkg_ref_cache.examples.pkg_install <- function(x, name, ...) {
   examples_from_pkg(x$name)
 }
 
+#' @keywords internal
 #' @export
 #' @method pkg_ref_cache.examples pkg_source
 pkg_ref_cache.examples.pkg_source <- function(x, name, ...) {
   examples_from_dir(x$path, x$name)
 }
 
-#' Filter a simple database of Rd objects in a package for files with example fields
+#' Filter a simple database of Rd objects in a package for files with example
+#' fields
 #'
 #' @param rddb a simple database of Rd object obtained via tools::Rd_db
 #'
@@ -47,7 +50,8 @@ filter_rd_db <- function(rddb) {
   e
 }
 
-#' Build logical vector for Rd objects with example or usage fields discovered in a given package
+#' Build logical vector for Rd objects with example or usage fields discovered
+#' in a given package
 #'
 #' @param pkg a package name expected to contain exported objects
 #'

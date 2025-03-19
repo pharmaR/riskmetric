@@ -1,20 +1,16 @@
+#' @describeIn riskmetric_metadata_caching
 #' Cache a list of NEWS files from a package reference
 #'
-#' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-#' @noRd
+#'
+#' @usage NULL
 #' @export
 pkg_ref_cache.news <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.news")
 }
 
-
-#' Cache a list of NEWS files from a package reference
-#'
 #' @importFrom httr content GET
-#' @return a \code{pkg_ref} object
 #' @keywords internal
 #' @export
 #' @method pkg_ref_cache.news pkg_remote
@@ -30,12 +26,14 @@ pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
     messages = "default")
 }
 
+#' @keywords internal
 #' @export
 #' @method pkg_ref_cache.news pkg_install
 pkg_ref_cache.news.pkg_install <- function(x, name, ...) {
   news_from_dir(system.file(package = x$name))
 }
 
+#' @keywords internal
 #' @export
 #' @method pkg_ref_cache.news pkg_source
 pkg_ref_cache.news.pkg_source <- function(x, name, ...) {

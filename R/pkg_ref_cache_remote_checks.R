@@ -1,22 +1,25 @@
+#' @describeIn riskmetric_metadata_caching
 #' Retrieve a CRAN or Bioc checks or run R CMD check
 #'
-#' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-#' @noRd
+#'
+#' @usage NULL
+#' @export
 pkg_ref_cache.remote_checks <- function (x, ...) {
-   UseMethod("pkg_ref_cache.remote_checks")
+  UseMethod("pkg_ref_cache.remote_checks")
 }
 
+#' @keywords internal
 #' @export
 #' @method pkg_ref_cache.remote_checks default
-pkg_ref_cache.remote_checks.default <- function (x, ...) {
-  return(NA)
+pkg_ref_cache.remote_checks.default <- function(x, ...) {
+  NA
 }
 
 #' @importFrom httr content GET
 #' @importFrom xml2 xml_find_all xml_text
+#' @keywords internal
 #' @export
 #' @method pkg_ref_cache.remote_checks pkg_cran_remote
 pkg_ref_cache.remote_checks.pkg_cran_remote <- function(x, ...) {

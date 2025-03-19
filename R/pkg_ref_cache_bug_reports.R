@@ -1,16 +1,18 @@
+#' @describeIn riskmetric_metadata_caching
 #' Retrieve a list of BugReports metadata
 #'
-#' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-#' @noRd
+#'
+#' @usage NULL
 #' @export
 pkg_ref_cache.bug_reports <- function(x, ...) {
   UseMethod("pkg_ref_cache.bug_reports")
 }
 
+#' @keywords internal
 #' @export
+#' @method pkg_ref_cache.bug_reports default
 pkg_ref_cache.bug_reports.default <- function(x, ...) {
   scrape_bug_reports(x, ...)
 }

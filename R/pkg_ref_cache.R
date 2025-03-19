@@ -123,7 +123,7 @@ available_pkg_ref_fields <- function(x) {
 #'
 #' @rdname riskmetric_metadata_caching
 #' @keywords internal
-#' @noRd
+#'
 #' @export
 pkg_ref_cache <- function(x, name, ..., .class = as.character(name)) {
   UseMethod("pkg_ref_cache", structure(list(), class = .class))

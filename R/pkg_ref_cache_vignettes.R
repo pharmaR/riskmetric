@@ -1,29 +1,30 @@
+#' @describeIn riskmetric_metadata_caching
 #' Cache a List of Vignettes Files from a Package Reference
 #'
-#' @inheritParams pkg_ref_cache
 #' @family package reference cache
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-#' @noRd
+#'
+#' @usage NULL
 #' @export
 pkg_ref_cache.vignettes <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.vignettes")
 }
 
-
+#' @keywords internal
 #' @export
 #' @method pkg_ref_cache.vignettes pkg_remote
 pkg_ref_cache.vignettes.pkg_remote <- function(x, name, ...) {
   vignettes_from_html(x)
 }
 
+#' @keywords internal
 #' @export
 #' @method pkg_ref_cache.vignettes pkg_install
 pkg_ref_cache.vignettes.pkg_install <- function(x, name, ...) {
   vignettes_from_dir(system.file(package = x$name))
 }
 
-
+#' @keywords internal
 #' @export
 #' @method pkg_ref_cache.vignettes pkg_source
 pkg_ref_cache.vignettes.pkg_source <- function(x, name, ...) {
