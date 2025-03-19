@@ -1,37 +1,18 @@
-desc <- if (testthat::is_checking()) {
-  packageDescription(packageName())
-} else {
-  read.dcf(testthat::test_path("..", "..", "DESCRIPTION"))[1, ]
-}
+test_suggests <- c(
+  "testthat",
+  "webmockr",
+  "jsonlite",
+  "magrittr",
+  "withr"
+)
 
-desc_deps <- desc[["Config/Needs/testing"]]
-deps_strs <- trimws(strsplit(desc_deps, ",")[[1]])
-deps_parts <- tools:::.split_dependencies(deps_strs)
-
-is_satisfied <- function(dep) {
-  # first check if package is installed
-  is_installed <- length(find.package(dep$name, quiet = TRUE)) > 0L
-  if (!is_installed) return(FALSE)
-
-  # check if package has a version bound, eg `pkg (>= 1.2.3)`
-  has_version_constraint <- !is.null(dep$op)
-  if (!has_version_constraint) return(TRUE)
-
-  # finally, confirm that version bound is met
-  version <- packageVersion(dep$name)
-  is_constraint_satisfied <- do.call(dep$op, list(version, dep$version))
-
-  is_constraint_satisfied
-}
-
-unsatisfied_deps <- deps_strs[!vapply(deps_parts, is_satisfied, logical(1L))]
-if (length(unsatisfied_deps) > 0L) {
+has_dep <- vapply(test_suggests, requireNamespace, logical(1L), quietly = TRUE)
+if (!all(has_dep)) {
+  install_code <- bquote(install.packages(.(test_suggests[!has_dep])))
   stop(
-    "\n",
-    "  Missing Suggests packages required for testing:\n",
-    paste0("    ", unsatisfied_deps, collapse = "\n"), "\n\n",
-    "  Resolve using:\n",
-    '    pak::local_install_dev_deps(dependencies = "Config/Needs/testing")',
-    "\n\n"
+    "missing Suggests dependencies necessary for testing:\n",
+    paste0("  ", test_suggests[!has_dep], collapse = "\n"), "\n\n",
+    "resolve with:\n",
+    paste0("  ", deparse(install_code), collapse = "\n"), "\n\n"
   )
 }
