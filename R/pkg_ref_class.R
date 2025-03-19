@@ -164,7 +164,7 @@ pkg_source <- function(x) {
   name <- unname(desc[,"Package"])
 
   new_pkg_ref(name,
-              version = package_version(desc[,"Version"][[1]]),
+              version = desc[,"Version"][[1]],
               path = normalizePath(x),
               source = "pkg_source")
 }
