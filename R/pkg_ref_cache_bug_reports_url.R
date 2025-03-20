@@ -1,12 +1,10 @@
 #' @describeIn riskmetric_metadata_caching
 #' Get the BugReports url
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
-pkg_ref_cache.bug_reports_url <- function(x, ...) {
+pkg_ref_cache.bug_reports_url <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.bug_reports_url")
 }
 
@@ -14,7 +12,7 @@ pkg_ref_cache.bug_reports_url <- function(x, ...) {
 #' @keywords internal
 #' @export
 #' @method pkg_ref_cache.bug_reports_url pkg_source
-pkg_ref_cache.bug_reports_url.pkg_source <- function(x, ...) {
+pkg_ref_cache.bug_reports_url.pkg_source <- function(x, name, ...) {
   # fake a library location given the package source code path where the
   # description can be found, revert on exit when no longer needed
 
@@ -25,7 +23,7 @@ pkg_ref_cache.bug_reports_url.pkg_source <- function(x, ...) {
 #' @keywords internal
 #' @export
 #' @method pkg_ref_cache.bug_reports_url pkg_install
-pkg_ref_cache.bug_reports_url.pkg_install <- function(x, ...) {
+pkg_ref_cache.bug_reports_url.pkg_install <- function(x, name, ...) {
   packageDescription(x$name)$BugReports
 }
 

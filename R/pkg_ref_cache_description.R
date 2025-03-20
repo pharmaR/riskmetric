@@ -1,9 +1,7 @@
 #' @describeIn riskmetric_metadata_caching
 #' Cache the DESCRIPTION file contents for a package reference
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
 pkg_ref_cache.description <- function(x, name, ...) {

@@ -1,9 +1,7 @@
 #' @describeIn riskmetric_metadata_caching
 #' Cache value of a package's source tarball URL
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
 pkg_ref_cache.tarball_url <- function(x, name, ...) {

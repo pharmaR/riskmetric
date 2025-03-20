@@ -1,9 +1,7 @@
 #' @describeIn riskmetric_metadata_caching
 #' Cache a List of Package Release Date from a Package Reference
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
 pkg_ref_cache.release_date <- function(x, name, ...) {

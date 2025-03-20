@@ -1,12 +1,10 @@
 #' @describeIn riskmetric_metadata_caching
 #' Retrieve output of covr::package_coverage
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
-pkg_ref_cache.covr_coverage <- function(x, ...) {
+pkg_ref_cache.covr_coverage <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.covr_coverage")
 }
 
@@ -15,7 +13,7 @@ pkg_ref_cache.covr_coverage <- function(x, ...) {
 #' @keywords internal
 #' @export
 #' @method pkg_ref_cache.covr_coverage pkg_source
-pkg_ref_cache.covr_coverage.pkg_source <- function(x, ...) {
+pkg_ref_cache.covr_coverage.pkg_source <- function(x, name, ...) {
   # use custom 'code' to avoid triggering errors upon test failure.
   # practically identical to covr::package_coverage with the exclusion of
   # `if (result != 0L) show_failures(out_dir)`

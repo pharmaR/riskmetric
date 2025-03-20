@@ -1,9 +1,7 @@
 #' @describeIn riskmetric_metadata_caching
 #' Cache package's remote web URL
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
 pkg_ref_cache.web_url <- function(x, name, ...) {

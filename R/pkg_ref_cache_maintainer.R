@@ -1,9 +1,7 @@
 #' @describeIn riskmetric_metadata_caching
 #' Cache package's Maintainer
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
 pkg_ref_cache.maintainer <- function(x, name, ...) {

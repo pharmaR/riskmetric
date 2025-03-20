@@ -1,9 +1,7 @@
 #' @describeIn riskmetric_metadata_caching
 #' Cache package's Source Control URL
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
 pkg_ref_cache.source_control_url <- function(x, name, ...) {

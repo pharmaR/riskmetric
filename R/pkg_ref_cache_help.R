@@ -1,9 +1,7 @@
 #' @describeIn riskmetric_metadata_caching
 #' Cache a list of available help files as LaTeX objects
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
 pkg_ref_cache.help <- function(x, name, ...) {

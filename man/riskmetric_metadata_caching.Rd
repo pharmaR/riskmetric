@@ -7,11 +7,11 @@
 %   R/pkg_ref_cache_expr_coverage.R, R/pkg_ref_cache_help.R,
 %   R/pkg_ref_cache_help_aliases.R, R/pkg_ref_cache_license.R,
 %   R/pkg_ref_cache_maintainer.R, R/pkg_ref_cache_news.R,
-%   R/pkg_ref_cache_release_date.R, R/pkg_ref_cache_remote_checks.R,
-%   R/pkg_ref_cache_repo_base_url.R, R/pkg_ref_cache_source_control_url.R,
-%   R/pkg_ref_cache_tarball_url.R, R/pkg_ref_cache_vignettes.R,
-%   R/pkg_ref_cache_web_html.R, R/pkg_ref_cache_web_url.R,
-%   R/pkg_ref_cache_website_urls.R
+%   R/pkg_ref_cache_r_cmd_check.R, R/pkg_ref_cache_release_date.R,
+%   R/pkg_ref_cache_remote_checks.R, R/pkg_ref_cache_repo_base_url.R,
+%   R/pkg_ref_cache_source_control_url.R, R/pkg_ref_cache_tarball_url.R,
+%   R/pkg_ref_cache_vignettes.R, R/pkg_ref_cache_web_html.R,
+%   R/pkg_ref_cache_web_url.R, R/pkg_ref_cache_website_urls.R
 \name{pkg_ref_cache}
 \alias{pkg_ref_cache}
 \alias{pkg_ref_cache.news_urls}
@@ -29,6 +29,7 @@
 \alias{pkg_ref_cache.license}
 \alias{pkg_ref_cache.maintainer}
 \alias{pkg_ref_cache.news}
+\alias{pkg_ref_cache.r_cmd_check}
 \alias{pkg_ref_cache.release_date}
 \alias{pkg_ref_cache.remote_checks}
 \alias{pkg_ref_cache.repo_base_url}
@@ -92,6 +93,8 @@ Reactively retrieve and cache `pkg_ref` metadata
 \item \code{pkg_ref_cache.maintainer()}: Cache package's Maintainer
 
 \item \code{pkg_ref_cache.news()}: Cache a list of NEWS files from a package reference
+
+\item \code{pkg_ref_cache.r_cmd_check()}: Run R CMD check and capture the results
 
 \item \code{pkg_ref_cache.release_date()}: Cache a List of Package Release Date from a Package Reference
 
@@ -186,82 +189,6 @@ Reactively retrieve and cache `pkg_ref` metadata
   x$subclass_enum
 }
 
-}
-\seealso{
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
-
-Other package reference cache: 
-\code{\link{pkg_ref_cache.r_cmd_check}()}
 }
 \concept{package reference cache}
 \keyword{internal}

@@ -1,9 +1,7 @@
 #' @describeIn riskmetric_metadata_caching
 #' Cache the examples available for exported objects for a package reference
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
 pkg_ref_cache.examples <- function(x, name, ...) {

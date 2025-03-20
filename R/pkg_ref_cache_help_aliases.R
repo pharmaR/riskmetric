@@ -1,9 +1,7 @@
 #' @describeIn riskmetric_metadata_caching
 #' Cache a character vector mapping exported values to documentation filenames
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
 pkg_ref_cache.help_aliases <- function(x, name, ...) {

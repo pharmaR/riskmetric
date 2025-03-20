@@ -1,9 +1,7 @@
 #' @describeIn riskmetric_metadata_caching
 #' Cache appropriate urls for NEWS files
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
 pkg_ref_cache.news_urls <- function(x, name, ...) {

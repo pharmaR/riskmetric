@@ -1,9 +1,7 @@
 #' @describeIn riskmetric_metadata_caching
 #' Cache a list of NEWS files from a package reference
 #'
-#' @family package reference cache
 #' @keywords internal
-#'
 #' @usage NULL
 #' @export
 pkg_ref_cache.news <- function(x, name, ...) {
@@ -64,7 +62,7 @@ news_from_dir <- function(path) {
     tryCatch({
       if (ext == "rd") {
         content[[i]] <- .tools()$.news_reader_default(f)
-      } else if (ext == "md" || nchar(ext) == 0L) {
+      } else if (ext == "md" || !nzchar(ext)) {
         # NOTE: should we do validation of markdown format?
         content[[i]] <- readLines(f, warn = FALSE)
       }
