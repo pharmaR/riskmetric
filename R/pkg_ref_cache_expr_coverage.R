@@ -1,19 +1,17 @@
+#' @describeIn riskmetric_metadata_caching
 #' Retrieve output of covr::package_coverage, tallied by expression
 #'
-#' @inheritParams pkg_ref_cache
-#' @family package reference cache
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-#' @noRd
-pkg_ref_cache.expression_coverage <- function(x, ...) {
+#' @usage NULL
+#' @export
+pkg_ref_cache.expression_coverage <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.expr_coverage")
 }
 
-#' Retrieve output of covr::package_coverage, tallied by expression
-#'
 #' @importFrom covr tally_coverage
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-pkg_ref_cache.expression_coverage.pkg_source <- function(x, ...) {
+#' @export
+#' @method pkg_ref_cache.expression_coverage pkg_source
+pkg_ref_cache.expression_coverage.pkg_source <- function(x, name, ...) {
   covr::tally_coverage(x$covr_coverage, by = "expression")
 }

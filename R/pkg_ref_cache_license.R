@@ -1,36 +1,36 @@
-#' Get the package license
+#' @describeIn riskmetric_metadata_caching
+#' Cache the package license
 #'
-#' @inheritParams pkg_ref_cache
-#' @family package reference cache
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-#' @noRd
-pkg_ref_cache.license <- function(x, ...) {
+#' @usage NULL
+#' @export
+pkg_ref_cache.license <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.license")
 }
 
-
-
-pkg_ref_cache.license.default <- function(x, ...) {
+#' @keywords internal
+#' @export
+#' @method pkg_ref_cache.license default
+pkg_ref_cache.license.default <- function(x, name, ...) {
   if ("License" %in% colnames(x$description)) unname(x$description[,"License"])
   else NA_character_
 }
 
-
-
 #' @importFrom xml2 xml_find_all xml_text
 #' @keywords internal
-pkg_ref_cache.license.pkg_cran_remote <- function(x, ...) {
+#' @export
+#' @method pkg_ref_cache.license pkg_cran_remote
+pkg_ref_cache.license.pkg_cran_remote <- function(x, name, ...) {
   license_xpath <- "//td[.='License:']/following::td[1]"
   license_nodes <- xml_find_all(x$web_html, xpath = license_xpath)
   xml_text(license_nodes)
 }
 
-
-
 #' @importFrom xml2 xml_find_all xml_text
 #' @keywords internal
-pkg_ref_cache.license.pkg_bioc_remote <- function(x, ...) {
+#' @export
+#' @method pkg_ref_cache.license pkg_bioc_remote
+pkg_ref_cache.license.pkg_bioc_remote <- function(x, name, ...) {
   license_xpath <- "//td[.='License']/following::td[1]"
   license_nodes <- xml_find_all(x$web_html, xpath = license_xpath)
   xml_text(license_nodes)

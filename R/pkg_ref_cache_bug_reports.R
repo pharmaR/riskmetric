@@ -1,20 +1,19 @@
+#' @describeIn riskmetric_metadata_caching
 #' Retrieve a list of BugReports metadata
 #'
-#' @inheritParams pkg_ref_cache
-#' @family package reference cache
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-#' @noRd
-pkg_ref_cache.bug_reports <- function(x, ...) {
+#' @usage NULL
+#' @export
+pkg_ref_cache.bug_reports <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.bug_reports")
 }
 
-
-pkg_ref_cache.bug_reports.default <- function(x, ...) {
+#' @keywords internal
+#' @export
+#' @method pkg_ref_cache.bug_reports default
+pkg_ref_cache.bug_reports.default <- function(x, name, ...) {
   scrape_bug_reports(x, ...)
 }
-
-
 
 #' Helper for structuring bug reports
 #'
@@ -34,14 +33,18 @@ bug_report_metadata <- function(bug_reports_data, x) {
 
 
 
-# Helper for scraping bug reports depending on url host name
+#' Helper for scraping bug reports depending on url host name
+#'
+#' @keywords internal
+#' @noRd
+#'
 scrape_bug_reports <- function(x, ...) {
   disp_class <- x$bug_reports_host %||% "NULL"
   UseMethod("scrape_bug_reports", structure(list(), class = disp_class))
 }
 
 
-
+#' @export
 scrape_bug_reports.default <- function(x, ...) {
   if (is.null(x$bug_reports_host) || length(x$bug_reports_host) == 0L)
     stop("package DESCRIPTION does not have a BugReports field")
@@ -55,6 +58,7 @@ scrape_bug_reports.default <- function(x, ...) {
 
 #' @importFrom httr GET content
 #' @keywords internal
+#' @export
 scrape_bug_reports.github <- function(x, ...) {
   owner_repo_issues <- gsub(
     ".*github[^/]*/([^/]+/[^/]+).*",
@@ -74,6 +78,7 @@ scrape_bug_reports.github <- function(x, ...) {
 #' @importFrom httr GET content
 #' @importFrom urltools url_encode
 #' @keywords internal
+#' @export
 scrape_bug_reports.gitlab <- function(x, ...) {
   owner_repo_issues <- gsub(".*gitlab[^/]*/(.*)", "\\1", x$bug_reports_url)
   owner_repo <- gsub("(.*)/issues", "\\1", owner_repo_issues)

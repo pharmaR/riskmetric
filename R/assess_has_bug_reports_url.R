@@ -32,6 +32,7 @@ assess_has_bug_reports_url.default <- function(x, ...) {
 #'   filled in
 #'
 #' @export
+#' @method metric_score pkg_metric_has_bug_reports_url
 metric_score.pkg_metric_has_bug_reports_url <- function(x, ...) {
   as.numeric(x > 0)
 }
