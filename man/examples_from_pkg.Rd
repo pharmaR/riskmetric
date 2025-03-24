@@ -2,7 +2,8 @@
 % Please edit documentation in R/pkg_ref_cache_examples.R
 \name{examples_from_pkg}
 \alias{examples_from_pkg}
-\title{Build logical vector for Rd objects with example or usage fields discovered in a given package}
+\title{Build logical vector for Rd objects with example or usage fields discovered
+in a given package}
 \usage{
 examples_from_pkg(pkg)
 }
@@ -13,6 +14,7 @@ examples_from_pkg(pkg)
 a numeric proportion of documentation files with examples
 }
 \description{
-Build logical vector for Rd objects with example or usage fields discovered in a given package
+Build logical vector for Rd objects with example or usage fields discovered
+in a given package
 }
 \keyword{internal}
