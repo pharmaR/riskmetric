@@ -27,7 +27,11 @@ assess_export_help.pkg_remote <- function(x, ...) {
 assess_export_help.pkg_source <- function(x, ...) {
   pkg_metric_eval(class = "pkg_metric_export_help", {
     # ignore S3-dispatched methods
-    exports <- unname(unlist(pkgload::parse_ns_file(x$path)[c("exports","exportMethods")]))
+    lines <- readLines(paste0(x$path, "/NAMESPACE"), warn = FALSE)
+    export_lines <- grep("^export\\(|^exportMethods\\(", lines, value = TRUE)
+    exports <- gsub(".*\\(([^)]+)\\).*", "\\1", export_lines)
+    exports <- unlist(strsplit(exports, ",\\s*"))
+
     out <- exports %in% names(x$help_aliases)
     names(out) <- exports
     out
