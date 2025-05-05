@@ -29,6 +29,7 @@ summarize_scores <- function(data, weights = NULL) {
 }
 
 #' @export
+#' @method summarize_scores data.frame
 summarize_scores.data.frame <- function(data, weights = NULL) {
   if (missing(weights))
     weights <- add_default_weights(data)
@@ -44,6 +45,7 @@ summarize_scores.data.frame <- function(data, weights = NULL) {
 }
 
 #' @export
+#' @method summarize_scores list
 summarize_scores.list <- function(data, weights = NULL) {
   if (missing(weights))
     weights <- add_default_weights(data)

@@ -1,20 +1,17 @@
+#' @describeIn riskmetric_metadata_caching
 #' Cache a list of NEWS files from a package reference
 #'
-#' @inheritParams pkg_ref_cache
-#' @family package reference cache
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-#' @noRd
+#' @usage NULL
+#' @export
 pkg_ref_cache.news <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.news")
 }
 
-
-#' Cache a list of NEWS files from a package reference
-#'
 #' @importFrom httr content GET
-#' @return a \code{pkg_ref} object
 #' @keywords internal
+#' @export
+#' @method pkg_ref_cache.news pkg_remote
 pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
   # default encoding messages suppressed
   suppressMatchingConditions(
@@ -27,14 +24,16 @@ pkg_ref_cache.news.pkg_remote <- function(x, name, ...) {
     messages = "default")
 }
 
-
-
+#' @keywords internal
+#' @export
+#' @method pkg_ref_cache.news pkg_install
 pkg_ref_cache.news.pkg_install <- function(x, name, ...) {
   news_from_dir(system.file(package = x$name))
 }
 
-
-
+#' @keywords internal
+#' @export
+#' @method pkg_ref_cache.news pkg_source
 pkg_ref_cache.news.pkg_source <- function(x, name, ...) {
   news_from_dir(x$path)
 }
@@ -59,10 +58,11 @@ news_from_dir <- function(path) {
   # attempt to parse all news.* files
   for (i in seq_along(files)) {
     f <- files[[i]]
+    ext <- tolower(tools::file_ext(f))
     tryCatch({
-      if (tolower(tools::file_ext(f)) == "rd") {
+      if (ext == "rd") {
         content[[i]] <- .tools()$.news_reader_default(f)
-      } else if (tolower(tools::file_ext(f)) == "md"||nchar(ext) == 0L) {
+      } else if (ext == "md" || !nzchar(ext)) {
         # NOTE: should we do validation of markdown format?
         content[[i]] <- readLines(f, warn = FALSE)
       }

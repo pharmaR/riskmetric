@@ -35,24 +35,38 @@ metric_score.default <- function(x, ...) {
 }
 
 
+#' Retrieve condition type raised when calculating a score
+#'
+#' @param x score of a package risk metric
+#' @param ... Additional arguments unused
+#' @return A classed `NA` value representing the score with condition type
+#'
+#' @export
 metric_score_condition <- function(x, ...) {
   UseMethod("metric_score_condition")
 }
 
+#' @export
+#' @method metric_score_condition pkg_metric_error
 metric_score_condition.pkg_metric_error <- function(x, ...,
     error_handler = score_error_default) {
   error_handler(x, ...)
 }
 
-
+#' @export
+#' @method metric_score_condition pkg_metric_na
 metric_score_condition.pkg_metric_na <- function(x, ...) {
   structure(NA_real_, class = c("pkg_score_na", "numeric"))
 }
 
+#' @export
+#' @method metric_score_condition pkg_metric_error
 metric_score_condition.pkg_metric_error <- function(x, ...) {
   structure(NA_real_, class = c("pkg_score_error", "numeric"))
 }
 
+#' @export
+#' @method metric_score_condition pkg_metric_todo
 metric_score_condition.pkg_metric_todo <- function(x, ...) {
   structure(NA_real_, class = c("pkg_score_todo", "numeric"))
 }
