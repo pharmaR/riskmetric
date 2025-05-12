@@ -44,7 +44,9 @@ pkg_metric_export.list <- function(x, file = "PACKAGES", ...) {
   for (name in names(x)) {
     pascal_name <- paste0("Metric", to_pascal_case(name))
     value <- as.character(x[[name]][1])
-    record[[pascal_name]] <- value
+    
+    # Replace NA values with "NA" string
+    record[[pascal_name]] <- ifelse(is.na(value), "NA", value)
   }
 
   # Convert to one-row data frame
@@ -63,9 +65,13 @@ pkg_metric_export.tbl_df <- function(x, file = "PACKAGES", ...) {
 
     for (name in names(metrics)) {
       value <- as.character(metrics[[name]])
-      # Leave Package and Version untouched
+
+      # Replace NA values with "NA" string
+      value <- ifelse(is.na(value), "NA", value)
+
+      # Leave Package and Version untouched, but ensure CamelCase
       if (name %in% c("package", "version")) {
-        pascal_name <- to_pascal_case(name)
+        pascal_name <- paste0(toupper(substring(name, 1, 1)), substring(name, 2))
         record[[pascal_name]] <- value
       } else {
         pascal_name <- paste0("Metric", to_pascal_case(name))
