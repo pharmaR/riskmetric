@@ -45,6 +45,12 @@ Suggests:
     testthat,
     webmockr,
     jsonlite
+Config/Needs/testing:
+    testthat,
+    webmockr,
+    jsonlite,
+    magrittr,
+    withr
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Config/testthat/edition: 3
