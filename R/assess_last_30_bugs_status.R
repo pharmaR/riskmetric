@@ -17,18 +17,28 @@ attributes(assess_last_30_bugs_status)$label <- "vector indicating whether BugRe
 
 
 
+#' Retrieve statuses of bug reports
+#'
+#' @param x a \code{pkg_ref} package reference object
+#' @param ... additional arguments passed on to S3 methods, rarely used
+#' @return a logical vector indicating whether a bug report is closed
+#'
+#' @export
 bug_reports_status <- function(x, ...) {
   UseMethod("bug_reports_status", x$bug_reports)
 }
 
 
-
+#' @export
+#' @method bug_reports_status github_bug_report
 bug_reports_status.github_bug_report <- function(x, ...) {
   vapply(x$bug_reports, "[[", character(1L), "state") == "closed"
 }
 
 
 
+#' @export
+#' @method bug_reports_status gitlab_bug_report
 bug_reports_status.gitlab_bug_report <- function(x, ...) {
   vapply(x$bug_reports, "[[", character(1L), "state") == "closed"
 }

@@ -2,8 +2,8 @@
 % Please edit documentation in R/riskmetric-package.R
 \docType{package}
 \name{riskmetric}
-\alias{riskmetric}
 \alias{riskmetric-package}
+\alias{riskmetric}
 \title{riskmetric}
 \description{
 Facilities for assessing R packages against a number of metrics to help

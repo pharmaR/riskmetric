@@ -1,21 +1,26 @@
+#' @describeIn riskmetric_metadata_caching
 #' Retrieve a CRAN or Bioc checks or run R CMD check
 #'
-#' @inheritParams pkg_ref_cache
-#' @family package reference cache
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-#' @noRd
-pkg_ref_cache.remote_checks <- function (x, ...) {
-   UseMethod("pkg_ref_cache.remote_checks")
+#' @usage NULL
+#' @export
+pkg_ref_cache.remote_checks <- function (x, name, ...) {
+  UseMethod("pkg_ref_cache.remote_checks")
 }
 
-pkg_ref_cache.remote_checks.default <- function (x, ...) {
-  return(NA)
+#' @keywords internal
+#' @export
+#' @method pkg_ref_cache.remote_checks default
+pkg_ref_cache.remote_checks.default <- function(x, name, ...) {
+  NA
 }
 
 #' @importFrom httr content GET
 #' @importFrom xml2 xml_find_all xml_text
-pkg_ref_cache.remote_checks.pkg_cran_remote <- function(x, ...) {
+#' @keywords internal
+#' @export
+#' @method pkg_ref_cache.remote_checks pkg_cran_remote
+pkg_ref_cache.remote_checks.pkg_cran_remote <- function(x, name, ...) {
   webURL <- sprintf("%s/web/checks/check_results_%s.html", x$repo_base_url, x$name)
   page <- httr::content(httr::GET(webURL))
   tables <- xml2::xml_find_all(page, ".//table")
@@ -29,7 +34,9 @@ pkg_ref_cache.remote_checks.pkg_cran_remote <- function(x, ...) {
 
 #' @importFrom httr content GET
 #' @importFrom xml2 xml_find_all xml_text
-pkg_ref_cache.remote_checks.pkg_bioc_remote <- function(x, ...) {
+#' @export
+#' @method pkg_ref_cache.remote_checks pkg_bioc_remote
+pkg_ref_cache.remote_checks.pkg_bioc_remote <- function(x, name, ...) {
   webURL <- sprintf("%s/%s", x$repo_base_url, x$name)
 
   # TODO:

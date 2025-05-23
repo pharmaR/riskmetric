@@ -1,39 +1,36 @@
+#' @describeIn riskmetric_metadata_caching
 #' Get the BugReports url
 #'
-#' @inheritParams pkg_ref_cache
-#' @family package reference cache
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-#' @noRd
-pkg_ref_cache.bug_reports_url <- function(x, ...) {
+#' @usage NULL
+#' @export
+pkg_ref_cache.bug_reports_url <- function(x, name, ...) {
   UseMethod("pkg_ref_cache.bug_reports_url")
 }
 
-
-#' Get the BugReports url
-#'
 #' @importFrom utils packageDescription
-#' @return a \code{pkg_ref} object
 #' @keywords internal
-pkg_ref_cache.bug_reports_url.pkg_source <- function(x, ...) {
+#' @export
+#' @method pkg_ref_cache.bug_reports_url pkg_source
+pkg_ref_cache.bug_reports_url.pkg_source <- function(x, name, ...) {
   # fake a library location given the package source code path where the
   # description can be found, revert on exit when no longer needed
 
   packageDescription(x$name, dirname(x$path))$BugReports
 }
 
-
-
 #' @importFrom utils packageDescription
 #' @keywords internal
-pkg_ref_cache.bug_reports_url.pkg_install <- function(x, ...) {
+#' @export
+#' @method pkg_ref_cache.bug_reports_url pkg_install
+pkg_ref_cache.bug_reports_url.pkg_install <- function(x, name, ...) {
   packageDescription(x$name)$BugReports
 }
 
-
-
 #' @importFrom xml2 xml_find_all xml_attr
 #' @keywords internal
+#' @export
+#' @method pkg_ref_cache.bug_reports_url pkg_cran_remote
 pkg_ref_cache.bug_reports_url.pkg_cran_remote <- function(x, ...) {
   # scrape CRAN package webpage for BugReports links
   bug_reports_xpath <- "//td[.='BugReports:']/following::td[1]/a"
@@ -41,10 +38,10 @@ pkg_ref_cache.bug_reports_url.pkg_cran_remote <- function(x, ...) {
   xml_attr(bug_reports_link, "href")
 }
 
-
-
 #' @importFrom xml2 xml_find_all xml_attr
 #' @keywords internal
+#' @export
+#' @method pkg_ref_cache.bug_reports_url pkg_bioc_remote
 pkg_ref_cache.bug_reports_url.pkg_bioc_remote <- function(x, ...) {
   # scrape CRAN package webpage for BugReports links
   bug_reports_xpath <- "//td[.='BugReports']/following::td[1]/a"

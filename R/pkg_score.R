@@ -37,9 +37,8 @@ pkg_score <- function(x, ..., error_handler = score_error_default) {
   UseMethod("pkg_score")
 }
 
-
-
 #' @export
+#' @method pkg_score tbl_df
 pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
   assessment_columns <- get_assessment_columns(x)
   for (coln in which(assessment_columns)) {
@@ -64,9 +63,8 @@ pkg_score.tbl_df <- function(x, ..., error_handler = score_error_default) {
   x
 }
 
-
-
 #' @export
+#' @method pkg_score list_of_pkg_metric
 pkg_score.list_of_pkg_metric <- function(x, ...,
     error_handler = score_error_default) {
 
@@ -97,7 +95,6 @@ pkg_score.list_of_pkg_metric <- function(x, ...,
 #' }
 #' @keywords internal
 roxygen_score_family <- function(name, dontrun = TRUE) {
-
   assess_func <- sprintf("assess_%s", name)
   score_func <- sprintf("metric_score.pkg_metric_%s", name)
   example_template <- if (dontrun) {
@@ -112,7 +109,7 @@ roxygen_score_family <- function(name, dontrun = TRUE) {
       "package. Please provide one to complete documentation."),
       name, assess_func))
 
-  if (!score_func %in% getNamespaceExports(utils::packageName()))
+  if (!score_func %in% .S3methods("metric_score"))
     warning(sprintf(paste0("Error when generating documentation for %s. ",
       "Associated scoring function `%s` was not found in the `riskmetric` ",
       "package. Please provide one to complete documentation."),
