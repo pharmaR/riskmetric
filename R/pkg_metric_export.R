@@ -17,6 +17,7 @@ to_pascal_case <- function(x) {
 #' @param x A `tbl_df` or `list` returned by `pkg_score()`, containing scored
 #'   `pkg_metric` values. The input may come from `pkg_score.tbl_df()` (for
 #'   many packages) or `pkg_score.list_of_pkg_metric()` (for a single package).
+#' @param ... additional arguments unused
 #'
 #' @return A character vector, where each element is a DCF-style line
 #'   representing one scored metric (e.g., `"MetricHasNews: 1"`).
