@@ -26,14 +26,29 @@ assess_export_help.pkg_remote <- function(x, ...) {
 #' @export
 assess_export_help.pkg_source <- function(x, ...) {
   pkg_metric_eval(class = "pkg_metric_export_help", {
-    # ignore S3-dispatched methods
+    # Read NAMESPACE
     lines <- readLines(paste0(x$path, "/NAMESPACE"), warn = FALSE)
+
+    # Extract explicit exports
     export_lines <- grep("^export\\(|^exportMethod\\(", lines, value = TRUE)
     exports <- gsub(".*\\(([^)]+)\\).*", "\\1", export_lines)
     exports <- unlist(strsplit(exports, ",\\s*"))
-
-    out <- exports %in% names(x$help_aliases)
-    names(out) <- exports
+    
+    # Extract exportPattern regexes
+    pattern_lines <- grep("^exportPattern\\(", lines, value = TRUE)
+    patterns <- gsub(".*\\(\"([^\"]+)\"\\).*", "\\1", pattern_lines)
+    
+    # Match exportPattern regexes against available help aliases
+    pattern_exports <- unlist(lapply(patterns, function(pat) {
+      grep(pat, names(x$help_aliases), value = TRUE)
+    }))
+    
+    # Combine all exports and remove duplicates
+    all_exports <- unique(c(exports, pattern_exports))
+    
+    # Check which exports have help aliases
+    out <- all_exports %in% names(x$help_aliases)
+    names(out) <- all_exports
     out
   })
 }
