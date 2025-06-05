@@ -44,7 +44,7 @@ pkg_metric_export.list <- function(x, file = "PACKAGES", ...) {
   for (name in names(x)) {
     pascal_name <- paste0("Metric", to_pascal_case(name))
     value <- as.character(x[[name]][1])
-    
+
     # Replace NA values with "NA" string
     record[[pascal_name]] <- ifelse(is.na(value), "NA", value)
   }
