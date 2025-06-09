@@ -60,17 +60,17 @@ pkg_metric_export.list <- function(x, file = "PACKAGES", ...) {
 pkg_metric_export.tbl_df <- function(x, file = "PACKAGES", ...) {
   x <- x[, setdiff(names(x), "pkg_ref")]
 
-  records <- apply(x, 1, function(row) {
-    metrics <- as.list(row)
+  records <- lapply(seq_len(nrow(x)), function(i) {
+    row <- x[i, , drop = FALSE]
     record <- list()
 
-    for (name in names(metrics)) {
-      value <- as.character(metrics[[name]])
+    for (name in names(row)) {
+      value <- as.character(row[[name]])
 
       # Replace NA values with "NA" string
-      value <- ifelse(is.na(value), "NA", value)
+      value <- ifelse(is.na(row[[name]]), "NA", value)
 
-      # Leave Package and Version untouched, but ensure CamelCase
+      # Leave Package and Version untouched
       if (name %in% c("package", "version")) {
         pascal_name <- paste0(toupper(substring(name, 1, 1)), substring(name, 2))
         record[[pascal_name]] <- value
@@ -83,7 +83,6 @@ pkg_metric_export.tbl_df <- function(x, file = "PACKAGES", ...) {
     record
   })
 
-  # Convert to data frame
   df <- do.call(rbind.data.frame, lapply(records, as.data.frame, stringsAsFactors = FALSE))
   write.dcf(df, file = file)
   df
