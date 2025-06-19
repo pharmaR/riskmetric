@@ -10,6 +10,7 @@ pkg_metric_export(x, ...)
 \item{x}{A `tbl_df` or `list` returned by `pkg_score()`, containing scored
 `pkg_metric` values. The input may come from `pkg_score.tbl_df()` (for
 many packages) or `pkg_score.list_of_pkg_metric()` (for a single package).}
+
 \item{...}{additional arguments unused}
 }
 \value{
@@ -38,4 +39,7 @@ scores <- pkg_score(pkg_assess(as_tibble(pkg_ref("riskmetric"))))
 pkg_metric_export(scores[1, ])  # flatten first package's results
 }
 
+}
+\seealso{
+pkg_metric_import
 }

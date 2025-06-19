@@ -21,7 +21,7 @@ to_pascal_case <- function(x) {
 #'
 #' @return A character vector, where each element is a DCF-style line
 #'   representing one scored metric (e.g., `"MetricHasNews: 1"`).
-#'
+#' @seealso pkg_metric_import
 #' @examples
 #' \dontrun{
 #' # For a single package
