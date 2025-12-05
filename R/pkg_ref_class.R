@@ -68,35 +68,59 @@
 #' ref_2$source  # returns 'pkg_cran_remote'
 #' }
 pkg_ref <- function(x, ...) {
-  if (missing(x)) return(structure(logical(0L), class = "pkg_ref"))
+  if (missing(x)) {
+    empty <- new.env(parent = emptyenv())
+    class(empty) <- c("pkg_ref", class(empty))
+    return(empty)
+  }
+
   as_pkg_ref(x, ...)
 }
 
-
+#' @keywords internal
+pkg_ref_ptype <- function() {
+  ptype <- logical()
+  class(ptype) <- c("pkg_ref_ptype", "pkg_ref", class(ptype))
+  ptype
+}
 
 #' @importFrom vctrs new_vctr
 #' @keywords internal
 new_pkg_ref <- function(name, version = NA_character_, source, ...) {
   dots <- list(...)
-  if (length(dots) && is.null(names(dots)) || any(names(dots) == ""))
+  if (length(dots) && is.null(names(dots)) || any(names(dots) == "")) {
     stop("pkg_ref ellipses arguments must be named")
+  }
 
   source <- match.arg(
     source,
-    c("pkg_git_remote", "pkg_bioc_remote", "pkg_cran_remote", "pkg_remote", "pkg_install", "pkg_source", "pkg_missing"),
-    several.ok = TRUE)
+    c(
+      "pkg_git_remote",
+      "pkg_bioc_remote",
+      "pkg_cran_remote",
+      "pkg_remote",
+      "pkg_install",
+      "pkg_source",
+      "pkg_missing"
+    ),
+    several.ok = TRUE
+  )
 
   source <- get_pkg_ref_classes(source)
 
-  pkg_data <- as.environment(append(list(
-    name = name,
-    version = version,
-    source = source[[1L]]
-  ), dots))
+  pkg_data <- as.environment(append(
+    list(
+      name = name,
+      version = version,
+      source = source[[1L]]
+    ),
+    dots
+  ))
 
   structure(
     pkg_data,
-    class = c(source, class(pkg_data)))
+    class = c(source, class(pkg_data))
+  )
 }
 
 
@@ -128,11 +152,13 @@ pkg_ref_class_hierarchy <- list(
 #' @keywords internal
 #'
 get_pkg_ref_classes <- function(x, classes = pkg_ref_class_hierarchy) {
-  if (x %in% names(classes) || x %in% classes)
+  if (x %in% names(classes) || x %in% classes) {
     return(x)
+  }
 
-  if (!is.list(classes))
+  if (!is.list(classes)) {
     return(FALSE)
+  }
 
   for (i in seq_along(classes)) {
     subclasses <- get_pkg_ref_classes(x, classes[[i]])
@@ -147,64 +173,71 @@ get_pkg_ref_classes <- function(x, classes = pkg_ref_class_hierarchy) {
 #'
 #' @param lib.loc The path to the R library directory of the installed package.
 pkg_install <- function(x, lib.loc = NULL) {
-  if(verify_pkg_source(x, "pkg_install") == "pkg_missing") return(pkg_missing(x))
+  if (verify_pkg_source(x, "pkg_install") == "pkg_missing") {
+    return(pkg_missing(x))
+  }
 
   path <- find.package(x, lib.loc = lib.loc)
   version <- utils::packageVersion(x, lib.loc = dirname(path))
 
-  new_pkg_ref(x,
-              version = version,
-              path = path,
-              source = "pkg_install")
+  new_pkg_ref(x, version = version, path = path, source = "pkg_install")
 }
 
 #' @rdname pkg_ref
 pkg_source <- function(x) {
   desc <- read.dcf(file.path(x, "DESCRIPTION"))
-  name <- unname(desc[,"Package"])
+  name <- unname(desc[, "Package"])
 
-  new_pkg_ref(name,
-              version = desc[,"Version"][[1]],
-              path = normalizePath(x),
-              source = "pkg_source")
+  new_pkg_ref(
+    name,
+    version = desc[, "Version"][[1]],
+    path = normalizePath(x),
+    source = "pkg_source"
+  )
 }
 
 #' @rdname pkg_ref
 #'
 #' @param repos URL of CRAN repository to pull package metadata.
-pkg_cran <- function(x, repos = getOption("repos", "https://cran.rstudio.com")) {
+pkg_cran <- function(
+  x,
+  repos = getOption("repos", "https://cran.rstudio.com")
+) {
   ap <- memoise_available_packages(repos = repos)
-  info <- ap[ap[,"Package"] == x,,drop = FALSE]
+  info <- ap[ap[, "Package"] == x, , drop = FALSE]
 
-  new_pkg_ref(x,
-              version = info[,"Version"],
-              repo = info[,"Repository"],
-              source = c("pkg_cran_remote"))
+  new_pkg_ref(
+    x,
+    version = info[, "Version"],
+    repo = info[, "Repository"],
+    source = c("pkg_cran_remote")
+  )
 }
 
 #' @rdname pkg_ref
 pkg_bioc <- function(x) {
   bp <- memoise_bioc_available()
-  info <- bp[bp[,"Package"] == x,,drop = FALSE]
+  info <- bp[bp[, "Package"] == x, , drop = FALSE]
 
-  new_pkg_ref(x,
-              version = info[,"Version"],
-              repo = "https://bioconductor.org/packages/release/bioc",
-              source = c("pkg_bioc_remote"))
+  new_pkg_ref(
+    x,
+    version = info[, "Version"],
+    repo = "https://bioconductor.org/packages/release/bioc",
+    source = c("pkg_bioc_remote")
+  )
 }
 
 #' @rdname pkg_ref
 pkg_missing <- function(x) {
-  new_pkg_ref(x,
-              source = c("pkg_missing"))
+  new_pkg_ref(x, source = c("pkg_missing"))
 }
 
 #' @rdname pkg_ref
 pkg_library <- function(lib.loc) {
   # Create pkg_cohort object
   cohort <- pkg_cohort()
-  for(pkg in list.files(lib.loc, recursive = FALSE, full.names = FALSE)) {
-    cohort[[length(cohort)+1]] <- pkg_install(pkg, lib.loc = lib.loc)
+  for (pkg in list.files(lib.loc, recursive = FALSE, full.names = FALSE)) {
+    cohort[[length(cohort) + 1]] <- pkg_install(pkg, lib.loc = lib.loc)
   }
   cohort
 }
@@ -229,34 +262,38 @@ pkg_library <- function(lib.loc) {
 #' @export
 as_pkg_ref <- function(x, ...) {
   if ((is.list(x) || is.atomic(x)) && length(x) > 1) {
-
     dots <- list(...)
 
     # iterate over the list of packages and add sources and versions
     pkg_ref_list <- list()
-    for(i in seq_along(x)) {
-      if(!is.null(dots$source))
+    for (i in seq_along(x)) {
+      if (!is.null(dots$source)) {
         source <- ifelse(length(dots$source) > 1, dots$source[i], dots$source)
-      else source <- NULL
+      } else {
+        source <- NULL
+      }
 
-      pkg_ref_list[[i]] <- as_pkg_ref(x[[i]], source=source)
+      pkg_ref_list[[i]] <- as_pkg_ref(x[[i]], source = source)
     }
 
-    return(vctrs::new_list_of(pkg_ref_list, ptype = pkg_ref(), class = "list_of_pkg_ref"))
+    return(vctrs::new_list_of(
+      pkg_ref_list,
+      ptype = pkg_ref_ptype(),
+      class = "list_of_pkg_ref"
+    ))
   } else {
     UseMethod("as_pkg_ref")
   }
 }
 
 
-
 #' @export
 as_pkg_ref.default <- function(x, ...) {
   stop(sprintf(
     "Don't know how to convert object class '%s' to class 'pkg_ref'",
-    paste(class(x), collapse = ", ")))
+    paste(class(x), collapse = ", ")
+  ))
 }
-
 
 
 #' @export
@@ -267,24 +304,39 @@ as_pkg_ref.pkg_ref <- function(x, ...) {
 
 #' @importFrom utils available.packages packageVersion
 #' @export
-as_pkg_ref.character <- function(x, repos = getOption("repos", "https://cran.rstudio.com"),
-                                 source = NULL, lib.loc = NULL, ...) {
-
+as_pkg_ref.character <- function(
+  x,
+  repos = getOption("repos", "https://cran.rstudio.com"),
+  source = NULL,
+  lib.loc = NULL,
+  ...
+) {
   dots <- list(...)
 
-  pkg_source_ <- ifelse(is.null(source),
-                        determine_pkg_source(x, source, repos),
-                        verify_pkg_source(x, source, repos))
+  pkg_source_ <- ifelse(
+    is.null(source),
+    determine_pkg_source(x, source, repos),
+    verify_pkg_source(x, source, repos)
+  )
 
-  stopifnot(pkg_source_ %in% c("pkg_install", "pkg_source", "pkg_cran_remote",
-                               "pkg_bioc_remote", "pkg_missing"))
+  stopifnot(
+    pkg_source_ %in%
+      c(
+        "pkg_install",
+        "pkg_source",
+        "pkg_cran_remote",
+        "pkg_bioc_remote",
+        "pkg_missing"
+      )
+  )
 
-  switch(pkg_source_,
-         pkg_install = pkg_install(x, lib.loc = lib.loc),
-         pkg_source = pkg_source(x),
-         pkg_cran_remote = pkg_cran(x, repos = repos),
-         pkg_bioc_remote = pkg_bioc(x),
-         pkg_missing = pkg_missing(x)
+  switch(
+    pkg_source_,
+    pkg_install = pkg_install(x, lib.loc = lib.loc),
+    pkg_source = pkg_source(x),
+    pkg_cran_remote = pkg_cran(x, repos = repos),
+    pkg_bioc_remote = pkg_bioc(x),
+    pkg_missing = pkg_missing(x)
   )
 }
 
@@ -299,18 +351,18 @@ determine_pkg_source <- function(x, source, repos) {
   if (dir.exists(x) && file.exists(file.path(x, "DESCRIPTION"))) {
     "pkg_source"
 
-  # non-source package
+    # non-source package
   } else if (grepl("^[[:alpha:]][[:alnum:].]*[[:alnum:]]$", x)) {
-
     if (length(find.package(x, quiet = TRUE)) != 0) {
       return("pkg_install")
 
-    # if its not installed, pull the package to check it
+      # if its not installed, pull the package to check it
     } else {
       ap <- memoise_available_packages(repos = repos)
       info <- ap[ap[, "Package"] == x, , drop = FALSE]
 
-      p <- new_pkg_ref(x,
+      p <- new_pkg_ref(
+        x,
         version = info[, "Version"],
         repo = info[, "Repository"],
         source = c("pkg_remote")
@@ -324,7 +376,6 @@ determine_pkg_source <- function(x, source, repos) {
     } else {
       "pkg_missing"
     }
-
   } else {
     stop(sprintf("can't interpret character '%s' as a package reference", x))
   }
@@ -334,42 +385,58 @@ determine_pkg_source <- function(x, source, repos) {
 #' @return a string of package source
 #' @keywords internal
 verify_pkg_source <- function(x, source, repos) {
-  switch(source,
+  switch(
+    source,
     pkg_install = "pkg_install",
     pkg_source = {
       # check source pakcage is present if source is "pkg_source"
       if (source == "pkg_source" && !dir.exists(x)) {
-        warning(paste0(c("Package source: `", x, "` does not exist, source is now 'pkg_missing'")))
+        warning(paste0(c(
+          "Package source: `",
+          x,
+          "` does not exist, source is now 'pkg_missing'"
+        )))
         return("pkg_missing")
       }
     },
     pkg_cran_remote = {
       ap <- memoise_available_packages(repos = repos)
       info <- ap[ap[, "Package"] == x, , drop = FALSE]
-      p <- new_pkg_ref(x,
+      p <- new_pkg_ref(
+        x,
         version = info[, "Version"],
         repo = info[, "Repository"],
         source = c("pkg_remote")
       )
-      if(!is_available_cran(x, repos, p)) {
-        warning(paste0(c("Package: `", x, "` not found on CRAN, source is now 'pkg_missing'")))
+      if (!is_available_cran(x, repos, p)) {
+        warning(paste0(c(
+          "Package: `",
+          x,
+          "` not found on CRAN, source is now 'pkg_missing'"
+        )))
         return("pkg_missing")
       }
     },
     pkg_bioc_remote = {
       ap <- memoise_available_packages(repos = repos)
       info <- ap[ap[, "Package"] == x, , drop = FALSE]
-      p <- new_pkg_ref(x,
+      p <- new_pkg_ref(
+        x,
         version = info[, "Version"],
         repo = info[, "Repository"],
         source = c("pkg_remote")
       )
       if (!is_available_bioc(x, p)) {
-        warning(paste0(c("Package: `", x, "` not found on bioconductor, source is now 'pkg_missing'")))
+        warning(paste0(c(
+          "Package: `",
+          x,
+          "` not found on bioconductor, source is now 'pkg_missing'"
+        )))
         return("pkg_missing")
       }
     },
-    source)
+    source
+  )
 
   source
 }

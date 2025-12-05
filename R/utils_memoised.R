@@ -18,17 +18,20 @@ memoise_cran_mirrors <- memoise::memoise({
     if (!is.null(.local)) {
       return(read.csv(
         file.path(.local, "test_webmocks", "data", "cran_mirrors.csv"),
-        stringsAsFactors = FALSE))
+        stringsAsFactors = FALSE
+      ))
     }
 
-    tryCatch({
-      utils::getCRANmirrors(all = all, ...)
-    }, error = function(e) {
-      NULL
-    })
+    tryCatch(
+      {
+        utils::getCRANmirrors(all = all, ...)
+      },
+      error = function(e) {
+        NULL
+      }
+    )
   }
 })
-
 
 
 #' @importFrom BiocManager available
@@ -36,12 +39,13 @@ memoise_cran_mirrors <- memoise::memoise({
 #' @keywords internal
 memoise_bioc_available <- memoise::memoise({
   function() {
-    con <- url("https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES")
+    con <- url(
+      "https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES"
+    )
     on.exit(close(con))
     as.data.frame(read.dcf(con), stringsAsFactors = FALSE)
   }
 })
-
 
 
 #' Fetch BioC Mirrors Info
@@ -57,25 +61,30 @@ memoise_bioc_mirrors <- memoise::memoise({
   # NOTE: might need to implement actual caching to avoid inconsistent behavior
   # when run with spotty internet
   function() {
-    tryCatch({
-      read.csv("https://bioconductor.org/BioC_mirrors.csv")
-    }, error = function(e) {
-      NULL
-    })
+    tryCatch(
+      {
+        read.csv("https://bioconductor.org/BioC_mirrors.csv")
+      },
+      error = function(e) {
+        NULL
+      }
+    )
   }
 })
 
 
-
 #' @importFrom memoise memoise
 memoise_available_packages <- memoise::memoise({
-  Sys.sleep(20)
-
-  function(..., repos = getOption("repos"), .local = getOption("riskmetric.tests")) {
+  function(
+    ...,
+    repos = getOption("repos"),
+    .local = getOption("riskmetric.tests")
+  ) {
     if (!is.null(.local)) {
       db <- read.csv(
         file.path(.local, "test_webmocks", "data", "cran_packages.csv"),
-        stringsAsFactors = FALSE)
+        stringsAsFactors = FALSE
+      )
       db[, "Repository"] <- contrib.url(repos, getOption("pkgType"))
       return(db)
     } else if (is.null(repos)) {
