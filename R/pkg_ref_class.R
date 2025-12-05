@@ -242,7 +242,7 @@ as_pkg_ref <- function(x, ...) {
       pkg_ref_list[[i]] <- as_pkg_ref(x[[i]], source=source)
     }
 
-    return(vctrs::new_list_of(pkg_ref_list, ptype = pkg_ref(), class = "list_of_pkg_ref"))
+    return(vctrs::new_list_of(pkg_ref_list, ptype = list(), class = "list_of_pkg_ref"))
   } else {
     UseMethod("as_pkg_ref")
   }

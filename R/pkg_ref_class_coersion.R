@@ -3,7 +3,7 @@
 #' @export
 as_tibble.pkg_ref <- function(x, ...) {
   as_tibble(vctrs::new_list_of(list(x),
-    ptype = pkg_ref(),
+    ptype = list(),
     class = "list_of_pkg_ref"))
 }
 

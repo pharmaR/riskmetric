@@ -59,10 +59,11 @@ news_from_dir <- function(path) {
   # attempt to parse all news.* files
   for (i in seq_along(files)) {
     f <- files[[i]]
+    ext <- tools::file_ext(f)
     tryCatch({
       if (tolower(tools::file_ext(f)) == "rd") {
         content[[i]] <- .tools()$.news_reader_default(f)
-      } else if (tolower(tools::file_ext(f)) == "md"||nchar(ext) == 0L) {
+      } else if (tolower(ext) == "md" || nchar(ext) == 0L) {
         # NOTE: should we do validation of markdown format?
         content[[i]] <- readLines(f, warn = FALSE)
       }
