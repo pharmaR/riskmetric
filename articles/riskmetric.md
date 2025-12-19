@@ -354,9 +354,9 @@ pkg_assess(riskmetric_pkg_ref)
     #> [1] "Eli Miller <eli.miller@atorusresearch.com>"
     #> 
     #> $bugs_status
-    #>  [1] FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE
-    #> [13]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
-    #> [25] FALSE FALSE  TRUE  TRUE  TRUE FALSE
+    #>  [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE
+    #> [13]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+    #> [25]  TRUE FALSE FALSE  TRUE  TRUE  TRUE
     #> 
     #> $size_codebase
     #> <simpleError in attachNamespace(x$name): namespace is already attached>
@@ -373,7 +373,7 @@ pkg_assess(riskmetric_pkg_ref)
     #> [1] "presence of a bug reports url in repository"
     #> 
     #> $downloads_1yr
-    #> [1] 5026
+    #> [1] 5176
     #> 
     #> $reverse_dependencies
     #> character(0)
@@ -454,7 +454,7 @@ pkg_score(pkg_assess(as_tibble(pkg_ref("riskmetric"))))
 #> # A tibble: 1 × 23
 #>   package    version pkg_ref             pkg_score covr_coverage has_news  
 #>   <chr>      <chr>   <lst_f_p_>              <dbl> <pkg_scor>    <pkg_scor>
-#> 1 riskmetric 0.2.5   riskmetric<install>     0.565 NA            1         
+#> 1 riskmetric 0.2.5   riskmetric<install>     0.564 NA            1         
 #> # ℹ 17 more variables: remote_checks <pkg_scor>, news_current <pkg_scor>,
 #> #   r_cmd_check <pkg_scor>, exported_namespace <pkg_scor>,
 #> #   has_vignettes <pkg_scor>, export_help <pkg_scor>, has_website <pkg_scor>,
@@ -505,7 +505,7 @@ package_tbl %>%
 #> # A tibble: 3 × 23
 #>   package    version pkg_ref             pkg_score covr_coverage has_news  
 #>   <chr>      <chr>   <lst_f_p_>              <dbl> <pkg_scor>    <pkg_scor>
-#> 1 riskmetric 0.2.5   riskmetric<install>     0.565 NA            1         
+#> 1 riskmetric 0.2.5   riskmetric<install>     0.564 NA            1         
 #> 2 utils      4.5.2   utils<install>          0.687 NA            0         
 #> 3 tools      4.5.2   tools<install>          0.735 NA            0         
 #> # ℹ 17 more variables: remote_checks <pkg_scor>, news_current <pkg_scor>,
@@ -526,7 +526,7 @@ package_tbl %>%
   pkg_assess() %>%
   pkg_score() %>%
   summarize_scores()
-#> [1] 0.5653897 0.6870884 0.7354773
+#> [1] 0.5635860 0.6870884 0.7354773
 ```
 
 ## How you can help…
