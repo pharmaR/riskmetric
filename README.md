@@ -1,6 +1,7 @@
 # riskmetric <a href='https://pharmar.github.io/riskmetric/'><img src="man/figures/logo.png" align="right" height="172" style="float:right; height:172px;"/></a>
 
 <!-- badges: start -->
+[![Lifecycle](.github/assets/lifecycle-superseded.svg)](https://github.com/pharmaR/val.meter)
 [![R build status](https://github.com/pharmaR/riskmetric/workflows/R-CMD-check/badge.svg)](https://github.com/pharmaR/riskmetric/actions?workflow=R-CMD-check)
 [![Coverage status](https://codecov.io/gh/pharmaR/riskmetric/branch/master/graph/badge.svg)](https://app.codecov.io/gh/pharmaR/riskmetric?branch=master)
 <!-- badges: end -->
@@ -8,8 +9,17 @@
 `riskmetric` is a collection of risk metrics to evaluate the quality of R
 packages.
 
-_This package is in experimentation. Final considerations about design are being
-considered, but core concepts are considered final._
+> [!IMPORTANT]
+>
+> Lifecycle: **Maintenance Only**
+>
+> The _R Validation Hub_ is shifting development efforts to our new flagship
+> assessment tool, [`{val.meter}`](https://github.com/pharmaR/val.meter). While
+> development is not ending for `{riskmetric}`, it has shifted to
+> maintenance-only. Please continue to file bug reports for erroneous behaviors,
+> but for feature requests and discussion on approach, please head over to
+> `{val.meter}`.
+> 
 
 ## Background
 
