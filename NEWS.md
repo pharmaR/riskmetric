@@ -1,6 +1,6 @@
-# riskmetric (development version)
+# riskmetric 0.2.6
 
-- Fix bug with assessing source packages that have non-R files in the R directory ([#362](https://github.com/pharmaR/riskmetric/issues/362))
+- Updates for `vctrs` package updates. #394 Thanks @dgkf!
 
 # riskmetric 0.2.4
 
