@@ -16,7 +16,7 @@ withr::with_libpaths(c(templib, oldLibs), {
 
   # build and install
   pkg_archive <- pkgbuild::build(pkg_path, quiet = TRUE)
-  on.exit(file.remove(pkg_archive))
+  on.exit(file.remove(pkg_archive), add = TRUE)
   install.packages(pkg_archive, type = "source", repos = NULL, quiet = TRUE)
 
   # a representative "good" quality package from an installed package
@@ -29,11 +29,7 @@ withr::with_libpaths(c(templib, oldLibs), {
 })
 
 # a representative "good" quality package from source code
-pkg_ref_source_good <- pkg_source(file.path(
-  test_path(),
-  "test_packages",
-  "pkgsourcegood"
-))
+pkg_ref_source_good <- pkg_source(pkg_path)
 assess_source_good <- pkg_assess(pkg_ref_source_good)
 score_source_good <- pkg_score(
   assess_source_good,
