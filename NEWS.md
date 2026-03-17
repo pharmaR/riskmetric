@@ -1,5 +1,13 @@
 # riskmetric (development version)
 
+# riskmetric 0.2.6
+
+- Update to address new failing tests responding to `devtools` v2.4.7 changes.
+
+# riskmetric 0.2.5
+
+- Update use of `vctrs` to accommdate changes to acceptable `ptype` parameters
+  in `vctrs` v0.7.1 (#394)
 - Fix bug with assessing source packages that have non-R files in the R directory ([#362](https://github.com/pharmaR/riskmetric/issues/362))
 
 # riskmetric 0.2.4
