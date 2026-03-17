@@ -95,13 +95,13 @@ riskmetric_pkg_ref <- pkg_ref("riskmetric")
 print(riskmetric_pkg_ref)
 ```
 
-    #> <pkg_install, pkg_ref> riskmetric v0.2.5
+    #> <pkg_install, pkg_ref> riskmetric v0.2.7
     #> $path
     #>   [1] "/home/user/username/R/4.5/Resources/library/riskmetric"
     #> $source
     #>   [1] "pkg_install"
     #> $version
-    #>   [1] '0.2.5'
+    #>   [1] '0.2.7'
     #> $name
     #>   [1] "riskmetric"
     #> $bug_reports...
@@ -177,7 +177,7 @@ the side-effect of mutating our `riskmetric_pkg_ref` object.
 riskmetric_pkg_ref
 ```
 
-    #> <pkg_install, pkg_ref> riskmetric v0.2.5
+    #> <pkg_install, pkg_ref> riskmetric v0.2.7
     #> $help_aliases
     #>              riskmetric-package                          %||%
     #>                    "riskmetric"            "if_not_null_else"
@@ -191,7 +191,7 @@ riskmetric_pkg_ref
     #> $source
     #>   [1] "pkg_install"
     #> $version
-    #>   [1] '0.2.5'
+    #>   [1] '0.2.7'
     #> $name
     #>   [1] "riskmetric"
     #> $bug_reports...
@@ -354,9 +354,9 @@ pkg_assess(riskmetric_pkg_ref)
     #> [1] "Eli Miller <eli.miller@atorusresearch.com>"
     #> 
     #> $bugs_status
-    #>  [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE
-    #> [13]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
-    #> [25]  TRUE FALSE FALSE  TRUE  TRUE  TRUE
+    #>  [1]  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+    #> [13]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE
+    #> [25]  TRUE FALSE FALSE  TRUE FALSE FALSE
     #> 
     #> $size_codebase
     #> <simpleError in attachNamespace(x$name): namespace is already attached>
@@ -373,7 +373,7 @@ pkg_assess(riskmetric_pkg_ref)
     #> [1] "presence of a bug reports url in repository"
     #> 
     #> $downloads_1yr
-    #> [1] 5176
+    #> [1] 6548
     #> 
     #> $reverse_dependencies
     #> character(0)
@@ -421,7 +421,7 @@ pkg_assess(as_tibble(riskmetric_pkg_ref))
     #> # A tibble: 1 × 22
     #>   package    version pkg_ref             covr_coverage has_news   remote_checks
     #>   <chr>      <chr>   <lst_f_p_>          <lst_f_p_>    <lst_f_p_> <lst_f_p_>   
-    #> 1 riskmetric 0.2.5   riskmetric<install> NA            1          NA           
+    #> 1 riskmetric 0.2.7   riskmetric<install> NA            1          NA           
     #> # ℹ 16 more variables: news_current <lst_f_p_>, r_cmd_check <lst_f_p_>,
     #> #   exported_namespace <lst_f_p_>, has_vignettes <lst_f_p_>,
     #> #   export_help <lst_f_p_>, has_website <lst_f_p_>, has_maintainer <lst_f_p_>,
@@ -454,7 +454,7 @@ pkg_score(pkg_assess(as_tibble(pkg_ref("riskmetric"))))
 #> # A tibble: 1 × 23
 #>   package    version pkg_ref             pkg_score covr_coverage has_news  
 #>   <chr>      <chr>   <lst_f_p_>              <dbl> <pkg_scor>    <pkg_scor>
-#> 1 riskmetric 0.2.5   riskmetric<install>     0.564 NA            1         
+#> 1 riskmetric 0.2.7   riskmetric<install>     0.563 NA            1         
 #> # ℹ 17 more variables: remote_checks <pkg_scor>, news_current <pkg_scor>,
 #> #   r_cmd_check <pkg_scor>, exported_namespace <pkg_scor>,
 #> #   has_vignettes <pkg_scor>, export_help <pkg_scor>, has_website <pkg_scor>,
@@ -505,9 +505,9 @@ package_tbl %>%
 #> # A tibble: 3 × 23
 #>   package    version pkg_ref             pkg_score covr_coverage has_news  
 #>   <chr>      <chr>   <lst_f_p_>              <dbl> <pkg_scor>    <pkg_scor>
-#> 1 riskmetric 0.2.5   riskmetric<install>     0.564 NA            1         
-#> 2 utils      4.5.2   utils<install>          0.687 NA            0         
-#> 3 tools      4.5.2   tools<install>          0.735 NA            0         
+#> 1 riskmetric 0.2.7   riskmetric<install>     0.563 NA            1         
+#> 2 utils      4.5.3   utils<install>          0.687 NA            0         
+#> 3 tools      4.5.3   tools<install>          0.735 NA            0         
 #> # ℹ 17 more variables: remote_checks <pkg_scor>, news_current <pkg_scor>,
 #> #   r_cmd_check <pkg_scor>, exported_namespace <pkg_scor>,
 #> #   has_vignettes <pkg_scor>, export_help <pkg_scor>, has_website <pkg_scor>,
@@ -526,7 +526,7 @@ package_tbl %>%
   pkg_assess() %>%
   pkg_score() %>%
   summarize_scores()
-#> [1] 0.5635860 0.6870884 0.7354773
+#> [1] 0.5631402 0.6870884 0.7354772
 ```
 
 ## How you can help…

@@ -73,24 +73,38 @@ override the logic that riskmetric does when determining a package
 source. This can be useful when you are scoring the most recent version
 present on a repository, or testing a specific library.
 
-- **`pkg_ref`** A default class for general metadata collection.
+- **`pkg_ref`**:
 
-  - **`pkg_source`** A reference to a source code directory.
+  A default class for general metadata collection.
 
-  - **`pkg_install`** A reference to a package installation location in
-    a package library. A specific library can be passed by passing the
-    path to the library as the parameter \`lib.loc\`
+- **`pkg_source`**:
 
-  - **`pkg_remote`** A reference to package metadata on a remote server.
+  A reference to a source code directory.
 
-    - **`pkg_cran_remote`** A reference to package information pulled
-      from the CRAN repository.
+- **`pkg_install`**:
 
-    - **`pkg_bioc_remote`** A reference to package information pulled
-      from the Bioconductor repository.
+  A reference to a package installation location in a package library. A
+  specific library can be passed by passing the path to the library as
+  the parameter \`lib.loc\`
 
-    - **`pkg_git_remote`** A reference to a package source code git
-      repository. (not yet implemented)
+- **`pkg_remote`**:
+
+  A reference to package metadata on a remote server.
+
+  **`pkg_cran_remote`**
+
+  :   A reference to package information pulled from the CRAN
+      repository.
+
+  **`pkg_bioc_remote`**
+
+  :   A reference to package information pulled from the Bioconductor
+      repository.
+
+  **`pkg_git_remote`**
+
+  :   A reference to a package source code git repository. (not yet
+      implemented)
 
 ## Package Cohorts
 

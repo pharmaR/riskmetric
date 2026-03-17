@@ -29,13 +29,13 @@ Source:
 [`DESCRIPTION`](https://github.com/pharmaR/riskmetric/blob/master/DESCRIPTION)
 
 R Validation Hub, Kelkhoff D, Gotti M, Miller E, K K, Zhang Y, Milliman
-E, Manitz J (2025). *riskmetric: Risk Metrics to Evaluating R Packages*.
-R package version 0.2.5, <https://pharmar.github.io/riskmetric/>.
+E, Manitz J (2026). *riskmetric: Risk Metrics to Evaluating R Packages*.
+R package version 0.2.7, <https://pharmar.github.io/riskmetric/>.
 
     @Manual{,
       title = {riskmetric: Risk Metrics to Evaluating R Packages},
       author = {{R Validation Hub} and Doug Kelkhoff and Marly Gotti and Eli Miller and Kevin K and Yilong Zhang and Eric Milliman and Juliane Manitz},
-      year = {2025},
-      note = {R package version 0.2.5},
+      year = {2026},
+      note = {R package version 0.2.7},
       url = {https://pharmar.github.io/riskmetric/},
     }

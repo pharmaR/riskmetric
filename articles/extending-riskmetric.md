@@ -136,13 +136,13 @@ library(riskmetric)
 package <- pkg_ref("riskmetric")
 ```
 
-    #> <pkg_install, pkg_ref> riskmetric v0.2.5
+    #> <pkg_install, pkg_ref> riskmetric v0.2.7
     #> $path
     #>   [1] "/home/user/username/R/4.5/Resources/library/riskmetric"
     #> $source
     #>   [1] "pkg_install"
     #> $version
-    #>   [1] '0.2.5'
+    #>   [1] '0.2.7'
     #> $name
     #>   [1] "riskmetric"
     #> $bug_reports...
@@ -245,9 +245,9 @@ assessments
 #> # A tibble: 3 × 23
 #>   package    version pkg_ref             covr_coverage has_news   remote_checks
 #>   <chr>      <chr>   <lst_f_p_>          <lst_f_p_>    <lst_f_p_> <lst_f_p_>   
-#> 1 riskmetric 0.2.5   riskmetric<install> NA            1          NA           
-#> 2 utils      4.5.2   utils<install>      NA            0          NA           
-#> 3 tools      4.5.2   tools<install>      NA            0          NA           
+#> 1 riskmetric 0.2.7   riskmetric<install> NA            1          NA           
+#> 2 utils      4.5.3   utils<install>      NA            0          NA           
+#> 3 tools      4.5.3   tools<install>      NA            0          NA           
 #> # ℹ 17 more variables: news_current <lst_f_p_>, r_cmd_check <lst_f_p_>,
 #> #   exported_namespace <lst_f_p_>, has_vignettes <lst_f_p_>,
 #> #   export_help <lst_f_p_>, has_website <lst_f_p_>, has_maintainer <lst_f_p_>,
@@ -265,9 +265,9 @@ pkg_score(assessments)
 #> # A tibble: 3 × 24
 #>   package    version pkg_ref             pkg_score covr_coverage has_news  
 #>   <chr>      <chr>   <lst_f_p_>              <dbl> <pkg_scor>    <pkg_scor>
-#> 1 riskmetric 0.2.5   riskmetric<install>     0.535 NA            1         
-#> 2 utils      4.5.2   utils<install>          0.703 NA            0         
-#> 3 tools      4.5.2   tools<install>          0.748 NA            0         
+#> 1 riskmetric 0.2.7   riskmetric<install>     0.535 NA            1         
+#> 2 utils      4.5.3   utils<install>          0.703 NA            0         
+#> 3 tools      4.5.3   tools<install>          0.748 NA            0         
 #> # ℹ 18 more variables: remote_checks <pkg_scor>, news_current <pkg_scor>,
 #> #   r_cmd_check <pkg_scor>, exported_namespace <pkg_scor>,
 #> #   has_vignettes <pkg_scor>, export_help <pkg_scor>, has_website <pkg_scor>,
@@ -285,9 +285,9 @@ pkg_score(assessments, weights = c(has_website = 1, name_first_letter = 1))
 #> # A tibble: 3 × 24
 #>   package    version pkg_ref             pkg_score covr_coverage has_news  
 #>   <chr>      <chr>   <lst_f_p_>              <dbl> <pkg_scor>    <pkg_scor>
-#> 1 riskmetric 0.2.5   riskmetric<install>         0 NA            1         
-#> 2 utils      4.5.2   utils<install>              1 NA            0         
-#> 3 tools      4.5.2   tools<install>              1 NA            0         
+#> 1 riskmetric 0.2.7   riskmetric<install>         0 NA            1         
+#> 2 utils      4.5.3   utils<install>              1 NA            0         
+#> 3 tools      4.5.3   tools<install>              1 NA            0         
 #> # ℹ 18 more variables: remote_checks <pkg_scor>, news_current <pkg_scor>,
 #> #   r_cmd_check <pkg_scor>, exported_namespace <pkg_scor>,
 #> #   has_vignettes <pkg_scor>, export_help <pkg_scor>, has_website <pkg_scor>,
