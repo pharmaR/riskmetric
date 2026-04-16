@@ -265,7 +265,7 @@ pkg_score(assessments)
 #> # A tibble: 3 × 24
 #>   package    version pkg_ref             pkg_score covr_coverage has_news  
 #>   <chr>      <chr>   <lst_f_p_>              <dbl> <pkg_scor>    <pkg_scor>
-#> 1 riskmetric 0.2.7   riskmetric<install>     0.535 NA            1         
+#> 1 riskmetric 0.2.7   riskmetric<install>     0.531 NA            1         
 #> 2 utils      4.5.3   utils<install>          0.703 NA            0         
 #> 3 tools      4.5.3   tools<install>          0.748 NA            0         
 #> # ℹ 18 more variables: remote_checks <pkg_scor>, news_current <pkg_scor>,

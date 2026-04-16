@@ -26,7 +26,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/pharmaR/riskmetric/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/pharmaR/riskmetric/blob/v0.2.7/DESCRIPTION)
 
 R Validation Hub, Kelkhoff D, Gotti M, Miller E, K K, Zhang Y, Milliman
 E, Manitz J (2026). *riskmetric: Risk Metrics to Evaluating R Packages*.
