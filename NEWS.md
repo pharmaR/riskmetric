@@ -1,5 +1,19 @@
 # riskmetric (development version)
 
+- `memoise_bioc_available()` now queries every Bioconductor repository
+  advertised by `BiocManager::repositories()` (BioCsoft, BioCann, BioCexp,
+  BioCworkflows, BioCbooks) instead of only the software repository, so
+  packages hosted in the annotation, experiment, workflow and books
+  repositories (~1,400 additional packages in Bioc 3.22) are now recognised
+  by `pkg_bioc()` / `pkg_ref()`. `pkg_bioc()` also now records the actual
+  repository the package resolves from rather than hard-coding the
+  software repository URL.
+- `assess_dependencies.pkg_bioc_remote()` now queries all Bioconductor
+  repositories (previously only the first entry of
+  `BiocManager::repositories()`), so dependency lookups succeed for
+  annotation, experiment, workflow and books packages.
+
+
 # riskmetric 0.2.6
 
 - Update to address new failing tests responding to `devtools` v2.4.7 changes.

@@ -62,7 +62,9 @@ assess_dependencies.pkg_cran_remote <- function(x, ...){
 #' @export
 assess_dependencies.pkg_bioc_remote <- function(x, ...){
   pkg_metric_eval(class = "pkg_metric_dependencies", {
-    get_package_dependencies(x$name, BiocManager::repositories()[1])
+    bioc_repos <- bioc_repositories()
+    if (length(bioc_repos) == 0L) bioc_repos <- BiocManager::repositories()[1]
+    get_package_dependencies(x$name, repo = bioc_repos)
   })
 }
 
