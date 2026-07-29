@@ -1,5 +1,29 @@
 # riskmetric (development version)
 
+- `assess_reverse_dependencies.default()` no longer calls
+  `devtools::revdep(bioconductor = TRUE)` internally. `devtools`'s
+  reverse-dependency helper unconditionally reads a `VIEWS` file
+  from `BiocManager::repositories()[["BioCsoft"]]`, which fails in
+  air-gapped environments — for example, an internal Posit Package
+  Manager mirror that serves `<repo>/src/contrib/PACKAGES` but no
+  `<repo>/VIEWS`. That failure was silently converting the
+  reverse-dependencies metric to a `pkg_metric_error` for every
+  package in the run, and downstream tooling (`riskreports`) then
+  rendered it as `"unknown"`.
+- The default method now computes the reverse-dependency list
+  from `utils::available.packages()` + `tools::dependsOnPkgs()`.
+  It accepts three new arguments to make the behaviour explicit
+  and configurable: `repos` (defaults to `getOption("repos")`),
+  `dependencies` (defaults to
+  `c("Depends", "Imports", "LinkingTo", "Suggests")` to match the
+  previous `devtools::revdep()` behaviour), and `available` (an
+  optional pre-computed `available.packages()` matrix to avoid a
+  repeated network fetch across many packages in the same
+  session). Public-network callers get the same result as before;
+  air-gapped callers can point `options(repos = ...)` at their
+  internal mirror once and expect the metric to populate
+  correctly.
+
 # riskmetric 0.2.6
 
 - Update to address new failing tests responding to `devtools` v2.4.7 changes.
