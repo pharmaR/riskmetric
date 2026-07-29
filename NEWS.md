@@ -8,8 +8,7 @@
   Manager mirror that serves `<repo>/src/contrib/PACKAGES` but no
   `<repo>/VIEWS`. That failure was silently converting the
   reverse-dependencies metric to a `pkg_metric_error` for every
-  package in the run, and downstream tooling (`riskreports`) then
-  rendered it as `"unknown"`.
+  package in the run, and downstream tooling.
 - The default method now computes the reverse-dependency list
   from `utils::available.packages()` + `tools::dependsOnPkgs()`.
   It accepts three new arguments to make the behaviour explicit
