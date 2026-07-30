@@ -322,6 +322,20 @@ with.pkg_ref <- function(data, expr, ...) {
 
 
 is_available_cran <- function(x, repos, p) {
+  # A package that appears in memoise_bioc_available() is a Bioconductor
+  # package. Even if it also shows up in memoise_available_packages()
+  # (which happens whenever options("repos") advertises both a CRAN and a
+  # BioC entry -- the standard PPM setup), we want verify_pkg_source()'s
+  # dispatch to fall through to is_available_bioc() so the reference is
+  # classified as pkg_bioc_remote rather than pkg_cran_remote. Otherwise
+  # every downstream BioC-only cache method (has_examples, remote_checks,
+  # ...) either errors with "no applicable method" or scrapes the wrong
+  # HTML endpoint.
+  in_bioc <- tryCatch(
+    x %in% memoise_bioc_available()[, "Package"],
+    error = function(e) FALSE
+  )
+  if (isTRUE(in_bioc)) return(FALSE)
   x %in% memoise_available_packages(repos = repos)[,"Package"] ||
     (!is.null(memoise_cran_mirrors()) &&
        # isTRUE added to catch any issues where the cran mirror isn't available

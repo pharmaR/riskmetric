@@ -83,3 +83,71 @@ test_that("memoise_bioc_available() returns an empty frame when no BioC repos ex
 
   memoise::forget(memoise_bioc_available)
 })
+
+
+test_that("bioc_repositories() honours the riskmetric.bioc_repos option override", {
+  withr::local_options(
+    riskmetric.bioc_repos = c(BioC = "https://internal.example.com/bioc")
+  )
+  expect_equal(
+    unname(bioc_repositories()),
+    "https://internal.example.com/bioc"
+  )
+})
+
+test_that("bioc_repositories() honours the RISKMETRIC_BIOC_REPOS env var", {
+  withr::local_options(riskmetric.bioc_repos = NULL)
+  withr::local_envvar(
+    RISKMETRIC_BIOC_REPOS = "https://a.example.com/bioc,https://b.example.com/bioc"
+  )
+  expect_equal(
+    bioc_repositories(),
+    c("https://a.example.com/bioc", "https://b.example.com/bioc")
+  )
+})
+
+test_that("bioc_repositories() falls through to options('repos') by URL pattern", {
+  withr::local_options(
+    riskmetric.bioc_repos = NULL,
+    repos = c(
+      CRAN = "https://internal.example.com/cran/latest",
+      PPM_Bioc = "https://internal.example.com/bioconductor-3.22/latest"
+    )
+  )
+  withr::local_envvar(RISKMETRIC_BIOC_REPOS = "")
+  # Force BiocManager::repositories() out of the picture for the test.
+  with_mocked_bindings(
+    repositories = function(...) stop("no BiocManager on this host"),
+    .package = "BiocManager",
+    {
+      res <- bioc_repositories()
+      expect_length(res, 1L)
+      expect_match(res, "bioconductor-3.22")
+    }
+  )
+})
+
+test_that("is_available_cran() vetoes packages known to memoise_bioc_available", {
+  fake_bioc <- data.frame(
+    Package = "BiocGenerics", Version = "0.99.0",
+    Repository = "https://internal.example.com/bioc/src/contrib",
+    stringsAsFactors = FALSE
+  )
+  fake_cran <- matrix(
+    c("BiocGenerics", "0.99.0", "https://internal.example.com/cran"),
+    nrow = 1, byrow = TRUE,
+    dimnames = list(NULL, c("Package", "Version", "Repository"))
+  )
+  with_mocked_bindings(
+    memoise_bioc_available = function() fake_bioc,
+    memoise_available_packages = function(repos = NULL, ...) fake_cran,
+    memoise_cran_mirrors = function() NULL,
+    {
+      expect_false(
+        is_available_cran("BiocGenerics",
+                          repos = c(CRAN = "https://internal.example.com/cran"),
+                          p = list(repo_base_url = NA_character_))
+      )
+    }
+  )
+})

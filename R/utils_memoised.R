@@ -96,21 +96,56 @@ memoise_bioc_available <- memoise::memoise({
 
 #' Return the set of Bioconductor repository URLs to query
 #'
-#' Filters \code{BiocManager::repositories()} down to the entries whose names
-#' start with \code{"BioC"} - by default \code{BioCsoft}, \code{BioCann},
-#' \code{BioCexp}, \code{BioCworkflows} and \code{BioCbooks}. Any non-BioC
-#' entries (e.g. \code{CRAN}) are dropped so \code{utils::available.packages()}
-#' isn't asked to fold CRAN into the Bioconductor index.
+#' Resolves the list of Bioconductor repository URLs to hand to
+#' \code{utils::available.packages()}, in order of specificity:
+#'
+#' \enumerate{
+#'   \item \code{options("riskmetric.bioc_repos")} — explicit override
+#'         (named \code{character} or single URL).
+#'   \item \code{Sys.getenv("RISKMETRIC_BIOC_REPOS")} — comma-separated
+#'         URLs, useful in air-gapped batch runs.
+#'   \item \code{BiocManager::repositories()} entries whose names begin
+#'         \code{"BioC"} (the public-network default: \code{BioCsoft},
+#'         \code{BioCann}, \code{BioCexp}, \code{BioCworkflows},
+#'         \code{BioCbooks}).
+#'   \item \code{options("repos")} entries whose name begins \code{"BioC"}
+#'         \emph{or} whose URL contains \code{bioconductor} / \code{/bioc/}
+#'         (case-insensitive). This covers PPM-style setups where the
+#'         BioC snapshot is exposed via \code{options("repos")} alongside
+#'         a CRAN entry, without being named \code{BioCsoft}.
+#' }
+#'
+#' Any non-BioC entries (e.g. \code{CRAN}) are dropped so
+#' \code{utils::available.packages()} isn't asked to fold CRAN into the
+#' Bioconductor index.
 #'
 #' @return a named character vector of repository URLs, possibly empty if
-#'   \code{BiocManager::repositories()} errors or returns nothing BioC-shaped.
+#'   no Bioconductor repository can be identified.
 #' @keywords internal
 bioc_repositories <- function() {
+  opt <- getOption("riskmetric.bioc_repos", NULL)
+  if (length(opt)) return(opt)
+  env <- Sys.getenv("RISKMETRIC_BIOC_REPOS", unset = "")
+  if (nzchar(env)) return(trimws(strsplit(env, ",", fixed = TRUE)[[1]]))
   repos <- tryCatch(BiocManager::repositories(), error = function(e) NULL)
-  if (is.null(repos) || length(repos) == 0L) return(character(0))
-  nms <- names(repos)
-  if (is.null(nms)) return(character(0))
-  repos[startsWith(nms, "BioC")]
+  if (length(repos)) {
+    nms <- names(repos)
+    if (!is.null(nms)) {
+      hits <- repos[startsWith(nms, "BioC")]
+      if (length(hits)) return(hits)
+    }
+  }
+  all_repos <- getOption("repos", character())
+  if (length(all_repos)) {
+    nms <- names(all_repos)
+    if (is.null(nms)) nms <- rep("", length(all_repos))
+    match_name <- startsWith(nms, "BioC")
+    match_url  <- grepl("bioconductor|/bioc(/|$)",
+                        all_repos, ignore.case = TRUE)
+    hits <- all_repos[match_name | match_url]
+    if (length(hits)) return(hits)
+  }
+  character(0)
 }
 
 

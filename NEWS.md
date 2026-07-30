@@ -8,6 +8,22 @@
   by `pkg_bioc()` / `pkg_ref()`. `pkg_bioc()` also now records the actual
   repository the package resolves from rather than hard-coding the
   software repository URL.
+- `bioc_repositories()` now falls through to `options("repos")` — matching
+  either on a `BioC*` name prefix or on a URL containing `bioconductor`
+  / `/bioc/` — after checking `BiocManager::repositories()`, and accepts
+  an explicit override via `options("riskmetric.bioc_repos")` or
+  `Sys.setenv(RISKMETRIC_BIOC_REPOS = ...)`. This makes the resolver
+  work on internal Posit Package Manager mirrors where the BioC
+  snapshot is only surfaced through `options("repos")` (e.g. alongside
+  a CRAN entry) and not through `BiocManager::repositories()`.
+- `is_available_cran()` now excludes packages that are also present in
+  `memoise_bioc_available()`, so `verify_pkg_source()` dispatch falls
+  through to `is_available_bioc()` for Bioconductor packages that
+  happen to be advertised in a `options("repos")` entry the CRAN
+  check would otherwise scan first. Fixes `pkg_ref("BiocGenerics")`
+  being classified as `pkg_cran_remote` when both a CRAN and a BioC
+  repository are configured — which in turn broke downstream
+  BioC-specific cache methods (`has_examples`, `remote_checks`, ...).
 - `assess_dependencies.pkg_bioc_remote()` now queries all Bioconductor
   repositories (previously only the first entry of
   `BiocManager::repositories()`), so dependency lookups succeed for
