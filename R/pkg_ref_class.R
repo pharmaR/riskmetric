@@ -210,10 +210,16 @@ pkg_bioc <- function(x) {
   bp <- memoise_bioc_available()
   info <- bp[bp[, "Package"] == x, , drop = FALSE]
 
+  repo <- if ("Repository" %in% colnames(info) && nrow(info) > 0L) {
+    sub("/src/contrib$", "", info[, "Repository"][1])
+  } else {
+    "https://bioconductor.org/packages/release/bioc"
+  }
+
   new_pkg_ref(
     x,
     version = info[, "Version"],
-    repo = "https://bioconductor.org/packages/release/bioc",
+    repo = repo,
     source = c("pkg_bioc_remote")
   )
 }
