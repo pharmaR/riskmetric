@@ -26,16 +26,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/pharmaR/riskmetric/blob/v0.2.7/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/pharmaR/riskmetric/blob/v0.2.8/DESCRIPTION)
 
 R Validation Hub, Kelkhoff D, Gotti M, Miller E, K K, Zhang Y, Milliman
 E, Manitz J (2026). *riskmetric: Risk Metrics to Evaluating R Packages*.
-R package version 0.2.7, <https://pharmar.github.io/riskmetric/>.
+R package version 0.2.8, <https://pharmar.github.io/riskmetric/>.
 
     @Manual{,
       title = {riskmetric: Risk Metrics to Evaluating R Packages},
       author = {{R Validation Hub} and Doug Kelkhoff and Marly Gotti and Eli Miller and Kevin K and Yilong Zhang and Eric Milliman and Juliane Manitz},
       year = {2026},
-      note = {R package version 0.2.7},
+      note = {R package version 0.2.8},
       url = {https://pharmar.github.io/riskmetric/},
     }

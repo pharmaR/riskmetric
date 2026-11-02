@@ -91,6 +91,7 @@ high risk if the name does not start with “r”. We’ll need to make a
 `pkg_metric` object containing the first letter of the name.
 
 ``` r
+
 assess_name_first_letter <- function(x, ...) {
   UseMethod("assess_name_first_letter")
 }
@@ -132,17 +133,18 @@ is first accessed by the `pkg_ref` object, and then stored for any
 downstream uses.
 
 ``` r
+
 library(riskmetric)
 package <- pkg_ref("riskmetric")
 ```
 
-    #> <pkg_install, pkg_ref> riskmetric v0.2.7
+    #> <pkg_install, pkg_ref> riskmetric v0.2.8
     #> $path
-    #>   [1] "/home/user/username/R/4.5/Resources/library/riskmetric"
+    #>   [1] "/home/user/username/R/4.6/Resources/library/riskmetric"
     #> $source
     #>   [1] "pkg_install"
     #> $version
-    #>   [1] '0.2.7'
+    #>   [1] '0.2.8'
     #> $name
     #>   [1] "riskmetric"
     #> $bug_reports...
@@ -169,6 +171,7 @@ accessed, the object will call a caching function to go out and grab the
 package metadata and return the newly derived value.
 
 ``` r
+
 package$description
 ```
 
@@ -187,6 +190,7 @@ Thankfully, any subclass of `pkg_ref` can access the first letter the
 same way, so we just need the one function.
 
 ``` r
+
 pkg_ref_cache.name_first_letter <- function(x, name, ...) {
   substr(x$name, 0, 1)
 }
@@ -197,6 +201,7 @@ to `assess_name_first_letter.pkg_ref` in order use our newly cached
 value.
 
 ``` r
+
 assess_name_first_letter.pkg_ref <- function(x, ...) {
   pkg_metric(x$name_first_letter, class = "pkg_metric_name_first_letter")
 } 
@@ -205,6 +210,7 @@ assess_name_first_letter.pkg_ref <- function(x, ...) {
 Let’s try it out!
 
 ``` r
+
 package$name
 #> [1] "riskmetric"
 package$name_first_letter
@@ -223,6 +229,7 @@ the package conforms to best practices with values between 0 (poor
 practice) and 1 (best practice).
 
 ``` r
+
 metric_score.pkg_metric_name_first_letter <- function(x, ...) {
   as.numeric(x == "r")
 }
@@ -237,6 +244,7 @@ the included assessment functions, and you’re free to add to that list
 to customize your own assessment toolkit.
 
 ``` r
+
 library(dplyr)
 assessments <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble() %>%
@@ -245,9 +253,9 @@ assessments
 #> # A tibble: 3 × 23
 #>   package    version pkg_ref             covr_coverage has_news   remote_checks
 #>   <chr>      <chr>   <lst_f_p_>          <lst_f_p_>    <lst_f_p_> <lst_f_p_>   
-#> 1 riskmetric 0.2.7   riskmetric<install> NA            1          NA           
-#> 2 utils      4.5.3   utils<install>      NA            0          NA           
-#> 3 tools      4.5.3   tools<install>      NA            0          NA           
+#> 1 riskmetric 0.2.8   riskmetric<install> NA            1          NA           
+#> 2 utils      4.6.2   utils<install>      NA            0          NA           
+#> 3 tools      4.6.2   tools<install>      NA            0          NA           
 #> # ℹ 17 more variables: news_current <lst_f_p_>, r_cmd_check <lst_f_p_>,
 #> #   exported_namespace <lst_f_p_>, has_vignettes <lst_f_p_>,
 #> #   export_help <lst_f_p_>, has_website <lst_f_p_>, has_maintainer <lst_f_p_>,
@@ -261,13 +269,14 @@ Our scoring function will automatically get picked up and used by the
 score method.
 
 ``` r
+
 pkg_score(assessments)
 #> # A tibble: 3 × 24
 #>   package    version pkg_ref             pkg_score covr_coverage has_news  
 #>   <chr>      <chr>   <lst_f_p_>              <dbl> <pkg_scor>    <pkg_scor>
-#> 1 riskmetric 0.2.7   riskmetric<install>     0.531 NA            1         
-#> 2 utils      4.5.3   utils<install>          0.703 NA            0         
-#> 3 tools      4.5.3   tools<install>          0.748 NA            0         
+#> 1 riskmetric 0.2.8   riskmetric<install>     0.483 NA            1         
+#> 2 utils      4.6.2   utils<install>          0.703 NA            0         
+#> 3 tools      4.6.2   tools<install>          0.748 NA            0         
 #> # ℹ 18 more variables: remote_checks <pkg_scor>, news_current <pkg_scor>,
 #> #   r_cmd_check <pkg_scor>, exported_namespace <pkg_scor>,
 #> #   has_vignettes <pkg_scor>, export_help <pkg_scor>, has_website <pkg_scor>,
@@ -281,13 +290,14 @@ and we can define our own summarizing weights by passing a named list to
 `pkg_score`.
 
 ``` r
+
 pkg_score(assessments, weights = c(has_website = 1, name_first_letter = 1))
 #> # A tibble: 3 × 24
 #>   package    version pkg_ref             pkg_score covr_coverage has_news  
 #>   <chr>      <chr>   <lst_f_p_>              <dbl> <pkg_scor>    <pkg_scor>
-#> 1 riskmetric 0.2.7   riskmetric<install>         0 NA            1         
-#> 2 utils      4.5.3   utils<install>              1 NA            0         
-#> 3 tools      4.5.3   tools<install>              1 NA            0         
+#> 1 riskmetric 0.2.8   riskmetric<install>         0 NA            1         
+#> 2 utils      4.6.2   utils<install>              1 NA            0         
+#> 3 tools      4.6.2   tools<install>              1 NA            0         
 #> # ℹ 18 more variables: remote_checks <pkg_scor>, news_current <pkg_scor>,
 #> #   r_cmd_check <pkg_scor>, exported_namespace <pkg_scor>,
 #> #   has_vignettes <pkg_scor>, export_help <pkg_scor>, has_website <pkg_scor>,

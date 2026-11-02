@@ -90,18 +90,19 @@ constructor function. This object will contain metadata as it’s
 collected in the various risk assessments.
 
 ``` r
+
 library(riskmetric)
 riskmetric_pkg_ref <- pkg_ref("riskmetric")
 print(riskmetric_pkg_ref)
 ```
 
-    #> <pkg_install, pkg_ref> riskmetric v0.2.7
+    #> <pkg_install, pkg_ref> riskmetric v0.2.8
     #> $path
-    #>   [1] "/home/user/username/R/4.5/Resources/library/riskmetric"
+    #>   [1] "/home/user/username/R/4.6/Resources/library/riskmetric"
     #> $source
     #>   [1] "pkg_install"
     #> $version
-    #>   [1] '0.2.7'
+    #>   [1] '0.2.8'
     #> $name
     #>   [1] "riskmetric"
     #> $bug_reports...
@@ -149,6 +150,7 @@ argument, a `pkg_ref` object and produces a `pkg_metric` object
 corresponding to the `assess_*` function that was applied.
 
 ``` r
+
 riskmetric_export_help_metric <- assess_export_help(riskmetric_pkg_ref)
 print(riskmetric_export_help_metric[1:5])
 ```
@@ -174,10 +176,11 @@ It’s worth pointing out that the act of calling this function has had
 the side-effect of mutating our `riskmetric_pkg_ref` object.
 
 ``` r
+
 riskmetric_pkg_ref
 ```
 
-    #> <pkg_install, pkg_ref> riskmetric v0.2.7
+    #> <pkg_install, pkg_ref> riskmetric v0.2.8
     #> $help_aliases
     #>              riskmetric-package                          %||%
     #>                    "riskmetric"            "if_not_null_else"
@@ -187,11 +190,11 @@ riskmetric_pkg_ref
     #>               "all_assessments" "assessment_error_as_warning"
     #>   <continued>
     #> $path
-    #>   [1] "/home/user/username/R/4.5/Resources/library/riskmetric"
+    #>   [1] "/home/user/username/R/4.6/Resources/library/riskmetric"
     #> $source
     #>   [1] "pkg_install"
     #> $version
-    #>   [1] '0.2.7'
+    #>   [1] '0.2.8'
     #> $name
     #>   [1] "riskmetric"
     #> $bug_reports...
@@ -240,6 +243,7 @@ apply, defaulting to
 list of all `assess_*` functions in the `riskmetric` namespace.
 
 ``` r
+
 pkg_assess(riskmetric_pkg_ref)
 ```
 
@@ -270,7 +274,7 @@ pkg_assess(riskmetric_pkg_ref)
     #> [1] "Number of OS flavors that passed/warned/errored on R CMD check"
     #> 
     #> $news_current
-    #> [1] FALSE
+    #> [1] TRUE
     #> attr(,"class")
     #> [1] "pkg_metric_news_current" "pkg_metric"             
     #> [3] "logical"                
@@ -351,12 +355,12 @@ pkg_assess(riskmetric_pkg_ref)
     #> [2] "https://github.com/pharmaR/riskmetric"
     #> 
     #> $has_maintainer
-    #> [1] "Eli Miller <eli.miller@atorusresearch.com>"
+    #> [1] "Eli Miller <elimillera@gmail.com>"
     #> 
     #> $bugs_status
-    #>  [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
-    #> [13] FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
-    #> [25] FALSE  TRUE FALSE FALSE  TRUE FALSE
+    #>  [1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE
+    #> [13]  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+    #> [25]  TRUE FALSE FALSE FALSE FALSE  TRUE
     #> 
     #> $size_codebase
     #> <simpleError in attachNamespace(x$name): namespace is already attached>
@@ -373,7 +377,7 @@ pkg_assess(riskmetric_pkg_ref)
     #> [1] "presence of a bug reports url in repository"
     #> 
     #> $downloads_1yr
-    #> [1] 7443
+    #> [1] 8941
     #> 
     #> $reverse_dependencies
     #> character(0)
@@ -415,13 +419,14 @@ returning a cleaner output that might be easier to sort through when
 assessing a package.
 
 ``` r
+
 pkg_assess(as_tibble(riskmetric_pkg_ref))
 ```
 
     #> # A tibble: 1 × 22
     #>   package    version pkg_ref             covr_coverage has_news   remote_checks
     #>   <chr>      <chr>   <lst_f_p_>          <lst_f_p_>    <lst_f_p_> <lst_f_p_>   
-    #> 1 riskmetric 0.2.7   riskmetric<install> NA            1          NA           
+    #> 1 riskmetric 0.2.8   riskmetric<install> NA            1          NA           
     #> # ℹ 16 more variables: news_current <lst_f_p_>, r_cmd_check <lst_f_p_>,
     #> #   exported_namespace <lst_f_p_>, has_vignettes <lst_f_p_>,
     #> #   export_help <lst_f_p_>, has_website <lst_f_p_>, has_maintainer <lst_f_p_>,
@@ -440,6 +445,7 @@ based on the class of the metric that is passed to it to interpret the
 atomic metric result.
 
 ``` r
+
 metric_score(riskmetric_export_help_metric)
 #> [1] 1
 ```
@@ -450,11 +456,12 @@ by `pkg_assess` applied to a `pkg_ref` `tibble`, providing a new
 `tibble` with scored metrics.
 
 ``` r
+
 pkg_score(pkg_assess(as_tibble(pkg_ref("riskmetric"))))
 #> # A tibble: 1 × 23
 #>   package    version pkg_ref             pkg_score covr_coverage has_news  
 #>   <chr>      <chr>   <lst_f_p_>              <dbl> <pkg_scor>    <pkg_scor>
-#> 1 riskmetric 0.2.7   riskmetric<install>     0.559 NA            1         
+#> 1 riskmetric 0.2.8   riskmetric<install>     0.508 NA            1         
 #> # ℹ 17 more variables: remote_checks <pkg_scor>, news_current <pkg_scor>,
 #> #   r_cmd_check <pkg_scor>, exported_namespace <pkg_scor>,
 #> #   has_vignettes <pkg_scor>, export_help <pkg_scor>, has_website <pkg_scor>,
@@ -489,6 +496,7 @@ up further we can use the `magrittr` pipe (`%>%`) to chain these
 commands together.
 
 ``` r
+
 package_tbl <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
   as_tibble()
 ```
@@ -499,15 +507,16 @@ package_tbl <- pkg_ref(c("riskmetric", "utils", "tools")) %>%
 simultaneously test an entire cohort of packages at once.
 
 ``` r
+
 package_tbl %>%
   pkg_assess() %>%
   pkg_score()
 #> # A tibble: 3 × 23
 #>   package    version pkg_ref             pkg_score covr_coverage has_news  
 #>   <chr>      <chr>   <lst_f_p_>              <dbl> <pkg_scor>    <pkg_scor>
-#> 1 riskmetric 0.2.7   riskmetric<install>     0.559 NA            1         
-#> 2 utils      4.5.3   utils<install>          0.687 NA            0         
-#> 3 tools      4.5.3   tools<install>          0.735 NA            0         
+#> 1 riskmetric 0.2.8   riskmetric<install>     0.508 NA            1         
+#> 2 utils      4.6.2   utils<install>          0.687 NA            0         
+#> 3 tools      4.6.2   tools<install>          0.735 NA            0         
 #> # ℹ 17 more variables: remote_checks <pkg_scor>, news_current <pkg_scor>,
 #> #   r_cmd_check <pkg_scor>, exported_namespace <pkg_scor>,
 #> #   has_vignettes <pkg_scor>, export_help <pkg_scor>, has_website <pkg_scor>,
@@ -522,11 +531,12 @@ our metric scores. This value is a shorthand for aggregating a weighted
 average of risk scores across `tibble` columns using `summarize_scores`.
 
 ``` r
+
 package_tbl %>%
   pkg_assess() %>%
   pkg_score() %>%
   summarize_scores()
-#> [1] 0.5593447 0.6870884 0.7354772
+#> [1] 0.5079949 0.6871680 0.7356163
 ```
 
 ## How you can help…

@@ -46,12 +46,14 @@ example below.
 You can install `riskmetric` from CRAN with:
 
 ``` r
+
 install.packages("riskmetric")
 ```
 
 Or from GitHub using `devtools` with:
 
 ``` r
+
 devtools::install_github("pharmaR/riskmetric")
 ```
 
@@ -63,6 +65,7 @@ risk, or a collection of individual scores which can be easily used to
 generate validation reports.
 
 ``` r
+
 library(dplyr)
 library(riskmetric)
 

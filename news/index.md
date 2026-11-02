@@ -2,6 +2,12 @@
 
 ## riskmetric (development version)
 
+## riskmetric 0.2.8
+
+CRAN release: 2026-10-30
+
+- Update maintainer email address
+
 ## riskmetric 0.2.6
 
 CRAN release: 2026-01-13
