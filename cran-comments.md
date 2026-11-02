@@ -1,6 +1,6 @@
-## riskmetric 0.2.5
+## riskmetric 0.2.8
 
-Resolved issues with CRAN checks.
+Update Maintainer email address
 
 Tested on Ubuntu Jammy, GitHub Action, and RHub.
 
