@@ -1,5 +1,9 @@
 # riskmetric (development version)
 
+# riskmetric 0.2.8
+
+- Update maintainer email address
+
 # riskmetric 0.2.6
 
 - Update to address new failing tests responding to `devtools` v2.4.7 changes.
